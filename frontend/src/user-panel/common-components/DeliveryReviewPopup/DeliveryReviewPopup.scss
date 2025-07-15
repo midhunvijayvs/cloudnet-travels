@@ -1,0 +1,74 @@
+.delivery-review-modal {
+  .card{
+    max-height: 95vh;
+    overflow-y: auto;
+    // width: fit-content;
+    
+  }
+  .rating-sec{
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    gap:5px;
+  }
+  .star-box svg {
+    margin-right: 5px;
+  }
+  
+  .order-item {
+    margin-bottom: 15px;
+    .name{
+      font-weight: 500;
+    }
+    .star-box svg{
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .star-box svg path {
+    fill: transparent !important;
+    stroke: #868790 !important;
+    cursor: pointer;
+  }
+
+  .star-box svg .filled,
+  .star-box svg path:hover {
+    fill: rgb(var(--theme-color)) !important;
+    stroke: rgb(var(--theme-color)) !important;
+  }
+
+  .vertical-footer .ok-button {
+    border-radius: 25px;
+    background: linear-gradient(to right, rgba(var(--theme-color), 1), rgba(var(--theme-color2), 1));
+    color: #FFF;
+    text-align: center;
+    font-family: Work Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    height: 40px;
+    width: 100% !important;
+    margin-bottom: 10px;
+  }
+  .vertical-footer .cancel-button {
+    border-radius: 25px;
+    background: rgba(var(--theme-color), 0.2509803922);
+    color: rgb(var(--theme-color2));
+    text-align: center;
+    font-family: Work Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    height: 40px;
+    width: 100% !important;
+  }
+
+}
+
+@media (max-width:992px) {}
+
+@media (max-width:768px) {}

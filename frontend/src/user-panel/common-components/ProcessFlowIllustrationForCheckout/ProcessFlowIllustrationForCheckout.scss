@@ -1,0 +1,49 @@
+.process-flow-wrapper {
+    position: relative;
+    width: 100%;
+
+    .horizontal-dashed-line {
+        position: absolute;
+        top: 25%;
+        left: 4rem;
+        height: 2px;
+        width: 84%;
+        background: repeating-linear-gradient(to right,
+                transparent,
+                transparent 5px,
+                #ccc 5px,
+                #ccc 10px);
+        z-index: 0; // Behind the li elements
+    }
+
+    .process-list {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 auto 2rem auto;
+        width: 100%;
+        list-style-type: none;
+padding-left: 0;
+        li {
+            button {
+                svg {
+                    margin-bottom: .5rem;
+                }
+            }
+
+            &.active,
+            &:hover {
+                button {
+                    svg {
+                        path {
+                            fill: var(--primary-color);
+                            fill-opacity: 1;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}

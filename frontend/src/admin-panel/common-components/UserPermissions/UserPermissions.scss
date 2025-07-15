@@ -1,0 +1,57 @@
+.users-permission-page {
+    table {
+        thead tr th {
+            text-align: center;
+            font-size: 13px !important;
+            padding: 10px !important;
+            font-size: 16px;
+            border-bottom: none !important;
+            color: #0d233e;
+            font-weight: 600 !important;
+            text-transform: capitalize;
+            white-space: nowrap;
+
+        }
+
+        tbody tr td {
+            text-align: center;
+            padding: 10px !important;
+            font-weight: 500 !important;
+        }
+    }
+
+    .custom-checkbox {
+        appearance: none;
+        cursor: pointer;
+        height: 16px;
+        width: 16px;
+        border-radius: 4px;
+        display: inline-block;
+        position: relative;
+        border: 1px solid #F2A93E;
+        background-color: transparent;
+        transition: all 0.3s ease-in-out;
+        &::before {
+            content: "\eb7b";
+            font-family: remixicon !important;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            color: #F2A93E;
+            transform: translate(-50%, -50%) scale(0);
+            transition: all 0.3s ease-in-out;
+        }
+        &:focus{
+            border: 1px solid #F2A93E;
+        }
+        &:disabled{
+            cursor: default;
+            border: 1px solid #e7e7e7;
+        }
+
+    }
+    .cancel-btn {
+        border: 1px solid #f07054;
+        color: #f07054;
+    }
+}

@@ -1,0 +1,24 @@
+.empty{
+    .star{
+        color: rgb(212, 212, 212);
+    }
+}
+.common-rating-section {
+    .rating-star {
+        display: flex;
+        align-items: center;
+        gap: 1px;
+    }
+
+    .rating-star li {
+        padding: 0;
+        border-bottom: none;
+        line-height: 1;
+    }
+
+    .rating-star li .star {
+        color: rgba(var(--rate-color), 1);
+        font-size: calc(14px + 2 * (100vw - 320px) / 1600);
+        line-height: 1;
+    }
+}

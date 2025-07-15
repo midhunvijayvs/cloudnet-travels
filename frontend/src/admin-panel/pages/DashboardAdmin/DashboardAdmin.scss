@@ -1,0 +1,381 @@
+.admin-dashboard-page {
+    .page-body {
+        padding: 15px;
+    }
+
+    .card {
+        padding: 20px;
+
+        &.order,
+        &.restaurant,
+        &.customer {
+            cursor: pointer;
+            transition: all 0.5 ease;
+            &:hover {
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.10);
+            }
+        }
+
+    }
+
+    table {
+        thead {
+            background-color: rgb(var(--theme-color2), 0.08) !important;
+        }
+
+        th {
+            text-align: center;
+
+            &:first-child {
+                text-align: start;
+            }
+        }
+
+        td {
+            text-align: center;
+        }
+
+        .table-image {
+            h5 {
+                display: block !important;
+
+            }
+        }
+
+        .short {
+            max-width: 220px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            &.address {
+                max-width: 250px;
+                font-size: calc(11px + 6 * ((100vw - 320px) / (1920 - 320)));
+            }
+
+        }
+    }
+
+    .truncate {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        -webkit-line-clamp: 1;
+        text-overflow: ellipsis;
+    }
+
+    .card.overview {
+        margin: 0;
+        padding: 15px 20px;
+        color: #fff;
+        z-index: 1;
+        overflow: hidden;
+        background: linear-gradient(to right, rgb(var(--theme-color2), 0.4), rgb(var(--theme-color2), 0.7));
+
+        .bg-icon {
+            position: absolute;
+            z-index: -1;
+            bottom: -28px;
+            right: -17px;
+            opacity: 15%;
+            transform: rotate(-45deg);
+
+            img {
+                height: 120px;
+            }
+        }
+
+        .icon {
+            position: relative;
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-family: Poppins, sans-serif;
+            line-height: 1;
+            overflow: hidden;
+            user-select: none;
+            background: rgb(var(--theme-color), 1);
+            cursor: pointer;
+            border-radius: 8px;
+            width: 40px;
+            height: 40px;
+            padding: 10px;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+
+        }
+
+        h2 {
+            font-size: calc(25px + 10 * (100vw - 320px) / 1600);
+            font-weight: 600;
+            margin-bottom: 10px;
+            margin-top: 15px;
+        }
+
+        h5 {
+            font-size: calc(12px + 6 * (100vw - 320px) / 1600);
+            font-weight: 550;
+            margin-bottom: 10px;
+            color: #ececec;
+        }
+
+        &.sale {
+            background: linear-gradient(to right, rgb(var(--theme-color2), 0.4), rgb(var(--theme-color2), 0.6));
+
+            .icon {
+                // background: rgb(var(--theme-color2), 1);   
+            }
+
+            .bg-icon {
+                opacity: 11%;
+            }
+
+        }
+
+        &.order {
+
+            // background: linear-gradient(to right, rgb(var(--theme-color), 0.5), rgb(var(--theme-color), 0.7));
+            .icon {
+                // background: rgb(var(--theme-color), 1);   
+            }
+
+            .bg-icon {
+                top: -10px;
+                right: 0px;
+                transform: rotate(25deg);
+            }
+        }
+
+        &.restaurant {
+
+            // background: linear-gradient(to right, rgb(var(--theme-color2), 0.5), rgb(var(--theme-color2), 0.4));
+            .icon {
+                // background: rgb(var(--theme-color2), 1);   
+            }
+
+            .bg-icon {
+                right: 50px;
+                opacity: 10%;
+                transform: rotate(15deg);
+
+                img {
+                    height: 80px;
+                }
+            }
+        }
+
+        &.customer {
+
+            // background: linear-gradient(to right, rgb(var(--theme-color), 0.45), rgb(var(--theme-color), 0.8));
+            .icon {
+                background: rgb(var(--theme-color), 1);
+            }
+
+            .bg-icon {
+                top: 20px;
+                right: -50px;
+                transform: rotate(-45deg);
+
+                img {
+                    height: 120px;
+                }
+            }
+        }
+    }
+    
+    .graph {
+        .review {
+            background-image: url(../../../../public/images/admin-panel/dashboard/wave1.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .sales {
+            background-image: url(../../../../public/images/admin-panel/dashboard/wave1.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+
+        .filters {
+            width: 100%;
+            padding: 0 20px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+
+            // flex-direction: column;
+            label {
+                font-size: calc(10px + 4 * (100vw - 320px) / 1600);
+                font-weight: 500;
+                // margin: 0;
+                // margin-left: 8px;
+            }
+
+            .radio-section {
+                padding: 0;
+                padding-bottom: 5px;
+                background-color: transparent;
+                border: none !important;
+                border-radius: 4px;
+
+                label>input:checked+i {
+                    background: rgb(var(--theme-color));
+                }
+
+                label>i {
+                    display: inline-block;
+                    width: 15px;
+                    height: 15px;
+                    border-radius: 50%;
+                    margin-right: 5px;
+                    vertical-align: middle;
+                    border: 2px solid rgb(var(--theme-color));
+                    box-shadow: none;
+                    transition: 0.25s;
+                }
+            }
+
+            .date-picker {
+                font-size: small;
+                border: 1px solid rgb(var(--theme-color), 1);
+                width: 100px;
+                border-radius: 3px;
+                cursor: pointer;
+
+                .react-datepicker__input-container input {
+                    background-color: #ffffff;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    padding: 5px 10px !important;
+                    text-align: right;
+                    width: 100%;
+                }
+
+                .react-datepicker-wrapper input {
+                    cursor: pointer;
+                    background-color: #fff;
+                }
+
+                .date-picker-input {
+                    user-select: none;
+                    /* Disable text selection */
+                    -webkit-user-select: none;
+                }
+
+                .react-datepicker__input-container input {
+                    background-color: #ffffff;
+                    border: none;
+                    border-radius: 4px;
+                    padding: 10px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .top-selling {
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            h5 {
+                padding: 0;
+            }
+        }
+
+        .filters {
+            // padding: 0 20px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+
+            // flex-direction: column;
+            label {
+                font-size: calc(10px + 4 * (100vw - 320px) / 1600);
+                font-weight: 500;
+                // margin: 0;
+                // margin-left: 8px;
+            }
+
+            .radio-section {
+                padding: 0;
+                padding-bottom: 5px;
+                background-color: transparent;
+                border: none !important;
+                border-radius: 4px;
+
+                label>input:checked+i {
+                    background: rgb(var(--theme-color));
+                }
+
+                label>i {
+                    display: inline-block;
+                    width: 15px;
+                    height: 15px;
+                    border-radius: 50%;
+                    margin-right: 5px;
+                    vertical-align: middle;
+                    border: 2px solid rgb(var(--theme-color));
+                    box-shadow: none;
+                    transition: 0.25s;
+                }
+            }
+
+            .date-picker {
+                font-size: small;
+                border: 1px solid #f0aa14 !important;
+                width: 100px;
+                border-radius: 3px;
+                cursor: pointer;
+
+                .react-datepicker__input-container input {
+                    background-color: #ffffff;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    padding: 5px 10px !important;
+                    text-align: right;
+                    width: 100%;
+                }
+
+                .react-datepicker-wrapper input {
+                    cursor: pointer;
+                    background-color: #fff;
+                }
+
+                .date-picker-input {
+                    user-select: none;
+                    /* Disable text selection */
+                    -webkit-user-select: none;
+                }
+
+                .react-datepicker__input-container input {
+                    background-color: #ffffff;
+                    border: none;
+                    border-radius: 4px;
+                    padding: 10px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+}
+
+@media (max-width: 1199px) {
+    .admin-dashboard-page {}
+}
+
+
+@media (max-width: 1005px) {
+    .admin-dashboard-page {}
+}
+
+
+@media (max-width:767px) {
+    .admin-dashboard-page {}
+}

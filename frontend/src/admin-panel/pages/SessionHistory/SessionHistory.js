@@ -1,0 +1,279 @@
+import React, { useRef } from "react";
+import { useEffect, useState } from "react";
+import $ from 'jquery';
+import { useNavigate } from 'react-router-dom';
+import "./SessionHistory.scss"
+
+import API from '../../../API';
+import LoadingSpinner from "../../../LoadingSpinner";
+import ErrorModal from "../../../ErrorModal";
+import PositiveModal from "../../../PositiveModal";
+import DeleteConfirmModal from "../../../DeleteConfirmModal";
+import FixedOverlayLoadingSpinner from "../../../FixedOverlayLoadingSpinner"
+
+import Pagination from "../../../Pagination";
+import { formatDateTime2MonthYearTime, formatDateTimeToMonthYear } from "../../../GeneralFunctions";
+import CustomSearchSelectBox from "../../common-components/CustomSearchSelectBox/CustomSearchSelectBox";
+import DateRangePicker from "../../common-components/DateRangePicker/DateRangePicker";
+
+
+const SessionHistory = () => {
+
+  const navigate = useNavigate()
+
+  const [data, setData] = useState([]);
+  const [filters, setFilters] = useState({
+    search_key: null,
+    start_date: null,
+    end_date: null,
+    user_type: "",
+    status: "",
+  });
+
+  const [message, setMessage] = useState(null);
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
+  const [isMessageModalOpen, setIsMessageModalOpen] = useState(false);
+  const [isDeleteConfModalOpen, setIsDeleteConfModalOpen] = useState(false);
+  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [selectedItem, setSelectedItem] = useState({});
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const [page, setPage] = useState(1);
+  const [pageSize, selectPageSize] = useState(12);
+
+  useEffect(() => {
+    $(function () {
+      $(window).scrollTop(0);
+    });
+  }, [])
+
+
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      [name]: value,
+    }));
+  };
+  const resetFilters = () => {
+    setFilters({
+      search_key: null,
+      start_date: null,
+      end_date: null,
+      user_type: "",
+      status: "",
+    });
+    setIsFilterOpen(false);
+  };
+
+
+  useEffect(() => {
+    loadTableData();
+  }, [page, pageSize, filters]);
+  
+  // useEffect(() => {
+  //   if (page === 1){
+  //     setPage(null);
+  //   }else {
+  //     setPage(1);
+  //   }
+  // }, [filters]);
+
+  const loadTableData = () => {
+    setData(null);
+    setIsMessageModalOpen(false);
+
+    let apiUrl = `/user/audit-logs/?page=${page}&page_size=${pageSize}&type=login,logout`;
+
+    // Loop through the filters object and append selected filters to the apiUrl
+    for (let filter in filters) {
+      if (filters[filter] !== null) {
+        apiUrl += `&${filter}=${filters[filter]}`;
+      }
+    }
+    setIsLoading(true)
+    API.get(apiUrl)
+      .then(response => {
+        setData(response.data);
+        setIsLoading(false)
+      })
+      .catch(error => {
+        setMessage(error.response?.data?.message || error.message);
+        setIsErrorModalOpen(true);
+        setIsLoading(false)
+
+      });
+  }
+
+
+
+
+
+  const deleteItem = () => {
+    API.delete(`/user/users/${selectedItem.id}`)
+      .then(response => {
+        setMessage("Item deleted successfully.");
+        setIsMessageModalOpen(true)
+      })
+      .catch(error => {
+        setMessage(error.response?.data?.message || error.message);
+        setIsErrorModalOpen(true);
+      });
+  }
+
+
+
+  return (
+    <div className="admin-list-page session-history-list-page">
+      <div className="page-body">
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-sm-12">
+              <div className="card card-table">
+                <div className="card-body">
+                  <div className="title-header option-title">
+                    <h5>
+                      Session History
+                    </h5>
+                  </div>
+                  <div className="table-responsive theme-scrollbar table-product">
+                    <div>
+                      <div id="table_id_wrapper" className="dataTables_wrapper no-footer">
+                        <div id="table_id_filter" className="dataTables_filter d-flex w-100">
+                          <div className="filter-container">
+                            <div className="filter-row">
+                              <div className="filter-item">
+                                <label>Date Range:</label>
+                                <DateRangePicker
+                                  filters={filters}
+                                  setFilters={setFilters}
+                                  className="date-input"
+                                  rangeColors={['#004938']}
+                                />
+                              </div>
+                              {/* search_key */}
+                              <div className="filter-item">
+                                <label htmlFor="search">Search:</label>
+                                <input
+                                  type="text"
+                                  id="search_key"
+                                  name="search_key"
+                                  value={filters.search_key}
+                                  onChange={handleFilterChange}
+                                  placeholder="Search by keyword..."
+                                />
+                              </div>
+                              {/* status */}
+                              <div className="filter-item">
+                                <label htmlFor="status">Status:</label>
+                                <select
+                                  id="status"
+                                  name="status"
+                                  value={filters.status}
+                                  onChange={handleFilterChange}
+                                >
+                                  <option value="">All</option>
+                                  <option value="success">Success</option>
+                                  <option value="failure">Failure</option>
+                                </select>
+                              </div>
+
+                              <div className="filter-item btns">
+                                <button className="btn reset-btn" onClick={resetFilters}>Reset Filter</button>
+                              </div>
+                              <div className="filter-item d-none">
+                                <button className="btn" onClick={() => console.log(filters)}>Apply Filter</button>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                        <table className="table category-table" id="table_id">
+                          <thead>
+                            <tr>
+                              <th className="date">Date & Time</th>
+                              <th className="user-info d-none">User</th>
+                              <th>IP Address</th>
+                              <th>User Agent</th>
+                              <th>Action</th>
+                              <th>Status</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                            {data && data.results && data.results.map((item, index) => (
+                              <tr>
+                                <td>
+                                  <div className="d-flex align-items-center">
+                                    <div className="date">
+                                      {item.created_at && formatDateTime2MonthYearTime(item.created_at)}
+                                    </div>
+                                  </div>
+                                </td>
+                                <td>
+                                  {item.ip_address}
+                                </td>
+                                <td>
+                                  {item.user_agent}
+                                </td>
+                                <td>
+                                  {item.type ?
+                                    <div>
+                                      <div className="action-details">
+                                        {item.type}
+                                      </div>
+
+                                    </div>
+                                    :
+                                    <div className="not-found">
+                                      N/A
+                                    </div>
+                                  }
+                                </td>
+                                <td >
+                                  <div className="d-flex justify-content-center flex-column align-items-center">
+                                    <div className={` ${item.status == 'success' ? `status-close` : 'status-danger'}`}>
+                                      <span>
+                                        {item.status}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </td>
+
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  {data &&
+                    <Pagination
+                      totalItems={data.count}
+                      pageSize={pageSize}
+                      currentPage={page}
+                      setCurrentPage={setPage}
+                      selectPageSize={selectPageSize}
+                    >
+
+                    </Pagination>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <ErrorModal state={isErrorModalOpen} message={message} setterFunction={setIsErrorModalOpen} okClickedFunction={() => setIsErrorModalOpen(false)} />
+      {isMessageModalOpen && <PositiveModal message={message} setterFunction={setIsMessageModalOpen} okClickedFunction={loadTableData} />}
+      {isDeleteConfModalOpen && <DeleteConfirmModal resourceName={'users'} setterFunction={setIsDeleteConfModalOpen} onDeleteFunction={deleteItem}></DeleteConfirmModal>}
+      {isLoading && <FixedOverlayLoadingSpinner />}
+    </div>
+  )
+}
+
+
+export default SessionHistory

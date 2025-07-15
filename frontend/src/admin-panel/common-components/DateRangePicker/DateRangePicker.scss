@@ -1,0 +1,30 @@
+.date-range-picker{
+   position: relative;
+    .date-picker-overlay {
+        position: absolute;
+        background: #fff;
+        top: 40px;
+        z-index: 10;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        .rdrMonth{
+         padding: 0 0.833em 0.833em 0.833em;
+        }
+        .rdrMonthAndYearPickers select{
+           padding: 10px 30px 10px 10px !important;
+        }
+        span{
+           display: flex !important;
+        }
+      }
+      .btn-container{
+         display: flex;
+         justify-content: flex-end;
+         align-items: center;
+         padding: 0 0.833em 0.833em 0.833em;
+         .clear-btn{
+            text-decoration: underline;
+            color: red;
+            font-size: calc(12px + 2 * (100vw - 320px) / 1600);
+         }
+      }
+}

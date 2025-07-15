@@ -1,0 +1,26 @@
+
+.w-20{
+    width: 20%;
+}
+.w-40{
+    width: 40%;
+}
+
+.w-60{
+    width: 60%;
+}
+
+.cus-profileimg{
+    width: 100px;
+    height: 100px;
+    border-radius: 50% !important;
+}
+
+.dotted-border-btm{
+    border-bottom: 1px dashed rgba(128, 128, 128, 0.833);
+}
+
+.dotted-border-top{
+    border-top: 1px dashed rgba(128, 128, 128, 0.833);
+
+}

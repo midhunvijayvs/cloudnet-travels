@@ -1,0 +1,141 @@
+.profile-image-uploader{
+
+  
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.profile-image-uploader .content{
+  background-color: #fff;
+  width: fit-content;
+  padding: 20px;
+}
+.profile-image-uploader .file-input-wrapper {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+padding: 10px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 0.2px dashed #E05A67;
+border-radius: 5px;
+    background-color: #fff;
+    width: 180px;
+    height: 220px;
+    margin: 0 auto 10px auto;
+  }
+  
+  .profile-image-uploader .file-preview-wrapper{
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+padding: 10px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    width: 180px;
+    height: 220px;
+    margin: 0 auto 10px auto;
+    border: 0.2px solid #cdd1cf;
+border-radius: 5px;
+  }
+  .profile-image-uploader   .file-input-wrapper input[type="file"] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+
+
+  }
+  
+  .profile-image-uploader  .file-input-wrapper .file-input-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    height: 180px;
+    cursor: pointer;
+  }
+  
+  .profile-image-uploader  .file-input-wrapper .file-input-preview img {
+    height: 35px;
+  }
+
+
+
+
+
+
+
+
+.profile-image-uploader .file-input-wrapper span{
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+    /* identical to box height, or 154% */
+    
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.1px;
+    
+    color: #585858;
+    
+}
+
+.profile-image-uploader .text-danger, .profile-image-uploader .text-muted{
+  font-size: 10px;
+  line-height: 1.3;
+  margin-bottom: 7px;
+}
+.profile-image-uploader .remove-img-btn{
+    background-color: #bb2d3b;
+   
+}
+
+.profile-image-uploader .remove-single-img-btn {
+   padding: 5px 10px;
+}
+.profile-image-uploader .remove-single-img-btn svg{
+    height: 15px;
+}
+.profile-image-uploader .image-input-button{
+  background-color: #E05A67;
+  border-color: #E05A67;
+}
+.profile-image-uploader .image-preview-box
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  width: 300px;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  top: 0;
+  
+}
+.profile-image-uploader .image-preview-box img
+{
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+}
+.profile-image-uploader .image-instruction
+{
+  color: rgb(147, 143, 143);
+  font-size: 10px;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}

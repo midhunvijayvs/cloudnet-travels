@@ -1,0 +1,192 @@
+.restaurant-bank-add {
+    background-color: rgb(251, 251, 251);
+    border-radius: 4px;
+    padding: 40px 40px;
+
+    .top-sec {
+        margin-bottom: 40px;
+
+        .title {
+            font-weight: 600;
+            margin: 0;
+            padding: 0;
+            font-size: calc(15px + 4 * (100vw - 320px) / 1600);
+            line-height: 100%;
+            padding-bottom: 5px;
+
+            .verified {
+                margin-left: 10px;
+                font-size: calc(12px + 2 * (100vw - 320px) / 1600);
+                color: #008d09;
+                i{
+                    padding-left: 3px;
+                }
+            }
+        }
+
+        .sub-text {
+            font-size: calc(12px + 4 * (100vw - 320px) / 1600) !important;
+            font-weight: 500;
+            color: #8f8f8f;
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+    }
+
+    .form-sec {
+        .row {
+            margin-bottom: 30px;
+        }
+
+        .input-grp-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+
+            img {
+                cursor: pointer;
+                height: 20px;
+                width: 20px;
+            }
+        }
+
+        label {
+            font-size: 13px;
+            color: #767676;
+            font-weight: 500;
+            line-height: 20px;
+        }
+
+        .radio-btn-group {
+            display: flex;
+            gap: 15px;
+
+            label {
+                margin-left: 15px;
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+            }
+
+            /* Hide the default radio button */
+            .custom-radio {
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                width: 16px;
+                height: 16px;
+                border: 2px solid rgb(244, 95, 14);
+                border-radius: 50%;
+
+                position: relative;
+                cursor: pointer;
+            }
+
+            /* Style for the checked state */
+            .custom-radio:checked {
+                background-color: rgb(244, 95, 14);
+                border-color: rgb(244, 95, 14);
+            }
+
+            /* Inner dot for the checked radio button */
+            .custom-radio:checked::before {
+                content: '';
+                display: block;
+                width: 6px;
+                height: 6px;
+                background-color: white;
+                border-radius: 70%;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+
+        .input-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+
+            input {
+                width: 100%;
+                padding: 10px 10px 10px 15px;
+                border: 1px solid #ccc;
+                border-radius: 15px;
+                outline: none;
+                background-color: inherit;
+                font-weight: 500;
+                font-size: 15px;
+
+                &::placeholder {
+                    opacity: 30%;
+                }
+
+                &:not(:placeholder-shown) {
+                    // padding-bottom: 25px;
+                    /* Adjust based on value position */
+                }
+            }
+
+
+            .unit {
+                position: absolute;
+                padding: 24px 0 10px 18px;
+                font-weight: 500;
+                font-size: 14px;
+                pointer-events: none;
+                left: 40px;
+
+                &.miles {
+                    font-size: 14px;
+                }
+
+                &.price {
+                    font-size: 15px;
+                }
+
+                &.time {
+                    font-size: 14px;
+                }
+
+                &.percent {
+                    left: 30px;
+                }
+            }
+
+            .input-placeholder {
+                position: absolute;
+                top: 6px;
+                left: 18px;
+                font-size: 12px;
+                /* Adjust font size as needed */
+                color: #aaa;
+            }
+        }
+
+    }
+
+    .restaurant-button {
+        border-radius: 15px;
+        padding: calc(10px + 3 * (100vw - 320px) / 1600) calc(10px + 18 * (100vw - 320px) / 1600);
+    }
+}
+
+@media(max-width:768px) {
+    .restaurant-bank-add {
+        .form-sec {
+            .row {
+                margin-bottom: 20px;
+
+                .col-md-6 {
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+}

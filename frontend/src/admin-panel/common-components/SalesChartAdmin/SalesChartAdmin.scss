@@ -1,0 +1,12 @@
+.admin-sales-summary {
+    .chart {
+        height: 200px;
+
+        g.recharts-layer.recharts-bar-rectangle {
+            path {
+                // fill: rgb(var(--theme-color));
+            }
+        }
+    }
+
+}

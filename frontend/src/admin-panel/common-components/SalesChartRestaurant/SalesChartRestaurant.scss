@@ -1,0 +1,14 @@
+.sales-summary-2 {
+    color: var(--black);
+    .chart {
+        height: 300px;
+
+        g.recharts-layer.recharts-bar-rectangle {
+            path {
+                // fill: rgb(var(--theme-color));
+            }
+        }
+    }
+    
+
+}

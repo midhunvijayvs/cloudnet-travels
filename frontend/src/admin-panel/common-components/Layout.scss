@@ -1,0 +1,50 @@
+.admin-layout{
+  .compact-wrapper{
+    width: 100vw;
+  }
+  .page-body-wrapper{
+    width: 100%;
+    .app-content{
+      padding-top: 0;
+    }
+    .auth-mask {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  color: #0770a8;
+}
+
+.admin-page-not-found .error-section {
+  display: flex;
+  overflow-y: hidden;
+  min-height: 570px;
+  .banner-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: calc(10px + 10 * (100vw - 320px) / 1600);
+    padding: calc(30px + 70 * (100vw - 320px) / 1600) 0;
+    width: 100%;
+    .banner-img {
+      width: calc(150px + 150 * (100vw - 320px) / 1600);
+      height: auto;
+    }
+
+    p {
+      font-size: calc(10px + 4 * (100vw - 320px) / 1600);
+      color: rgba(var(--content-color), 1);
+      margin: 0 auto;
+      width: 70%;
+      letter-spacing: 0.5px;
+    }
+  }
+}
+
+  }
+}
+
+@media(max-width:991px) {}
+
+@media(max-width:576px) {}

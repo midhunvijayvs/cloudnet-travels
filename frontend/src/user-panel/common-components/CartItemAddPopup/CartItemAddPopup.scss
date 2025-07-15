@@ -1,0 +1,115 @@
+.custom-modal.cartitem-add{
+    .customized-modal{
+        padding: 10px;
+        border-radius: 5px;
+        min-width: 400px;
+        .filter-body .filter-list li{
+            gap: 10px;
+            .product-size{
+                flex: 2;
+            }
+            .plus-minus {
+                border: 1px solid rgba(var(--dashed-line), 1);
+                padding: calc(3px + 2 * (100vw - 991px) / 929);
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                background-color: rgba(var(--box-bg), 1);
+                text-align: center;
+                // flex: 1;
+                margin-right: 5px;
+                &.has-count{
+                    border-color: rgba(var(--theme-color), 1);
+                }
+                i {
+                    cursor: pointer;
+    
+                    &.add {
+                        padding-left: 5px;
+                        border-left: 1px solid rgba(var(--dashed-line), 1);
+                    }
+    
+                    &.sub {
+                        padding-right: 5px;
+                        border-right: 1px solid rgba(var(--dashed-line), 1);
+                    }
+                }
+    
+                input {
+                    background-color: rgba(var(--box-bg), 1);
+                    color: rgba(var(--theme-color), 1);
+                    border: none;
+                    font-size: 14px;
+                    outline: none;
+                    width: calc(15px + 20 * (100vw - 320px) / 1600);
+                    text-align: center;
+                }
+    
+            }
+            .product-price{
+                align-items: center;
+                justify-content: start;
+                font-size: 14px;
+                margin-left: initial;
+                // flex: 1;
+                .btn{
+                    padding: 3px 5px;
+                    border-radius: 5px;
+                    font-size: 12px;
+                }
+            }
+        } 
+        
+        .form-check-label{
+            cursor: pointer;
+        }
+        
+       .btn-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: rgba(var(--dark-text), 1);
+            box-shadow: none;
+        }
+        .filter-header {
+            display: flex;
+            width: 100%;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(var(--dark-text), 0.15);
+        }
+        .topping-list{
+            max-height: 200px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        .variant-list{
+            max-height: 200px;
+            overflow-y: auto;
+        }
+    }
+    .form-check-input{
+        cursor: pointer;
+    }
+    .toppings-container{
+        padding-top: 10px;
+        border-top: 1px solid #000;
+    }
+    
+    p{
+        font-size: 13px;
+        font-weight: 300;
+        margin-top: 10px;
+        margin-bottom: 8px;
+        text-align: left;
+    }
+    label{
+        margin-bottom: 0;
+        font-size: 14px;
+        line-height: normal;
+    }
+    h6{
+        text-transform: capitalize;
+    }
+    
+    
+}

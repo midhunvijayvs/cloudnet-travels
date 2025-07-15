@@ -1,0 +1,30 @@
+.user-list-page {
+   .filters{
+      .switch-xsm .slider::before {
+         position: absolute;
+         content: "";
+         height: 19px;
+         width: 19px;
+         left: 4px;
+         bottom: 4px;
+         background-color: #fff;
+         transition: 0.4s;
+      }
+   }
+
+   table {
+      tbody tr td ul{
+         gap: 5px !important;
+      }
+      .status-btn{
+         padding: 4px 6px;
+         margin-right: 7px;
+         background-color: rgb(255, 206, 206);
+         color: #ab0000;
+         border: 1px rgb(255, 178, 178) solid;
+         border-radius: 15px;
+         font-size: calc(8px + 4 * (100vw - 320px) / 1600);
+      }
+   }
+
+}

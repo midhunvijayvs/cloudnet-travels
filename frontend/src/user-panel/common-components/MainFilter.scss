@@ -1,0 +1,304 @@
+.main-filter {
+  background-color: var(--white);
+  padding: 25px 0 15px 0;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(255, 255, 255, 0.801) 0px 3px 6px;
+  display: block;
+  width: 100%;
+  height: fit-content;
+  min-width: 240px;
+  position: relative;
+  color: var(--black);
+  .accordion{
+    width: 100%;
+  }
+  .reset-btn{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    font-size: calc(11px + 2 * (100vw - 320px) / 1600);
+    color: rgba(var(--theme-color), 1);
+    text-decoration: underline;
+  }
+}
+
+.main-filter .filter-box h4 {
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+.main-filter .ellipsis {
+  display: inline-block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.main-filter .ellipsis .filtered-txt{
+  font-size: 12px;
+  margin-left: 15px;
+}
+.main-filter .close-button svg {
+  width: 26px;
+  height: 26px;
+  /* fill: yellow; */
+}
+.main-filter .close-button svg path{
+  fill: yellow;
+}
+
+.selected-filtertags-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 5px 10px;
+  margin: 0;
+  width: 100%;
+}
+
+.selected-filtertags-container .tag {
+  font-size: 12px;
+  color: #585858;
+  display: inline-flex;
+  align-items: center;
+  margin: 2px;
+  padding: 3px 8px;
+  background-color: #eaeaea;
+  border-radius: 20px;
+}
+
+
+.selected-filtertags-container .tag .tag-remove {
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+
+.main-filter button {
+  background-color: var(--primary-color);
+  /* font-family: Lato; */
+  font-size: calc(13px + 2 * (100vw - 320px) / 1600);
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: 0em;
+  text-align: left;
+  padding: 10px 20px;
+  width: 100%;
+  margin-bottom: 7px;
+  border-radius: 0;
+  display: block;
+    color: var(--white);
+
+  &:focus{
+    border-color: transparent ;
+  box-shadow: none ;
+  }
+}
+.main-filter .close-button{
+  background-color: transparent !important;
+  width: fit-content;
+  height: fit-content;
+  margin-left: auto;
+  margin-right: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 2px 5px;
+
+}
+.main-filter .body button:hover {
+  background-color: rgb(242, 169, 62);
+  color: #fff;
+
+}
+
+.main-filter .body button:hover svg path {
+  fill: #fff;
+}
+.main-filter .accordion-btn{
+  &:hover{
+    color: #FFFFFF;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  img{
+    width: 20px;
+  }
+}
+
+.main-filter .accordion-btn .btn-icon-left {
+  height: 16px;
+
+}
+
+.main-filter .accordion-btn .btn-icon-right {
+  height: 19px;
+  width: 10px;
+}
+
+.main-filter .accordion-sub-div {
+	/* background-color: rgb(242, 169, 62); */
+	/* font-family: Lato; */
+	font-size: 13px;
+	/* font-weight: 900; */
+	letter-spacing: 0em;
+	text-align: left;
+	padding: 10px 20px;
+	width: 100%;
+	margin-bottom: 10px;
+	border-radius: 0;
+	display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  color: rgba(var(--dark-text), 1);
+}
+.main-filter .accordion-sub-div input[type="checkbox"]{
+  width: 25px;
+  height: 25px;
+  border: 1px solid rgb(242, 169, 62);
+  margin: 0;
+  cursor: pointer;
+}
+.main-filter .accordion-sub-div input[type="checkbox"]:focus{
+  box-shadow: none;
+}
+
+.main-filter .filter-box {
+
+  background: rgba(var(--box-bg), 1);
+  border-radius: 10px;
+  padding: 0;
+}
+.main-filter .filter-box .accordion-body.long{
+  height: 200px;
+  overflow-y: auto;
+}
+
+
+.main-filter .filter-box h5 {
+  font-weight: 500;
+  font-size: 15px;
+  color: rgb(242, 169, 62);
+  margin-top: 20px;
+
+}
+
+.main-filter .filter-box .form-check {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+
+.main-filter .filter-box input {
+  height: 19px;
+  width: 19px;
+  border: 1px solid rgb(242, 169, 62);
+  background-color: #fff;
+  border-radius: 5px !important;
+  cursor: pointer;
+}
+.main-filter .filter-box input:focus{
+  border: 1px solid rgb(242, 169, 62)
+}
+.main-filter .filter-box input:checked {
+  background-color: rgb(242, 169, 62);
+}
+
+.main-filter .filter-box label {
+  font-weight: 600;
+  font-size: 13px;
+  color: rgba(var(--dark-text), 1);
+  margin-left: 7px;
+  position: relative;
+  top: 2px;
+  cursor: pointer;
+  &.rating{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  &.spice-level{
+    text-transform: capitalize;
+  }
+}
+
+.main-filter .price-result {
+  font-size: 11px;
+}
+
+.css-187mznn-MuiSlider-root {
+  padding: 10px 0 !important;
+}
+ 
+.main-filter .quantity-filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+}
+
+.main-filter .quantity-filter button {
+
+  width: 41px;
+  height: 35px;
+  border-radius: 5px;
+  border: 1px solid rgb(242, 169, 62);
+  background-color: #fff;
+  padding: 0;
+  text-align: center;
+  margin-bottom: 0;
+
+}
+.main-filter .quantity-filter button svg path,
+.main-filter .quantity-filter button svg circle{
+  stroke: rgb(252, 237, 215);
+}
+.main-filter .quantity-filter button:hover{
+  background-color: rgb(242, 169, 62);
+
+}
+.main-filter .quantity-filter button:hover svg path,
+.main-filter .quantity-filter button:hover svg circle{
+  stroke: #FFFFFF ;
+}
+
+.main-filter .quantity-filter input{
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 45px;
+  height: 35px;
+  border-radius: 5px;
+  box-shadow: none;
+}
+
+.main-filter input[type="checkbox"]::before{
+  display: none;
+}
+@media (max-width: 1005px) {
+  .main-filter {
+    position: absolute;
+    width: 278px;
+    height: fit-content;
+    z-index: 2;
+  }
+}
+@media (max-width: 992px) {
+  .main-filter{
+    padding-top: 30px;
+    .close-button{
+      right: auto;
+      left: 0;
+      margin-bottom: 5px;
+    }
+  } 
+}
+
+@media (max-width: 768px) {
+  .main-filter .ellipsis{
+    width: 100%;
+    max-width: 100%;
+  }
+}

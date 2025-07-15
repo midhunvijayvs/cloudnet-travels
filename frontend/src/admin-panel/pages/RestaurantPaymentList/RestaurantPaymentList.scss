@@ -1,0 +1,102 @@
+.restaurant-paymentlist-page {
+   table {
+      .status span {
+         text-transform: capitalize;
+      }
+      .pay-btn{
+         background: linear-gradient(to right, rgb(207, 229, 255), rgb(177, 216, 255));
+         color: #0006ac;
+         font-size: calc(12px + 2 * (100vw - 320px) / 1600);
+         padding: 5px 10px;
+         border: 1px solid #9397ff;
+         border-radius: 5px;
+         font-weight: 550;
+         cursor: pointer;
+      }
+      .paid-btn{
+         background: rgb(201, 255, 222);
+         color: rgb(var(--theme-color2));
+         font-size: calc(10px + 2 * (100vw - 320px) / 1600);
+         padding: 5px 10px;
+         border: 1px solid rgb(23, 213, 115);
+         border-radius: 5px;
+         font-weight: 550;
+         // cursor: pointer;
+         i{
+            // font-size: calc(12px + 2 * (100vw - 320px) / 1600);
+            padding-right: 3px;
+         }
+      }
+      .failed-btn{
+         background: rgb(255, 201, 201);
+         color: #b40000;
+         font-size: calc(10px + 2 * (100vw - 320px) / 1600);
+         padding: 5px 10px;
+         border: 1px solid rgb(213, 23, 23);
+         border-radius: 5px;
+         font-weight: 550;
+         cursor: pointer;
+         i{
+            // font-size: calc(12px + 2 * (100vw - 320px) / 1600);
+            color: #b40000;
+            padding-left: 3px;
+         }
+      }
+      .history-btn{
+         // border: 1px solid rgb(var(--theme-color2));
+         color: rgb(var(--theme-color2));
+         font-size: calc(10px + 2 * (100vw - 320px) / 1600);
+         // padding: 5px 10px;
+         border-radius: 5px;
+         font-weight: 550;
+         cursor: pointer;
+         i{
+            padding-left: 2px;
+         }
+      }
+
+      .title-short {
+         max-width: 240px;
+         white-space: nowrap;
+         overflow: hidden;
+         text-overflow: ellipsis;
+      }
+
+      .subject-short {
+         max-width: 240px;
+         white-space: nowrap;
+         overflow: hidden;
+         text-overflow: ellipsis;
+         text-transform: capitalize;
+      }
+
+      .description-cell {
+         position: relative;
+         overflow: hidden;
+
+         .description-short {
+            vertical-align: inherit;
+            max-width: 170px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+
+            i {
+               font-size: 18px;
+               color: #0047ab;
+            }
+         }
+      }
+
+      .publish-date {
+         font-size: calc(12px + 2 * (100vw - 320px) / 1600);
+      }
+
+
+   }
+
+  
+}

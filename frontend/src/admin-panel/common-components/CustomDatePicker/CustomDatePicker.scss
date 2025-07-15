@@ -1,0 +1,61 @@
+.custom-date{
+    position: relative;
+    width: 100%;
+    input{
+        border-radius: 0;
+    }
+    input[type='date']::-webkit-calendar-picker-indicator {
+        /* Chrome, Safari, Opera */
+        // background-image: url(../../../public/images/admin-panel/dashboard/calendar.svg); 
+        width: 30px;
+        height: 30px;
+        padding: 0;
+    }
+    
+    input[type='date']::-webkit-inner-spin-button {
+        /* Chrome, Safari */
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type='date']::-moz-calendar-picker-indicator {
+        // background-image: url(../../../public/images/admin-panel/dashboard/calendar.svg); 
+        width: 24px;
+        height: 24px;
+    }
+
+   .react-datepicker-wrapper{
+        width: 100%;
+   }
+   .react-datepicker__month .react-datepicker__month-text, .react-datepicker__month .react-datepicker__quarter-text{
+        width: auto;
+        padding: 10px 20px;
+    }
+    .react-datepicker__year .react-datepicker__year-text{
+        font-size: 15px;
+        margin: 3px auto;
+        font-family: Poppins;
+    }
+    .react-datepicker-popper{
+        transform: translate(88.8px, -219.4px) !important;
+    }
+   .calendar-icon {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+   input{
+    font-size: 15px;
+    line-height: 28px;
+    font-family: Poppins;
+    background: none;
+    border: 1px solid #8791A9;
+    width: 100% !important;
+    padding: 15px;
+   }
+      
+}

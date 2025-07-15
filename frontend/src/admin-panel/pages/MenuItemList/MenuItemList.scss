@@ -1,0 +1,55 @@
+.menuitem-list-page {
+    .form-switch .form-check-input {
+        background-color: rgb(var(--theme-color)) !important;
+        border-style: solid;
+        border-color: rgb(var(--theme-color));
+    }
+
+    .table-image {
+        position: relative;
+        img{
+            object-fit: cover;
+            width: 60px;
+            height: 60px;
+        }
+
+        .seller-badge {
+            border-radius: 33px;
+            position: absolute;
+            z-index: 0;
+            left: 50%;
+            bottom: -10px;
+            transform: translateX(-50%);
+            border-radius: 4px;
+            background: -webkit-gradient(linear, left top, right top, from(rgba(var(--theme-color), 1)), to(rgba(var(--theme-color2), 1)));
+            background: linear-gradient(to right, rgba(var(--theme-color), 1), rgba(var(--theme-color2), 1));
+            padding: 2px calc(2px + 5 * (100vw - 320px) / 1600);
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            gap: 3px;
+
+        
+            &.special-badge  {
+                background: -webkit-gradient(linear, left top, right top, from(#00ad91), to(#007a66));
+                background: linear-gradient(to right, #00ad91, #007a66);
+            }
+
+            img.badge {
+                display: block;
+                padding: 0;
+                width: 10px;
+                height: 10px;
+            }
+
+            h6 {
+                font-size: calc(9px + 1 * (100vw - 320px) / 1600);
+                font-weight: 400;
+                color: #fff;
+            }
+        }
+    }
+}

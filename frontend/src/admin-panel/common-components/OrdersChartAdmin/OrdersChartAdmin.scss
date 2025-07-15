@@ -1,0 +1,27 @@
+.admin-orders-summary {
+    .chart {
+        height: 200px;
+
+        g.recharts-layer.recharts-bar-rectangle {
+            path {
+                // fill: rgb(var(--theme-color));
+            }
+        }
+        
+    }
+    .filters {
+        // .radio-section {
+        //     label>input:checked+i {
+        //         background: rgb(var(--theme-color2)) !important;
+        //     }
+        //     label>i {
+        //         border: 2px solid rgb(var(--theme-color2)) !important;
+        //     }
+        // }
+
+        // .date-picker {
+        //     border: 1px solid rgb(var(--theme-color2),1) !important;
+        // }
+    }
+
+}

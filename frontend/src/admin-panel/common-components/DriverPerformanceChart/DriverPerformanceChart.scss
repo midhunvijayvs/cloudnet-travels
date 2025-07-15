@@ -1,0 +1,12 @@
+.driver-performance-summary {
+    .chart {
+        height: 250px;
+
+        g.recharts-layer.recharts-bar-rectangle {
+            path {
+                fill: rgb(var(--theme-color));
+            }
+        }
+    }
+
+}

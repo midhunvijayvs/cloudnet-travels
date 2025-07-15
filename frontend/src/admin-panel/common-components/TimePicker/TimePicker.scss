@@ -1,0 +1,31 @@
+.custom-time-picker{
+    width: 100%;
+    .react-time-picker{
+        width: 100%;
+    }
+    .react-time-picker__wrapper{
+        border: none;
+    }
+    .react-time-picker__inputGroup{
+        padding: 0px 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .react-time-picker__button{
+        width: 0;
+        display: none;
+    }
+    .react-time-picker__clock{
+        width: 0;
+        display: none;
+    }
+    .react-time-picker__inputGroup__input:invalid{
+        background:none;
+    }
+    .react-time-picker__inputGroup__input{
+        padding: 0;
+        height: auto;
+    }
+    
+}

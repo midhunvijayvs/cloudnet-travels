@@ -1,0 +1,78 @@
+.home-sec-6 .footer-title{
+    font-size:40px;
+    font-weight: 700;
+    font-family: 'Poppins';
+    line-height: 56px;
+}
+
+h1{
+    font-size:44px;
+    font-weight: 600;
+    margin-bottom: 0;
+    color: #000;
+}
+h2{
+    font-size:32px;
+    font-weight: 400;
+    margin-bottom: 1.022721rem ;
+    color: #000;
+    line-height: 38px;
+}
+.common-section p{
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 1.33398rem;
+}
+
+.contact-img{
+    position: relative;
+    bottom: 3px;
+}
+
+@media (min-width:768px) and (max-width: 992px) {
+    .common-section{
+        padding: 0;
+    }
+}
+
+@media (max-width: 992px) {
+    /* .common-section{
+        margin-bottom: 100px;
+    } */
+    h1{
+        font-size: 40px;
+        font-weight: 600;
+        
+    }
+    .common-section p{
+       margin-bottom: 0px;
+        font-size: 16px !important;
+        line-height: 26px !important;
+        
+    }
+    button{
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+   .common-section{
+    margin-bottom: 0px;
+    
+    }
+    .gallery-sec-1{
+        margin-right: 3rem;
+    }
+ 
+}
+@media (max-width:576px){
+    .common-section{
+        margin-bottom: -2px;
+    }
+    .common-section p{
+        margin-bottom: 0px;
+         font-size: 15px !important;
+         line-height: 24px !important;
+         
+     }
+}

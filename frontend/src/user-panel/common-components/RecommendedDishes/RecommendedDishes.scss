@@ -1,0 +1,120 @@
+.recommended-dish {
+    .custom-swiper {
+        margin: 40px 0 0 0;
+        width: 100%;
+        position: relative;
+        h2 {
+            font-size: calc(18px + 6 * (100vw - 320px) / 1600);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .loading{
+            position: absolute;
+        }
+
+        // Swiper Navigation Arrows
+        .swiper-button-prev,
+        .swiper-button-next {
+            color: rgb(var(--theme-color)); // Custom arrow color
+            font-size: 1.2rem !important;
+            transition: color 0.3s ease;
+            font-weight: 500;
+            &::after {
+                font-size: 1.2rem !important;
+            }
+
+            &:hover {
+                color: rgb(var(--theme-color),0.3); // Darker shade on hover
+            }
+        }
+
+        // Pagination Bullets
+        .swiper-pagination-bullet {
+            background: rgb(var(--theme-color)) !important; // Bullet color
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+
+            &-active {
+                background: rgb(var(--theme-color),0.3) !important; // Darker color for active bullet
+                opacity: 1;
+            }
+        }
+        .swiper-wrapper{
+            padding-bottom: 8px;
+        }
+
+        // Swiper Slide (Dish Card)
+        .dish-card {
+            background: white;
+            border-radius: 12px;
+            // box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #e3e3e3;
+            cursor: pointer;
+            .product-img {
+                width: 100%;
+                height: 150px;
+                object-fit: cover;
+                transition: all 0.3s ease;
+            }
+            &:hover {
+                border-color: rgb(var(--theme-color),0.3);
+                // box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+                .product-img{
+                    transform: scale(1.02);
+                }
+            }
+            
+            .dish-info {
+                padding: 0.75rem;
+                .product-name {
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    font-weight: 600;
+                    color: rgba(var(--dark-text), 1);
+                    font-size: calc(15px + 4 * (100vw - 320px) / 1600);
+                }
+
+                .product-price {
+                    color: gray;
+                    font-size: calc(12px + 2 * (100vw - 320px) / 1600);
+                    margin-left: auto;
+                    display: flex;
+                    align-items: center;
+                    // flex-direction: column;
+                    text-align: end;
+                    .base-price{
+                        font-weight: 500;
+                        font-size: calc(13px + 4 * (100vw - 320px) / 1600);
+                        color: rgb(var(--theme-color));
+                    }
+                    .offer-price{
+                        text-decoration: line-through;
+                    }
+                }
+            }
+            .restaurant-details{
+                display: flex;
+                align-items: center;
+                margin-top: 8px;
+                gap: 6px;
+                img{
+                    width: 19px;
+                    border-radius: 50%;
+                }
+                .rest-name {
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    font-weight: 500;
+                    color: rgba(var(--dark-text), 1);
+                    font-size: calc(13px + 2 * (100vw - 320px) / 1600);
+                }
+            }
+        }
+    }
+
+
+}

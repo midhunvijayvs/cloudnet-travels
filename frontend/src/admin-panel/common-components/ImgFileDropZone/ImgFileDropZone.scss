@@ -1,0 +1,49 @@
+.file-dropzone-container {
+
+    .drag-and-drop {
+        background: #F7F7F9;
+        height: 220px;
+        border: 4px dotted #E7E7E7;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #648197;
+        flex-direction: column;
+        gap: 5px;
+        overflow: hidden;
+
+        .drag-text {
+            font-size: calc(15px + 2 * (100vw - 320px) / 1600);
+            font-weight: 400;
+            line-height: 100%;
+            letter-spacing: -0.03em;
+            text-align: center;
+        }
+        .instructions{
+            line-height: 14px;
+            font-weight: 300;
+            letter-spacing: -0.03em;
+            text-align: center;
+            margin-top: 8px;
+            font-size: calc(10px + 1 * (100vw - 320px) / 1600);
+        }
+
+        svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        img {
+            object-fit: contain;
+            width: 100%;
+            height: 100%;
+        }
+
+    }
+    .remove-btn{
+        font-weight: 500;
+        font-size: calc(12px + 2 * (100vw - 320px) / 1600);
+        color: rgb(var(--theme-color));
+    }
+}

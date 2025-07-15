@@ -1,0 +1,137 @@
+.filter-modal.add-modal{
+    .card{
+        // height: fit-content;
+        max-height: 98%;
+        width: 40%;
+        padding: 30px 25px 25px 25px;
+        .card-content{
+            .heading{
+                font-size: calc(15px + 5 * (100vw - 320px) / 1600);;
+                line-height: 100%;
+                padding: 0px 5px;
+                border-left: 5px solid rgb(var(--theme-color));
+                text-transform: capitalize;
+            }
+            .title{
+                margin: 5px 0;
+            }
+            .submit-section{
+                padding-bottom: 20px;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            input{
+                border-radius: 0;
+                padding: 10px;
+                font-weight: 400;
+                background: none;
+                border: 1px solid #ced4da;
+                &#jobid{
+                    font-weight: 500;
+                }
+                
+            }
+            input[type=text]{
+                border-color: #8791A9;
+            }
+            input:focus,
+            select:focus,
+            textarea:focus {
+                background-size: 100% 2px; 
+                border-color: #959393 !important;
+                box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0) !important;
+            }
+            .manage-sec{
+                width: 100%;
+                .title{
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    .btns{
+                        display: flex;
+                        gap: 20px;
+                    }
+                }
+
+                .page-select{
+                    .select-container{
+                        .checkbox-container{
+                            padding: 5px 0px 10px 0px;
+                            display: flex;
+                            justify-content: flex-start;
+                            gap: 25px;
+                            max-height: 170px;
+                            overflow-y: scroll;
+                        }      
+
+                        .custom-select-box{
+                            display: block;
+                            position: relative;
+                            padding-left: 35px;
+                            cursor: pointer;
+                            font-size: calc(15px + 2 * (100vw - 320px) / 1600);;
+                            line-height: 100%;
+                            margin-bottom: 10px;
+                            font-weight: 400;
+                            -webkit-user-select: none;
+                            -moz-user-select: none;
+                            -ms-user-select: none;
+                            user-select: none;
+                        
+                            
+                            input {
+                                position: absolute;
+                                opacity: 0;
+                                width: 0;
+                                cursor: pointer;
+                            }
+                            .checkmark {
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                height: 20px;
+                                width: 20px;
+                                border-radius: 5px;
+                                border: 1px solid #8791A9;
+                              }
+                            
+                            // &:hover input ~ .checkmark {
+                            //     background-color: #ccc;
+                            // }
+                            input:checked ~ .checkmark {
+                                background-color: #263238;
+                                border: none;
+                            }
+                            .checkmark:after {
+                                content: "";
+                                position: absolute;
+                                display: none;
+                              }
+                            input:checked ~ .checkmark:after {
+                                display: block;
+                            }
+                            .checkmark:after {
+                                left: 8px;
+                                top: 6px;
+                                width: 5px;
+                                height: 8px;
+                                border: solid white;
+                                border-width: 0 3px 3px 0;
+                                -webkit-transform: rotate(45deg);
+                                -ms-transform: rotate(45deg);
+                                transform: rotate(45deg);
+                              }
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+    button{
+        border-radius: 5px;
+    }
+}

@@ -1,0 +1,102 @@
+.bot-question {
+    .bot-message {
+        margin-bottom: 5px;
+    }
+
+    .show-options-button {
+        display: flex;
+        font-size: calc(12px + 2 * (100vw - 320px) / 1600);
+        font-weight: 500;
+        line-height: 16px;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        padding: 7px 5px 2px 5px;
+        margin-top: 2px;
+        border-top: 1px solid rgb(219, 219, 219);
+        cursor: pointer;
+        gap: 5px;
+
+        .menu-icon {
+            width: 12px;
+            height: 12px;
+        }
+
+        .arrow-icon {
+            width: 14px;
+            height: 14px;
+            margin-left: 3px;
+            transition: transform 0.3s ease;
+
+            &.open {
+                transform: rotate(180deg); // Arrow rotates down
+            }
+        }
+
+        &.disabled {
+            cursor: default;
+
+            .arrow-icon {
+                display: none;
+            }
+        }
+    }
+
+    .bot-options-list {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-top: 5px;
+
+        .bot-option {
+            .option-button {
+                background-color: var(--primary-color, #145634);
+                color: #fff;
+                border: 1px solid #ffffff;
+                padding: 6px 12px;
+                font-size: calc(11px + 2 * (100vw - 320px) / 1600);
+                font-weight: 500;
+                border-radius: 6px;
+                cursor: pointer;
+                text-align: center;
+                width: 100%;
+                transition: all 0.4s ease;
+
+                &:hover {
+                    background-color: #ffffff;
+                    color: var(--primary-color, #145634);
+                    border: 1px solid var(--primary-color, #145634);
+                }
+
+                &:active {
+                    background-color: #ffffff;
+                    color: var(--primary-color, #145634);
+                    border: 1px solid var(--primary-color, #145634);
+                }
+
+                &:focus {
+                    outline: none;
+                    // box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.5);
+                }
+            }
+
+            &.disabled {
+                cursor: default;
+                button{
+                    cursor: default;
+                    background-color: #ffffff;
+                    color: var(--primary-color, #145634);
+                    border: 1px solid var(--primary-color, #145634);
+                }
+            }
+        }
+    }
+}
+
+.message.sent {
+    .bot-question .show-options-button img {
+        filter: brightness(0) invert(0.9);
+    }
+}

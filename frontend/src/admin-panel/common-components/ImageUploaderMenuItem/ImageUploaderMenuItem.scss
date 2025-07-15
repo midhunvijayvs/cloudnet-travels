@@ -1,0 +1,128 @@
+.menu-item{
+
+  .image-uploader {
+
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    background-color: #0008;
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .image-uploader .content {
+    background-color: #fff;
+    width: fit-content;
+    padding: 20px !important;
+  }
+
+  .image-uploader .file-input-wrapper {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    padding: 10px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 0.2px dashed #E05A67;
+    border-radius: 5px;
+    background-color: #fff;
+    width: 100%;
+    height: 220px;
+    margin: 0 auto 10px auto;
+  }
+
+  .image-uploader .file-preview-wrapper {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    padding: 10px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fff;
+    width: 180px;
+    height: 230px;
+    margin: 0 auto 10px auto;
+    border: 0.2px solid #cdd1cf;
+    border-radius: 5px;
+  }
+
+  .image-uploader .file-input-wrapper input[type="file"] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+
+
+  }
+
+  .image-uploader .file-input-wrapper .file-input-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    height: 180px;
+    cursor: pointer;
+  }
+
+  .image-uploader .file-input-wrapper .file-input-preview img {
+    height: 35px;
+  }
+
+  .custom-modal.confirm{
+    .footer{
+      justify-content: center;
+      gap: 25px;
+    }
+  }
+
+
+
+
+
+
+  .image-uploader .file-input-wrapper span {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+    /* identical to box height, or 154% */
+    text-align: center;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.1px;
+
+    color: #585858;
+
+  }
+
+  .image-uploader .text-danger,
+  .image-uploader .text-muted {
+    font-size: 10px;
+    line-height: 1.3;
+    margin-bottom: 7px;
+  }
+
+  .image-uploader .remove-img-btn {
+    background-color: #bb2d3b;
+
+  }
+
+  .image-uploader .remove-single-img-btn {
+    padding: 5px 10px;
+  }
+
+  .image-uploader .remove-single-img-btn svg {
+    height: 15px;
+  }
+}

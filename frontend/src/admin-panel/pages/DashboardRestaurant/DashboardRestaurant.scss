@@ -1,0 +1,345 @@
+.restaurant-dashboard-page {
+    color: var(--black);
+
+    .page-body {
+        padding: 15px;
+    }
+
+
+    .card.welcome-box {
+        height: 94%;
+        .welcome-card {
+            height: 100%;
+            background-image: none;
+            background: linear-gradient(to right, rgb(var(--theme-color2),0.48), rgb(var(--theme-color2),0.15));
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            border-radius: 10px;
+            flex-direction: column;
+            padding: 30px 18px;
+            z-index: 1;
+            div .icon1 {
+                position: absolute;
+                top: 120px;
+                right: 0;
+                width: 150px;
+                z-index: -1;
+                opacity: 80%;
+            }
+            div{
+                padding: 0;
+            }
+            h3{
+                color:  var(--black);
+            }
+            .btn{
+                color: #fff;
+                width: fit-content;
+            }
+            .categories{
+                div{
+                    text-align: start;
+                }
+                .card{
+                    margin: 30px 0;
+                    padding: 15px 10px;
+                    // background: linear-gradient(to right, rgb(var(--theme-color2),0.5), rgb(var(--theme-color2),0.3));
+                    .card-header{
+                        background: transparent;
+                    }
+                    .food-categories{
+                        margin-top: 0;
+                    }
+                    h5 {
+                        font-size: calc(16px + 2 * (100vw - 320px) / 1600);
+                        font-weight: 600;
+                        padding-bottom: 8px;
+                        margin: 0;
+                        color: var(--black);
+                    }
+                    h4 {
+                        font-size: calc(10px + 1 * (100vw - 320px) / 1600);
+                        font-weight: 450;
+                        color: #000;
+                        display: -webkit-box !important;
+                        -webkit-line-clamp: 1;
+                        /* Limit to 2 lines */
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        text-transform: capitalize;
+                    }
+            
+                    .food-categories {
+                        padding: calc(8px + 8 * (100vw - 320px) / 1600) calc(5px + 7 * (100vw - 320px) / 1600);
+                        cursor: default;
+                        .categories-img {
+                            height: 40px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .graph {
+        .review-summary {
+            .chart {
+                height: 250px;
+            }
+        }
+
+        .customer-summary-2 {
+            .chart {
+                height: 150px;
+            }
+        }
+
+        .sales-summary-2,
+        .customer-summary-2 {
+            .chart {
+                height: 150px;
+            }
+
+            .summary-value {
+                display: flex;
+                align-items: flex-end;
+                gap: 5px;
+
+                h2 {
+                    margin: 0;
+                }
+            }
+
+            .filters {
+                justify-content: space-between;
+
+                .options {
+                    display: flex;
+                    justify-content: flex-end;
+
+                    label {
+                        margin: 0;
+                        margin-right: 10px;
+                        font-size: .8rem;
+                    }
+
+                }
+
+                .date-picker {
+                    font-size: calc(8px + 3 * (100vw - 320px) / 1600);
+                    border: 1px solid rgb(var(--theme-color)) !important;
+                    width: 85px;
+                    border-radius: 3px;
+                    cursor: pointer;
+                    height: 100%;
+                }
+            }
+        }
+
+        .filters {
+            width: 100%;
+            padding: 0 20px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+
+            // flex-direction: column;
+            label {
+                font-size: calc(10px + 4 * (100vw - 320px) / 1600);
+                font-weight: 500;
+                // margin: 0;
+                // margin-left: 8px;
+            }
+
+            .radio-section {
+                padding: 0;
+                padding-bottom: 5px;
+                background-color: transparent;
+                border: none !important;
+                border-radius: 4px;
+
+                label>input:checked+i {
+                    background: rgb(var(--theme-color));
+                }
+
+                label>i {
+                    display: inline-block;
+                    width: 15px;
+                    height: 15px;
+                    border-radius: 50%;
+                    margin-right: 5px;
+                    vertical-align: middle;
+                    border: 2px solid rgb(var(--theme-color));
+                    box-shadow: none;
+                    transition: 0.25s;
+                }
+            }
+
+            .date-picker {
+                font-size: small;
+                border: 1px solid var(--black) !important;
+                width: 100px;
+                border-radius: 3px;
+                cursor: pointer;
+
+                .react-datepicker__input-container input {
+                    background-color: #ffffff;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    padding: 5px 10px !important;
+                    text-align: right;
+                    width: 100%;
+                }
+
+                .react-datepicker-wrapper input {
+                    cursor: pointer;
+                    background-color: #fff;
+                }
+
+                .date-picker-input {
+                    user-select: none;
+                    /* Disable text selection */
+                    -webkit-user-select: none;
+                }
+
+                .react-datepicker__input-container input {
+                    background-color: #ffffff;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    padding: 10px;
+                    width: 100%;
+                    font-size: .8rem;
+                }
+            }
+        }
+    }
+
+    .categories-section {
+        padding: 10px;
+        h4 {
+            font-size: calc(14px + 1 * (100vw - 320px) / 1600);
+            font-weight: 450;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 1;
+            /* Limit to 2 lines */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .categories-style .food-categories {
+            padding: calc(8px + 8 * (100vw - 320px) / 1600) calc(5px + 7 * (100vw - 320px) / 1600);
+
+            .categories-img {
+                height: 40px;
+            }
+        }
+    }
+    .order-report {
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            h5 {
+                padding: 0;
+            }
+        }
+
+        .filters {
+            // padding: 0 20px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+
+            // flex-direction: column;
+            label {
+                font-size: calc(10px + 4 * (100vw - 320px) / 1600);
+                font-weight: 500;
+                // margin: 0;
+                // margin-left: 8px;
+            }
+
+            .radio-section {
+                padding: 0;
+                padding-bottom: 5px;
+                background-color: transparent;
+                border: none !important;
+                border-radius: 4px;
+
+                label>input:checked+i {
+                    background: rgb(var(--theme-color));
+                }
+
+                label>i {
+                    display: inline-block;
+                    width: 15px;
+                    height: 15px;
+                    border-radius: 50%;
+                    margin-right: 5px;
+                    vertical-align: middle;
+                    border: 2px solid rgb(var(--theme-color));
+                    box-shadow: none;
+                    transition: 0.25s;
+                }
+            }
+
+            .date-picker {
+                font-size: small;
+                border: 1px solid #f0aa14 !important;
+                width: 100px;
+                border-radius: 3px;
+                cursor: pointer;
+
+                .react-datepicker__input-container input {
+                    background-color: #ffffff;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    padding: 5px 10px !important;
+                    text-align: right;
+                    width: 100%;
+                }
+
+                .react-datepicker-wrapper input {
+                    cursor: pointer;
+                    background-color: #fff;
+                }
+
+                .date-picker-input {
+                    user-select: none;
+                    /* Disable text selection */
+                    -webkit-user-select: none;
+                }
+
+                .react-datepicker__input-container input {
+                    background-color: #ffffff;
+                    border: none;
+                    border-radius: 4px;
+                    padding: 10px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1199px) {
+    .dashboard-page {}
+}
+
+
+@media (max-width: 1005px) {
+    .dashboard-page {}
+}
+
+
+@media (max-width:767px) {
+    .dashboard-page {}
+}

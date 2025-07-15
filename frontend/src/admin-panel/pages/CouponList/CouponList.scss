@@ -1,0 +1,110 @@
+.coupon-list-page {
+   table {
+      .status-btn {
+         padding: 4px 6px;
+         margin-right: 7px;
+         background-color: rgb(255, 206, 206);
+         color: #ab0000;
+         border: 1px rgb(255, 178, 178) solid;
+         border-radius: 15px;
+         font-size: calc(8px + 4 * (100vw - 320px) / 1600);
+      }
+
+      .title-short {
+         max-width: 240px;
+         white-space: nowrap;
+         overflow: hidden;
+         text-overflow: ellipsis;
+      }
+
+      .subject-short {
+         max-width: 240px;
+         white-space: nowrap;
+         overflow: hidden;
+         text-overflow: ellipsis;
+      }
+
+      .description-cell {
+         position: relative;
+         overflow: hidden;
+
+         .description-short {
+            vertical-align: inherit;
+            max-width: 170px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+
+            i {
+               font-size: 18px;
+               color: #0047ab;
+            }
+         }
+      }
+
+      .publish-date {
+         font-size: calc(12px + 2 * (100vw - 320px) / 1600);
+      }
+
+
+   }
+
+   .msg-detail-modal {
+      .card {
+         max-height: 80vh;
+         overflow-y: scroll;
+         padding: 25px;
+
+         .description {
+            font-size: calc(14px + 2 * (100vw - 320px) / 1600);
+
+            p {
+               font-weight: 400;
+               font-size: calc(14px + 2 * (100vw - 320px) / 1600);
+               margin-bottom: 0;
+               text-align: left;
+            }
+
+            li {
+               list-style: inherit;
+               display: list-item;
+               font-size: inherit;
+               line-height: normal;
+            }
+
+            ul {
+               list-style: disc;
+            }
+
+            ol,
+            ul {
+               margin-top: 7px;
+               margin-bottom: 10px;
+               padding-left: 2rem;
+            }
+
+            ol {
+
+               // padding-left: 1rem;
+               li {
+                  list-style: inherit;
+                  display: list-item;
+               }
+            }
+
+            a {
+               color: #0047ab;
+            }
+
+         }
+      }
+
+      .footer {
+         margin-top: 20px;
+         justify-content: center;
+      }
+   }
+}

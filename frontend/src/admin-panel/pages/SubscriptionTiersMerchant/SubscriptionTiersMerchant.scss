@@ -1,0 +1,173 @@
+.admin-subscription-tiers-merchant {
+    .expiry.input-box {
+        display: flex;
+        align-items: center;
+        // justify-content: space-between;
+        gap: 10px;
+        
+    }
+    .setting-main-box{
+        // height: 100%;
+        // min-height: 400px;
+        // display: block;
+    }
+
+    .settings-item{
+        padding: 10px 5px;
+        border-radius: 6px;
+        // border: 1px solid rgba(var(--theme-color), .1);
+        .label{
+            font-weight: 500;
+            font-size: calc(14px + 3 * (100vw - 320px) / 1600);
+            margin-bottom: 8px;
+            .instructions{
+                font-size: calc(11px + 2 * (100vw - 320px) / 1600);
+                font-weight: 400;
+                opacity: 0.6;
+            }
+        }
+        
+    }
+
+    .input-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        input {
+            width: 100%;
+            padding: 10px 18px 10px 18px;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            outline: none;
+            background-color: inherit;
+            font-weight: 500;
+            font-size: 15px;
+
+            &::placeholder {
+                color: transparent;
+                /* Hide the default placeholder */
+            }
+
+            &:not(:placeholder-shown) {
+                // padding-bottom: 25px;
+                /* Adjust based on value position */
+            }
+        }
+
+
+        .unit {
+            position: absolute;
+            padding: 10px 0 10px 18px;
+            font-weight: 500;
+            font-size: 14px;
+            pointer-events: none;
+            left: 50px;
+
+            &.miles {
+                font-size: 14px;
+            }
+
+            &.price {
+                font-size: 15px;
+                left: 68px;
+            }
+
+            &.time {
+                font-size: 14px;
+            }
+
+            &.percent {
+                left: 30px;
+            }
+        }
+
+        .input-placeholder {
+            position: absolute;
+            top: 6px;
+            left: 18px;
+            font-size: 12px;
+            /* Adjust font size as needed */
+            color: #aaa;
+        }
+    }
+    .check-box-container{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 10px 18px 10px 18px;
+        border: 1px solid #ccc;
+        border-radius: 12px;
+        background-color: #fff;
+        .label{
+            margin: 0;
+            font-weight: 450;
+            font-size: 15px;
+            cursor: pointer;
+        }
+    }
+    .custom-checkbox {
+        appearance: none;
+        cursor: pointer;
+        height: 16px;
+        width: 16px;
+        border-radius: 4px;
+        display: inline-block;
+        position: relative;
+        border: 1px solid rgba(var(--theme-color), 1);
+        background-color: transparent;
+        transition: all 0.3s ease-in-out;
+        &::before {
+            content: "\eb7b";
+            font-family: remixicon !important;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            color: rgba(var(--theme-color), 1);
+            transform: translate(-50%, -50%) scale(0);
+            transition: all 0.3s ease-in-out;
+        }
+        &:focus{
+            border: 1px solid rgba(var(--theme-color), 1);
+        }
+        &:disabled{
+            cursor: default;
+            border: 1px solid #e7e7e7;
+        }
+        &:checked {
+            background-color: rgba(var(--theme-color), 1);
+            border: 1px solid rgba(var(--theme-color), 1);
+        }
+
+    }
+    .change-btn {
+        font-size: calc(13px + 1 * (100vw - 320px) / 1600);
+        font-weight: 500;
+        background-color: rgba(var(--theme-color), 1);
+        padding: 10px 8px;
+        color: #fff;
+        align-self: center;
+        border-radius: 10px;
+        cursor: pointer;
+        min-width: 90px;
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+}
+
+@media (max-width: 1199px) {
+    .admin-subscription-tiers-merchant {}
+}
+
+
+@media (max-width: 1005px) {
+    .admin-subscription-tiers-merchant {}
+}
+
+
+@media (max-width:767px) {
+    .admin-subscription-tiers-merchant {}
+}

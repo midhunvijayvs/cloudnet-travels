@@ -1,0 +1,56 @@
+.phone-input-container{
+    position: relative;
+    .form-control{
+        padding: 15px 20px 15px 60px ;
+    }
+  }
+  // phone input
+  .down-arrow{
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+    .react-tel-input{   
+        font-family:Work Sans;
+        .selected-flag{
+            &::before{
+                left: auto;
+            }
+            &:focus::before {
+                // background-size: 100% 2px; 
+                border-color: #fbfbfb00 !important;
+                box-shadow: 0 0 0 0 #FBFBFB !important;
+                // background-color: #FBFBFB;
+            }
+            &.open::before{
+                // background-size: 100% 2px; 
+                border-color: #fbfbfb00 !important;
+                box-shadow: 0 0 0 0 #FBFBFB !important;
+                // background-color: #FBFBFB;
+            }
+            .flag{
+                display: none;
+                
+            }
+        }
+        .flag-dropdown{
+            border-right: 1px solid #e9e9e9 ;
+        }
+        .country-list {
+            .country{
+                &:hover{
+                    background-color: var(--secondary-color);
+                    color: #fff;
+                    box-shadow: 0 0 10px 100px #1882A8 inset;
+                    .dial-code{
+                        color: #E7E7E7;
+                    }
+                }
+            }
+            
+        }
+    } 
+  
+  

@@ -1,0 +1,156 @@
+.saved-address {
+
+  background-color: var(--bg-color-light);
+  color: var(--black);
+  width: 100%;
+
+  .sec-2 {
+    width: var(--sec-width);
+    margin: 0 auto;
+    padding: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+
+    .lhs {
+      width: 25%;
+
+      z-index: 1;
+
+
+
+    }
+
+    .rhs {
+      width: 75%;
+
+
+
+      .address-section {
+        .white-bg.primary {
+          // background-color: rgb(255, 243, 235) !important;
+          background: linear-gradient(333.77deg, #ff004c 9.66%, #ffebda 101.81%) !important;
+
+
+        }
+
+        .address-box {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          border: 1px solid rgb(223, 222, 221);
+          border-radius: 6px;
+          height: 100%;
+
+          .address-title {
+            align-items: center;
+            border-bottom: 1px solid #e8e8e8;
+            border-bottom: 1px solid rgba(var(--dashed-line), 1);
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+            padding: 1rem;
+
+            h6 {
+              font-weight: 600;
+              margin-bottom: 0;
+            }
+
+            .icon {
+              font-size: 22px;
+              // color: #fff;
+            }
+
+            .edit-btn {
+              font-size: 14px;
+              background-color: #ffffff80;
+              padding: 2px 14px;
+              border-radius: 20px;
+              color: rgba(var(--theme-color2), 1);
+            }
+
+            .type-tag {
+              display: block;
+              font-size: 14px;
+              font-weight: 500;
+              color: #fff;
+              line-height: normal;
+              letter-spacing: 0em;
+              text-align: center;
+              padding: 3px 10px;
+              border-radius: 12px;
+              color: rgba(var(--theme-color2));
+              border: rgba(var(--theme-color)) 1px solid;
+            }
+
+          }
+
+
+
+
+
+
+          .address-details {
+            padding: 1rem;
+
+            h6 {
+              font-weight: 500;
+              color: #474747;
+            }
+
+            .phone-number {
+              color: #474747;
+            }
+
+
+
+          }
+
+          .footer-btn {
+            padding: calc(10px + 5 * (100vw - 320px) / 1600);
+
+            .set-primary-button {
+              font-size: 14px;
+              font-weight: 500;
+              color: var(--white);
+              line-height: 28px;
+              letter-spacing: 0em;
+              text-align: center;
+              width: 120px;
+              height: 30px;
+              border-radius: 12px;
+              background: var(--primary-color);
+            }
+          }
+        }
+      }
+
+
+    }
+  }
+}
+
+
+
+@media (max-width: 1024px) {
+  .saved-address {}
+}
+
+@media (max-width:767px) {
+
+  .saved-address {
+    .sec-2 {
+      .rhs {
+        .address-section {
+          .address-box {
+            .address-title {
+              h6 {
+                font-size: 2rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

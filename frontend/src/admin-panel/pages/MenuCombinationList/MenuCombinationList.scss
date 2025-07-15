@@ -1,0 +1,108 @@
+.menucombination-list-page {
+    .form-switch .form-check-input {
+        background-color: rgb(var(--theme-color)) !important;
+        border-style: solid;
+        border-color: rgb(var(--theme-color));
+    }
+    .restaurant-cell {
+        max-width: 240px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+     }
+
+    .combination-cell {
+        max-width: 300px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+
+        // padding: 10px;
+        // vertical-align: top;
+        // text-align: center;
+        // display: flex;
+        // justify-content: center;
+        // align-items: center;
+        // max-width: 500px;
+        // white-space: nowrap;
+        // overflow: hidden;
+        // text-overflow: ellipsis;
+        // width: 100%;
+        // gap: 5px;
+
+        // .menu-item-content {
+        //     display: flex;
+        //     // flex-direction: column;
+        //     align-items: center;
+
+        //     .menu-item-image {
+        //         width: 25px;
+        //         height: 25px;
+        //         object-fit: cover;
+        //         border-radius: 7px;
+        //         margin-right: 2px;
+        //     }
+
+        //     .menu-item-name {
+        //         font-size: 14px;
+        //         font-weight: 500;
+        //         color: #333;
+        //     }
+        // }
+
+
+
+
+    }
+
+
+    .table-image {
+        position: relative;
+
+        img {
+            object-fit: cover;
+            width: 60px;
+            height: 60px;
+        }
+
+        .seller-badge {
+            border-radius: 33px;
+            position: absolute;
+            z-index: 0;
+            left: 50%;
+            bottom: -10px;
+            transform: translateX(-50%);
+            border-radius: 4px;
+            background: -webkit-gradient(linear, left top, right top, from(rgba(var(--theme-color), 1)), to(rgba(var(--theme-color2), 1)));
+            background: linear-gradient(to right, rgba(var(--theme-color), 1), rgba(var(--theme-color2), 1));
+            padding: 2px calc(2px + 5 * (100vw - 320px) / 1600);
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            gap: 3px;
+
+
+            &.special-badge {
+                background: -webkit-gradient(linear, left top, right top, from(#00ad91), to(#007a66));
+                background: linear-gradient(to right, #00ad91, #007a66);
+            }
+
+            img.badge {
+                display: block;
+                padding: 0;
+                width: 10px;
+                height: 10px;
+            }
+
+            h6 {
+                font-size: calc(9px + 1 * (100vw - 320px) / 1600);
+                font-weight: 400;
+                color: #fff;
+            }
+        }
+    }
+}

@@ -1,0 +1,161 @@
+[
+    {
+        "label": "Dashboard",
+        "icon_image_url": "/images/admin-panel/left-nav/dashboard.svg",
+        "items": [],
+        "position": 1,
+        "frontend_url": "/admin/",
+        "permission": null,
+        "driver": true,
+        "restaurant": true,
+        "admin": true,
+        "main_category": null,
+        "grocery": true
+    },
+
+   {
+        "label": "Orders",
+        "icon_image_url": "/images/admin-panel/left-nav/orders.svg",
+        "items": [],
+        "position": 2,
+        "frontend_url": "/admin/orders/list",
+        "permission": null,
+        "driver": false,
+        "restaurant": false,
+        "admin": true,
+        "main_category": "Restaurant",
+        "grocery": false
+    }, 
+
+    {
+        "label": "Menu",
+        "icon_image_url": "/images/admin-panel/left-nav/foods.svg",
+        "position": 3,
+        "items": [
+            {
+                "id": 3,
+                "label": "Menu List",
+                "frontend_url": "/admin/menu-item/list",
+                "icon_image_url": null,
+                "position": 1,
+                "driver": false,
+                "restaurant": false,
+                "admin": true,
+                "grocery": false,
+                "category": 3,
+                "permission": null
+            },
+
+            {
+                "id": 4,
+                "label": "Create Menu Item",
+                "frontend_url": "/admin/menu-item/add",
+                "icon_image_url": null,
+                "position": 2,
+                "driver": false,
+                "restaurant": true,
+                "admin": true,
+                "grocery": false,
+                "category": 3,
+                "permission": null
+            }
+        
+        ],
+
+        "frontend_url": "/admin/menu-item/list",
+        "permission": null,
+        "driver": false,
+        "restaurant": true,
+        "admin": true,
+        "main_category": "Restaurant",
+        "grocery": false
+    },
+    
+    {
+        "label": "Category",
+        "icon_image_url": "/images/admin-panel/left-nav/category.svg",
+        "items": [],
+        "position": 4,
+        "frontend_url": "/admin/menu-category/list",
+        "permission": null,
+        "driver": false,
+        "restaurant": false,
+        "admin": true,
+        "main_category": "Restaurant",
+        "grocery": false
+    },
+   
+   
+ 
+    {
+        "label": "Cuisine",
+        "icon_image_url": "/images/admin-panel/left-nav/cuisine.svg",
+        "items": [],
+        "position": 5,
+        "frontend_url": "/admin/cuisine/list",
+        "permission": null,
+        "driver": false,
+        "restaurant": false,
+        "admin": true,
+        "main_category": "Restaurant",
+        "grocery": false
+    },
+    {
+        "label": "Item Units",
+        "icon_image_url": "/images/admin-panel/left-nav/units.svg",
+        "items": [],
+        "position": 6,
+        "frontend_url": "/admin/unit/list",
+        "permission": null,
+        "driver": false,
+        "restaurant": false,
+        "admin": true,
+        "main_category": null,
+        "grocery": false
+    },
+ 
+    {
+        "label": "Customers",
+        "icon_image_url": "/images/admin-panel/left-nav/users.svg",
+        "items": [],
+        "position": 7,
+        "frontend_url": "/admin/users/list",
+        "permission": null,
+        "driver": false,
+        "restaurant": true,
+        "admin": false,
+        "main_category": null,
+        "grocery": false
+    },
+   
+    {
+        "label": "Invoice",
+        "icon_image_url": "/images/admin-panel/left-nav/invoice.svg",
+        "items": [],
+        "position": 8,
+        "frontend_url": "/admin/invoice/list",
+        "permission": null,
+        "driver": false,
+        "restaurant": false,
+        "admin": true,
+        "main_category": null,
+        "grocery": false
+    },
+
+   
+    {
+        "label": "Settings",
+        "icon_image_url": "/images/admin-panel/left-nav/settings.svg",
+        "items": [],
+        "position": 9,
+        "frontend_url": "/admin/restaurant-settings",
+        "permission": null,
+        "driver": false,
+        "restaurant": true,
+        "admin": false,
+        "main_category": null,
+        "grocery": false
+    }
+ 
+  
+]

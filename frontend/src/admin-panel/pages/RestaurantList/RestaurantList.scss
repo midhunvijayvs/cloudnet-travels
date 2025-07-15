@@ -1,0 +1,45 @@
+.restaurant-list-page {
+    .approved-label {
+        display: block;
+        height: 30px;
+        width: 100px;
+        color: rgb(43, 181, 16);
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 14px;
+        border-radius: 8px;
+        text-align: center;
+        border: 1px solid rgb(43, 181, 16);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+
+    .incomplete-label {
+        color: rgb(181, 49, 16);
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 14px;
+        border-radius: 8px;
+        text-align: center;
+        border: 1px solid rgb(181, 52, 16);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px 5px;
+        margin: 0;
+    }
+
+    .approve-button {
+        display: block;
+        height: 30px;
+        width: 80px;
+        background-color: rgb(216, 154, 37);
+        color: #fff;
+        font-weight: 600;
+        font-size: 12px;
+        border-radius: 8px;
+        text-align: center;
+    }
+}

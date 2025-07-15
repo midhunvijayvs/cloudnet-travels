@@ -1,0 +1,33 @@
+.location-modal {
+    .card {
+        width: 500px;
+        padding: 0;
+    }
+
+    .modal-header {
+        width: 100%;
+        padding: 20px 20px 20px 20px !important;
+        border-bottom: #dadada 1px solid;
+        border-color: #dadada !important;
+    }
+
+    .modal-body {
+        padding: 20px 20px 20px 20px !important;
+    }
+    .modal-footer {
+        width: 100%;
+        padding: 10px 10px 10px 10px !important;
+        border-top: #dadada 1px solid;
+        border-color: #dadada !important;
+    }
+    .search-section  input {
+        width: 100%;
+        background-color: rgba(var(--box-bg), 1);
+        border: none;
+        padding: calc(10px + 2 * (100vw - 320px) / 1600);
+        line-height: 1;
+        font-size: calc(14px + 2 * (100vw - 320px) / 1600);
+        border: 1px solid rgba(var(--dashed-line), 1);
+        border-radius: 5px;
+    }
+}

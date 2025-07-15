@@ -1,0 +1,68 @@
+# -------------------------
+# Node (React Frontend)
+/frontend/node_modules/
+/frontend/build/
+/frontend/.env
+/frontend/.cache/
+/frontend/.parcel-cache/
+
+# React log/debug files
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+
+# -------------------------
+# Python (Django Backend)
+/backend/__pycache__/
+/backend/**/*.py[cod]
+/backend/*.sqlite3
+/backend/env/
+/backend/.env
+
+# Django static/media
+/backend/staticfiles/
+/backend/media/
+/backend/db.sqlite3
+
+# Migrations (optional, or ignore just the pyc)
+/backend/**/migrations/*.pyc
+/backend/**/migrations/__pycache__/
+
+# VSCode / Editor folders
+.vscode/
+.idea/
+*.swp
+*~
+
+# -------------------------
+# Virtual environments
+/backend/env/
+/backend/venv/
+/backend/ENV/
+/backend/env.bak/
+/backend/venv.bak/
+
+# -------------------------
+# Logs and system files
+*.log
+*.pot
+*.mo
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+.DS_Store
+Thumbs.db
+
+# -------------------------
+# Git
+*.orig
+*.rej
+*.swo
+*.swn
+*.swns
+*.bak
+
+# -------------------------
+# Deployment (optional)
+/deploy/*.log

@@ -1,0 +1,32 @@
+.custom-modal.toppings-add{
+    .customized-modal{
+        padding: 10px;
+        border-radius: 5px;
+        .filter-body .filter-list li .product-price{
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            .btn{
+                padding: 3px 5px;
+                border-radius: 5px;
+                font-size: 12px;
+            }
+        }
+    }
+    p{
+        font-size: 13px;
+        font-weight: 300;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        text-align: left;
+    }
+    label{
+        
+        font-size: 14px;
+    }
+    h6{
+        text-transform: capitalize;
+    }
+    
+    
+}

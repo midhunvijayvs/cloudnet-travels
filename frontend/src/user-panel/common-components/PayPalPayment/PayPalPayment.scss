@@ -1,0 +1,15 @@
+.custom-modal.paypal-payment{
+    .card{
+        padding: 35px ;
+        padding-bottom: 20px;
+        min-width: 550px;
+    }
+    .buttons-container{
+        background-color: #fff;
+    }
+    .close-btn{
+        position: absolute;
+        right: 5px;
+        top: 5px;
+    }
+}

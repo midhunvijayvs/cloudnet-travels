@@ -1,0 +1,206 @@
+.invoice-preview{
+           
+    h1{
+        font-family: Poppins;
+        font-size: 31px;
+        font-weight: 700;
+        line-height: 46.5px;
+        text-align: left;
+        margin-bottom: 5px;
+    }
+    p{
+        font-family: Poppins;
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 22.5px;
+        letter-spacing: 0.02em;
+        text-align: left;
+        color: #263238;
+    }
+    .title-header{
+        display: flex;
+        gap: 20px;
+        padding: 30px 50px 30px 50px;
+        .app-logo{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img{
+                height: 70%;
+                width: 70%;
+            }
+        }
+        
+    }
+    .sec-2{
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid #E7E7E7;
+        padding: 30px 50px 50px 50px;
+        align-items: center;
+        h1{
+            font-size: 30px;
+            line-height: 28px;
+        }
+        .left{
+            .invoice-num{
+                color: #7A7D81;
+                font-weight: 400;
+                font-size: 18px;
+                line-height: 27px;
+                padding-bottom: 20px;
+                span{
+                    color: #434B50;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                }
+            }
+            p{
+                font-size: 14px;
+                font-weight: 300;
+                line-height: 25px;
+            }
+        }
+        .right{
+            p{
+                font-size: 15px;
+                line-height: 22px;
+                font-weight: 400;
+                text-align: right;
+                &.issued{
+                    span{
+                        color: #677279;
+                    }
+                }
+            }
+            h1{
+                font-family: Poppins;
+                font-size: 31px;
+                font-weight: 700;
+                line-height: 46.5px;
+                text-align: right;
+                color: #26B1E1;
+            }
+
+        }
+    }
+    .sec-3{
+        width: 90%;
+        margin: 0 auto;
+        table{
+            border-collapse: collapse;
+           
+            tr{
+                box-shadow: none;
+                border-bottom: 1px solid #E7E7E7;
+                
+                th{
+                    padding: 20px 30px 20px 30px;
+                    font-family: Poppins;
+                    font-size: 16px;
+                    font-weight: 600;
+                    line-height: 29.07px;
+                    letter-spacing: 0.03em;
+                    text-align: center;
+                    &:first-child{
+                        text-align: left;
+                    }
+                    &:last-child{
+                        text-align: right;
+                    }
+                    
+                }
+                td{
+                    padding: 20px 30px 20px 30px;
+                    font-family: Poppins;
+                    font-size: 15px;
+                    font-weight: 400;
+                    line-height: 30px;
+                    text-align: center;
+                    color: #212429;
+                    &:first-child{
+                        text-align: left;
+                    }
+                    &:last-child{
+                        text-align: right;
+                    }
+                    
+
+                    .calculation{
+                        width: 100%;
+                        display: flex;
+                        font-size: 16px;
+                        line-height: 30px;
+                        .key{
+                            width: 80%;
+                            text-align: right;
+                            
+                        }
+                        .value{
+                            width: 20%;
+                            text-align: right;
+                        }
+                        &.sub-total{
+                            .key{
+                                font-weight: 500;
+                                color: #212429;
+                            }
+                            .value{
+                                font-size: 20px;
+                                font-weight: 600;
+                            }
+                        }
+                        &.grand-total{
+                            padding: 10px 0px;
+                            .key{
+                                font-weight: 600;
+                                color: #212429;
+                            }
+                            .value{
+                                font-size: 30px;
+                                font-weight: 700;
+                            }
+                            
+                        }
+                    }
+                    .account{
+                        padding: 10px 0;
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        .key{
+                            width: 75%;
+                            text-align: right;
+                            font-family: Poppins;
+                            font-size: 15px;
+                            font-weight: 400;
+                            line-height: 22.5px;
+                        }
+                        .value{
+                            width: 25%;
+                            padding-left: 10px;
+                            text-align: left;
+                            font-family: Poppins;
+                            font-size: 15px;
+                            font-weight: 700;
+                            line-height: 22.5px;
+                        }
+                    }
+                }
+            }
+            thead{
+                tr{
+                    border-top: 1px solid #E7E7E7;
+                }
+            }
+            tbody{
+                tr{
+                    border-style: dashed;
+                    &.overview{
+                        border-style: solid;
+                    }
+                }
+            }
+        }
+    }
+}

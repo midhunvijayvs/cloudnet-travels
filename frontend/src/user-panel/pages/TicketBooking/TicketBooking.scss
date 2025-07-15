@@ -1,0 +1,148 @@
+.ticket-booking-page {
+    .sec-2 {
+        padding: 2rem 0;
+        width: var(--sec-width);
+        margin: 0 auto;
+
+        .form-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 2rem;
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--primary-color);
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                color: #ffffff;
+
+            h2 {
+                text-align: center;
+                margin-bottom: 1.5rem;
+                color: #ffffff;
+            }
+
+            .pax-select {
+                display: flex;
+                justify-content: space-between;
+                gap: 1rem;
+                margin-bottom: 2rem;
+
+                label {
+                    display: flex;
+                    flex-direction: column;
+                    font-weight: 500;
+                    font-size: 1rem;
+
+                    input {
+                        margin-top: 0.5rem;
+                        padding: 0.4rem;
+                        font-size: 1rem;
+                        border: 1px solid #ccc;
+                        border-radius: 6px;
+                    }
+                }
+            }
+
+            .pax-form {
+                background: #fff;
+                border: 1px solid #eee;
+                border-radius: 10px;
+                padding: 1rem;
+                margin-bottom: 1rem;
+
+                h4 {
+                    margin-bottom: 0.5rem;
+                    color: #298aeb;
+                    font-weight: 600;
+                }
+
+                select,
+                input[type='text'],
+                input[type='date'] {
+                    display: block;
+                    width: 100%;
+                    padding: 0.5rem;
+                    margin: 0.4rem 0;
+                    font-size: 1rem;
+                    border: 1px solid #ccc;
+                    border-radius: 6px;
+                }
+
+                .error {
+                    color: red;
+                    font-size: 0.85rem;
+                }
+            }
+
+            .book-button {
+                background: #ffffff;
+                color: #2980b9;
+                padding: 0.8rem 2rem;
+                border: none;
+                font-size: 1.1rem;
+               font-weight: 600;
+                border-radius: 8px;
+                cursor: pointer;
+                width: 100%;
+                transition: background 0.3s ease;
+
+                &:hover {
+                    background: #1f6391;
+                }
+
+                &:disabled {
+                    background: #bdc3c7;
+                    cursor: not-allowed;
+                }
+            }
+        }
+
+    }
+}
+
+/* Tablet */
+@media screen and (max-width: 1024px) {
+    .ticket-booking-page {
+        .sec-2 {
+            padding: 2rem 0;
+            width: var(--sec-width);
+            margin: 0 auto;
+
+            .form-container {
+                padding: 1.5rem;
+            }
+
+            .pax-select {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    }
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+    .ticket-booking-page {
+        .sec-2 {
+            padding: 2rem 0;
+            width: var(--sec-width);
+            margin: 0 auto;
+
+            .form-container {
+                padding: 1rem;
+            }
+
+            .pax-select label input {
+                font-size: 0.9rem;
+            }
+
+            .pax-form select,
+            .pax-form input {
+                font-size: 0.9rem;
+            }
+
+            .book-button {
+                font-size: 1rem;
+            }
+        }
+    }
+}

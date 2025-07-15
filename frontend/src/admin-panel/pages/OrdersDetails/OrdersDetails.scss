@@ -1,0 +1,411 @@
+.order-details-page {
+    color: var(--black);
+
+    .page-body {
+        .container-fluid {
+            .row {
+                .card {
+                    .card-body {
+                        .v-pill-tab {
+                            li {
+                                button {
+                                    color: var(--black);
+                                }
+                            }
+                        }
+
+                        .title-bar {
+                            margin-bottom: 2rem;
+
+                            .info-icon {
+                                margin: 0;
+                                margin-left: 3px;
+                                margin-top: -1px;
+                                width: 13px;
+                                height: 12px;
+                                top: 2px;
+                                cursor: pointer;
+                            }
+
+                            .order-deliver-label {
+                                text-transform: capitalize;
+                                background-color: rgba(221, 255, 231, 0.688);
+                                color: rgb(0, 131, 59);
+                                // border: 1px solid rgba(var(--success-color), 1);
+                                padding: 5px 10px;
+                                border-radius: 33px;
+                                font-size: 1rem;
+                                font-weight: 500;
+
+                                &.status-0,
+                                &.status-10,
+                                &.status-6,
+                                &.status-12,
+                                &.status-13 {
+                                    background-color: rgba(255, 209, 209, 0.63);
+                                    color: rgb(212, 0, 0);
+                                }
+
+                                &.status-14 {
+                                    background-color: rgba(255, 237, 209, 0.688);
+                                    color: rgb(212, 92, 0);
+                                }
+                            }
+
+                            .order-deliver-label[data-tooltip]:hover::after {
+                                content: attr(data-tooltip);
+                                position: absolute;
+                                background-color: #ffefef;
+                                color: #b50000;
+                                padding: 8px;
+                                border-radius: 4px;
+                                top: 105%;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                white-space: normal;
+                                width: 160px;
+                                z-index: 10;
+                                opacity: 0;
+                                visibility: hidden;
+                                transition: opacity 0.3s ease;
+                                font-size: 1rem;
+                            }
+
+                            /* Make tooltip visible on hover */
+                            .order-deliver-label.status-6[data-tooltip]:hover::after,
+                            .order-deliver-label.status-0[data-tooltip]:hover::after,
+                            .order-deliver-label.status-10[data-tooltip]:hover::after,
+                            .order-deliver-label.status-13[data-tooltip]:hover::after {
+                                opacity: 1;
+                                visibility: visible;
+                            }
+
+                            .scheduled {
+                                display: flex;
+                                flex-direction: column;
+                                align-items: flex-end;
+                                padding: 5px 10px;
+                                border-radius: 5px;
+                                border: 2px rgba(var(--theme-color2), 0.6) solid;
+                                background: rgba(var(--theme-color2), 0.05);
+
+                                .head1 {
+                                    font-size: calc(12px + 2 * (100vw - 320px) / 1600);
+                                    font-weight: 450;
+
+                                    i {
+                                        margin-right: 3px;
+                                    }
+                                }
+
+                                .date {
+                                    font-size: calc(13px + 3 * (100vw - 320px) / 1600);
+                                    font-weight: 500;
+                                }
+                            }
+                        }
+
+                        .content-box {
+                            display: flex;
+                            gap: 2rem;
+
+                            .lhs {
+                                width: 50%;
+
+                                .box {
+                                    display: flex;
+                                    margin-bottom: 1rem;
+                                    border: 1px solid var(--primary-color);
+                                    border-radius: 6px;
+                                    padding: 1rem;
+
+                                    .title {
+                                        font-size: 1.3rem;
+                                        font-weight: 600;
+                                        margin-bottom: 1rem;
+
+                                    }
+
+                                    .description {
+                                        font-size: 1rem;
+                                        font-weight: 500;
+                                        line-height: 1.7;
+                                    }
+
+                                    img {
+                                        height: 3rem;
+                                        margin-right: 1rem;
+                                    }
+
+                                    .content {}
+
+                                    &.extra {
+                                        justify-content: space-between;
+
+                                        .delivery-item {
+                                            display: flex;
+                                            align-items: center;
+                                            font-size: calc(13px + 3 * (100vw - 320px) / 1600);
+                                            font-weight: 500;
+                                            gap: 10px;
+
+                                            .img-box {
+                                                width: 50px;
+                                                display: flex;
+                                                justify-content: center;
+                                                align-items: center;
+
+                                                img {
+                                                    width: 24px;
+                                                    width: 24px;
+
+                                                    &.logo {
+                                                        width: 34px;
+                                                    }
+                                                }
+                                            }
+
+                                        }
+                                    }
+
+                                }
+                            }
+
+                            .rhs {
+                                width: 50%;
+
+                                .box {
+                                    margin-bottom: 1rem;
+                                    border: 1px solid var(--primary-color);
+                                    border-radius: 6px;
+                                    padding: 1rem;
+
+                                    .title {
+                                        font-size: 1.3rem;
+                                        font-weight: 600;
+                                        margin-bottom: 1rem;
+
+                                    }
+
+                                    &.update-order-status {
+                                        .title {
+                                            margin-bottom: 1rem;
+
+                                        }
+
+                                        select {
+                                            border: 2px solid var(--primary-color);
+                                            color: var(--primary-color);
+                                            font-weight: bold;
+                                        }
+                                    }
+
+                                    &.menu-items {
+                                        ul {
+                                            li {
+                                                .product-strip {
+                                                    display: flex;
+                                                    align-items: center;
+                                                    justify-content: space-between;
+                                                    margin-bottom: 1rem;
+                                                    width: 100%;
+
+                                                    .lhs {
+                                                        width: 50%;
+
+                                                        .product-name {
+                                                            font-size: 1.5rem;
+                                                            font-weight: 500;
+                                                            color: var(--black);
+                                                        }
+
+                                                        span {
+                                                            font-size: 1rem;
+                                                            color: var(--black);
+                                                            font-weight: 500;
+
+                                                            display:
+                                                                inline-block;
+                                                        }
+                                                    }
+
+                                                    .product-price {
+                                                        font-size: 1rem;
+                                                        font-weight: 500;
+                                                        color: var(--black);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    &.bill-details {
+                                        .sub-total {
+                                            display: flex;
+                                            justify-content: space-between;
+                                            margin-bottom: 1rem;
+
+                                            h6 {
+                                                font-size: 1rem;
+                                                font-weight: 600;
+                                            }
+                                        }
+
+                                        .grand-total {
+                                            display: flex;
+                                            justify-content: space-between;
+                                            margin-top: .5rem;
+                                            margin-bottom: .5rem;
+
+                                            h6 {
+                                                font-size: 1.3rem;
+                                                font-weight: 600;
+                                            }
+                                        }
+                                    }
+
+
+
+
+
+
+                                }
+
+
+
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+@media (max-width: 768px) {
+    .order-details-page {
+        .page-body {
+            .container-fluid {
+                .row {
+                    .card {
+                        .card-body {
+                            .content-box {
+                                flex-direction: column  ;
+                                .lhs {
+                                    width: 100%;
+                                    .box{
+                                        padding: 1.5rem;
+                                        margin-bottom: 2rem;
+                                        .title{
+                                            font-size: 2rem;
+
+                                        }
+                                        .description{
+                                            font-size: 1.5rem;
+                                        }
+                                    }
+                                }
+
+                                .rhs {
+                                    width: 100%;
+                                    .box{
+                                        padding: 1.5rem;
+                                        margin-bottom: 2rem;
+                                        .title{
+                                            font-size: 2rem;
+
+                                        }
+                                                &.update-order-status {
+                                        .title {
+                                            margin-bottom: 1rem;
+
+                                        }
+
+                                        select {
+                                            font-size: 2rem;
+                                        }
+                                    }
+
+                                    &.menu-items {
+                                        ul {
+                                            li {
+                                                .product-strip {
+                                                   
+                                                    margin-bottom: 2rem;
+
+                                                    .lhs {
+                                                        width: 50%;
+
+                                                        .product-name {
+                                                            font-size: 2rem;
+                                                            
+                                                        }
+
+                                                        span {
+                                                            font-size: 1.5rem;
+                                                          
+                                                        }
+                                                    }
+
+                                                    .product-price {
+                                                        font-size: 1.5rem;
+                                                     
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    &.bill-details {
+                                        .sub-total {
+                                            
+                                            margin-bottom: 1.5rem;
+
+                                            h6 {
+                                                font-size: 1.5rem;
+                                               
+                                            }
+                                        }
+
+                                        .grand-total {
+                                           
+                                            margin-top: 1rem;
+                                            margin-bottom: 1rem;
+
+                                            h6 {
+                                                font-size: 2.2rem;
+                                            }
+                                        }
+                                    }
+                                    }
+                                }
+                            }
+                            .title-bar{
+                                .order-deliver-label{
+                                    font-size: 2rem;
+                                    margin-left: auto;
+                                    margin-right: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

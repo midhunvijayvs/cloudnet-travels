@@ -1,0 +1,120 @@
+.user-add-page {
+    --theme-color: 239, 52, 1;;
+    --theme-color2: #F07054;
+
+    .react-tel-input {
+        .form-control {
+            width: 100%;
+            padding: 10px 20px 10px 60px !important;
+            border: 1px dashed #dedbdb;
+            width: 100%;
+            border-radius: 4px;
+            background-color: rgb(245, 245, 245);
+        }
+
+        font-family: Work Sans;
+
+        input:focus {
+            background-color: rgb(255, 255, 255) !important;
+        }
+
+        .selected-flag {
+            padding: 0;
+
+            &::before {
+                left: auto;
+            }
+
+            &:focus::before,
+            &:focus,
+            &:hover {
+                // background-size: 100% 2px; 
+                border-color: #fbfbfb00 !important;
+                box-shadow: 0 0 0 0 #FBFBFB !important;
+                background-color: inherit !important;
+            }
+
+            &.open::before {
+                background-size: 100% 2px;
+                border-color: #fbfbfb00 !important;
+                box-shadow: 0 0 0 0 #FBFBFB !important;
+                background-color: inherit !important;
+            }
+
+            .flag {
+                display: none;
+
+            }
+        }
+
+        .flag-dropdown {
+            border: none;
+            background-color: inherit;
+        }
+
+
+        .country-list {
+            width: fit-content;
+
+            .flag {
+                display: none;
+            }
+
+            .country {
+                &:hover {
+                    background-color: rgb(242, 169, 62);
+                    color: #ffffffd8;
+                    box-shadow: 0 0 10px 100px rgb(235, 159, 46) inset;
+
+                    .dial-code {
+                        color: #E7E7E7;
+                    }
+                }
+            }
+
+        }
+    }
+
+    .form-input {
+        position: relative;
+        // display: inline-block;
+        width: 100%;
+
+        .password-eye {
+            position: absolute;
+            top: 55%;
+            right: 15px;
+            transform: translateY(-50%);
+            font-size: 24px;
+            padding-right: 10px;
+            color: rgba(var(--content-color), 1);
+            cursor: pointer;
+        }
+    }
+
+    .password-container {
+        position: relative;
+        .hint-btn {
+            cursor: pointer;
+            svg {
+                width: 16px;
+                height: 16px;
+            }
+        }
+        .password-hint {
+            margin-top: 10px;
+            font-size: 10px;
+            color: rgb(143, 0, 0);
+            position: absolute;
+            top: 10%;
+            /* Position below the input */
+            right: 0;
+            background: #f7f7f7;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 4px;
+        }
+    }
+
+
+}

@@ -1,0 +1,100 @@
+.user-alter-order-popup {
+    .card.user-alter-order-card {
+        padding: 35px 20px 30px 20px;
+        width: 400px;
+        min-height: 300px;
+        max-height: 90vh;
+        .first-screen{
+            flex: 1;
+            overflow: auto;
+        }
+        .no-data{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            height: 300px;
+            font-size: calc(11px + 2 * (100vw - 320px) / 1600);
+            color: #c70000;
+        }
+
+        .close-btn {
+            svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+        .search-result-container{
+            display: flex;
+            flex-direction: column;
+            overflow: auto;
+        }
+        
+        .search-container {
+            overflow: auto;
+            padding: 0;
+
+        input {
+            margin: 0;
+            padding: 8px 10px;
+            border: 1px dashed #dedbdb;
+            width: 100%;
+            border-radius: 4px;
+            background-color: rgba(245, 245, 245, 0.6);
+            font-size: calc(12px + 2 * (100vw - 320px) / 1600);
+        }
+
+        .dropdown {
+            border: 1px solid #ffecc8;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            // position: absolute;
+            width: 100%;
+            background-color: white;
+            z-index: 1;
+            max-height: 320px;
+            overflow-y: scroll;
+        }
+        .menu-item{
+            border-bottom: 1px solid rgb(var(--theme-color2),0.5);
+          }
+
+        .dropdown-item {
+            padding: 10px 5px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            &.variant {
+                padding: 5px 5px;
+                cursor: pointer;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                gap: 25px;
+              }
+            img {
+            width: 25px;
+            height: 25px;
+            border-radius: 5px;
+            object-fit: cover;
+            margin: 0;
+            margin-right: 8px;
+            }
+            .item-content{
+            // max-width: 240px;
+            white-space: wrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            }
+        }
+
+        .dropdown-item:hover {
+            background-color: rgb(var(--theme-color2));
+            color: #fff;
+        }
+
+        }
+    }
+}

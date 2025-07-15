@@ -1,0 +1,69 @@
+.audit-list-page {
+   .filters{
+      .filter-txt{
+         align-items: center;
+      }
+   }
+   table {
+      .status span {
+         text-transform: capitalize;
+      }
+      td{
+         font-size: calc(12px + 2 * (100vw - 320px) / 1600) !important;
+      }
+      .wrap-text{
+         white-space: normal;
+         max-width: 200px;
+         font-size: calc(10px + 2 * (100vw - 320px) / 1600) !important;
+      }
+
+      .title-short {
+         max-width: 180px;
+         // text-transform: capitalize;
+         white-space: normal !important;
+         overflow: hidden;
+         text-overflow: ellipsis;
+         font-size: calc(12px + 2 * (100vw - 320px) / 1600) !important;
+         &.ip{
+            text-transform: none;
+         }
+      }
+
+      .subject-short {
+         max-width: 210px;
+         white-space: normal !important;
+         overflow: hidden;
+         text-overflow: ellipsis;
+         text-transform: capitalize;
+      }
+
+      .description-cell {
+         position: relative;
+         overflow: hidden;
+
+         .description-short {
+            vertical-align: inherit;
+            max-width: 170px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+
+            i {
+               font-size: 18px;
+               color: #0047ab;
+            }
+         }
+      }
+
+      .publish-date {
+         font-size: calc(11px + 2 * (100vw - 320px) / 1600);
+      }
+
+
+   }
+
+  
+}

@@ -1,0 +1,139 @@
+.driver-details-page {
+    .view-restaurant-proimg {
+        width: 90px;
+        height: auto;
+        border-radius: 10px;
+        filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.12));
+    }
+    .type-tag {
+        display: block;
+        font-size: 13px;
+        font-weight: 500;
+        color: #fff;
+        letter-spacing: 0em;
+        text-align: center;
+        // height: 30px;
+        border-radius: 12px;
+        background-color: #868790;
+        ;
+      }
+
+    .card {
+        padding: 25px 30px;
+        border: 1px solid rgb(var(--theme-color2), 0.1);
+        &.basic, &.restaurant {
+            border: 1px solid rgb(var(--theme-color2), 0.3);
+        }
+        &.criminal-records{
+            border: 1px solid rgb(255, 200, 200);
+            color: rgb(172, 0, 0);
+            .records {
+                color: rgb(172, 0, 0);
+            }
+        }
+    }
+
+    .sec-1 {
+        display: flex;
+        padding: 20px;
+        justify-content: space-between;
+        border-radius: 10px;
+        box-shadow: 0px 0px 4px rgba(235, 171, 111, 0.2);
+        flex-wrap: wrap;
+    }
+
+    .profile-sec {}
+
+    table {
+        thead tr th {
+            text-align: center;
+            font-size: 13px !important;
+        }
+
+        tbody tr td {
+            text-align: center;
+            padding: 10px !important;
+            font-weight: 500 !important;
+        }
+    }
+
+    .address-sec {
+        margin-left: 40px;
+    }
+
+    .cus-profileimg {
+        width: 100px;
+        height: 100px;
+        border-radius: 50% !important;
+    }
+
+    .dotted-border-btm {
+        border-bottom: 1px dashed rgba(128, 128, 128, 0.833);
+    }
+
+    .dotted-border-top {
+        border-top: 1px dashed rgba(128, 128, 128, 0.833);
+
+    }
+
+    .fw-600 {
+        font-weight: 600;
+    }
+
+    .fw-400 {
+        font-weight: 400;
+    }
+
+    .fw-500 {
+        font-weight: 500;
+    }
+
+    .clr-898989 {
+        color: #898989;
+    }
+
+    .f-xxs {
+        font-size: 11px;
+    }
+
+    .f-12 {
+        font-size: 12px;
+    }
+
+    .f-13 {
+        font-size: 13px;
+    }
+
+    .f-14 {
+        font-size: 14px;
+    }
+
+    .f-15 {
+        font-size: 15px;
+    }
+    .customer-info{
+        width: 100%;
+        padding-bottom: 10px;
+        border-bottom: 2px rgb(251, 171, 0) solid;
+        border-radius: 4px;
+        .cus-profileimg {
+            width: 40px;
+            height: 40px;
+            border-radius: 50% !important;
+        }
+    }
+
+}
+
+@media (max-width: 992px) {}
+
+@media (min-width: 768px) and (max-width: 992px) {}
+
+
+@media (max-width: 768px) {
+    .driver-details-page {
+        .sec-1 {
+            flex-direction: column;
+        }
+    }
+}

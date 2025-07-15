@@ -1,0 +1,47 @@
+.custom-modal.invoice-type{
+    .card{
+        width: 393px;
+        height: 445px;
+        border-radius: 22px;
+        padding: 30px 30px;
+        .close-btn{
+            display: flex;
+            justify-content: flex-end;
+            cursor: pointer;
+            padding-bottom: 20px;
+        }
+        h1{
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 30px;
+        }
+        p{
+            font-size: 16px;
+            line-height: 19px;
+            font-weight: 400;
+        }
+        .button-container{
+            display: flex;
+            flex-direction: column;
+            width: 196px;
+            margin-top: 30px;
+            .ok-button{
+                font-family: Work Sans;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 16px;
+                letter-spacing: -0.01em;
+                text-align: center;
+                padding: 13px 26px;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+                margin-bottom: 5px;
+                &:hover{
+                    background: #2694E3;
+                    color: #fff;
+                }
+            }
+        }
+    }
+    
+}

@@ -1,0 +1,120 @@
+.refund-popup {
+    .card.confirm {
+        padding: 20px;
+
+        h1 {
+            line-height: 100% !important;
+            color: #d10e00;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        .money {
+            font-size: calc(19px + 4 * (100vw - 320px) / 1600);
+            color: #d10e00;
+        }
+    }
+
+    .card.refund {
+        padding: 20px;
+        width: 600px;
+        max-height: 95vh;
+        overflow-y: auto;
+        .first-screen {
+            align-items: start;
+            display: block;
+            h1 {
+                font-weight: 500 !important;
+                font-size: calc(14px + 4 * (100vw - 320px) / 1600) !important;
+                color: rgba(var(--dark-text), 1) !important;
+                width: 100%;
+                border-bottom: 1px solid rgb(238, 238, 238);
+                text-align: left;
+                line-height: normal !important;
+                padding-bottom: 10px;
+            }
+        }
+
+        .footer {
+            margin-top: 20px;
+        }
+
+        input {
+            background-color: rgb(232, 232, 232);
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            border-color: rgba(var(--dashed-line), 1);
+            padding: 5px 10px;
+
+            &:disabled {
+                font-weight: 600;
+                color: #767676;
+                background-color: rgb(249, 249, 249);
+            }
+
+            &::placeholder {
+                font-size: calc(11px + 4 * (100vw - 320px) / 1600);
+            }
+        }
+
+        label {
+            font-size: calc(12px + 2 * (100vw - 320px) / 1600);
+            font-weight: 450;
+            line-height: normal;
+            margin: 0;
+        }
+
+        .payment-deligation-table {
+            background: white;
+            // border-radius: 5px;
+            // padding: 5px 5px 5px 5px;
+            // box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 10px;
+            .table-title{
+                font-size: calc(14px + 2 * (100vw - 320px) / 1600);
+                font-weight: 500;
+                line-height: normal;
+                padding-top: 8px;
+                margin-top: 5px;
+                margin-bottom: 5px;
+                border-top: 1px solid #767676;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+
+                th,
+                td {
+                    padding: 5px 10px;
+                    text-align: left;
+                    border-bottom: 1px solid #ddd;
+                    white-space: normal;
+                }
+
+                th {
+                    background: rgb(var(--theme-color2));
+                    color: white;
+                    font-size: calc(12px + 2 * (100vw - 320px) / 1600);
+                    font-weight: 600;
+                    &:nth-child(1), 
+                    &:nth-child(2), 
+                    &:nth-child(3),
+                    &:nth-child(4),
+                    &:nth-child(5)
+                    {
+                        min-width: fit-content;
+                    }
+                }
+
+                td {
+                    line-height: normal;
+                    font-size: calc(12px + 2 * (100vw - 320px) / 1600);
+                }
+            }
+        }
+    }
+}

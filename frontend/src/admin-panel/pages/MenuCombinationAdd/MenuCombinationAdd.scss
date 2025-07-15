@@ -1,0 +1,87 @@
+.add-combination{
+	.admin-panel-add-combination-sec-1 label {
+		font-size: 13px;
+		font-weight: 500;
+	}
+	
+	.admin-panel-add-product-sec-1 .card {
+		box-shadow: 0px 0px 4px rgba(0, 0.09, 0, 0.09);
+		padding: 20px ;
+		input{
+			margin: 0;
+		}
+	}
+	.tag-select{
+		padding: 0;
+		.dropdown {
+			border: 1px solid #ffecc8;
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			position: absolute;
+			width: 100%;
+			background-color: white;
+			z-index: 1;
+			max-height: 250px;
+			overflow-y: scroll;
+		  }
+		  
+		  .dropdown-item {
+			padding: 10px;
+			cursor: pointer;
+			img{
+				width: 25px;
+				height: 25px;
+				border-radius: 5px;
+				object-fit: cover;
+				margin-right: 4px;
+			}
+		  }
+		  
+		  .dropdown-item:hover {
+			background-color: #e6831f;
+			color: #fff;
+		  }
+		  
+	}
+	.selected-container{
+		margin-top: 15px;
+		.selected-items {
+			margin-top: 10px;
+			display: flex;
+			flex-wrap: wrap;
+			gap: 12px;
+		  }
+		  
+		  .selected-item {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 5px 10px;
+			border: 1px solid #ffa653;
+			border-radius: 4px;
+			margin-bottom: 5px;
+			font-size: 13px;
+			font-weight: 500;
+			img{
+				width: 25px;
+				height: 25px;
+				border-radius: 5px;
+				object-fit: cover;
+				margin-right: 4px;
+			}
+		  }
+		  
+		  .remove-button {
+			margin-left: 5px;
+			background: none;
+			border: none;
+			color: rgb(255, 136, 0);
+			font-size: 18px;
+			cursor: pointer;
+		  }
+	}
+	
+}
+
+

@@ -1,0 +1,47 @@
+.sales-analytics-brick{
+    width: 100%;
+    height: 200px;
+    background: rgba(224, 90, 103, 0.54);
+box-shadow: 0px 4px 4px rgba(0, 0.09, 0, 0.09);
+border-radius: 12px;
+color: white;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+line-height: 35px;
+
+}
+
+.sales-analytics-brick.white{
+    background: rgba(255, 255, 255, 0.54);
+color: rgb(39, 39, 39);
+}
+
+.sales-analytics-brick .round-bg{
+    background: linear-gradient(180deg, #FFFFFF 0%, rgba(227, 227, 227, 0.86) 100%);
+    width: 80px;
+    height: 80px;
+    color: rgb(53, 52, 52);
+    border-radius: 50%;
+    display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.sales-analytics-brick .round-bg.white{
+    color: rgb(255, 255, 255);
+    background: linear-gradient(180deg, rgba(224, 90, 103, 0.61) 0%, #E16672 100%);
+
+}
+
+.analytics .ss-border{
+    border: 0.2px solid rgba(117, 117, 117, 0.404);
+filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.03));
+border-radius: 10px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+height: 170px;
+}

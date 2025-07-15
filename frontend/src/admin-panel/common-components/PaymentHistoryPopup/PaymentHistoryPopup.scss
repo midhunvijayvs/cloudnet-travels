@@ -1,0 +1,139 @@
+.custom-modal.payment-history {
+    .card {
+        width: fit-content;
+        max-width: 870px !important;
+        padding: 20px 25px 20px 25px;
+
+        .title {
+            text-align: center;
+            margin-bottom: calc(5px + 2 * (100vw - 320px) / 1600);
+            font-size: calc(20px + 4 * (100vw - 320px) / 1600);
+            font-weight: 600;
+        }
+
+        .content {
+            margin-bottom: 6px;
+            max-height: calc(100vh - 210px);
+            overflow-y: auto;
+            border-bottom: 1px solid rgba(106, 106, 106, 0.049);
+
+            .payment-details {
+
+                // display: flex;
+                table {
+                    border-style: none;
+                    width: 100%;
+                    margin-bottom: 10px;
+
+                    tr {
+                        th {
+                            font-weight: 600;
+                        }
+
+                        td,
+                        th {
+                            padding: 5px 10px;
+                            text-align: center;
+                        }
+
+                        td {
+                            font-size: calc(12px + 2 * (100vw - 320px) / 1600);
+                        }
+
+                    }
+                }
+
+                .item {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+            }
+        }
+
+        td {
+            .status {
+                background-color: rgba(226, 36, 84, 0.15);
+                color: #e22454;
+                padding: 5px 10px;
+                text-transform: capitalize;
+                display: inline-block;
+                border-radius: 5px;
+                font-size: 12px;
+                font-weight: 400;
+                &.success {
+                    background-color: rgba(36, 226, 71, 0.15);
+                    color: #007e30;
+                }
+                &.pending {
+                    background-color: rgba(226, 194, 36, 0.15);
+                    color: #d67002;
+                }
+            }
+            
+        }
+    }
+
+    .footer {
+        margin-bottom: 0;
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        font-size: calc(12px + 4 * (100vw - 320px) / 1600);
+        line-height: normal;
+        .cancel-button{
+            width: fit-content;
+            padding: 10px 30px;
+            height: auto;
+        }
+
+        .btns {
+            margin-top: 10px;
+            display: flex;
+            width: 100%;
+            justify-content: end;
+            gap: 30px;
+
+            button {
+                width: fit-content !important;
+                height: auto;
+                padding: 10px 30px;
+            }
+        }
+    }
+}
+
+@media(max-width:768px) {
+    .custom-modal.payment-history {
+        .card {
+            width: 95%;
+
+            .content {
+                margin-bottom: 20px;
+                max-height: 70vh;
+            }
+
+            .footer {
+                .btns {
+                    justify-content: space-between;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:576px) {
+    .custom-modal.payment-history {
+        .card {
+            width: 95%;
+
+            .content {
+                margin-bottom: 20px;
+                max-height: 65vh;
+            }
+        }
+    }
+}
