@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // const BACKEND_URL=process.env.REACT_APP_BACKEND_URL;
-const BACKEND_URL='http://127.0.0.1:8000/';
+const BACKEND_URL='http://3.110.177.125/omairiq-proxy/';
 const AIR_IQ_API_KEY=process.env.REACT_APP_AIR_IQ_API_KEY
 const instance = axios.create({
   baseURL: BACKEND_URL,
