@@ -172,7 +172,7 @@ const Layout = () => {
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="refund-and-cancellation-policy" element={<RefundAndCancellationPolicy />} />
 
-          <Route path="*" element={<NoPage />} />
+          <Route path="*" element={<Navigate to="/home" />} />
         </Routes>
       </div>
       <Footer activePage={activePage} setActivePage={setActivePage}></Footer>
