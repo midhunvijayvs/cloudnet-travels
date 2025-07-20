@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/cloudnet-travels/static/css/main.81777144.css",
-    "main.js": "/cloudnet-travels/static/js/main.2ea1de5b.js",
+    "main.js": "/cloudnet-travels/static/js/main.ab122040.js",
     "static/js/453.7d7a2fcb.chunk.js": "/cloudnet-travels/static/js/453.7d7a2fcb.chunk.js",
     "static/media/burger.jpg": "/cloudnet-travels/static/media/burger.2e453a9626f7eb18fcf7.jpg",
     "static/media/banner.png": "/cloudnet-travels/static/media/banner.01b2976b10d6af4bc2d0.png",
     "static/media/remixicon117c.svg?t=1708865856766": "/cloudnet-travels/static/media/remixicon117c.44e8bdebb2c2309888bd.svg",
     "static/media/banner-web.png": "/cloudnet-travels/static/media/banner-web.6c01ea5f581304127c91.png",
-    "static/media/pdf.worker.min.mjs": "/cloudnet-travels/static/media/pdf.worker.min.1d00cfdf57322f1d715b.mjs",
+    "static/media/pdf.worker.min.mjs": "/cloudnet-travels/static/media/pdf.worker.min.1fe3098dad37b90ec8cc.mjs",
     "static/media/bg.jpg": "/cloudnet-travels/static/media/bg.798ca853d4aa6cf4fce1.jpg",
     "static/media/fa-solid-900.svg": "/cloudnet-travels/static/media/fa-solid-900.b6f1e12b1a01ff95f064.svg",
     "static/media/fa-brands-400.svg": "/cloudnet-travels/static/media/fa-brands-400.8fab0f2ba5cdb9b5b48f.svg",
@@ -50,11 +50,11 @@
     "static/media/social-image.html": "/cloudnet-travels/static/media/social-image.baf9ebd9cc78801b64c7.html",
     "static/media/contact-us-temp-popup-bg.svg": "/cloudnet-travels/static/media/contact-us-temp-popup-bg.fd523a1ea2fb854742b0.svg",
     "main.81777144.css.map": "/cloudnet-travels/static/css/main.81777144.css.map",
-    "main.2ea1de5b.js.map": "/cloudnet-travels/static/js/main.2ea1de5b.js.map",
+    "main.ab122040.js.map": "/cloudnet-travels/static/js/main.ab122040.js.map",
     "453.7d7a2fcb.chunk.js.map": "/cloudnet-travels/static/js/453.7d7a2fcb.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.81777144.css",
-    "static/js/main.2ea1de5b.js"
+    "static/js/main.ab122040.js"
   ]
 }
