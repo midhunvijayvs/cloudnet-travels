@@ -59,7 +59,7 @@ const View = () => {
           <div className='inner'>
             <h3 className='sub-heading'></h3>
             <h2 className='main-heading'>Welcome to Cloudnet Travels  </h2>
-            <p>“Rang” means colour, and “Rasoi” means kitchen. Together, Cloudnet Travels is a colourful kitchen just like India itself, where every every meal brings people together. Rooted in years of experience running restaurants in India, our journey has now brought us to Wrexham, where we’re proud to share the real taste of India with our local community. At Cloudnet Travels, every dish is carefully prepared using authentic recipes, quality ingredients, and a whole lot of love. Whether you’re enjoying a comforting curry, a spicy street food snack, or a fragrant biryani, we want you to feel the authentic taste in every bite. Join us at Cloudnet Travels for a colourful dining experience. </p>
+            <p>Cloudnet Travels, based in Koduvalli, Kozhikode, is your trusted partner for hassle-free flight bookings and travel arrangements. With a commitment to reliability, transparency, and customer satisfaction, we ensure your journey starts right from your first interaction with us. Whether you’re flying for business, leisure, or family visits, our expert team helps you find the best routes and fares tailored to your needs. At Cloudnet Travels, we make air travel simpler, smoother, and more affordable—so you can fly with confidence and peace of mind. </p>
             {/* <button className="btn-primary" onClick={() => navigate('/book-dine-in')}>
               <span>Learn More</span>
               

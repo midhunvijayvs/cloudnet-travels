@@ -85,7 +85,8 @@ h1 {
   letter-spacing: 0em;
   text-align: left;
   margin-bottom: 0.625rem;
-  color: rgb(255, 255, 255);
+    color: var(--black);
+
 }
 
 h2 {
@@ -96,7 +97,7 @@ h2 {
   letter-spacing: 0em;
   text-align: left;
   margin-bottom: 1.25rem; // 20px
-  color: var(--white);
+  color: var(--black);
 }
 
 p {
@@ -107,6 +108,7 @@ p {
   letter-spacing: 0em;
   text-align: left;
   margin-bottom: 0px;
+  color: var(--black);
 
 }
 
@@ -118,6 +120,7 @@ label {
   letter-spacing: 0em;
   text-align: left;
   margin-bottom: 0px;
+  color: var(--black);
 
 }
 

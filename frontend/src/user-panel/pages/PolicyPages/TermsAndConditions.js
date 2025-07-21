@@ -158,8 +158,8 @@ const PolicyPage = () => {
     <p>
       <strong>Cloudnet Travels Ltd</strong><br />
       2 Brook Street, Wrexham, LL13 7LH, United Kingdom<br />
-      Phone: 07777760756<br />
-      Email: <a href='mailto:connect@rangrasoii.com'>connect@rangrasoii.com</a>
+      Phone: 9747020268<br />
+      Email: <a href='mailto:cloudnettravels@gmail.com'>cloudnettravels@gmail.com</a>
     </p>
   </div>
 

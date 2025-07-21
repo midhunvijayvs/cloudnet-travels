@@ -315,8 +315,8 @@ const invoicePDFGenerator = ({ data }) =>
               <Text style={styles.addressLine}>2 Brook Street,
               </Text>
               <Text style={styles.addressLine}>Wrexham, LL13 7LH</Text>
-              <Text style={styles.addressLine}>{'connect@rangrasoii.com '}</Text>
-              <Text style={styles.addressLine}>Ph: 07777760756</Text>
+              <Text style={styles.addressLine}>{'cloudnettravels@gmail.com '}</Text>
+              <Text style={styles.addressLine}>Ph: 9747020268</Text>
             </View>
           </View>
         </View>

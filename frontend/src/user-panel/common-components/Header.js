@@ -150,7 +150,7 @@ const Header = ({ cartItems, isLoggedIn, setSearchKey, selectCategory, setActive
   return (
     <div className={isHomePage ? 'header home-page-header' : "header"} id='header'  >
 
-      <img className='app-logo' onClick={() => { navigate('/'); }} role='button' src="/images/header/app-logo.svg" alt=''></img>
+      <img className='app-logo' onClick={() => { navigate('/'); }} role='button' src="/images/header/app-logo.png" alt=''></img>
      
      
     
@@ -165,21 +165,11 @@ const Header = ({ cartItems, isLoggedIn, setSearchKey, selectCategory, setActive
 
 
 
-        <span onClick={() => { setActivePage([1, "dine-in"]); navigate('/book-dine-in'); setNavPaneOpen(false) }} className={`main-menu-item ${(activePage[0] === 1) && 'active'} tab-and-mob-only `}>
-          <div className='text'>
-            Dine In
-          </div>
-        </span>
+      
 
-        <span onClick={() => { setActivePage([2, "shop"]); navigate('/shop'); setNavPaneOpen(false)  }} className={`main-menu-item ${(activePage[0] === 2) && 'active'} tab-and-mob-only `}>
+        <span onClick={() => { setActivePage([3, "contact-us"]); navigate('/contact-us'); setNavPaneOpen(false)  }} className={`main-menu-item ${(activePage[0] === 3) && 'active'}`}>
           <div className='text'>
-            Take Away & Delivery
-          </div>
-        </span>
-
-        <span onClick={() => { setActivePage([3, "story"]); navigate('/story'); setNavPaneOpen(false)  }} className={`main-menu-item ${(activePage[0] === 3) && 'active'}`}>
-          <div className='text'>
-            Story
+            Contact
           </div>
         </span>
 
@@ -191,18 +181,7 @@ const Header = ({ cartItems, isLoggedIn, setSearchKey, selectCategory, setActive
         </span>
 
 
-        <span onClick={() => { setActivePage([5, "wishlist"]); navigate('/wishlist'); setNavPaneOpen(false)  }} className={`main-menu-item ${(activePage[0] === 5) && 'active'} tab-and-mob-only ${!isLoggedIn && 'd-none'} `}>
-          <div className='text'>
-            Wishlist
-          </div>
-        </span>
-
-
-        <span onClick={() => { setActivePage([6, "saved-address"]); navigate('/saved-address'); setNavPaneOpen(false)  }} className={`main-menu-item ${(activePage[0] === 6) && 'active'} tab-and-mob-only ${!isLoggedIn && 'd-none'} `}>
-          <div className='text'>
-            Saved Addresses
-          </div>
-        </span>
+      
 
 
 
@@ -212,17 +191,17 @@ const Header = ({ cartItems, isLoggedIn, setSearchKey, selectCategory, setActive
           </div>
         </span>
 
-        <span onClick={() => { setActivePage([8, "profile"]); navigate('/profile'); setNavPaneOpen(false)  }} className={`main-menu-item ${(activePage[0] === 8) && 'active'} tab-and-mob-only`}>
+        {/* <span onClick={() => { setActivePage([8, "profile"]); navigate('/'); setNavPaneOpen(false)  }} className={`main-menu-item ${(activePage[0] === 8) && 'active'} tab-and-mob-only`}>
           <div className='text'>
             Profile
           </div>
         </span>
 
-        <span onClick={() => { setActivePage([9, "orders"]); navigate('/orders'); setNavPaneOpen(false)  }} className={`main-menu-item ${(activePage[0] === 9) && 'active'} tab-and-mob-only`}>
+        <span onClick={() => { setActivePage([9, "orders"]); navigate('/'); setNavPaneOpen(false)  }} className={`main-menu-item ${(activePage[0] === 9) && 'active'} tab-and-mob-only`}>
           <div className='text'>
-            My Orders
+           Mob Menu 1
           </div>
-        </span>
+        </span> */}
 
         
         <span onClick={() => { setActivePage([10, "logout"]); setLogoutModalShow(true) ; setNavPaneOpen(false) }} className={`main-menu-item ${(activePage[0] === 10) && 'active'} tab-and-mob-only ${!isLoggedIn && 'd-none'} `}>

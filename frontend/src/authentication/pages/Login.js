@@ -91,7 +91,7 @@ const Login = () => {
       <AuthBanner
         pageName={"login"}
         titleWeb={"Welcome to<br/><b>Cloudnet Travels !</b>"}
-        titleTab={"Welcome to <b>Rang <br/>Rasoii !</b>"}
+        titleTab={"Welcome to <b>Cloudnet <br/>Travels !</b>"}
         titleMob={"Welcome to<br/><b>Cloudnet Travels !</b>"}
         paraWeb={"Don’t have an account? Sign up<br/>now and get started. "}
         paraTab={"Don’t have an account? Sign up now<br/> and get started. "}

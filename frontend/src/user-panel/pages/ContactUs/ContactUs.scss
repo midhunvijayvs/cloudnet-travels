@@ -5,7 +5,7 @@
     align-items: center;
     width: 100%;
     height: fit-content;
-    background-color: #000; // assuming dark background for white text
+    background-color: var(--primary-color); // assuming dark background for white text
     overflow: hidden;
   
     .lhs, .rhs {

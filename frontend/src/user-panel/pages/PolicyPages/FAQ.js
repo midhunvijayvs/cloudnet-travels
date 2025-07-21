@@ -51,7 +51,7 @@ const PolicyPage = () => {
 
     <div className='faq'>
       <p><strong>1. Where is Cloudnet Travels located?</strong></p>
-      <p>We are located at 2 Brook Street, Wrexham, LL13 7LH. You can find us easily on Google Maps or contact us directly at 07777760756.</p>
+      <p>We are located at 2 Brook Street, Wrexham, LL13 7LH. You can find us easily on Google Maps or contact us directly at 9747020268.</p>
     </div>
 
     <div className='faq'>
@@ -111,7 +111,7 @@ const PolicyPage = () => {
 
     <div className='faq'>
       <p><strong>13. How can I contact you for general enquiries?</strong></p>
-      <p>You can call us on 07777760756 or email us at connect@rangrasoii.com. Alternatively, use the contact form on our website.</p>
+      <p>You can call us on 9747020268 or email us at cloudnettravels@gmail.com. Alternatively, use the contact form on our website.</p>
     </div>
 
     <div className='faq'>

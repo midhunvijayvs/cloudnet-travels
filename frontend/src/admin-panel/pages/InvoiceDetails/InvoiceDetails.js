@@ -79,7 +79,7 @@ const InvoiceDetails = () => {
                     <div className='f-xs fw-600 mb-2'>Cloudnet Travels</div>
                     <div className='f-14 fw-500'>2 Brook Street, Wrexham, LL13 7LH</div>
                     <div className='f-14 fw-600'>United Kingdom</div>
-                    <div className='f-14 fw-500'><span className='me-2'>connect@rangrasoii.com</span><span>Ph: +44 9876543210</span></div>
+                    <div className='f-14 fw-500'><span className='me-2'>cloudnettravels@gmail.com</span><span>Ph: +44 9876543210</span></div>
                   </div>
                 </div>
               </div>

@@ -110,7 +110,7 @@ const PolicyPage = () => {
 
   <div className='section'>
     <h3 className='title'>8. Issues & Complaints</h3>
-    <p>If you experience any issues with your delivery, such as missing items or delays, please contact us immediately on <strong>07777760756</strong> or via email at <strong>connect@rangrasoii.com</strong>. We will do our best to resolve the matter promptly.</p>
+    <p>If you experience any issues with your delivery, such as missing items or delays, please contact us immediately on <strong>9747020268</strong> or via email at <strong>cloudnettravels@gmail.com</strong>. We will do our best to resolve the matter promptly.</p>
   </div>
 
   <div className='section'>

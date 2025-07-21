@@ -1984,7 +1984,7 @@ body.dark-only .page-wrapper .page-body-wrapper .page-body .card.custom-card .ca
 }
 
 body.dark-only .page-wrapper .page-body-wrapper .custom-card .card-header img {
-    background-color: #000;
+    background-color: var(--primary-color);
     opacity: 0.8
 }
 
@@ -4213,7 +4213,7 @@ body.dark-only .product-box .product-img .product-hover ul li {
 }
 
 body.dark-only .product-box .product-img .product-hover ul li:hover {
-    background-color: #000;
+    background-color: var(--primary-color);
     color: #fff
 }
 

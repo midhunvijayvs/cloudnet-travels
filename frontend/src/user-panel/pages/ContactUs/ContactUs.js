@@ -54,7 +54,7 @@ const View = () => {
 
       <section className='sec-2' >
         <div className='lhs'>
-          <img src='/images/contact-us/sec-2.png' />
+          <img src='/images/contact-us/sec-2.jpg' />
           {/* <p className='overlap-text'>CONTACT US</p> */}
         </div>
         <div className='rhs'>
@@ -79,14 +79,14 @@ const View = () => {
     <h4>TALK</h4>
     <p>
       <FontAwesomeIcon icon={faPhone} />{' '}
-      <a href="tel:07777760756">07777760756</a>
+      <a href="tel:9747020268">9747020268</a>
     </p>
   </div>
   <div>
     <h4>WRITE</h4>
     <p>
       <FontAwesomeIcon icon={faEnvelope} />{' '}
-      <a href="mailto:connect@rangrasoii.com">connect@rangrasoii.com</a>
+      <a href="mailto:cloudnettravels@gmail.com">cloudnettravels@gmail.com</a>
     </p>
   </div>
 </div>

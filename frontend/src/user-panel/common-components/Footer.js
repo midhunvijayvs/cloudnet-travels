@@ -22,8 +22,8 @@ import { faFacebook, faInstagram, faWhatsapp } from '@fortawesome/free-brands-sv
       <div className="footer-top">
         <div className="footer-col welcome">
           <h3>STEP INTO CLOUDNET TRAVELS </h3>
-          <p>Cloudnet Travels is an authentic Indian restaurant in Wrexham, serving fresh, flavour-packed dishes made with care. </p>
-          <p> From family dinners to late-night cravings, we’re here to bring you real Indian taste.</p>
+          <p>Cloudnet Travels is a leading travel agency in Calicut district. This portal allows you to book flight tickets sealessly</p>
+          <p> We provide ticket booking services with all major airline's services.</p>
         </div>
 
         <div className="footer-col contact">
@@ -32,11 +32,11 @@ import { faFacebook, faInstagram, faWhatsapp } from '@fortawesome/free-brands-sv
     <p>
       <FontAwesomeIcon icon={faLocationDot} />{' '}
       <a
-        href="https://www.google.com/maps/search/?api=1&query=2+Brook+Street,+Wrexham,+LL13+7LH"
+        href="https://www.google.com/maps/search/?api=1&query=2+Koduvally,+kozhikode,+kerala"
         target="_blank"
         rel="noopener noreferrer"
       >
-        2 Brook Street,<br />Wrexham, LL13 7LH
+        Koduvalli,<br />Calicut, Kerala
       </a>
     </p>
   </div>
@@ -44,21 +44,21 @@ import { faFacebook, faInstagram, faWhatsapp } from '@fortawesome/free-brands-sv
     <h4>TALK</h4>
     <p>
       <FontAwesomeIcon icon={faPhone} />{' '}
-      <a href="tel:07777760756">07777760756</a>
+      <a href="tel:9747020268">9747020268</a>
     </p>
   </div>
   <div>
     <h4>WRITE</h4>
     <p>
       <FontAwesomeIcon icon={faEnvelope} />{' '}
-      <a href="mailto:connect@rangrasoii.com">connect@rangrasoii.com</a>
+      <a href="mailto:cloudnettravels@gmail.com">cloudnettravels@gmail.com</a>
     </p>
   </div>
 </div>
 
         <div className="footer-col reservation">
-          <h4>RESERVATIONS</h4>
-          <button onClick={()=>navigate("/book-dine-in")} className="book-btn">BOOK YOUR TABLE</button>
+          <h4>CONNECT</h4>
+          <button onClick={()=>navigate("/")} className="book-btn">CONTACT</button>
           <h4>HOURS</h4>
           <p>MONDAY thru FRIDAY<br />11am – 9pm</p>
           <p>SATURDAY/SUNDAY<br />10am – 11pm</p>
@@ -83,7 +83,7 @@ import { faFacebook, faInstagram, faWhatsapp } from '@fortawesome/free-brands-sv
               </a>
             </span>
             <span>
-              <a href="https://www.instagram.com/rangrasoii/" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.instagram.com/cloudnettravels/" target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon icon={faInstagram} />
               </a>
             </span>
@@ -100,7 +100,7 @@ import { faFacebook, faInstagram, faWhatsapp } from '@fortawesome/free-brands-sv
       <div className="footer-bottom">
         <p>© 2025 CLOUDNET TRAVELS. ALL RIGHTS RESERVED.</p>
         <h2>CLOUDNET TRAVELS</h2>
-        <span>TASTE THE DIFFERENCE</span>
+        <span>FLY IN THE LAP OF CLOUDS</span>
       </div>
     </footer>
   );
