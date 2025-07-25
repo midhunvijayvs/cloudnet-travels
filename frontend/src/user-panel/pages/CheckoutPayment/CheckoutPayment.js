@@ -14,7 +14,7 @@ const amount = location.state?.amount;
   useEffect(() => {
     const initiatePayment = async () => {
       try {
-        const res = await fetch(`https://soulcastai.com/omairiq-proxy/api/phonepe/initiate`, {
+        const res = await fetch(`https://soulcastai.com/omairiq-proxy/api/phonepe/initiate/`, {
         // const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/phonepe/initiate`, {
           method: "POST",
           headers: {
