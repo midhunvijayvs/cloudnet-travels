@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
-
+import os
+from dotenv import load_dotenv
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -111,7 +113,7 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
-
+ 
 USE_TZ = True
 
 
@@ -124,3 +126,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Fetch PhonePe config
+PHONEPE_CLIENT_ID = os.getenv('PHONEPE_CLIENT_ID')
+PHONEPE_CLIENT_SECRET = os.getenv('PHONEPE_CLIENT_SECRET')
+PHONEPE_CLIENT_VERSION = os.getenv('PHONEPE_CLIENT_SECRET')
+# cd
+PHONEPE_BASE_URL = os.getenv('PHONEPE_BASE_URL')

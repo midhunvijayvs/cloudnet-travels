@@ -299,7 +299,7 @@ const ShopMenuCard = ({ ticketItem, cartItems, loadCartDataForHeader, data, setD
 
       
         <button className="btn theme-outline add-btn mt-1"
-          onClick={() => navigate(`/book-ticket/?ticket_id=${ticketItem.ticket_id}`)}>
+          onClick={() => navigate("/checkout-payment", { state: { ticket_id: ticketItem.ticket_id, amount:ticketItem?.price } })}>
           BOOK THIS TICKET
         </button>
    
