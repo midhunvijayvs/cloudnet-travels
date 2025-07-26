@@ -107,7 +107,7 @@ const PolicyPage = () => {
   <div className='section'>
     <h3 className='title'>7. Prices & Payment</h3>
     <ul>
-      <li>All prices listed are in GBP (£) and include VAT unless otherwise stated.</li>
+      <li>All prices listed are in GBP (₹) and include VAT unless otherwise stated.</li>
       <li>Prices may change without prior notice, but confirmed orders will not be affected.</li>
       <li>Payments must be made securely via approved payment methods displayed at checkout.</li>
     </ul>

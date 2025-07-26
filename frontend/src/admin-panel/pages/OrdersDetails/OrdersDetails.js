@@ -373,7 +373,7 @@ const OrdersDetails = ({ source, orderType }) => {
 
                                       <span >({item.variant_details || item.menu_item_detail?.unit_details?.name} x {item.count} )</span>
                                     </div>
-                                    <h6 className="product-price">£{parseFloat(item.price) * parseInt(item.count)}</h6>
+                                    <h6 className="product-price">₹{parseFloat(item.price) * parseInt(item.count)}</h6>
 
                                   </div>
 
@@ -389,7 +389,7 @@ const OrdersDetails = ({ source, orderType }) => {
                           <div className="sub-total">
                             <h6 className="content-color fw-normal">Sub Total</h6>
                             <h6 className="fw-semibold">
-                              £{Math.round(((data.sub_total) + Number.EPSILON) * 100) / 100}
+                              ₹{Math.round(((data.sub_total) + Number.EPSILON) * 100) / 100}
                             </h6>
                           </div>
                           {data.priority_charge > 0 &&
@@ -398,7 +398,7 @@ const OrdersDetails = ({ source, orderType }) => {
                                 Priority Charge
                               </h6>
                               <h6 className="fw-semibold ">
-                                £{data.priority_charge}
+                                ₹{data.priority_charge}
                               </h6>
                             </div>
                           }
@@ -407,7 +407,7 @@ const OrdersDetails = ({ source, orderType }) => {
                               Delivery Charge
                             </h6>
                             <h6 className="fw-semibold success-color">
-                              £{data.delivery_charge && data.delivery_charge.toFixed(2)}
+                              ₹{data.delivery_charge && data.delivery_charge.toFixed(2)}
                             </h6>
                           </div>
 
@@ -418,7 +418,7 @@ const OrdersDetails = ({ source, orderType }) => {
                                   ? `Discount (${data.coupon_details.discount_value?.toFixed(2)}%)`
                                   : `Discount (Flat ${data.coupon_details.discount_value?.toFixed(2)})`}
                               </h6>
-                              <h6 className="fw-semibold">-£{data.coupon_discount_applied_pounds?.toFixed(2)}</h6>
+                              <h6 className="fw-semibold">-₹{data.coupon_discount_applied_pounds?.toFixed(2)}</h6>
                             </div>
                           }
                           {data.is_gift_card_used &&
@@ -426,12 +426,12 @@ const OrdersDetails = ({ source, orderType }) => {
                               <h6 className="content-color fw-normal">
                                 {`Discount(Gift Card)`}
                               </h6>
-                              <h6 className="fw-semibold">-£{data.gift_card_amount?.toFixed(2)}</h6>
+                              <h6 className="fw-semibold">-₹{data.gift_card_amount?.toFixed(2)}</h6>
                             </div>
                           }
                           <div className="grand-total">
                             <h6 className="fw-semibold dark-text">Total</h6>
-                            <h6 className="fw-semibold amount">£{parseFloat(data.total_amount).toFixed(2)}</h6>
+                            <h6 className="fw-semibold amount">₹{parseFloat(data.total_amount).toFixed(2)}</h6>
                           </div>
                         <img className="dots-design mb-0" src="/images/svg/dots-design.svg" alt="dots"></img>
                         </div>

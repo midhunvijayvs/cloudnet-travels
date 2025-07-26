@@ -217,7 +217,7 @@ const UsersDetails = () => {
                                 <div className='fw-500 f-14 mb-2 mt-3 black-clr'>
                                   <span className='me-2'>Total spent</span>
 
-                                  <span className='me-1 f-15 f-600'>£{data?.total_spent?.toFixed(2)} </span>
+                                  <span className='me-1 f-15 f-600'>₹{data?.total_spent?.toFixed(2)} </span>
                                   <span className='me-1'>on</span><span className='me-1 f-15 f-600'>{data.total_orders}</span><span>orders</span>
                                 </div>
                                 <div className='table-container mt-3'>
@@ -247,7 +247,7 @@ const UsersDetails = () => {
                                             {item.delivery_status && DELIVERY_STATUSES[parseInt(item.delivery_status)].replace(/_/g, ' ')}
                                           </td>
                                           <td>{item.items && item.items.length > 0 ? item.items.length : '0'}</td>
-                                          <td>£{item.total_amount && Number((item.total_amount).toFixed(2)).toString()}</td>
+                                          <td>₹{item.total_amount && Number((item.total_amount).toFixed(2)).toString()}</td>
                                         </tr>
                                       ))}
 

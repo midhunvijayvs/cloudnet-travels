@@ -305,8 +305,8 @@ const DriverOrdersList = ({ isNewOrderModalShow }) => {
                                   </td>
                                   <td>{item.order_placed_datetime && formatDateTimeToMonthYear(item.order_placed_datetime)}</td>
                                   <td className="short">{item.first_name} {item.last_name}</td>
-                                  <td>£{item.total_amount}</td>
-                                  {/* <td>£{item.total_amount}</td> */}
+                                  <td>₹{item.total_amount}</td>
+                                  {/* <td>₹{item.total_amount}</td> */}
                                   <td>
                                     <span className={`status-label ${item.delivery_status ? `status-${item.delivery_status}` : 'status-0'}`}>
                                       {item.delivery_status && (DELIVERY_STATUSES[item.delivery_status]).replace(/_/g, ' ')}

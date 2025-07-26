@@ -75,7 +75,7 @@ const ToppingAddPopup = ({ setterFunction, selectedItem, formData, setFormData, 
                       <h6 className="product-size">{item.description}</h6>
                       <div className="form-check product-price">
                         <label className="form-check-label" htmlFor={`topping${index}`}>
-                          £{item.price}
+                          ₹{item.price}
                         </label>
                         <input
                           className="form-check-input"

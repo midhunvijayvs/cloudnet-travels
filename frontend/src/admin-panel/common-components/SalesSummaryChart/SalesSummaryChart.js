@@ -263,7 +263,7 @@ const SalesSummary = () => {
                     >
                         <CartesianGrid stroke="#ffe5cc" strokeDasharray="5 5" vertical={false} />
                         <XAxis axisLine={false} tickLine={false} dataKey="name" scale="band" tick={{ fontSize: "12px" }} />
-                        <YAxis axisLine={false} tickLine={false} tick={{ fontSize: "12px" }} tickFormatter={(value) => `£${value}`}/>
+                        <YAxis axisLine={false} tickLine={false} tick={{ fontSize: "12px" }} tickFormatter={(value) => `₹${value}`}/>
                         <Tooltip />
                         {/* <Legend /> */}
                         <Bar dataKey="sales" barSize={10} fill="#F2A93E" radius={[10, 0, 10, 0]} />

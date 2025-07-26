@@ -259,7 +259,7 @@ const OrdersChartAdmin = () => {
           >
             <CartesianGrid stroke="#f0f0f0" strokeDasharray="5 5" vertical={false} />
             <XAxis axisLine={false} tickLine={false} dataKey="name" scale="band" tick={{ fontSize: "12px" }} />
-            {/* <YAxis axisLine={false} tickLine={false} tick={{ fontSize: "12px" }} tickFormatter={(value) => `£${value}`} /> */}
+            {/* <YAxis axisLine={false} tickLine={false} tick={{ fontSize: "12px" }} tickFormatter={(value) => `₹${value}`} /> */}
             <Tooltip />
             {/* <Legend /> */}
             <Bar dataKey="orders" barSize={20} fill="#1d9176" radius={[15, 0, 15, 0]} />

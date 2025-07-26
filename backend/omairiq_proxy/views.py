@@ -7,10 +7,12 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .utils import forward_request
 from django.views.decorators.http import require_POST
+from django.conf import settings
+import uuid
 
 API_BASE_URL = 'https://omairiq.azurewebsites.net'
 API_HEADERS = {
-    'api-key': 'NTMzNDUwMDpBSVJJUSBURVNUIEFQSToxODkxOTMwMDM1OTk2OmpTMm0vUU1HVmQvelovZi81dFdwTEE9PQ==',
+    'api-key': 'NTMzNDUwMDpBSVJJUSBURVNUIEFQSToxODkxOTMwMDM1OTk2OlBvTjE2NGNkLy9heE53WC9hM00rS1ZrcnJSa2Q0S05adHl3Q0NHZmU4Uzg9',
     'Content-Type': 'application/json',
 }
 
@@ -58,23 +60,27 @@ def proxy_book(request):
 # }
 
 def get_phonepay_auth_token():
-    url =f"{settings.PHONEPE_BASE_URL}/v1/oauth/token"
+    url =f"{settings.PHONEPE_AUTHORISATION_BASE_URL}/v1/oauth/token"
     headers = {
-        "Content-Type": "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
     }
+
     payload = {
         "client_id": settings.PHONEPE_CLIENT_ID,
         "client_secret": settings.PHONEPE_CLIENT_SECRET,
-        "client_version":settings.PHONEPE_CLIENT_VERSION
+        "client_version":settings.PHONEPE_CLIENT_VERSION,
+        "grant_type":"client_credentials"
     }
 
-    response = requests.post(url, headers=headers, json=payload)
-    if response.status_code == 200:
-        return response.json().get("data", {}).get("access_token")
-
-    print("error fetching token")
-    return None
-
+    try:
+        response = requests.post(url, headers=headers, data=payload)
+        responseData = response.json()
+        if "access_token" in responseData:
+            return responseData.get("access_token"), payload, responseData
+        else:
+            return None, payload, responseData  # 👈 return responseData even if it's an error
+    except Exception as e:
+        return None, payload, {"error": str(e)}  # 👈 catch network/JSON errors too
 
 
 
@@ -114,18 +120,26 @@ def initiate_payment(request):
     data = json.loads(request.body)
 
 
-    token = get_phonepay_auth_token()
+    token, token_payload, token_response = get_phonepay_auth_token()
     if not token:
-        return JsonResponse({"error": "Failed to authenticate with PhonePe"}, status=400)
+        return JsonResponse({
+    "error": "Failed to authenticate with PhonePe",
+    "auth_token_payload": token_payload,
+    "auth_token_response": token_response
+     }, status=400)
 
     amount = data.get("amount")  # e.g., in paisa: ₹1 = 100
-    order_id = data.get("order_id")  # should be unique
+    merchant_order_id = data.get("merchant_order_id")  # should be unique
+    merchant_transaction_id=data.get("merchant_transaction_id")  # should be unique
     success_redirect_url=data.get('success_redirect_url')
     failed_redirect_url=data.get('failed_redirect_url')
-
+   
+    # merchant_transaction_id = str(uuid.uuid4())
+    # merchant_order_id = str(uuid.uuid4())  # Or a real order ID from your system
     payload = {
 
-    "merchantOrderId": order_id,
+    "merchantOrderId": merchant_order_id,
+    "merchantTransactionId": merchant_transaction_id,
     "amount": amount,
     "expireAfter": 1200,
 
@@ -149,16 +163,31 @@ def initiate_payment(request):
     
     headers = {
         "Content-Type": "application/json",
-        "O-Bearer": token
+        "Authorization": f"O-Bearer {token}" 
     }
 
     response = requests.post(
         f"{settings.PHONEPE_BASE_URL}/checkout/v2/pay",
         headers=headers,
-        json={"request": payload}
+        json=payload
+
     )
 
-    return JsonResponse(response.json())
+    try:
+        response_data = response.json()
+    except Exception as e:
+        return JsonResponse({
+            "error": "Failed to parse response from PhonePe",
+            "exception": str(e),
+            "status_code": response.status_code,
+            "raw_response": response.text
+        }, status=500)
+
+    return JsonResponse({
+        "data": response_data,
+        # "auth_token_payload": token_payload,
+        # "auth_token_response": token_response
+    })
 
 # @csrf_exempt
 # @require_POST

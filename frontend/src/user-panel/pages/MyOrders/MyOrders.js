@@ -419,7 +419,7 @@ const MyOrders = ({ userData, orderUpdate }) => {
                                 <div className="d-flex align-items-center justify-content-between mt-sm-3 mt-2">
                                   <h6 className="fw-medium dark-text">
                                     <span className="fw-normal content-color">Total Amount : </span>
-                                    £{item.total_amount}
+                                    ₹{item.total_amount}
                                   </h6>
                                   {item?.earned_points > 0 &&
                                     <div className='earned-points'>
@@ -546,7 +546,7 @@ const MyOrders = ({ userData, orderUpdate }) => {
                             <div className="d-flex align-items-center justify-content-between mt-sm-3 mt-2">
                               <h6 className="fw-medium dark-text">
                                 <span className="fw-normal content-color">Total Amount : </span>
-                                £{item.total_amount}
+                                ₹{item.total_amount}
                               </h6>
                               {item?.earned_points > 0 &&
                                 <div className='earned-points'>

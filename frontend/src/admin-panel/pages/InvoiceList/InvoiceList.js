@@ -189,7 +189,7 @@ const InvoiceList = () => {
                                 </td>
                                 <td>{item.created_at && formatDateTimeToMonthYear(item.created_at)}</td>
                                 <td>{item.restaurant}</td>
-                                <td>£{item.total_amount && item.total_amount.toFixed(2)}</td>
+                                <td>₹{item.total_amount && item.total_amount.toFixed(2)}</td>
                                 <td>
                                   <ul className="d-flex align-items-center  justify-content-center">
                                     <li>

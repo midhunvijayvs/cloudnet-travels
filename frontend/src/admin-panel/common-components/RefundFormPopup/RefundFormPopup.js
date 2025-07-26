@@ -174,7 +174,7 @@ const RefundFormPopup = ({ resourceName, setterFunction, orderId, loadmainData }
                           <td>{item.order_item?.menu_item_name}</td>
                           <td>{item.payment_method}</td>
                           <td>{item.reference_id || "N/A"}</td>
-                          <td>£{item.amount.toFixed(2)}</td>
+                          <td>₹{item.amount.toFixed(2)}</td>
                         </tr>
                       ))}
                   </tbody>
@@ -203,7 +203,7 @@ const RefundFormPopup = ({ resourceName, setterFunction, orderId, loadmainData }
               <img src='/images/icons/svg/warning.svg'></img>
               <h1>Confirm Refund</h1>
               <p>
-                A refund of <span className='money'>£{formData.money}</span > will be sent to the customer. Please confirm to proceed.
+                A refund of <span className='money'>₹{formData.money}</span > will be sent to the customer. Please confirm to proceed.
               </p>
               <div className='footer'>
                 <button type='button' className='btn-outlined' onClick={() => { setIsConfirmModalOpen(false) }}>Cancel</button>

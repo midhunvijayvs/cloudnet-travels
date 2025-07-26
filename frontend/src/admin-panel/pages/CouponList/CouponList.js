@@ -241,7 +241,7 @@ const CouponList = () => {
                                   {item.coupon_for?.replace(/_/g, ' ')}
                                 </td>
                                 <td className="title-short">
-                                  £{item.single_order_value}
+                                  ₹{item.single_order_value}
                                 </td>
                                 {localStorage.getItem('userRole') !== 'restaurant' &&
                                   <td>{item.restaurant_name || 'All'}</td>

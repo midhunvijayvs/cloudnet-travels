@@ -184,7 +184,7 @@ const TicketsDetails = ({ source, newNotificationUpdate }) => {
                               <div className='clr-898989 f-14 me-2'>Refunded Amount:</div>
                               <div>
                                 <div className='f-xs fw-500  capitalize'>
-                                  £{data.refund_amount}
+                                  ₹{data.refund_amount}
                                 </div>
                               </div>
                             </div>

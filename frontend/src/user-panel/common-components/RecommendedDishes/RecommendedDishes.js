@@ -86,14 +86,14 @@ const RecommendedDishes = ({ location }) => {
                       {item.base_price !== item.offer_price ?
                         <p className='product-price'>
                           <div className='base-price'>
-                            £{item.offer_price}
+                            ₹{item.offer_price}
                           </div>
-                          / <span className='offer-price'>£{item.base_price}</span>
+                          / <span className='offer-price'>₹{item.base_price}</span>
                         </p>
                         :
                         <p className='product-price'>
                           <div className='base-price'>
-                            £{item.base_price}
+                            ₹{item.base_price}
                           </div>
                         </p>
                       }

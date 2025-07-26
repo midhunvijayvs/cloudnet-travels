@@ -583,7 +583,7 @@ const CheckoutOptions = ({ userData, loadUserData }) => {
                       className="btn theme-outline btn-sm me-2 mt-1"
                       onClick={() => handleTipSuggestionClick(value)}
                     >
-                      £{value}
+                      ₹{value}
                     </button>
                   ))}
                 </div>
@@ -622,7 +622,7 @@ const CheckoutOptions = ({ userData, loadUserData }) => {
                       <div className="product-content">
                         <div className="d-flex align-items-center justify-content-between">
                           <h5>{item.menu_item_name} {item?.variant_details && `(${item.variant_details})`}</h5>
-                          <h6 className="product-price">£{parseFloat(item.price) * parseInt(item.count)}</h6>
+                          <h6 className="product-price">₹{parseFloat(item.price) * parseInt(item.count)}</h6>
                         </div>
                         {/* {item.topping &&
                                 <h6 className="ingredients-text"> + {item.topping_details.description}</h6>
@@ -632,7 +632,7 @@ const CheckoutOptions = ({ userData, loadUserData }) => {
                             <div key={index} className='d-flex justify-content-between align-items-center'>
                               <h6 className="ingredients-text">{top.topping?.description} (x{top.count}) </h6>
                               {top.price > 0 &&
-                                <span>£{top.price}</span>
+                                <span>₹{top.price}</span>
                               }
                             </div>
                           ))
@@ -648,12 +648,12 @@ const CheckoutOptions = ({ userData, loadUserData }) => {
               <h5 className="bill-details-title">Bill Details</h5>
               <div className="sub-total">
                 <h6 className="content-color fw-normal">Sub Total</h6>
-                <h6 className="fw-semibold">£{orderData.sub_total}</h6>
+                <h6 className="fw-semibold">₹{orderData.sub_total}</h6>
               </div>
               {orderData?.priority_charge > 0 &&
                 <div className="sub-total">
                   <h6 className="content-color fw-normal">Priority Charge</h6>
-                  <h6 className="fw-semibold">£{orderData?.priority_charge}</h6>
+                  <h6 className="fw-semibold">₹{orderData?.priority_charge}</h6>
                 </div>
               }
               <div className="sub-total">
@@ -662,7 +662,7 @@ const CheckoutOptions = ({ userData, loadUserData }) => {
                 </h6>
                 {orderData?.delivery_charge > 0 ?
                   <h6 className="fw-semibold success-color">
-                    £ {orderData?.delivery_charge?.toFixed(2)}
+                    ₹ {orderData?.delivery_charge?.toFixed(2)}
                   </h6> :
                   <h6 className="fw-semibold success-color">
                     Free Delivery
@@ -675,7 +675,7 @@ const CheckoutOptions = ({ userData, loadUserData }) => {
                     </div> */}
               <div className="grand-total">
                 <h6 className="fw-semibold dark-text">Total</h6>
-                <h6 className="fw-semibold amount">£{parseFloat(orderData.total_amount).toFixed(2)}</h6>
+                <h6 className="fw-semibold amount">₹{parseFloat(orderData.total_amount).toFixed(2)}</h6>
               </div>
               <button onClick={handleSubmit} className="btn-primary w-100 checkout-btn">
                 CONTINUE

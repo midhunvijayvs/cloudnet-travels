@@ -61,7 +61,7 @@ const PaymentHistoryPopup = ({ setterFunction, selectedItem }) => {
                     <td>{item.payment_for_orders_from ? item.payment_for_orders_from.substring(0, 10) : 'N/A'}</td>
                     <td>{item.payment_for_orders_to ? item.payment_for_orders_to.substring(0, 10) : 'N/A'}</td>
                     <td>{item.number_of_orders}</td>
-                    <td>£{item.paid_amount && item.paid_amount.toFixed(2)}</td>
+                    <td>₹{item.paid_amount && item.paid_amount.toFixed(2)}</td>
                     <td >
                       <span className={`status ${item.payment_status}`}>{item.payment_status && item.payment_status.replace(/_/g, ' ')}</span>
                     </td>

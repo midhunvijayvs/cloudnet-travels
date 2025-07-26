@@ -223,7 +223,7 @@ const OrderModificationByCustomerPopup = ({ setterFunction, orderId, loadData, s
                                       <div key={index} className='d-flex justify-content-between align-items-center gap-2' >
                                         <h6 className="ingredients-text">+ {top.topping?.description} (x{top.count}) </h6>
                                         {top.price > 0 &&
-                                          <span className='topping-price'>£{top.price}</span>
+                                          <span className='topping-price'>₹{top.price}</span>
                                         }
                                       </div>
                                     ))
@@ -231,7 +231,7 @@ const OrderModificationByCustomerPopup = ({ setterFunction, orderId, loadData, s
                                 </div>
                               </td>
                               <td>{item.count}</td>
-                              <td className='text-start'> £{item.price}</td>
+                              <td className='text-start'> ₹{item.price}</td>
                               <td className='status-column'>
                                 <div className='d-flex justify-content-center'>
                                   <div
@@ -273,7 +273,7 @@ const OrderModificationByCustomerPopup = ({ setterFunction, orderId, loadData, s
                                         <div key={index} className='d-flex justify-content-between align-items-center gap-2' >
                                           <h6 className="ingredients-text">+ {top.topping?.description} (x{top.count}) </h6>
                                           {top.price > 0 &&
-                                            <span className='topping-price'>£{top.price}</span>
+                                            <span className='topping-price'>₹{top.price}</span>
                                           }
                                         </div>
                                       ))
@@ -284,7 +284,7 @@ const OrderModificationByCustomerPopup = ({ setterFunction, orderId, loadData, s
                                   {alternativeItemByRestaurant.count}
                                 </td>
                                 <td className='text-start'>
-                                  £{alternativeItemByRestaurant?.price}
+                                  ₹{alternativeItemByRestaurant?.price}
                                 </td>
                                 <td className='text-center'>
                                   <div className='d-flex justify-content-center'>
@@ -338,7 +338,7 @@ const OrderModificationByCustomerPopup = ({ setterFunction, orderId, loadData, s
                                         <div key={index} className='d-flex justify-content-between align-items-center gap-2' >
                                           <h6 className="ingredients-text">+ {top.topping?.description} (x{top.count}) </h6>
                                           {top.price > 0 &&
-                                            <span className='topping-price'>£{top.price}</span>
+                                            <span className='topping-price'>₹{top.price}</span>
                                           }
                                         </div>
                                       ))
@@ -349,7 +349,7 @@ const OrderModificationByCustomerPopup = ({ setterFunction, orderId, loadData, s
                                   {alternativeItemByCustomer.count}
                                 </td>
                                 <td className='text-start'>
-                                  £{alternativeItemByCustomer?.price}
+                                  ₹{alternativeItemByCustomer?.price}
                                 </td>
 
                                 <td className='status-column'>
@@ -388,13 +388,13 @@ const OrderModificationByCustomerPopup = ({ setterFunction, orderId, loadData, s
                   <div>
                     Sub Total
                   </div>
-                  £{data.sub_total}
+                  ₹{data.sub_total}
                 </div>
                 {/* <div className="sub-total">
                 <div>
                   Total Amount
                 </div>
-                £{data.total_amount}
+                ₹{data.total_amount}
               </div> */}
               </div>
             </div>

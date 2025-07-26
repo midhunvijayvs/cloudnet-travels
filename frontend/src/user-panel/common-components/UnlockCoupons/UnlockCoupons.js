@@ -43,7 +43,7 @@ const UnlockCoupons = ({ }) => {
 
     let discountDescription = '';
     if (discount_type === 'flat') {
-      discountDescription = `Get a flat cashback of £${discount_value}`;
+      discountDescription = `Get a flat cashback of ₹${discount_value}`;
     } else if (discount_type === 'percentage') {
       discountDescription = `Get up to ${discount_value}% cashback`;
     } else {
@@ -144,7 +144,7 @@ const UnlockCoupons = ({ }) => {
                       </h6>
                     </div>
                     <p>
-                      Valid on order with items worth £{item?.coupon?.single_order_value} or more.
+                      Valid on order with items worth ₹{item?.coupon?.single_order_value} or more.
                     </p>
                   </div>
                   <div className="coupon-apply">

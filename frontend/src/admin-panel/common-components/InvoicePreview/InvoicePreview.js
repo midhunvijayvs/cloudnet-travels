@@ -32,7 +32,7 @@ const InvoicePreview = ( {visibleFields} ) => {
             </div>
             <div className='right'>
                 <p>Amount Due</p>
-                <h1>£ 169.95</h1>
+                <h1>₹ 169.95</h1>
                 <p className='issued'>Due on Nov 23, 2024 |<span> Issued on</span> Feb 20, 2024</p>
             </div>
         </div>
@@ -53,29 +53,29 @@ const InvoicePreview = ( {visibleFields} ) => {
                     <tr>
                         <td>Digital Engineering</td>
                         <td>25/12/2023 - 28/12/2023</td>
-                        <td>£450.62</td>
+                        <td>₹450.62</td>
                     </tr>
                     <tr>
                         <td>Cybersecurity</td>
                         <td>25/12/2023 - 28/12/2023</td>
-                        <td>£450.62</td>
+                        <td>₹450.62</td>
                     </tr>
                     <tr>
                         <td>Cybersecurity</td>
                         <td>25/12/2023 - 28/12/2023</td>
-                        <td>£450.62</td>
+                        <td>₹450.62</td>
                     </tr>
                     <tr>
                         <td>Cybersecurity</td>
                         <td>25/12/2023 - 28/12/2023</td>
-                        <td>£450.62</td>
+                        <td>₹450.62</td>
                     </tr>
 
                     <tr className='overview'>
                         <td colSpan={3}>
                         <div className='calculation sub-total'>
                                 <span className='key '>Sub Total</span>
-                                <span className='value'>£ 169.95</span>
+                                <span className='value'>₹ 169.95</span>
                         </div>
                         </td>
                     </tr>
@@ -83,7 +83,7 @@ const InvoicePreview = ( {visibleFields} ) => {
                         <td colSpan={3}>
                         <div className='calculation'>
                                 <span className='key'>Admin Fee</span>
-                                <span className='value'>£ 169.95</span>
+                                <span className='value'>₹ 169.95</span>
                         </div>
                         </td>
                     </tr>
@@ -91,7 +91,7 @@ const InvoicePreview = ( {visibleFields} ) => {
                         <td colSpan={3}>
                         <div className='calculation'>
                                 <span className='key'>VAT</span>
-                                <span className='value'>£ 169.95</span>
+                                <span className='value'>₹ 169.95</span>
                         </div>
                         </td>
                     </tr>
@@ -99,7 +99,7 @@ const InvoicePreview = ( {visibleFields} ) => {
                         <td colSpan={3}>
                         <div className='calculation'>
                                 <span className='key'>Discount</span>
-                                <span className='value'>£ 169.95</span>
+                                <span className='value'>₹ 169.95</span>
                         </div>
                         </td>
                     </tr>
@@ -107,7 +107,7 @@ const InvoicePreview = ( {visibleFields} ) => {
                         <td colSpan={3}>
                         <div className='calculation grand-total'>
                                 <span className='key'>Grand Total</span>
-                                <span className='value'>£ 169.95</span>
+                                <span className='value'>₹ 169.95</span>
                         </div>
                         </td>
                     </tr>

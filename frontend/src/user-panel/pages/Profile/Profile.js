@@ -36,255 +36,264 @@ const Profile = () => {
   const [isPasswordEditPopup, setIsPasswordEditPopup] = useState(false);
 
 
-  useEffect(() => {
-    setUserData(prevData => ({
-      ...prevData,
-      phone_number: phoneData.phone_number,
-      country_code: phoneData.country_code
-    }));
-  }, [phoneData]);
+  // useEffect(() => {
+  //   setUserData(prevData => ({
+  //     ...prevData,
+  //     phone_number: phoneData.phone_number,
+  //     country_code: phoneData.country_code
+  //   }));
+  // }, [phoneData]);
 
-  useEffect(() => {
-    $(function () {
-      $(window).scrollTop(0);
-    });
-  }, [])
+  // useEffect(() => {
+  //   $(function () {
+  //     $(window).scrollTop(0);
+  //   });
+  // }, [])
   useEffect(() => {
     loadData();
 
   }, []);
 
 
+  // const loadData = () => {
+  //   API.get(`/user/users/${window.localStorage.getItem('userID')}`)
+  //     .then(response => {
+  //       setUserData(response.data);
+  //       setPhoneData({ phone_number: response.data.phone_number, country_code: response.data.country_code })
+  //       if (response.data.profile_image) {
+  //         setPreviewImage(`${response.data.profile_image}`);
+  //       }
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+
+
+  // }
+
   const loadData = () => {
-    API.get(`/user/users/${window.localStorage.getItem('userID')}`)
-      .then(response => {
-        setUserData(response.data);
-        setPhoneData({ phone_number: response.data.phone_number, country_code: response.data.country_code })
-        if (response.data.profile_image) {
-          setPreviewImage(`${response.data.profile_image}`);
-        }
-      })
-      .catch(error => {
-        console.error(error);
-      });
+
+    const storedUserData = localStorage.getItem('userData');
+    console.log('userdata frm profile:', storedUserData)
+    if (storedUserData) {
+      setUserData(JSON.parse(storedUserData));
+    }
 
 
   }
+  // const handleInputChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setUserData((prevState) => ({
+  //     ...prevState,
+  //     [name]: value,
+  //   }));
+  // }
+
+  // const userID = localStorage.getItem('userID'); // Fetch the user ID from local storage
+
+  // const handleImageSelect = (event) => {
+  //   const file = event.target.files[0];
+  //   // Check image dimensions
+  //   const img = new Image();
+  //   img.src = URL.createObjectURL(file);
+
+  //   img.onload = () => {
+  //     const aspectRatio = img.width / img.height;
+  //     const validAspectRatio = aspectRatio >= 0.9 && aspectRatio <= 1.1;
+
+  //     if (img.width <= 250 && img.height <= 250 && validAspectRatio) {
+  //       if (file.size <= 300 * 1024) { // Max size in bytes (300 KB)
+  //         setImageError(null)
+  //         setIsImgLoading(true);
+  //         setPreviewImage(URL.createObjectURL(file));
+
+  //         const formData = new FormData();
+  //         formData.append('profile_image', file);
+  //         API.put(`/user/users/${userID}/`, formData, {
+  //           headers: {
+  //             'Content-Type': 'multipart/form-data',
+  //           },
+  //         })
+  //           .then(response => {
+  //             setMessage("Profile image updated Successfully.")
+  //             setConfirmType('')
+  //             setIsMessageModalOpen(true)
+  //             setIsImgLoading(false);
+  //           })
+  //           .catch(error => {
+  //             setIsImgLoading(false);
+  //             setMessage(error.response?.data?.message || error.message)
+  //             setIsErrorModalOpen(true)
+  //           });
+
+  //       }
+  //       else {
+  //         setImageError('Image file size is too large.');
+  //       }
+  //     } else {
+  //       setImageError('Image dimensions are not within the specified limits.');
+  //     }
+  //   };
+  // };
 
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setUserData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  }
+  // const handleImageDelete = () => {
+  //   API.put(`/user/users/${userID}/`, { profile_image: null })
+  //     .then(response => {
+  //       setPreviewImage(null);
+  //       loadData();
+  //     })
+  //     .catch(error => {
+  //       setMessage(error.response?.data?.message || error.message)
+  //       setIsErrorModalOpen(true)
+  //     });
+  // };
 
-  const userID = localStorage.getItem('userID'); // Fetch the user ID from local storage
+  // const validatePhoneNumber = (phoneNumber, countryCode) => {
+  //   try {
+  //     const parsedPhoneNumber = isValidPhoneNumber(`+${phoneNumber}`, countryCode);
+  //     return parsedPhoneNumber ? null : 'Invalid phone number';
+  //   } catch (error) {
+  //     return 'Invalid phone number';
+  //   }
+  // };
 
-  const handleImageSelect = (event) => {
-    const file = event.target.files[0];
-    // Check image dimensions
-    const img = new Image();
-    img.src = URL.createObjectURL(file);
+  // const validateForm = (data) => {
+  //   const errors = {};
+  //   //Validate each field and add errors if necessary
+  //   if (!data.first_name.trim()) {
+  //     errors.first_name = "First name is required.";
+  //   }
+  //   if (!data.last_name.trim()) {
+  //     errors.last_name = "Last name is required.";
+  //   }
 
-    img.onload = () => {
-      const aspectRatio = img.width / img.height;
-      const validAspectRatio = aspectRatio >= 0.9 && aspectRatio <= 1.1;
+  //   if (!data.phone_number.trim()) {
+  //     errors.phone_number = "Phone number is required.";
+  //   }
 
-      if (img.width <= 250 && img.height <= 250 && validAspectRatio) {
-        if (file.size <= 300 * 1024) { // Max size in bytes (300 KB)
-          setImageError(null)
-          setIsImgLoading(true);
-          setPreviewImage(URL.createObjectURL(file));
+  //   else if (validatePhoneNumber(data.phone_number, data.country_code)) {
+  //     errors.phone_number = 'Invalid phone number'
+  //   }
+  //   if (!data.email.trim()) {
+  //     errors.email = "Email is required.";
+  //   }
+  //   else if (!/\S+@\S+\.\S+/.test(data.email)) {
+  //     errors.email = "Invalid email address.";
+  //   }
+  //   const year = data.dob.split("-")[0];
+  // if (year.length !== 4) {
+  //     errors.dob="Please enter a 4-digit year.";
+  // }
+  //   return errors;
+  // };
 
-          const formData = new FormData();
-          formData.append('profile_image', file);
-          API.put(`/user/users/${userID}/`, formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          })
-            .then(response => {
-              setMessage("Profile image updated Successfully.")
-              setConfirmType('')
-              setIsMessageModalOpen(true)
-              setIsImgLoading(false);
-            })
-            .catch(error => {
-              setIsImgLoading(false);
-              setMessage(error.response?.data?.message || error.message)
-              setIsErrorModalOpen(true)
-            });
+  // const update = () => {
 
-        }
-        else {
-          setImageError('Image file size is too large.');
-        }
-      } else {
-        setImageError('Image dimensions are not within the specified limits.');
-      }
-    };
-  };
+  //   const formData = userData;
+  //   delete formData['profile_image']
+  //   const validationErrors = validateForm(formData);
+  //   setErrors(validationErrors);
+  //   if (Object.keys(validationErrors).length > 0) {
+  //     return;
+  //   }
+  //   // Add `is_deleted` to formData only if its value is `true`
+  //   if (formData.is_deleted) {
+  //     formData.is_deleted = true;
+  //   } else {
+  //     delete formData.is_deleted;
+  //   }
 
+  //   setIsLoading(true)
+  //   API.put(`/user/users/${userID}/`, formData,)
+  //     .then(res => {
+  //       loadData();
+  //       setIsLoading(false)
+  //       setMessage("Details updated Successfully.")
+  //       setConfirmType('')
+  //       setIsMessageModalOpen(true)
+  //     })
 
-  const handleImageDelete = () => {
-    API.put(`/user/users/${userID}/`, { profile_image: null })
-      .then(response => {
-        setPreviewImage(null);
-        loadData();
-      })
-      .catch(error => {
-        setMessage(error.response?.data?.message || error.message)
-        setIsErrorModalOpen(true)
-      });
-  };
+  //     .catch(error => {
+  //       setIsLoading(false)
+  //       setMessage(error.response?.data?.message || error.message)
+  //       setIsErrorModalOpen(true)
+  //     })
 
-  const validatePhoneNumber = (phoneNumber, countryCode) => {
-    try {
-      const parsedPhoneNumber = isValidPhoneNumber(`+${phoneNumber}`, countryCode);
-      return parsedPhoneNumber ? null : 'Invalid phone number';
-    } catch (error) {
-      return 'Invalid phone number';
-    }
-  };
-
-  const validateForm = (data) => {
-    const errors = {};
-    //Validate each field and add errors if necessary
-    if (!data.first_name.trim()) {
-      errors.first_name = "First name is required.";
-    }
-    if (!data.last_name.trim()) {
-      errors.last_name = "Last name is required.";
-    }
-
-    if (!data.phone_number.trim()) {
-      errors.phone_number = "Phone number is required.";
-    }
-
-    else if (validatePhoneNumber(data.phone_number, data.country_code)) {
-      errors.phone_number = 'Invalid phone number'
-    }
-    if (!data.email.trim()) {
-      errors.email = "Email is required.";
-    }
-    else if (!/\S+@\S+\.\S+/.test(data.email)) {
-      errors.email = "Invalid email address.";
-    }
-    const year = data.dob.split("-")[0];
-  if (year.length !== 4) {
-      errors.dob="Please enter a 4-digit year.";
-  }
-    return errors;
-  };
-
-  const update = () => {
-
-    const formData = userData;
-    delete formData['profile_image']
-    const validationErrors = validateForm(formData);
-    setErrors(validationErrors);
-    if (Object.keys(validationErrors).length > 0) {
-      return;
-    }
-    // Add `is_deleted` to formData only if its value is `true`
-    if (formData.is_deleted) {
-      formData.is_deleted = true;
-    } else {
-      delete formData.is_deleted;
-    }
-
-    setIsLoading(true)
-    API.put(`/user/users/${userID}/`, formData,)
-      .then(res => {
-        loadData();
-        setIsLoading(false)
-        setMessage("Details updated Successfully.")
-        setConfirmType('')
-        setIsMessageModalOpen(true)
-      })
-
-      .catch(error => {
-        setIsLoading(false)
-        setMessage(error.response?.data?.message || error.message)
-        setIsErrorModalOpen(true)
-      })
-
-  }
+  // }
 
   // de-activate
-  const handleConfirmAction = () => {
-    if (confirmType === 'deactivate') {
-      deActivateAccount();
-    } else if (confirmType === 'activate') {
-      activateAccount();
-    }
-    setIsConfirmModalOpen(false);
-  };
-  const deActivateAccount = () => {
-    setIsLoading(true)
-    API.put(`/user/users/${userID}/`, { is_deactivated: true })
-      .then(response => {
-        setIsLoading(false);
-        setIsConfirmModalOpen(false);
-        setMessage('Your account has been successfully deactivated.')
-        setIsMessageModalOpen(true);
-      })
-      .catch(error => {
-        setIsLoading(false)
-        setMessage(error.response?.data?.message || error.message)
-        setIsErrorModalOpen(true)
-      });
-  }
-  const activateAccount = () => {
-    setIsLoading(true)
-    API.put(`/user/users/${userID}/`, { is_deactivated: false })
-      .then(response => {
-        setIsLoading(false);
-        setIsConfirmModalOpen(false);
-        setMessage('Your account has been successfully activated.')
-        setConfirmType('')
-        setIsMessageModalOpen(true);
-      })
-      .catch(error => {
-        setIsLoading(false)
-        setMessage(error.response?.data?.message || error.message)
-        setIsErrorModalOpen(true)
-      });
-  }
+  // const handleConfirmAction = () => {
+  //   if (confirmType === 'deactivate') {
+  //     deActivateAccount();
+  //   } else if (confirmType === 'activate') {
+  //     activateAccount();
+  //   }
+  //   setIsConfirmModalOpen(false);
+  // };
+  // const deActivateAccount = () => {
+  //   setIsLoading(true)
+  //   API.put(`/user/users/${userID}/`, { is_deactivated: true })
+  //     .then(response => {
+  //       setIsLoading(false);
+  //       setIsConfirmModalOpen(false);
+  //       setMessage('Your account has been successfully deactivated.')
+  //       setIsMessageModalOpen(true);
+  //     })
+  //     .catch(error => {
+  //       setIsLoading(false)
+  //       setMessage(error.response?.data?.message || error.message)
+  //       setIsErrorModalOpen(true)
+  //     });
+  // }
+  // const activateAccount = () => {
+  //   setIsLoading(true)
+  //   API.put(`/user/users/${userID}/`, { is_deactivated: false })
+  //     .then(response => {
+  //       setIsLoading(false);
+  //       setIsConfirmModalOpen(false);
+  //       setMessage('Your account has been successfully activated.')
+  //       setConfirmType('')
+  //       setIsMessageModalOpen(true);
+  //     })
+  //     .catch(error => {
+  //       setIsLoading(false)
+  //       setMessage(error.response?.data?.message || error.message)
+  //       setIsErrorModalOpen(true)
+  //     });
+  // }
 
-  const handleSuccessButton = () => {
-    if (confirmType === 'deactivate') {
-      logout();
-      setIsLoggedIn(false);
-      setTimeout(navigate("/admin"), 1000)
-      setIsMessageModalOpen(false)
-    } else {
-      setIsMessageModalOpen(false)
-    }
-    setIsConfirmModalOpen(false);
-  };
+  // const handleSuccessButton = () => {
+  //   if (confirmType === 'deactivate') {
+  //     logout();
+  //     setIsLoggedIn(false);
+  //     setTimeout(navigate("/admin"), 1000)
+  //     setIsMessageModalOpen(false)
+  //   } else {
+  //     setIsMessageModalOpen(false)
+  //   }
+  //   setIsConfirmModalOpen(false);
+  // };
 
 
   return (
-     <div className='user-profile-page'>
-         <MiniBanner title="My Profile" breadcrumb={[{ name: "Home", link: "/" }, { name: "My Profile", link:"#" }]}></MiniBanner>
+    <div className='user-profile-page'>
+      <MiniBanner title="My Profile" breadcrumb={[{ name: "Home", link: "/" }, { name: "My Profile", link: "#" }]}></MiniBanner>
 
       <section className="sec-2">
-            <div className="lhs">
-              <GeneralSidebar activePageIndex={1} userData={userData} />
-            </div>
-            <div className="rhs"> 
-         
-         
-          <div className='w-100 d-flex  flex-lg-row mt-2 cr'>
+        <div className="lhs">
+          <GeneralSidebar activePageIndex={1} userData={userData} />
+        </div>
+        <div className="rhs">
+
+
+          {/* <div className='w-100 d-flex  flex-lg-row mt-2 cr'>
             <div className='form-section me-3 bg-white box-shadow radius-11 p-5  mb-lg-0'>
               <div className="title-header option-title">
                 <h5>Edit Profile</h5>
               </div>
               <div className='d-flex justify-content-between align-items-center mb-2'>
-                {/* <button className='white-btn px-3'><i className="fa-solid fa-pencil"></i></button> */}
+             
               </div>
               <div className='w-100 d-block d-md-flex '>
                 <div className='w-50 me-2 mb-3'>
@@ -303,8 +312,7 @@ const Profile = () => {
               <div className='w-100 d-block d-md-flex'>
                 <div className='w-50 me-2 mb-3'>
                   <div className='label'>Phone Number</div>
-                  {/* <input id="phone" name="phone" className='inp-D9D9D9 f-xs fw-500 w-100' required></input> */}
-                  <PhoneInputField formData={phoneData} setFormData={setPhoneData} />
+                <PhoneInputField formData={phoneData} setFormData={setPhoneData} />
                   {errors.phone_number && <div className="invalid-feedback">{errors.phone_number}</div>}
                 </div>
 
@@ -379,11 +387,10 @@ const Profile = () => {
                       type="file"
                       accept="image/*"
                       onChange={handleImageSelect}
-                      style={{ display: 'none' }} // Hide the default file input
+                      style={{ display: 'none' }} 
                     />
                   </label>
-                  {/* <input className="btn btn-secondary image-input-button w-100" type="file"
-                    accept="image/*" onChange={handleImageSelect} /> */}
+                 
                 </div>
 
 
@@ -425,13 +432,87 @@ const Profile = () => {
 
               </div>
             }
+          </div> */}
+          <div className='w-100 d-flex  flex-lg-row mt-2 cr'>
+            <div className='form-section me-3 bg-white box-shadow radius-11 p-5  mb-lg-0'>
+              <div className="title-header option-title">
+                <h5>My Profile</h5>
+              </div>
+              <div className='d-flex justify-content-between align-items-center mb-2'>
+
+              </div>
+              <div className='w-100 d-block d-md-flex '>
+                <div className='w-50 me-2 mb-3'>
+                  <div className='label me-5'>Agency ID:</div>
+
+                </div>
+                <div className='w-50 me-2 mb-3'>
+
+                  <h5>{userData.agency_id}</h5>
+                </div>
+              </div>
+
+              <div className='w-100 d-block d-md-flex '>
+                <div className='w-50 me-2 mb-3'>
+                  <div className='label me-5'>Agency Name:</div>
+                </div>
+                <div className='w-50 me-2 mb-3'>
+                  <h5>{userData.agency_name}</h5>
+                </div>
+              </div>
+
+              <div className='w-100 d-block d-md-flex '>
+                <div className='w-50 me-2 mb-3'>
+                  <div className='label me-5'>Contact Person:</div>
+                </div>
+                <div className='w-50 me-2 mb-3'>
+                  <h5>{userData.contact_person}</h5>
+                </div>
+              </div>
+
+              <div className='w-100 d-block d-md-flex '>
+                <div className='w-50 me-2 mb-3'>
+                  <div className='label me-5'>Email ID:</div>
+                </div>
+               <div className='w-50 me-2 mb-3'>
+                  <h5>{userData.email_id}</h5>
+                </div>
+              </div>
+
+
+              <div className='w-100 d-block d-md-flex '>
+                <div className='w-50 me-2 mb-3'>
+                  <div className='label me-5'>City:</div>
+                </div>
+             <div className='w-50 me-2 mb-3'>
+                  <h5>{userData.city}</h5>
+                </div>
+              </div>
+
+              <div className='w-100 d-block d-md-flex '>
+                <div className='w-50 me-2 mb-3'>
+                  <div className='label me-5'>Country:</div>
+                </div>
+              <div className='w-50 me-2 mb-3'>
+                  <h5>{userData.country}</h5>
+                </div>
+              </div>
+
+              <div className='w-100 d-block d-md-flex '>
+                <div className='w-50 me-2 mb-3'>
+                  <div className='label me-5'>BALANCE:</div>
+                </div>
+               <div className='w-50 me-2 mb-3'>
+                  <h5>{userData.balance}</h5>
+                </div>
+              </div>
+            </div>
+
           </div>
-
-
         </div>
-        </section>
+      </section>
 
-      {isConfirmModalOpen &&
+      {/* {isConfirmModalOpen &&
         <div className='custom-modal confirm-modal'>
           <div className='card'>
             <div className='first-screen'>
@@ -456,7 +537,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
-      }
+      } */}
 
       {/* Password */}
       {isPasswordEditPopup &&
@@ -464,7 +545,7 @@ const Profile = () => {
 
       }
       <ErrorModal state={isErrorModalOpen} message={message} setterFunction={setIsErrorModalOpen} okClickedFunction={loadData} />
-      {isMessageModalOpen && <PositiveModal message={message} setterFunction={setIsMessageModalOpen} okClickedFunction={() => handleSuccessButton()} />}
+      {/* {isMessageModalOpen && <PositiveModal message={message} setterFunction={setIsMessageModalOpen} okClickedFunction={() => handleSuccessButton()} />} */}
       {isLoading && <FixedOverlayLoadingSpinner />}
     </div>
   )

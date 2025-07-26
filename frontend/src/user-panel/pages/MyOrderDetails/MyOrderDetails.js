@@ -614,14 +614,14 @@ const MyOrderDetails = ({ userData, orderUpdate, orderType }) => {
                                 <div className="d-flex align-items-center justify-content-between">
                                   <h6 className=''>
                                     #{item?.id} {item.menu_item_detail?.is_gift_card ?
-                                      `£${item.price} Gift Card` :
+                                      `₹${item.price} Gift Card` :
                                       `${item.menu_item_name}`
                                     }
                                     {/* {item.topping &&
                                       <span className="ingredients-text "><br /> + ({item.topping_details.description})</span>
                                     } */}
                                   </h6>
-                                  <h6>£{parseFloat(item.price)}</h6>
+                                  <h6>₹{parseFloat(item.price)}</h6>
                                 </div>
                                 <div>
                                   <p className='d-flex justify-content-start'>
@@ -633,7 +633,7 @@ const MyOrderDetails = ({ userData, orderUpdate, orderType }) => {
                                     <div key={index} className='d-flex justify-content-between align-items-center'>
                                       <h6 className="ingredients-text">+ {top.topping?.description} (x{top.count}) </h6>
                                       {top?.price > 0 &&
-                                        <span>£{top?.price}</span>
+                                        <span>₹{top?.price}</span>
                                       }
                                     </div>
                                   ))
@@ -645,16 +645,16 @@ const MyOrderDetails = ({ userData, orderUpdate, orderType }) => {
                     <div className="total-amount">
                       <div className="d-flex align-items-center justify-content-between">
                         <h6 className="fw-medium dark-text">Total</h6>
-                        <h6 className="fw-medium dark-text">£{selectedItem.sub_total}</h6>
+                        <h6 className="fw-medium dark-text">₹{selectedItem.sub_total}</h6>
                       </div>
                       <div className="d-flex align-items-center justify-content-between">
                         <p className="fw-normal content-color">Delivery Charge</p>
-                        <p className="fw-normal content-color">£{selectedItem.delivery_charge && selectedItem.delivery_charge.toFixed(2)}</p>
+                        <p className="fw-normal content-color">₹{selectedItem.delivery_charge && selectedItem.delivery_charge.toFixed(2)}</p>
                       </div>
                       {selectedItem.priority_charge > 0 &&
                         <div className="d-flex align-items-center justify-content-between">
                           <p className="fw-normal content-color">Priority Charge</p>
-                          <p className="fw-normal content-color">£{selectedItem.priority_charge}</p>
+                          <p className="fw-normal content-color">₹{selectedItem.priority_charge}</p>
                         </div>
                       }
                       {selectedItem.coupon_details &&
@@ -664,7 +664,7 @@ const MyOrderDetails = ({ userData, orderUpdate, orderType }) => {
                               ? `Discount (${selectedItem.coupon_details.discount_value}%)`
                               : `Discount (Flat ${selectedItem.coupon_details.discount_value})`}
                           </h6>
-                          <h6 className="fw-normal content-color">-£{selectedItem.coupon_discount_applied_pounds}</h6>
+                          <h6 className="fw-normal content-color">-₹{selectedItem.coupon_discount_applied_pounds}</h6>
                         </div>
                       }
                       {selectedItem.is_gift_card_used &&
@@ -672,7 +672,7 @@ const MyOrderDetails = ({ userData, orderUpdate, orderType }) => {
                           <h6 className="content-color fw-normal">
                             {`Discount(Gift Card)`}
                           </h6>
-                          <h6 className="fw-normal content-color">-£{selectedItem.gift_card_amount}</h6>
+                          <h6 className="fw-normal content-color">-₹{selectedItem.gift_card_amount}</h6>
                         </div>
                       }
                       <div className="grand-amount d-flex align-items-center justify-content-between">
@@ -683,7 +683,7 @@ const MyOrderDetails = ({ userData, orderUpdate, orderType }) => {
                             +{selectedItem?.earned_points}
                           </div>
                         }
-                        <h6 className="fw-medium dark-text">£{selectedItem.total_amount}</h6>
+                        <h6 className="fw-medium dark-text">₹{selectedItem.total_amount}</h6>
                       </div>
                     </div>
 

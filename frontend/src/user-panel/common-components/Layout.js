@@ -65,9 +65,9 @@ const Layout = () => {
          origin: "DEL",
     destination: "DEX",
     departure_date: "2025-08-20",
-    adult: "1",
-    child: "1",
-    infant: "0"
+    adult:1,
+    child: 0,
+    infant: 0
   });
 
   const [activePage, setActivePage] = useState([0, "home"]);
@@ -147,7 +147,7 @@ const Layout = () => {
             cartItems={cartItems}  />} />
 
 
-<Route path="/book-ticket" element={<TicketBooking />} />
+<Route path="/book-ticket" element={<TicketBooking ticketSearchFormData={ticketSearchFormData} />} />
 
           <Route path="checkout-cart" element={<CheckoutCart />} />
           <Route path="checkout-empty-cart" element={<CheckoutCart />} />

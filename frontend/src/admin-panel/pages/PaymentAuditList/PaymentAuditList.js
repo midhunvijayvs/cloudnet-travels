@@ -404,7 +404,7 @@ const PaymentAuditList = () => {
                                       <span>ID:</span> {item.transaction_id}
                                     </div>
                                     <div className="amount">
-                                      <span>Amount:</span> £{item.amount}
+                                      <span>Amount:</span> ₹{item.amount}
                                       <div className={`status ${item.status === 'success' ? 'success' : 'failed'}`}>
                                         {item.status === 'success' ? 'Success' : 'Failed'}
                                       </div>

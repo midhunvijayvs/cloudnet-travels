@@ -259,7 +259,7 @@ const SubscriptionTiers = ({ mode }) => {
                                 <div className='label'>
                                   Points Required for One Pound
                                   <div className='instructions'>
-                                    Number of reward points the customer needs to redeem £1.
+                                    Number of reward points the customer needs to redeem ₹1.
                                   </div>
                                 </div>
                                 <div className="input-box">

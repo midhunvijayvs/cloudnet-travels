@@ -97,7 +97,7 @@ const CurrentSubscription = ({ subscriptionHistory, loadSubscriptionHistory }) =
                   <div className={`plan-summary ${currentPlan?.tier_details?.subscription_name?.toLowerCase()}`}>
                     <p>
                       You are currently on the <strong>{currentPlan?.tier_details?.subscription_name ?? '---'}</strong> plan.
-                      Based on your sales, <strong>£{currentPlan?.amount_paid}</strong> will be automatically deducted
+                      Based on your sales, <strong>₹{currentPlan?.amount_paid}</strong> will be automatically deducted
                       from your account for this subscription cycle.
                     </p>
                   </div>
@@ -121,7 +121,7 @@ const CurrentSubscription = ({ subscriptionHistory, loadSubscriptionHistory }) =
                   <div className="plan-details">
                     <div className="detail-item">
                       <label>Minimum Sales Requirement:</label>
-                      <span>£{currentPlan?.required_sales}</span>
+                      <span>₹{currentPlan?.required_sales}</span>
                     </div>
                     <div className="detail-item">
                       <label>Duration:</label>
@@ -129,7 +129,7 @@ const CurrentSubscription = ({ subscriptionHistory, loadSubscriptionHistory }) =
                     </div>
                     <div className="detail-item">
                       <label>Price:</label>
-                      <span>£{currentPlan?.amount_paid}</span>
+                      <span>₹{currentPlan?.amount_paid}</span>
                     </div>
                     <div className="detail-item">
                       <label>Subscribed On:</label>
@@ -153,8 +153,8 @@ const CurrentSubscription = ({ subscriptionHistory, loadSubscriptionHistory }) =
                           <div className="details">
                             <p><strong>Start Date:</strong> {formatDateTimeToMonthYear(plan.start_date)}</p>
                             <p><strong>End Date:</strong> {formatDateTimeToMonthYear(plan.end_date)}</p>
-                            <p><strong>Price:</strong> £{plan.amount_paid}</p>
-                            <p><strong>Required Sales:</strong> £{plan?.tier_details?.required_sales}</p>
+                            <p><strong>Price:</strong> ₹{plan.amount_paid}</p>
+                            <p><strong>Required Sales:</strong> ₹{plan?.tier_details?.required_sales}</p>
                             <p><strong>Duration:</strong> {plan.duration_in_days} days</p>
                           </div>
                         </div>
@@ -192,9 +192,9 @@ const CurrentSubscription = ({ subscriptionHistory, loadSubscriptionHistory }) =
                               {plan.subscription_name === currentPlan?.tier_details?.subscription_name
                                 && <span className="active-badge">Current Plan</span>}
                             </td>
-                            <td>{plan.required_sales ? `£${plan.required_sales}` : 'N/A'}</td>
+                            <td>{plan.required_sales ? `₹${plan.required_sales}` : 'N/A'}</td>
                             <td>{plan.duration_in_days ? `${plan.duration_in_days} Days` : 'N/A'}</td>
-                            <td>{plan.base_price ? `£${plan.base_price}` : 'N/A'}</td>
+                            <td>{plan.base_price ? `₹${plan.base_price}` : 'N/A'}</td>
                           </tr>
                         ))}
                       </tbody>

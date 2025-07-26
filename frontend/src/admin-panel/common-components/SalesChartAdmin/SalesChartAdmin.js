@@ -268,7 +268,7 @@ const SalesChartAdmin = () => {
               axisLine={false}
               tickLine={false}
               tick={{ fontSize: "12px" }}
-              tickFormatter={(value) => `£${value}`}
+              tickFormatter={(value) => `₹${value}`}
             />
 
             {/* Right Y-axis for orders */}

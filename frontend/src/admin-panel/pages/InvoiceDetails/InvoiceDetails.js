@@ -205,7 +205,7 @@ const InvoiceDetails = () => {
                                     return (
                                       <div key={index} className='d-flex justify-content-start gap-3 align-items-center'>
                                         <h6 className="ingredients-text">+ {name.trim()} (x{count})</h6>
-                                        {price > 0 && <span className='ms-3'>£{price.toFixed(2)}</span>}
+                                        {price > 0 && <span className='ms-3'>₹{price.toFixed(2)}</span>}
                                       </div>
                                     );
                                   })
@@ -213,13 +213,13 @@ const InvoiceDetails = () => {
                               </div>
                             </td>
                             <td>{item.count}</td>
-                            <td>£ {item.price}</td>
-                            <td>£ {Number((item.count * item.price).toFixed(2)).toString()}</td>
+                            <td>₹ {item.price}</td>
+                            <td>₹ {Number((item.count * item.price).toFixed(2)).toString()}</td>
                           </tr>
                         ))}
                       <tr role="row" className='black-clr f-14 fw-500'>
                         <td colSpan={3} className='clr-898989 fw-600 text-end'>SUB TOTAL</td>
-                        <td>£ {data.sub_total}</td>
+                        <td>₹ {data.sub_total}</td>
                       </tr>
                       {/* Discounts */}
                       {data.coupon_discount_applied_pounds > 0 && (
@@ -227,7 +227,7 @@ const InvoiceDetails = () => {
                           <td colSpan={3} className='clr-898989 fw-600 text-end'>
                             Discount (Coupon)
                           </td>
-                          <td>£ {data.coupon_discount_applied_pounds}</td>
+                          <td>₹ {data.coupon_discount_applied_pounds}</td>
                         </tr>
                       )}
 
@@ -236,7 +236,7 @@ const InvoiceDetails = () => {
                           <td colSpan={3} className='clr-898989 fw-600 text-end'>
                             Discount (Wallet)
                           </td>
-                          <td>£ {data.wallet_amount_used}</td>
+                          <td>₹ {data.wallet_amount_used}</td>
                         </tr>
                       )}
 
@@ -245,7 +245,7 @@ const InvoiceDetails = () => {
                           <td colSpan={3} className='clr-898989 fw-600 text-end'>
                             Discount (Credit Points)
                           </td>
-                          <td>£ {data.credit_balance_used}</td>
+                          <td>₹ {data.credit_balance_used}</td>
                         </tr>
                       )}
 
@@ -254,14 +254,14 @@ const InvoiceDetails = () => {
                           <td colSpan={3} className='clr-898989 fw-600 text-end'>
                             Discount (Gift Card)
                           </td>
-                          <td>£ {data.gift_card_amount}</td>
+                          <td>₹ {data.gift_card_amount}</td>
                         </tr>
                       )}
 
 
                       <tr role="row" className='black-clr f-14 fw-500'>
                         <td colSpan={3} className='clr-898989 fw-600 text-end'>Delivery Charge</td>
-                        <td>£ {data.delivery_charge?.toFixed(2)}</td>
+                        <td>₹ {data.delivery_charge?.toFixed(2)}</td>
                       </tr>
                       <tr role="row" className='black-clr f-14 fw-500'>
                         <td colSpan={3} className='clr-898989 fw-600 text-end'>TAX</td>
@@ -269,7 +269,7 @@ const InvoiceDetails = () => {
                       </tr>
                       <tr role="row" className='black-clr f-14 fw-500'>
                         <td colSpan={3} className='clr-898989 fw-600 text-end'>TOTAL</td>
-                        <td className='fw-600 f-sm'>£ {data.total_amount && data.total_amount.toFixed(2)}</td>
+                        <td className='fw-600 f-sm'>₹ {data.total_amount && data.total_amount.toFixed(2)}</td>
                       </tr>
                     </tbody>
                   </table>

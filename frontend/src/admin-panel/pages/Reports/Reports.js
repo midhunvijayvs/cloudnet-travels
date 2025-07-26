@@ -157,7 +157,7 @@ const Reports = () => {
                                 <td className="font-primary f-w-500">{item.payment_reference_number}</td>
                                 <td>{item.first_name} {item.last_name}</td>
                                 <td>{item.order_placed_datetime && formatDateTimeToMonthYear(item.order_placed_datetime)}</td>
-                                <td>£{item.total_amount}</td>
+                                <td>₹{item.total_amount}</td>
                                 <td>
                                   <ul className="d-flex align-items-center justify-content-center gap-3">
                                     <li>

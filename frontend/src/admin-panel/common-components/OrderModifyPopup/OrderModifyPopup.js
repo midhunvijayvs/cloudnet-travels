@@ -329,7 +329,7 @@ const OrderModifyPopup = ({ setterFunction, data, loadData, loadTableData,setTab
                                     <div key={index} className='d-flex justify-content-between align-items-center'>
                                       <h6 className="ingredients-text">+ {top.topping?.description} (x{top.count}) </h6>
                                       {top.price > 0 &&
-                                        <span className='ms-3'>£{top?.price}</span>
+                                        <span className='ms-3'>₹{top?.price}</span>
                                       }
                                     </div>
                                   ))
@@ -337,7 +337,7 @@ const OrderModifyPopup = ({ setterFunction, data, loadData, loadTableData,setTab
                               </div>
                             </td>
                             <td className='text-center'>{item.count}</td>
-                            <td className=''>£{item.price}</td>
+                            <td className=''>₹{item.price}</td>
                             <td>
                               <div className="d-flex justify-content-center align-items-center">
                                 <select
@@ -364,7 +364,7 @@ const OrderModifyPopup = ({ setterFunction, data, loadData, loadTableData,setTab
                                 </div>
                               </td>
                               <td className='text-center'>{alternativeItem?.count}</td>
-                              <td>£{alternativeItem?.price}</td>
+                              <td>₹{alternativeItem?.price}</td>
                               <td>
                                 <i onClick={() => { setIsNewItemModalOpen(true); setSelectedItem(item); }} className="ri-pencil-line">
                                 </i>
@@ -395,7 +395,7 @@ const OrderModifyPopup = ({ setterFunction, data, loadData, loadTableData,setTab
                 <div>
                   Sub Total 
                 </div>
-                £{calculateSubTotal(orderData)}
+                ₹{calculateSubTotal(orderData)}
                 {/* {orderData?.items?.filter(item => item.final === true)
                   .reduce((acc, item) => acc + (item.price * item.count), 0).toFixed(2)} */}
 
@@ -404,13 +404,13 @@ const OrderModifyPopup = ({ setterFunction, data, loadData, loadTableData,setTab
                 <div>
                   Delivery Charge
                 </div>
-                £{data.delivery_charge}
+                ₹{data.delivery_charge}
               </div>
               <div className="sub-total total d-none">
                 <div>
                   Total Amount
                 </div>
-                £{data.total_amount}
+                ₹{data.total_amount}
               </div>
             </div>
           </div>
@@ -460,7 +460,7 @@ const OrderModifyPopup = ({ setterFunction, data, loadData, loadTableData,setTab
                               {item.name}
                             </div>
                             <div>
-                              £{item.offer_price}
+                              ₹{item.offer_price}
                             </div>
                           </li>
                           {item.variants_details?.length > 0 &&
@@ -472,7 +472,7 @@ const OrderModifyPopup = ({ setterFunction, data, loadData, loadTableData,setTab
                                   {variant.quantity_name}
                                 </div>
                                 <div>
-                                  £{variant.offer_price}
+                                  ₹{variant.offer_price}
                                 </div>
                               </li>
                             ))}

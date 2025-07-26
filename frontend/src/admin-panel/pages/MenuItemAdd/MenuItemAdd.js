@@ -1077,8 +1077,8 @@ const View = ({ mode }) => {
                                   {data.variants?.map((item, index) => (
                                     <div key={index} className="variant-row">
                                       <span>{item.quantity_name}</span>
-                                      <span>Base Price: £{item.base_price}</span>
-                                      <span>Offer Price: £{item.offer_price || item.base_price}</span>
+                                      <span>Base Price: ₹{item.base_price}</span>
+                                      <span>Offer Price: ₹{item.offer_price || item.base_price}</span>
                                       <button onClick={() => handleDeleteVariant(index)}>Delete</button>
                                     </div>
                                   ))}
@@ -1249,7 +1249,7 @@ const View = ({ mode }) => {
                                   <div key={index} className="tag topping">
                                     <span className="tag-label">
                                       {item.description}&nbsp;
-                                      {item.price && `(Price: £${item.price} )`}
+                                      {item.price && `(Price: ₹${item.price} )`}
                                     </span>
                                     <span className="tag-remove" onClick={() => removeTopping(index)}>
                                       <img src="/images/admin-panel/product/icon/close-circle.svg" />

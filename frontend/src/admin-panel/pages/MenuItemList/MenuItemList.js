@@ -312,7 +312,7 @@ const MenuList = () => {
 
                                 <td>{product.name}</td>
 
-                                <td>£{product.offer_price}</td>
+                                <td>₹{product.offer_price}</td>
 
                                 <td>
                                   <div className="d-flex align-item-center justify-content-center">

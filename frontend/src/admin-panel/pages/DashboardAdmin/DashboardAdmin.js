@@ -145,7 +145,7 @@ const DashboardAdmin = ({ role }) => {
                       separator=","
                       decimal="."
                       decimals={2}
-                      prefix="£"
+                      prefix="₹"
                     />
                   </h2>
                   <h5>Total Revenue</h5>
@@ -334,7 +334,7 @@ const DashboardAdmin = ({ role }) => {
                                   ].filter(part => part).join(', ')}
                                 </td>
                                 <td> {item.order_count} </td>
-                                <td>£{item.total_sales && item.total_sales.toFixed(2)}</td>
+                                <td>₹{item.total_sales && item.total_sales.toFixed(2)}</td>
                               </tr>
                             ))}
                           </tbody>

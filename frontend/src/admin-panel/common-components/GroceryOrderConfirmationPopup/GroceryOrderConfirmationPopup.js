@@ -221,7 +221,7 @@ const GroceryOrderConfirmationPopup = ({ mode, setterFunction, selectedItem, loa
                                     <div key={index} className='d-flex justify-content-between align-items-center'>
                                       <h6 className="ingredients-text">+ {top.topping?.description} (x{top.count}) </h6>
                                       {top.price > 0 &&
-                                        <span className='ms-3'>£{top?.price}</span>
+                                        <span className='ms-3'>₹{top?.price}</span>
                                       }
                                     </div>
                                   ))
@@ -229,7 +229,7 @@ const GroceryOrderConfirmationPopup = ({ mode, setterFunction, selectedItem, loa
                               </div>
                             </td>
                             <td className='text-center'>{item.count}</td>
-                            <td className='align-baseline'> £{item.price}</td>
+                            <td className='align-baseline'> ₹{item.price}</td>
                           </tr>
                         )}
                         {/* Display alternative item if it exists */}
@@ -246,7 +246,7 @@ const GroceryOrderConfirmationPopup = ({ mode, setterFunction, selectedItem, loa
                                 {alternativeItem.count}
                               </td>
                               <td>
-                                £{alternativeItem.price}
+                                ₹{alternativeItem.price}
                               </td>
                             </tr>
                             :
@@ -270,13 +270,13 @@ const GroceryOrderConfirmationPopup = ({ mode, setterFunction, selectedItem, loa
                 <div>
                   Sub Total
                 </div>
-                £{data.sub_total}
+                ₹{data.sub_total}
               </div>
               {/* <div className="sub-total">
                 <div>
                   Total Amount
                 </div>
-                £{data.total_amount}
+                ₹{data.total_amount}
               </div> */}
             </div>
           </div>

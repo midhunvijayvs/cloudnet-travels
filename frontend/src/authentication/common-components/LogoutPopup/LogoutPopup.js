@@ -42,7 +42,7 @@ const LogoutPopup = ({setterFunction}) => {
           <p>Are you sure you want to logout?</p>
           <div className='footer'>
             <button type='button' className='cancel-button' onClick={() => setterFunction(false)}>Cancel</button>
-            <button type='button' className='ok-button' onClick={handleLogout}>Yes, Logout</button>
+            <button type='button' className='ok-button' onClick={handleLogout}>Logout</button>
           </div>
         </div>
       </div>

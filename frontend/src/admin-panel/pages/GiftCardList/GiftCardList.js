@@ -192,7 +192,7 @@ const GiftCardList = () => {
                                   {item.name}
                                 </td>
                                 <td className="title-short">
-                                  £{item.base_price}
+                                  ₹{item.base_price}
                                 </td>
                                 <td>{item.created_at && formatDateTime2MonthYearTime(item.created_at)}</td>
                                 <td>

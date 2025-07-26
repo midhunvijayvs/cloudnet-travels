@@ -119,11 +119,11 @@ const MenuItemDetailstPopup = ({
                                 <div className='d-flex align-items-center justify-content-between'>
                                     {menuItem.base_price !== menuItem.offer_price ?
                                         <h2 className="theme-color fw-semibold">
-                                            £{menuItem.offer_price} <span>/ <del>£{menuItem.base_price}</del></span>
+                                            ₹{menuItem.offer_price} <span>/ <del>₹{menuItem.base_price}</del></span>
                                         </h2>
                                         :
                                         <h2 className="theme-color fw-semibold">
-                                            £{menuItem.base_price}
+                                            ₹{menuItem.base_price}
                                         </h2>
                                     }
                                     <div>

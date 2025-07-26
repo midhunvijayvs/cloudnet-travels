@@ -13,7 +13,7 @@ import CartItemAddPopup from '../CartItemAddPopup/CartItemAddPopup'
 import MenuItemDetailstPopup from '../MenuItemDetailstPopup/MenuItemDetailstPopup'
 
 
-const ShopMenuCard = ({ ticketItem, cartItems, loadCartDataForHeader, data, setData , isRestaurantOpened, loadMenuBasedData,wishList , loadWishList}) => {
+const ShopMenuCard = ({ ticketItem, cartItems, loadCartDataForHeader, data, setData, isRestaurantOpened, loadMenuBasedData, wishList, loadWishList }) => {
 
   const navigate = useNavigate();
 
@@ -204,7 +204,7 @@ const ShopMenuCard = ({ ticketItem, cartItems, loadCartDataForHeader, data, setD
     localStorage.setItem("LoginRedirectURL", "/restaurant-menu");
     navigate("/login");
   };
-    // Reusable API Call for Add/Remove Actions
+  // Reusable API Call for Add/Remove Actions
   const updateList = async (url, reloadFunction, method = "DELETE") => {
     setIsLoading(true);
     try {
@@ -218,9 +218,9 @@ const ShopMenuCard = ({ ticketItem, cartItems, loadCartDataForHeader, data, setD
     }
   };
 
-   
 
-   // Check if Item is in List
+
+  // Check if Item is in List
   const isInList = (list) => list.some((l_item) => String(l_item.menu_item) === String(ticketItem?.id));
   // Add or Remove from Wishlist
   const toggleWishList = () => {
@@ -243,74 +243,95 @@ const ShopMenuCard = ({ ticketItem, cartItems, loadCartDataForHeader, data, setD
 
 
   return (
-  <div className='shop-menu-card'>
+    <div className='shop-menu-card'>
 
-  <div className="vertical-product-box-img">
-    <img className="product-img-top w-100 bg-img"
-      src={
-        ticketItem?.airline_logo ||
-        '/images/shop/dummy-ticket.png'
-      }
-      alt="flight-logo">
-    </img>
+      <div className="vertical-product-box-img">
+        <img className="product-img-top w-100 bg-img"
+          src={
+            ticketItem?.airline_logo ||
+            '/images/shop/dummy-ticket.png'
+          }
+          alt="flight-logo">
+        </img>
 
-    {ticketItem?.isinternational &&
-      <div className="seller-badge season-special-badge">
-        <img className="img-fluid badge" src="/images/svg/medal-fill.svg" alt="medal" />
-        <h6 className='seasonal-text'>International Flight</h6>
-      </div>
-    }
-  </div>
-
-  <div className="vertical-product-body">
-    <div className="d-flex align-items-center justify-content-between">
-      <h4 className="vertical-product-title">
-        {ticketItem?.airline} - {ticketItem?.flight_number}
-      </h4>
-      <div className='wishlist-icon' onClick={toggleWishList}>
-        {isInList(wishList) ?
-          <i className="ri-heart-3-fill fill-icon"></i>
-          :
-          <i className="ri-heart-3-line text-grey outline-icon"></i>
+        {ticketItem?.isinternational &&
+          <div className="seller-badge season-special-badge">
+            <img className="img-fluid badge" src="/images/svg/medal-fill.svg" alt="medal" />
+            <h6 className='seasonal-text'>International Flight</h6>
+          </div>
         }
       </div>
-    </div>
 
-    <div className='product-price-box'>
-      <p className='quantity'>
-        {ticketItem?.origin} → {ticketItem?.destination}
-      </p>
+      <div className="vertical-product-body">
+        <div className="d-flex align-items-center justify-content-between">
+          <h4 className="vertical-product-title">
+            {ticketItem?.airline} - {ticketItem?.flight_number}
+          </h4>
+          <div className='wishlist-icon' onClick={toggleWishList}>
+            {isInList(wishList) ?
+              <i className="ri-heart-3-fill fill-icon"></i>
+              :
+              <i className="ri-heart-3-line text-grey outline-icon"></i>
+            }
+          </div>
+        </div>
 
-      <div className='d-flex align-items-center'>
-        <p className='category me-5'>Route: {ticketItem?.flight_route}</p>
-        <p className='cuisine'>
-          {ticketItem?.departure_date} at {ticketItem?.departure_time}
-        </p>
-      </div>
+        <div className='product-price-box'>
+          <p className='quantity'>
+            {ticketItem?.origin} → {ticketItem?.destination}
+          </p>
 
-      <div className='d-flex align-items-center justify-content-between'>
-        <h2 className="theme-color fw-semibold">
-          ₹{ticketItem?.price}
-        </h2>
+          <div className='d-flex align-items-center'>
+            <p className='category me-5'>Route: {ticketItem?.flight_route}</p>
+            <p className='cuisine'>
+              {ticketItem?.departure_date} at {ticketItem?.departure_time}
+            </p>
+          </div>
+
+          <div className='d-flex align-items-center justify-content-between'>
+            <h2 className="theme-color fw-semibold">
+              ₹{ticketItem?.price}
+            </h2>
+            <div>
+              <img className="img-fluid" src="/images/svg/plane-fill.svg" alt="flight"></img>
+            </div>
+          </div>
+
+
+          <button className="btn theme-outline add-btn mt-1"
+            onClick={() => navigate("/book-ticket", {
+              state:
+              {
+                ticket_id: ticketItem.ticket_id,
+                price: ticketItem?.price,
+                origin: ticketItem?.origin,
+                destination: ticketItem?.destination,
+                airline: ticketItem?.airline,
+                departure_date: ticketItem?.departure_date,
+                departure_time: ticketItem?.departure_time,
+                arival_time: ticketItem?.arival_time,
+                arival_date: ticketItem?.arival_date,
+                flight_number: ticketItem?.flight_number,
+                flight_route: ticketItem?.flight_route,
+                pax: ticketItem?.pax,
+                infant_price: ticketItem?.infant_price,
+                inventory_type: ticketItem?.inventory_type,
+                cabin_baggage: ticketItem?.cabin_baggage,
+                hand_luggage: ticketItem?.hand_luggage,
+                isinternational: ticketItem?.isinternational,
+              }
+            })}>
+            BOOK THIS TICKET
+          </button>
+
+        </div>
+
         <div>
-          <img className="img-fluid" src="/images/svg/plane-fill.svg" alt="flight"></img>
+          <h5 className="more-details" type='button' onClick={() => showDetailsPopup(true)}>
+            View More Details
+          </h5>
         </div>
       </div>
-
-      
-        <button className="btn theme-outline add-btn mt-1"
-          onClick={() => navigate("/checkout-payment", { state: { ticket_id: ticketItem.ticket_id, amount:ticketItem?.price } })}>
-          BOOK THIS TICKET
-        </button>
-   
-    </div>
-
-    <div>
-      <h5 className="more-details" type='button' onClick={() => showDetailsPopup(true)}>
-        View More Details
-      </h5>
-    </div>
-  </div>
 
 
 

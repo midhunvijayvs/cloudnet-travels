@@ -313,11 +313,11 @@ const invoicePDFGenerator = ({ invoiceData }) =>
         <View style={styles.totalAmounts}>
           <View  style={styles.subTotal} >
             <Text>SUB TOTAL:&nbsp; </Text>
-            <Text> £{invoiceData.sub_total}</Text>
+            <Text> ₹{invoiceData.sub_total}</Text>
           </View>
           <View  style={styles.subTotal} >
             <Text>DELIVERY CHARGE:&nbsp; </Text>
-            <Text> £{invoiceData.delivery_charge}</Text>
+            <Text> ₹{invoiceData.delivery_charge}</Text>
           </View>
           <View  style={styles.subTotal} >
             <Text>TAX:&nbsp; </Text>
@@ -325,7 +325,7 @@ const invoicePDFGenerator = ({ invoiceData }) =>
           </View>
           <View style={styles.total}>
             <Text>TOTAL:&nbsp; </Text>
-            <Text> £{invoiceData.total}</Text>
+            <Text> ₹{invoiceData.total}</Text>
           </View>
         </View>
       </View>

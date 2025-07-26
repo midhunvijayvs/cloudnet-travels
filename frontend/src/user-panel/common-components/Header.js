@@ -9,7 +9,7 @@ import { UserContext } from '../../authentication/pages/UserContext';
 import NotificationPopup from './NotificationPopup/NotificationPopup.js';
 
 
-const Header = ({ cartItems, isLoggedIn, setSearchKey, selectCategory, setActivePage, activePage, notificationData, loadNotificationData }) => {
+const Header = ({ cartItems, isLoggedIn, setActivePage, activePage, notificationData, loadNotificationData }) => {
 
   const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ const Header = ({ cartItems, isLoggedIn, setSearchKey, selectCategory, setActive
   const [isNavpaneOpen, setNavPaneOpen] = useState(false);
 
   useEffect(() => {
-    console.log("isLoggedIn frm header:",isLoggedIn)
+    console.log("isLoggedIn frm header:", isLoggedIn)
   }, [isLoggedIn]);
 
   // For Security popup, not implemented, but the states are just to make the switch UI work
@@ -49,20 +49,14 @@ const Header = ({ cartItems, isLoggedIn, setSearchKey, selectCategory, setActive
 
   const { loginLogo, setLoginlogo, setIsLoggedIn, userData } = useContext(UserContext);
 
-  const profiledetails = () => {
-    setLoginlogo(!loginLogo)
-
-  }
-  const logout = () => {
-
-    localStorage.removeItem('refreshToken');
-    localStorage.removeItem('accessToken');
-    setIsLoggedIn(false);
-    setLoginlogo(!loginLogo)
-
-  }
 
 
+
+  useEffect(() => {
+    console.log("isLoggedIn  frm header", isLoggedIn)
+    console.log("userData  frm header", userData)
+  }, [isLoggedIn, userData]
+  )
   useEffect(() => {
     const handleScroll = () => {
 
@@ -149,11 +143,13 @@ const Header = ({ cartItems, isLoggedIn, setSearchKey, selectCategory, setActive
 
   return (
     <div className={isHomePage ? 'header home-page-header' : "header"} id='header'  >
+<div>
+   <img className='app-logo' onClick={() => { navigate('/'); }} role='button' src="/images/header/app-logo.png" alt=''></img>
+<h5 className='logo-description'> Booking Portal</h5>
 
-      <img className='app-logo' onClick={() => { navigate('/'); }} role='button' src="/images/header/app-logo.png" alt=''></img>
+</div>
      
-     
-    
+
 
       <div className='menu-box montserrat-bold'>
 
@@ -165,46 +161,35 @@ const Header = ({ cartItems, isLoggedIn, setSearchKey, selectCategory, setActive
 
 
 
-      
 
-        <span onClick={() => { setActivePage([3, "contact-us"]); navigate('/contact-us'); setNavPaneOpen(false)  }} className={`main-menu-item ${(activePage[0] === 3) && 'active'}`}>
+
+        <span onClick={() => { setActivePage([1, "contact-us"]); navigate('/contact-us'); setNavPaneOpen(false) }} className={`main-menu-item ${(activePage[0] === 3) && 'active'}`}>
           <div className='text'>
             Contact
           </div>
         </span>
 
 
-        <span onClick={() => { setActivePage([4, "about"]); navigate('/about'); setNavPaneOpen(false)  }} className={`main-menu-item ${(activePage[0] === 4) && 'active'}`}>
+        <span onClick={() => { setActivePage([2, "about"]); navigate('/about'); setNavPaneOpen(false) }} className={`main-menu-item ${(activePage[0] === 4) && 'active'}`}>
           <div className='text'>
             About Us
           </div>
         </span>
 
 
-      
 
 
 
-        <span onClick={() => { setActivePage([7, "gallery"]); navigate('/gallery'); setNavPaneOpen(false)  }} className={`main-menu-item ${(activePage[0] === 7) && 'active'}`}>
+
+        <span onClick={() => { setActivePage([3, "gallery"]); navigate('/gallery'); setNavPaneOpen(false) }} className={`main-menu-item ${(activePage[0] === 7) && 'active'}`}>
           <div className='text'>
             Gallery
           </div>
         </span>
 
-        {/* <span onClick={() => { setActivePage([8, "profile"]); navigate('/'); setNavPaneOpen(false)  }} className={`main-menu-item ${(activePage[0] === 8) && 'active'} tab-and-mob-only`}>
-          <div className='text'>
-            Profile
-          </div>
-        </span>
 
-        <span onClick={() => { setActivePage([9, "orders"]); navigate('/'); setNavPaneOpen(false)  }} className={`main-menu-item ${(activePage[0] === 9) && 'active'} tab-and-mob-only`}>
-          <div className='text'>
-           Mob Menu 1
-          </div>
-        </span> */}
 
-        
-        <span onClick={() => { setActivePage([10, "logout"]); setLogoutModalShow(true) ; setNavPaneOpen(false) }} className={`main-menu-item ${(activePage[0] === 10) && 'active'} tab-and-mob-only ${!isLoggedIn && 'd-none'} `}>
+        <span onClick={() => { setActivePage([10, "logout"]); setLogoutModalShow(true); setNavPaneOpen(false) }} className={`main-menu-item ${(activePage[0] === 10) && 'active'} tab-and-mob-only ${!isLoggedIn && 'd-none'} `}>
 
 
           <div className='text'>
@@ -216,97 +201,17 @@ const Header = ({ cartItems, isLoggedIn, setSearchKey, selectCategory, setActive
         {isLoggedIn && userData ?
           <div className="loged-in-buttons-container">
 
-  {(true) &&
-        <div className='icon-box'>
-          <div className={`dropdown-button notifications ${openDropDown === 0 ? 'active' : ''}`}
-            onClick={() => setOpenDropDown(prev => (prev === 0 ? null : 0))}
-            ref={profRef}
-          >
-            <div className="cart-button">
-              {notificationData?.results?.unviewed_count > 0 &&
-                <span>{notificationData?.results?.unviewed_count}</span>
-              }
-              <i className="ri-notification-line text-white bell-icon"></i>
-            </div>
-            {notificationData?.count > 0 &&
-              <div className="onhover-box">
-                <NotificationPopup notificationData={notificationData} loadNotificationData={loadNotificationData} />
-              </div>
-            }
-          </div>
 
-          <div className={`dropdown-button cart ${openDropDown === 1 ? 'active' : ''}`}
-            onClick={() => setOpenDropDown(prev => (prev === 1 ? null : 1))}
-            ref={cartRef}
-          >
-            <div className="cart-button">
-              {cartItems &&
-                <span>{cartItems ? cartItems.length : '0'}</span>
-              }
-              <i className="ri-shopping-cart-line text-white cart-bag"></i>
-            </div>
-
-            {cartItems && cartItems.length > 0 &&
-              <div className="onhover-box">
-                <ul className="cart-list">
-                  {cartItems && cartItems.length > 0 && cartItems.map((item, index) => (
-                    <li className="product-box-contain" key={index}>
-                      <div className="drop-cart">
-                        <a className="drop-image">
-                          <img src={`${item.menu_item.images[0]?.image_url}`} className="blur-up lazyloaded" alt=""></img>
-                        </a>
-                        <div className="drop-contain">
-                          <a >
-                            {item.menu_item?.is_gift_card ?
-                              <h5>Gift Card</h5> :
-                              <h5>
-                                {item.menu_item && item.menu_item.name}
-                              </h5>
-                            }
-                          </a>
-                          <h6>
-                            <span>{item.count} x </span>
-                            £{(parseFloat(item.variant?.offer_price || item.menu_item.offer_price) + (item.topping ? parseFloat(item.topping.price) : 0))}
-                            <span className='unit'>
-                              ( {item.variant?.quantity_name || item.menu_item?.unit_details?.name} )
-                            </span>
-                          </h6>
-                          {/* <button className="close-button close_button">
-                                <i className="fa-solid fa-xmark"></i>
-                              </button> */}
-                        </div>
-                      </div>
-                    </li>
-                  ))}
-
-                </ul>
-                <div className="price-box">
-                  <h5>Total:</h5>
-                  <h4 className="theme-color fw-semibold">£{parseFloat(subTotal).toFixed(2)}</h4>
-                </div>
-                <div className="button-group">
-                  <button onClick={() => { if (isLoggedIn) { navigate('/checkout-address'); } else { navigate('/login'); } }}
-                    className="btn-primary w-100">
-                    <span>View Cart</span>
-                    <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M16.9766 7.69651L1.25338 7.69651M16.9766 7.69651L9.90113 0.958008M16.9766 7.69651L9.90113 14.435" stroke="white" stroke-width="1.46001" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            }
-          </div>
-        </div>
-      }
 
             <div className={`dropdown-button profile-part ${openDropDown === 2 ? 'active' : ''}`}
               onClick={() => setOpenDropDown(prev => (prev === 2 ? null : 2))}
               ref={notifRef}
             >
               <img className="img-fluid profile-pic" src={`${userData && userData.profile_image ? userData.profile_image : '/images/no-profile-image.png'}`} alt="profile"></img>
+              
               <div>
-                <h6 className="fw-normal">Hi, {`${userData.first_name} ${userData.last_name}`}</h6>
-                <h5 className="fw-medium">My Account</h5>
+                <h6 className="fw-normal">Hi, {`${userData.agency_name} `}</h6>
+                <h5 className="fw-medium">Agency ID:{userData.agency_id}</h5>
               </div>
               <div className="onhover-box onhover-sm">
                 <ul className="menu-list">

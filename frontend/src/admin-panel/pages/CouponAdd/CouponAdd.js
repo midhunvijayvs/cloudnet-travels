@@ -530,7 +530,7 @@ const CouponAdd = ({ mode }) => {
                                   <div className="ms-4">
                                     {formData.loyalty_type === 'total_order' &&
                                       <>
-                                        <span className="label me-1"> £ </span>
+                                        <span className="label me-1"> ₹ </span>
                                         <input type="text" className="value-inp" min={0} value={formData.loyalty_value}
                                           name="loyalty_value" onChange={handleInputChange} />
                                         {errors.loyalty_value && <div className="text-danger">{errors.loyalty_value}</div>}
@@ -677,7 +677,7 @@ const CouponAdd = ({ mode }) => {
                           </div>
                           <div className="ms-5">
                             {formData.discount_type === 'flat' &&
-                              <span className="label me-1"> £ </span>
+                              <span className="label me-1"> ₹ </span>
                             }
                             <input type="text" className="value-inp" min={0} name="discount_value"
                               value={formData.discount_value} onChange={handleInputChange} />
@@ -687,7 +687,7 @@ const CouponAdd = ({ mode }) => {
                           </div>
                           <div className="ms-5">
                             <span className="label me-2"> Maximum Allowed Discount </span>
-                            <span className="label me-1"> £ </span>
+                            <span className="label me-1"> ₹ </span>
                             <input type="text" className="value-inp" min={0} name="max_allowed_discount"
                               value={formData.max_allowed_discount} onChange={handleInputChange} />
                           </div>

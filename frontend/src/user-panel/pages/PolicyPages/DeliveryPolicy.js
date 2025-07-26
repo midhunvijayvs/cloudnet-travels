@@ -80,8 +80,8 @@ const PolicyPage = () => {
   <div className='section'>
     <h3 className='title'>4. Order Minimum & Delivery Fees</h3>
     <ul>
-      <li><strong>Minimum order value:</strong> £20</li>
-      <li><strong>Delivery charge:</strong> Free delivery on orders over £40</li>
+      <li><strong>Minimum order value:</strong> ₹20</li>
+      <li><strong>Delivery charge:</strong> Free delivery on orders over ₹40</li>
     </ul>
   </div>
 

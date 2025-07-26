@@ -242,8 +242,8 @@ const MainFilter = ({
               onChange={(event, newValue) => setPriceState(newValue)}
               onChangeCommitted={localSetPriceRange}
               valueLabelDisplay="auto"
-              valueLabelFormat={(value) => `£${value}`} />
-            <p className="price-result">The selected Price range is £{priceState[0]} to {priceState[1]}</p>
+              valueLabelFormat={(value) => `₹${value}`} />
+            <p className="price-result">The selected Price range is ₹{priceState[0]} to {priceState[1]}</p>
           </div>)}
         </div>
 
@@ -473,8 +473,8 @@ const MainFilter = ({
               onChange={(event, newValue) => setMinimumOrderAmountState(newValue)}
               onChangeCommitted={localSetOrderAmountRange}
               valueLabelDisplay="auto"
-              valueLabelFormat={(value) => `£${value}`} />
-            <p className="price-result">The selected Minumum order amount is £{minimumOrderAmountState[0]} to {minimumOrderAmountState[1]}</p>
+              valueLabelFormat={(value) => `₹${value}`} />
+            <p className="price-result">The selected Minumum order amount is ₹{minimumOrderAmountState[0]} to {minimumOrderAmountState[1]}</p>
           </div>)}
         </div> */}
 

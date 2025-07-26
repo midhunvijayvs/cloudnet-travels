@@ -205,7 +205,7 @@ const OrderModifyPopup = ({ setterFunction, data, loadData, loadTableData, order
                           </div>
                         </td>
                         <td>{item.count}</td>
-                        <td>£{item.price}</td>
+                        <td>₹{item.price}</td>
                         <td>
                           <div className="d-flex justify-content-center align-items-center">
                             <select className={`form-select status-${item.decision_by_restaurant || '0'}`}
@@ -229,7 +229,7 @@ const OrderModifyPopup = ({ setterFunction, data, loadData, loadTableData, order
                             {item.count}
                           </td>
                           <td>
-                            £{item.alternative_item?.offer_price}
+                            ₹{item.alternative_item?.offer_price}
                           </td>
                           <td>
                             <i onClick={() => { setIsNewItemModalOpen(true); setSelectedItem(item) }} className="ri-pencil-line"></i>
@@ -247,7 +247,7 @@ const OrderModifyPopup = ({ setterFunction, data, loadData, loadTableData, order
                 <div>
                   Sub Total
                 </div>
-                £{data.sub_total}
+                ₹{data.sub_total}
               </div>
               {data?.to_pay_extra > 0 ? (
                 data.is_second_payment_to_refunded ? (
@@ -255,14 +255,14 @@ const OrderModifyPopup = ({ setterFunction, data, loadData, loadTableData, order
                     <div>
                       To Refund
                     </div>
-                    £{data.to_pay_extra && data.to_pay_extra.toFixed(2)}
+                    ₹{data.to_pay_extra && data.to_pay_extra.toFixed(2)}
                   </div>
                 ) : (
                   <div className="sub-total pay-extra">
                     <div>
                       To Pay Extra
                     </div>
-                    £{data.to_pay_extra && data.to_pay_extra.toFixed(2)}
+                    ₹{data.to_pay_extra && data.to_pay_extra.toFixed(2)}
                   </div>
                 )
               ) : (
@@ -273,7 +273,7 @@ const OrderModifyPopup = ({ setterFunction, data, loadData, loadTableData, order
                 <div>
                   Total Amount
                 </div>
-                £{data.total_amount}
+                ₹{data.total_amount}
               </div>
             </div>
           </div>
@@ -323,7 +323,7 @@ const OrderModifyPopup = ({ setterFunction, data, loadData, loadTableData, order
                             {item.name}
                           </div>
                           <div>
-                            £{item.offer_price}
+                            ₹{item.offer_price}
                           </div>
                         </li>
                       ))}

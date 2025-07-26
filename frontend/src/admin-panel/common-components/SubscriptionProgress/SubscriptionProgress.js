@@ -32,10 +32,10 @@ const SubscriptionProgress = ({ totalSales, tiers, currentTier }) => {
       <h2 className="title">Subscription Progress</h2>
 
       <div className="sales-info">
-        <p>Current Sales: <strong>£{totalSales.toFixed(2)}</strong> </p>
+        <p>Current Sales: <strong>₹{totalSales.toFixed(2)}</strong> </p>
         {/* <p>Current Tier: <strong>{currentTier?.tier_details?.subscription_name || 'None'}</strong></p>
         {nextTier ? (
-          <p>Next Tier: <strong>{nextTier.subscription_name} £{nextTier.required_sales}</strong></p>
+          <p>Next Tier: <strong>{nextTier.subscription_name} ₹{nextTier.required_sales}</strong></p>
         ) : (
           <p className="max-tier">🎉 Max Tier Achieved!</p>
         )} */}
@@ -55,7 +55,7 @@ const SubscriptionProgress = ({ totalSales, tiers, currentTier }) => {
             return (
               <div key={tier.id} className={`tier-card ${status}`}>
                 <div className="tier-name">{tier.subscription_name}</div>
-                <div className="tier-sales">£{tier.required_sales.toLocaleString()}</div>
+                <div className="tier-sales">₹{tier.required_sales.toLocaleString()}</div>
                 <div className={`status ${status}`}>{status.toUpperCase()}</div>
               </div>
             );
@@ -79,8 +79,8 @@ const SubscriptionProgress = ({ totalSales, tiers, currentTier }) => {
               className={`tier-card ${isCurrent ? 'current-tier' : tier.subscription_name?.toLowerCase()}`}
             >
               <h3>{tier.subscription_name}</h3>
-              <p>Required: £{tier.required_sales}</p>
-              <p>Price: £{tier.base_price}</p>
+              <p>Required: ₹{tier.required_sales}</p>
+              <p>Price: ₹{tier.base_price}</p>
               <p>Duration: {tier.duration_in_days} days</p> {/* Added Duration */}
               {/* {isCurrent && <div className="current-tier-label">Current Tier</div>} */}
             </div>

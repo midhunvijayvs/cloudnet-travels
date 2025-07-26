@@ -81,7 +81,7 @@ const PolicyPage = () => {
 
     <div className='faq'>
       <p><strong>7. Is there a minimum order for delivery?</strong></p>
-      <p>Yes, the minimum order value for delivery is £20. A delivery charge may apply depending on your location.</p>
+      <p>Yes, the minimum order value for delivery is ₹20. A delivery charge may apply depending on your location.</p>
     </div>
 
     <div className='faq'>

@@ -256,7 +256,7 @@ const RestaurantPaymentList = () => {
                                   {item.number_of_orders}
                                 </td>
                                 <td className="title-short">
-                                  £{item.paid_amount && item.paid_amount.toFixed(2)}
+                                  ₹{item.paid_amount && item.paid_amount.toFixed(2)}
                                 </td>
                                 <td className="text-center">
                                   <div className="td-check">

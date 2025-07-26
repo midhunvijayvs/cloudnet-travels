@@ -302,7 +302,7 @@ const OrdersList = () => {
 
                                 <td>{item.payment_method && ['paypal', 'card', 'cod', 'manual', 'stripe'][parseInt(item.payment_method)]}</td>
 
-                                <td>£{item.total_amount}</td>
+                                <td>₹{item.total_amount}</td>
 
                                 <td>
                                   <select className={`form-select delivery-status ${item.delivery_status ? `status-${item.delivery_status}` : ''}`}

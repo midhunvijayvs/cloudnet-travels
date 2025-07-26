@@ -204,7 +204,7 @@ const NewOrderUpdate = ({ setterFunction, orderId, updateMessage, orderItem }) =
                                         <div key={index} className='d-flex justify-content-between align-items-center gap-2' >
                                           <h6 className="ingredients-text">+ {top.topping?.description} (x{top.count}) </h6>
                                           {top?.price > 0 &&
-                                            <span className='topping-price'>£{top?.price}</span>
+                                            <span className='topping-price'>₹{top?.price}</span>
                                           }
                                         </div>
                                       ))
@@ -212,7 +212,7 @@ const NewOrderUpdate = ({ setterFunction, orderId, updateMessage, orderItem }) =
                                   </div>
                                 </td>
                                 <td>{item.count}</td>
-                                <td className='text-start'> £{item.price}</td>
+                                <td className='text-start'> ₹{item.price}</td>
                               </tr>
                             </>
                           ))}
@@ -224,7 +224,7 @@ const NewOrderUpdate = ({ setterFunction, orderId, updateMessage, orderItem }) =
                     <div className='amount-key'>
                       Sub Total
                     </div>
-                    £{data.sub_total}
+                    ₹{data.sub_total}
                   </div>
                   {data.coupon_details &&
                     <div className="sub-total discount">
@@ -233,7 +233,7 @@ const NewOrderUpdate = ({ setterFunction, orderId, updateMessage, orderItem }) =
                           ? `Discount (${data.coupon_details.discount_value}%)`
                           : `Discount (Flat ${data.coupon_details.discount_value})`}
                       </div>
-                      <div className="amount-value">-£{data.coupon_discount_applied_pounds?.toFixed(2)}</div>
+                      <div className="amount-value">-₹{data.coupon_discount_applied_pounds?.toFixed(2)}</div>
                     </div>
                   }
                   {data.is_gift_card_used &&
@@ -241,7 +241,7 @@ const NewOrderUpdate = ({ setterFunction, orderId, updateMessage, orderItem }) =
                       <div className="amount-key">
                         {`Discount(Gift Card)`}
                       </div>
-                      <div className="amount-value">-£{data.gift_card_amount?.toFixed(2)}</div>
+                      <div className="amount-value">-₹{data.gift_card_amount?.toFixed(2)}</div>
                     </div>
                   }
                   {data.is_credit_balance_used &&
@@ -249,7 +249,7 @@ const NewOrderUpdate = ({ setterFunction, orderId, updateMessage, orderItem }) =
                       <div className="amount-key">
                         {`Discount(Credit Points)`}
                       </div>
-                      <div className="amount-value">-£{data.credit_balance_used?.toFixed(2)}</div>
+                      <div className="amount-value">-₹{data.credit_balance_used?.toFixed(2)}</div>
                     </div>
                   }
                   {data.is_wallet_used &&
@@ -257,20 +257,20 @@ const NewOrderUpdate = ({ setterFunction, orderId, updateMessage, orderItem }) =
                       <div className="amount-key">
                         {`Discount(Wallet)`}
                       </div>
-                      <div className="amount-value">-£{data.wallet_amount_used?.toFixed(2)}</div>
+                      <div className="amount-value">-₹{data.wallet_amount_used?.toFixed(2)}</div>
                     </div>
                   }
                   <div className="sub-total">
                     <div className='amount-key'>
                       Delivery Charge
                     </div>
-                    £{data.delivery_charge && data.delivery_charge.toFixed(2)}
+                    ₹{data.delivery_charge && data.delivery_charge.toFixed(2)}
                   </div>
                   <div className="sub-total total">
                     <div>
                       Total Amount
                     </div>
-                    £{data.total_amount}
+                    ₹{data.total_amount}
                   </div>
                 </div>
               </div>
@@ -305,11 +305,11 @@ const NewOrderUpdate = ({ setterFunction, orderId, updateMessage, orderItem }) =
                   {data?.to_pay_extra > 0 ? (
                     data.is_second_payment_to_refunded ? (
                       <>
-                        Confirm (Refund <span className='new-amount'>£{data.to_pay_extra && data.to_pay_extra.toFixed(2)}</span>)
+                        Confirm (Refund <span className='new-amount'>₹{data.to_pay_extra && data.to_pay_extra.toFixed(2)}</span>)
                       </>
                     ) : (
                       <>
-                        Pay <span className='new-amount'>£{data.to_pay_extra && data.to_pay_extra.toFixed(2)}</span> and Confirm
+                        Pay <span className='new-amount'>₹{data.to_pay_extra && data.to_pay_extra.toFixed(2)}</span> and Confirm
                       </>
                     )
                   ) : (

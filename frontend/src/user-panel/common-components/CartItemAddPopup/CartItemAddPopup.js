@@ -89,7 +89,7 @@ const CartItemAddPopup = ({ setterFunction, selectedItem, formData, setFormData,
                           <h6 className="product-size">{selectedItem.unit_details?.name}</h6>
                           <div className="form-check product-price">
                             <label className="form-check-label" htmlFor={`variant`}>
-                              £{selectedItem.offer_price}
+                              ₹{selectedItem.offer_price}
                             </label>
                             <input
                               className="form-check-input"
@@ -107,7 +107,7 @@ const CartItemAddPopup = ({ setterFunction, selectedItem, formData, setFormData,
                             <h6 className="product-size">{item.quantity_name}</h6>
                             <div className="form-check product-price">
                               <label className="form-check-label" htmlFor={`variant${index}`}>
-                                £{item.offer_price}
+                                ₹{item.offer_price}
                               </label>
                               <input
                                 className="form-check-input"
@@ -152,7 +152,7 @@ const CartItemAddPopup = ({ setterFunction, selectedItem, formData, setFormData,
                                 {item.description}
                               </h6>
                               <div>
-                                {item.price && item.price >0 && `£${item.price}`}
+                                {item.price && item.price >0 && `₹${item.price}`}
                               </div>
                               <div className={`plus-minus ${toppingCount > 0 ? 'has-count' : ''}`}>
                                 <i className="ri-subtract-line sub" onClick={() => handleToppingChange(item.id, 'subtract')}></i>

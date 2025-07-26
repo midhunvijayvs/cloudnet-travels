@@ -808,7 +808,7 @@ const View = ({ mode }) => {
                             <div className="tags-container m-2">
                               {data.toppings && data.toppings.map((item, index) => (
                                 <div key={index} className="tag topping">
-                                  <span className="tag-label">{item.description} ( £{item.price} )</span>
+                                  <span className="tag-label">{item.description} ( ₹{item.price} )</span>
                                   <span className="tag-remove" onClick={() => removeTopping(index)}>
                                     &times;
                                   </span>

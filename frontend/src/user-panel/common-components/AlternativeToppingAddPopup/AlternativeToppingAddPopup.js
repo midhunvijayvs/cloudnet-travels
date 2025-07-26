@@ -136,7 +136,7 @@ const AlternativeToppingAddPopup = ({ setterFunction, selectedItem, setSelectedI
                               {item.description}
                             </h6>
                             <div>
-                              {item.price && item.price > 0 && `£${item.price}`}
+                              {item.price && item.price > 0 && `₹${item.price}`}
                             </div>
                             <div className={`plus-minus ${toppingCount > 0 ? 'has-count' : ''}`}>
                               <i className="ri-subtract-line sub" onClick={() => handleToppingChange(item, 'subtract')}></i>

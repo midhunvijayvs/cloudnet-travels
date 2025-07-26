@@ -126,7 +126,7 @@ const AlternativeItemsForUser = ({ setterFunction, restaurantId, mainItem, addAl
                                                     {item.name}
                                                 </div>
                                                 <div>
-                                                    £{item.offer_price}
+                                                    ₹{item.offer_price}
                                                 </div>
                                             </li>
                                             {item.variants_details?.length > 0 &&
@@ -138,7 +138,7 @@ const AlternativeItemsForUser = ({ setterFunction, restaurantId, mainItem, addAl
                                                             {variant.quantity_name}
                                                         </div>
                                                         <div>
-                                                            £{variant.offer_price}
+                                                            ₹{variant.offer_price}
                                                         </div>
                                                     </li>
                                                 ))}

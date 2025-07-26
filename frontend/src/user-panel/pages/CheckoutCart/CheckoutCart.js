@@ -191,7 +191,7 @@ const CheckoutCart = ({ userData, loadUserData }) => {
                                   <div className="product-content">
                                     <div className="d-flex align-items-center justify-content-between">
                                       <h5>{item.menu_item && item.menu_item.name}</h5>
-                                      <h6 className="product-price">£{item.menu_item.offer_price}</h6>
+                                      <h6 className="product-price">₹{item.menu_item.offer_price}</h6>
                                     </div>
                                     {/* <h6 className="ingredients-text">Hot Nacho Chips</h6> */}
                                     {item.topping &&
@@ -212,7 +212,7 @@ const CheckoutCart = ({ userData, loadUserData }) => {
                                     <div className='d-flex justify-content-end' >
                                       <h6 className='product-price mt-2'>
                                         Sub Total:
-                                        £{(parseFloat(item.menu_item.offer_price) + (item.topping ? parseFloat(item.topping.price) : 0)) * parseInt(item.count)}
+                                        ₹{(parseFloat(item.menu_item.offer_price) + (item.topping ? parseFloat(item.topping.price) : 0)) * parseInt(item.count)}
                                       </h6>
                                     </div>
                                   </div>
@@ -227,7 +227,7 @@ const CheckoutCart = ({ userData, loadUserData }) => {
                           <div className="sub-total">
                             <h6 className="content-color fw-normal">Sub Total</h6>
                             <h6 className="fw-semibold">
-                              £ {subTotal}
+                              ₹ {subTotal}
                             </h6>
                           </div>
                           <div className="sub-total">
@@ -242,7 +242,7 @@ const CheckoutCart = ({ userData, loadUserData }) => {
                         </div> */}
                           <div className="grand-total">
                             <h6 className="fw-semibold dark-text">To Pay</h6>
-                            <h6 className="fw-semibold amount">£ {subTotal}</h6>
+                            <h6 className="fw-semibold amount">₹ {subTotal}</h6>
                           </div>
                         </div>
                       </div>

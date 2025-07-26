@@ -117,7 +117,7 @@ const DashboardDriver = ({ role, userData }) => {
                       separator=","
                       decimal="."
                       decimals={2}
-                      prefix="£"
+                      prefix="₹"
                     />
                   </h2>
                   <h5>Total Revenue</h5>

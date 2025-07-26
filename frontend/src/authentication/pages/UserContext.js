@@ -66,6 +66,10 @@ export const UserProvider = ({ children }) => {
 
     if (!!localStorage.getItem('accessToken') ) {
       setIsLoggedIn(true);
+    const storedUserData = localStorage.getItem('userData');
+if (storedUserData) {
+  setUserData(JSON.parse(storedUserData));
+}
     }
     
   }, []);
@@ -78,7 +82,10 @@ export const UserProvider = ({ children }) => {
     let url = "/api/login/"
     API.post(url, formData).then(response => {
       setIsLoading(false)
-    setUserData(response.data)
+    
+      setUserData(response.data.user)
+      // for this project only the userdata is set to local storage because there is no api provided to fetch user data on each refresh from layout
+        localStorage.setItem('userData', JSON.stringify(response.data.user));
 
         setMessage("Logged in succesfully.");
         localStorage.setItem('accessToken', response.data.token);
@@ -102,19 +109,8 @@ export const UserProvider = ({ children }) => {
  
 
   const logout = () => {
-    const userID = localStorage.getItem('userID'); // Save userID before clearing
     localStorage.clear();  // Clear all storage
-
-    API.post(`/user/logout/${userID}/`)
-      .then(response => {
-        setIsLoggedIn(false);
-        showOTPInput(false);
-      })
-      .catch(error => {
-        console.error("Logout failed:", error);
-        setIsLoggedIn(false);
-        showOTPInput(false);
-      });
+          setIsLoggedIn(false);
   };
 
 

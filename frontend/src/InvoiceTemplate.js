@@ -460,7 +460,7 @@ const invoicePDFGenerator = ({ data }) =>
                       return (
                         <View key={index} style={styles.toppingContainer}>
                           <Text style={styles.toppingName}>+ {name.trim()} (x{count})</Text>
-                          {price > 0 && <Text style={styles.toppingPrice}>£{price.toFixed(2)}</Text>}
+                          {price > 0 && <Text style={styles.toppingPrice}>₹{price.toFixed(2)}</Text>}
                         </View>
                       );
                     })
@@ -473,10 +473,10 @@ const invoicePDFGenerator = ({ data }) =>
                 <Text style={styles.tableCell}>{order_item.count}</Text>
               </View>
               <View style={styles.tableColFixed}>
-                <Text style={styles.tableCell}>£{order_item.price}</Text>
+                <Text style={styles.tableCell}>₹{order_item.price}</Text>
               </View>
               <View style={styles.tableColFixed}>
-                <Text style={styles.tableCell}>£{Number((order_item.count * order_item.price).toFixed(2)).toString()}</Text>
+                <Text style={styles.tableCell}>₹{Number((order_item.count * order_item.price).toFixed(2)).toString()}</Text>
               </View>
             </View>
           ))}
@@ -493,36 +493,36 @@ const invoicePDFGenerator = ({ data }) =>
         <View style={styles.totalAmounts}>
           <View style={styles.subTotal} >
             <Text>SUB TOTAL:&nbsp; </Text>
-            <Text> £{data.sub_total}</Text>
+            <Text> ₹{data.sub_total}</Text>
           </View>
           {/* Discounts */}
           {data.coupon_discount_applied_pounds > 0 && (
             <View style={styles.discount} >
               <Text>DISCOUNT (COUPON):&nbsp; </Text>
-              <Text> £{data.coupon_discount_applied_pounds}</Text>
+              <Text> ₹{data.coupon_discount_applied_pounds}</Text>
             </View>
           )}
           {data.wallet_amount_used > 0 && (
             <View style={styles.discount} >
               <Text>DISCOUNT (Wallet):&nbsp; </Text>
-              <Text> £{data.wallet_amount_used}</Text>
+              <Text> ₹{data.wallet_amount_used}</Text>
             </View>
           )}
           {data.credit_balance_used > 0 && (
             <View style={styles.discount} >
               <Text>DISCOUNT (Credit Points):&nbsp; </Text>
-              <Text> £{data.credit_balance_used}</Text>
+              <Text> ₹{data.credit_balance_used}</Text>
             </View>
           )}
           {data.gift_card_amount > 0 && (
             <View style={styles.discount} >
               <Text>DISCOUNT (Gift Card):&nbsp; </Text>
-              <Text> £{data.gift_card_amount}</Text>
+              <Text> ₹{data.gift_card_amount}</Text>
             </View>
           )}
           <View style={styles.subTotal} >
             <Text>DELIVERY CHARGE:&nbsp; </Text>
-            <Text> £{data.delivery_charge?.toFixed(2)}</Text>
+            <Text> ₹{data.delivery_charge?.toFixed(2)}</Text>
           </View>
           <View style={styles.subTotal} >
             <Text>TAX:&nbsp; </Text>
@@ -530,7 +530,7 @@ const invoicePDFGenerator = ({ data }) =>
           </View>
           <View style={styles.total}>
             <Text>TOTAL:&nbsp; </Text>
-            <Text> £{data.total_amount.toFixed(2)}</Text>
+            <Text> ₹{data.total_amount.toFixed(2)}</Text>
           </View>
         </View>
       </View>

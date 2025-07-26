@@ -2,23 +2,67 @@ import React, { useEffect, useState } from 'react';
 import './TicketBooking.scss';
 import { useSearchParams } from 'react-router-dom';
 import API from "../../../API.js"
+import { useNavigate,useLocation  } from 'react-router-dom'
 
-const TicketBooking = () => {
-    const [searchParams] = useSearchParams();
-    const ticketId = searchParams.get('ticket_id');
+const TicketBooking = ({ticketSearchFormData}) => {
+     const navigate = useNavigate();
+     const location = useLocation();
+  const ticketData = location.state;
+    
+
 
     const [formData, setFormData] = useState({
-        adult: 1,
-        child: 0,
-        infant: 0,
-        adult_info: [{ title: 'Mr.', first_name: '', last_name: '' }],
+        adult: ticketSearchFormData.adult,
+        child: ticketSearchFormData.child,
+        infant: ticketSearchFormData.infant,
+        adult_info: [],
         child_info: [],
         infant_info: [],
     });
 
-    const [errors, setErrors] = useState({});
+    const [merchandOrderId, setMerchandOrderId] = useState("");
+    const [merchantTransactionId, setMerchantTransactionId] = useState("");
+    const [
+        errors, setErrors] = useState({});
     const [isLoading, setIsLoading] = useState(false);
 
+
+    useEffect(()=>{
+        handlePaxChange("adult",ticketSearchFormData.adult)
+        handlePaxChange("child",ticketSearchFormData.child)
+        handlePaxChange("infant",ticketSearchFormData.infant)
+       generateBookingId()
+       generateTransactionId()
+    },[])
+
+function generateBookingId() {
+  const now = new Date();
+
+  const pad = (num) => String(num).padStart(2, '0');
+
+  const year = now.getFullYear();
+  const month = pad(now.getMonth() + 1); // Months are 0-based
+  const day = pad(now.getDate());
+  const hours = pad(now.getHours());
+  const minutes = pad(now.getMinutes());
+  const seconds = pad(now.getSeconds());
+
+  setMerchandOrderId(`CLDNTBOOK${year}${month}${day}${hours}${minutes}${seconds}`);
+}
+function generateTransactionId() {
+  const now = new Date();
+
+  const pad = (num) => String(num).padStart(2, '0');
+
+  const year = now.getFullYear();
+  const month = pad(now.getMonth() + 1); // Months are 0-based
+  const day = pad(now.getDate());
+  const hours = pad(now.getHours());
+  const minutes = pad(now.getMinutes());
+  const seconds = pad(now.getSeconds());
+
+  return setMerchantTransactionId(`CLDNTTXN${year}${month}${day}${hours}${minutes}${seconds}`);
+}
     const handlePaxChange = (type, count) => {
         const updatedInfo = Array.from({ length: count }, (_, i) => {
             const defaultObj = { title: type === 'adult' ? 'Mr.' : 'Mstr.', first_name: '', last_name: '' };
@@ -70,14 +114,13 @@ const TicketBooking = () => {
         if (!validate()) return;
         setIsLoading(true);
         const payload = {
-            ticket_id: ticketId,
+            ticket_id: ticketData.ticket_id,
             total_pax: formData.adult + formData.child + formData.infant,
             ...formData,
         };
-        API.post(`/book/`, payload)
+        API.post(`/api/book/`, payload)
             .then((response) => {
-                alert('Booking successful!');
-
+navigate("/checkout-payment", { state: { ticket_id:ticketData.ticket_id, amount:ticketData.price, merchant_order_id:merchandOrderId, merchant_transaction_id:merchantTransactionId } })
             })
             .catch((error) => {
                 alert('Booking failed. Please try again.');
@@ -87,14 +130,51 @@ const TicketBooking = () => {
             }
          )
         }
+ 
         
+        const InfoRow = ({ label, value }) => (
+  <div className='info-row'>
+    <h3 className='label'>{label}</h3>
+    <h3 className='value'>:&nbsp;{value}</h3>
+  </div>
+);
+
 return (
 
     <div className='ticket-booking-page'>
         <div className='sec-2'>
 
+<div className='lhs'>
+<div className='info-box'>
+  <h2>Ticket Details</h2>
+  {ticketData && (
+    <div className='info-box'>
+      {/* <InfoRow label="Ticket ID" value={ticketData.ticket_id} /> */}
+      <InfoRow label="Price" value={`₹ ${ticketData.price}`} />
+      <InfoRow label="Infant Price" value={`₹ ${ticketData.infant_price}`} />
+      <InfoRow label="Origin" value={ticketData.origin} />
+      <InfoRow label="Destination" value={ticketData.destination} />
+      <InfoRow label="Airline" value={ticketData.airline} />
+      <InfoRow label="Departure Date" value={ticketData.departure_date} />
+      <InfoRow label="Departure Time" value={ticketData.departure_time} />
+      <InfoRow label="Arrival Time" value={ticketData.arival_time} />
+      <InfoRow label="Arrival Date" value={ticketData.arival_date} />
+      <InfoRow label="Flight Number" value={ticketData.flight_number} />
+      <InfoRow label="Flight Route" value={ticketData.flight_route} />
+      <InfoRow label="PAX" value={ticketData.pax} />
+      <InfoRow label="Inventory Type" value={ticketData.inventory_type} />
+      <InfoRow label="Cabin Baggage" value={ticketData.cabin_baggage} />
+      <InfoRow label="Hand Luggage" value={ticketData.hand_luggage} />
+      <InfoRow label="International" value={ticketData.isinternational ? "Yes" : "No"} />
+      <InfoRow label="Order ID" value={merchandOrderId} />
+      <InfoRow label="Transaction ID" value={merchantTransactionId} />
+    </div>
+  )}
+</div>
 
-            <div className="form-container">
+</div>
+<div className='rhs'>
+<div className="form-container">
                 <h2>Book Your Ticket</h2>
 
                 <div className="pax-select">
@@ -106,6 +186,7 @@ return (
                             max="9"
                             value={formData.adult}
                             onChange={(e) => handlePaxChange('adult', +e.target.value)}
+                            disabled
                         />
                     </label>
                     <label>
@@ -116,6 +197,7 @@ return (
                             max="9"
                             value={formData.child}
                             onChange={(e) => handlePaxChange('child', +e.target.value)}
+                            disabled
                         />
                     </label>
                     <label>
@@ -126,6 +208,7 @@ return (
                             max="formData.adult"
                             value={formData.infant}
                             onChange={(e) => handlePaxChange('infant', +e.target.value)}
+                            disabled
                         />
                     </label>
                 </div>
@@ -182,6 +265,8 @@ return (
                     {isLoading ? 'Booking...' : 'Book Ticket'}
                 </button>
             </div>
+</div>
+            
         </div>
     </div>);
 };

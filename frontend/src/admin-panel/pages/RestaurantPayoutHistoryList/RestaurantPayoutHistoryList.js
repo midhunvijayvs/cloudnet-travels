@@ -228,7 +228,7 @@ const RestaurantPayoutHistoryList = () => {
                                   </div>
                                 </td>
                                 <td>{item.number_of_orders}</td>
-                                <td>£{item.paid_amount && item.paid_amount.toFixed(2)}</td>
+                                <td>₹{item.paid_amount && item.paid_amount.toFixed(2)}</td>
                                 <td >
                                   <span className={`status ${item.payment_status}`}>{item.payment_status && item.payment_status.replace(/_/g, ' ')}</span>
                                 </td>

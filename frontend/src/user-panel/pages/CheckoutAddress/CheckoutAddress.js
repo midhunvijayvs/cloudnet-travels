@@ -442,13 +442,13 @@ const CheckoutAddress = ({ userData, loadLocationForHeader, setHeaderLocation, l
                               <h5>Gift Card</h5> :
                               <h5>{item.menu_item && item.menu_item.name}</h5>
                             }
-                            <h6 className="product-price">£{item.variant?.offer_price || item.menu_item.offer_price}</h6>
+                            <h6 className="product-price">₹{item.variant?.offer_price || item.menu_item.offer_price}</h6>
                           </div>
                           {/* <h6 className="ingredients-text">Hot Nacho Chips</h6> */}
                           {/* {item.topping &&
                                       <div className='d-flex justify-content-between align-items-center'>
                                         <h6 className="ingredients-text">{item.topping.description}</h6>
-                                        <span>£{item.topping.price}</span>
+                                        <span>₹{item.topping.price}</span>
                                       </div>
                                     } */}
                           {item.toppings?.length > 0 &&
@@ -456,7 +456,7 @@ const CheckoutAddress = ({ userData, loadLocationForHeader, setHeaderLocation, l
                               <div key={index} className='d-flex justify-content-between align-items-center'>
                                 <h6 className="ingredients-text">{top.topping?.description} (x{top.count}) </h6>
                                 {top.topping?.price > 0 &&
-                                  <span>£{top.topping?.price}</span>
+                                  <span>₹{top.topping?.price}</span>
                                 }
                               </div>
                             ))
@@ -484,7 +484,7 @@ const CheckoutAddress = ({ userData, loadLocationForHeader, setHeaderLocation, l
                             }
                             <h6 className='product-price mt-2'>
                               Sub Total:
-                              £{(
+                              ₹{(
                                 (parseFloat(item.variant?.offer_price || item.menu_item.offer_price) * (item.count || 1)) + // Multiply menu item price by count
                                 (item.toppings?.reduce(
                                   (sum, t) => sum + ((parseFloat(t.topping?.price) || 0) * (t.count || 1)),
@@ -505,7 +505,7 @@ const CheckoutAddress = ({ userData, loadLocationForHeader, setHeaderLocation, l
                 <div className="sub-total">
                   <h6 className="content-color fw-normal">Sub Total</h6>
                   <h6 className="fw-semibold">
-                    £ {Math.round(((subTotal) + Number.EPSILON) * 100) / 100}
+                    ₹ {Math.round(((subTotal) + Number.EPSILON) * 100) / 100}
                   </h6>
                 </div>
                 <div className="sub-total">
@@ -514,7 +514,7 @@ const CheckoutAddress = ({ userData, loadLocationForHeader, setHeaderLocation, l
                   </h6>
                   {cartData?.free_delivery_eligibility !== true ?
                     <h6 className="fw-semibold success-color">
-                      £ {cartData?.delivery_charge?.toFixed(1)}
+                      ₹ {cartData?.delivery_charge?.toFixed(1)}
                     </h6> :
                     <h6 className="fw-semibold success-color">
                       Free Delivery
@@ -533,7 +533,7 @@ const CheckoutAddress = ({ userData, loadLocationForHeader, setHeaderLocation, l
                 <div className="grand-total">
                   <h6 className="fw-semibold dark-text">To Pay</h6>
                   <h6 className="fw-semibold amount">
-                    £{(subTotal + (cartData?.delivery_charge || 0)).toFixed(2)}
+                    ₹{(subTotal + (cartData?.delivery_charge || 0)).toFixed(2)}
                   </h6>
                 </div>
 
