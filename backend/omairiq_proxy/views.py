@@ -12,7 +12,7 @@ import uuid
 
 API_BASE_URL = 'https://omairiq.azurewebsites.net'
 API_HEADERS = {
-    'api-key': 'NTMzNDUwMDpBSVJJUSBURVNUIEFQSToxODkxOTMwMDM1OTk2OlBvTjE2NGNkLy9heE53WC9hM00rS1ZrcnJSa2Q0S05adHl3Q0NHZmU4Uzg9',
+    'api-key': settings.OMAIRIQ_API_KEY,
     'Content-Type': 'application/json',
 }
 

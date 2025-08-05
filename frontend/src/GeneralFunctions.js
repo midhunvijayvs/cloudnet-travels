@@ -536,3 +536,33 @@ export const sanitizeOffensiveText = (text) => {
   
   return filter.clean(text);
 };
+
+
+export const  generateBookingId=() =>{
+  const now = new Date();
+
+  const pad = (num) => String(num).padStart(2, '0');
+
+  const year = now.getFullYear();
+  const month = pad(now.getMonth() + 1); // Months are 0-based
+  const day = pad(now.getDate());
+  const hours = pad(now.getHours());
+  const minutes = pad(now.getMinutes());
+  const seconds = pad(now.getSeconds());
+
+  return `CLDNTBOOK${year}${month}${day}${hours}${minutes}${seconds}`;
+}
+export const  generateTransactionId=() =>{
+  const now = new Date();
+
+  const pad = (num) => String(num).padStart(2, '0');
+
+  const year = now.getFullYear();
+  const month = pad(now.getMonth() + 1); // Months are 0-based
+  const day = pad(now.getDate());
+  const hours = pad(now.getHours());
+  const minutes = pad(now.getMinutes());
+  const seconds = pad(now.getSeconds());
+
+  return `CLDNTTXN${year}${month}${day}${hours}${minutes}${seconds}`;
+}

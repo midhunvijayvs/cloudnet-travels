@@ -3,7 +3,7 @@ import './TicketBooking.scss';
 import { useSearchParams } from 'react-router-dom';
 import API from "../../../API.js"
 import { useNavigate,useLocation  } from 'react-router-dom'
-
+import {generateBookingId, generateTransactionId} from '../../../GeneralFunctions.js'
 const TicketBooking = ({ticketSearchFormData}) => {
      const navigate = useNavigate();
      const location = useLocation();
@@ -31,38 +31,15 @@ const TicketBooking = ({ticketSearchFormData}) => {
         handlePaxChange("adult",ticketSearchFormData.adult)
         handlePaxChange("child",ticketSearchFormData.child)
         handlePaxChange("infant",ticketSearchFormData.infant)
-       generateBookingId()
-       generateTransactionId()
+      
+        let bookingId=generateBookingId();
+      setMerchandOrderId(bookingId) 
+     
+      let txnId=generateTransactionId();
+      setMerchantTransactionId(txnId)
     },[])
 
-function generateBookingId() {
-  const now = new Date();
 
-  const pad = (num) => String(num).padStart(2, '0');
-
-  const year = now.getFullYear();
-  const month = pad(now.getMonth() + 1); // Months are 0-based
-  const day = pad(now.getDate());
-  const hours = pad(now.getHours());
-  const minutes = pad(now.getMinutes());
-  const seconds = pad(now.getSeconds());
-
-  setMerchandOrderId(`CLDNTBOOK${year}${month}${day}${hours}${minutes}${seconds}`);
-}
-function generateTransactionId() {
-  const now = new Date();
-
-  const pad = (num) => String(num).padStart(2, '0');
-
-  const year = now.getFullYear();
-  const month = pad(now.getMonth() + 1); // Months are 0-based
-  const day = pad(now.getDate());
-  const hours = pad(now.getHours());
-  const minutes = pad(now.getMinutes());
-  const seconds = pad(now.getSeconds());
-
-  return setMerchantTransactionId(`CLDNTTXN${year}${month}${day}${hours}${minutes}${seconds}`);
-}
     const handlePaxChange = (type, count) => {
         const updatedInfo = Array.from({ length: count }, (_, i) => {
             const defaultObj = { title: type === 'adult' ? 'Mr.' : 'Mstr.', first_name: '', last_name: '' };
