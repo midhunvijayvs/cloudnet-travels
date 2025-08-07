@@ -33,6 +33,7 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '31.97.229.73', #primary server at hostinger vps
+     'cloudnettravels.com',#primary production host
     'booking.cloudnettravels.com',#primary production host
     '3.110.177.125',# server of soulcastai at aws ec2
     'ec2-13-127-251-65.ap-south-1.compute.amazonaws.com',
