@@ -77,7 +77,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 #setting the path to the root urls file
-ROOT_URLCONF = 'urls'
+ROOT_URLCONF = 'cloudnettravels.urls'
 
 
 
