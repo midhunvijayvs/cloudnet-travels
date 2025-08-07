@@ -4,7 +4,7 @@ from django.http import JsonResponse
 
 API_BASE_URL = 'https://omairiq.azurewebsites.net'
 API_HEADERS = {
-    'api-key': 'NTMzNDUwMDpBSVJJUSBURVNUIEFQSToxODkxOTMwMDM1OTk2OmpTMm0vUU1HVmQvelovZi81dFdwTEE9PQ==',
+    'api-key': settings.OMAIRIQ_API_KEY,
     'Content-Type': 'application/json',
 }
 
