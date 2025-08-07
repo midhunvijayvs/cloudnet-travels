@@ -1,6 +1,7 @@
 import requests
 import json
 from django.http import JsonResponse
+from django.conf import settings
 
 API_BASE_URL = 'https://omairiq.azurewebsites.net'
 API_HEADERS = {
