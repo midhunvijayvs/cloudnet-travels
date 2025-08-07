@@ -32,7 +32,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    '3.110.177.125',
+    '31.97.229.73', #primary server at hostinger vps
+    '3.110.177.125',# server of soulcastai at aws ec2
     'ec2-13-127-251-65.ap-south-1.compute.amazonaws.com',
     'soulcastai.com',
     'www.soulcastai.com',
@@ -49,9 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    "soulcast_main_app",
-    "resume_builder",
-     "oval_farms",
+    "cloudnettravels",
      "omairiq_proxy",
      'corsheaders',
       'django_filters',
@@ -72,9 +71,9 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # React development server
-    "https://midhunvijayvs.github.io",  # Production React domain
+    "https://midhunvijayvs.github.io",  # dev React domain
     "https://cloudnettravels.com",
-    "https://booking.cloudnettravels.com",
+    "https://booking.cloudnettravels.com", # Production React domain
 ]
 
 #setting the path to the root urls file

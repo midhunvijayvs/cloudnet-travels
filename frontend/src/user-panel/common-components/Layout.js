@@ -144,7 +144,8 @@ const Layout = () => {
             <Shop 
           ticketSearchFormData={ticketSearchFormData}
           setTicketSearchFormData={setTicketSearchFormData}
-            cartItems={cartItems}  />} />
+            cartItems={cartItems}
+            />} />
 
 
 <Route path="/book-ticket" element={<TicketBooking ticketSearchFormData={ticketSearchFormData} />} />
