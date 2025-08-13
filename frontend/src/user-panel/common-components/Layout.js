@@ -25,7 +25,7 @@ import MyOrders from '../pages/MyOrders/MyOrders';
 
 
 import Profile from '../pages/Profile/Profile';
-import Story from '../pages/Story/Story';
+import Payment from '../pages/Payment/Payment';
 import About from '../pages/About/About';
 import ContactUs from '../pages/ContactUs/ContactUs';
 import NoPage from '../pages/NoPage/NoPage';
@@ -35,7 +35,6 @@ import SavedAddress from '../pages/SavedAddress/SavedAddress';
 
 import TermsAndConditions from '../pages/PolicyPages/TermsAndConditions';
 import CookiePolicy from '../pages/PolicyPages/CookiePolicy';
-import DeliveryPolicy from '../pages/PolicyPages/DeliveryPolicy';
 import FAQ from '../pages/PolicyPages/FAQ';
 import PrivacyPolicy from '../pages/PolicyPages/PrivacyPolicy';
 import RefundAndCancellationPolicy from '../pages/PolicyPages/RefundAndCancellationPolicy';
@@ -158,7 +157,7 @@ const Layout = () => {
           <Route path="checkout-confirm" element={<CheckoutConfirm  orderUpdate={isNewOrderUpdateShow} />} />
 
 
-          <Route path="story" element={<Story />} />
+          <Route path="payment" element={<Payment />} />
           <Route path="about" element={<About />} />
           <Route path="contact-us" element={<ContactUs />} />
           <Route path="profile" element={<Profile />} />
@@ -168,7 +167,6 @@ const Layout = () => {
 
           <Route path="terms-and-conditions" element={<TermsAndConditions />} />
           <Route path="cookie-policy" element={<CookiePolicy />} />
-          <Route path="delivery-policy" element={<DeliveryPolicy />} />
           <Route path="faq" element={<FAQ />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="refund-and-cancellation-policy" element={<RefundAndCancellationPolicy />} />

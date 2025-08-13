@@ -181,9 +181,9 @@ const Header = ({ cartItems, isLoggedIn, setActivePage, activePage, notification
 
 
 
-        <span onClick={() => { setActivePage([3, "gallery"]); navigate('/gallery'); setNavPaneOpen(false) }} className={`main-menu-item ${(activePage[0] === 7) && 'active'}`}>
+        <span onClick={() => { setActivePage([3, "payment"]); navigate('/payment'); setNavPaneOpen(false) }} className={`main-menu-item ${(activePage[0] === 7) && 'active'}`}>
           <div className='text'>
-            Gallery
+            Payment
           </div>
         </span>
 

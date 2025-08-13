@@ -254,7 +254,57 @@ navigate('/shop')
 
       </section>
 
+<section class="sec-2">
+  <div class="container">
+    <h2>About Us</h2>
+    <div class="about-content">
+      <div class="text">
+        <p>
+          We are an independent travel company located in <strong>Koduvally, Kerala</strong>. 
+          With our 24/7 service, we are the favorite choice for locals to plan their travel.
+        </p>
+        <p>
+          We offer a wide range of services including custom holiday packages. 
+          Whether it’s a weekend getaway or an extended trip, let us take care of all your travel needs.
+        </p>
+      </div>
+      <div class="images">
+        <img src="https://images.unsplash.com/photo-1502920917128-1aa500764b6e?auto=format&fit=crop&w=800&q=80" alt="Airplane during golden hour" />
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Woman swimming in tropical water" />
+      </div>
+    </div>
+  </div>
+</section>
 
+<section class="sec-3">
+  <div class="container">
+    <h2>Our Services</h2>
+    <div class="services-grid">
+      
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" alt="Sterling Vythiri Wayanad" />
+        <h3>Sterling Vythiri Wayanad</h3>
+        <p>2.3 km drive to Pookode Lake</p>
+        <span class="price">₹12,400/-</span>
+      </div>
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80" alt="Mountain Shadows" />
+        <h3>Mountain Shadows</h3>
+        <p>Padinjarathara</p>
+        <span class="price">₹20,000/-</span>
+      </div>
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=800&q=80" alt="Great Trails Wayanad" />
+        <h3>Great Trails Wayanad by GRT Hotels</h3>
+        <p>Padinjarathara</p>
+        <span class="price">₹10,000/-</span>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 
       {isLoading && <FixedOverlayLoadingSpinner />}

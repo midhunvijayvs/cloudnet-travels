@@ -63,10 +63,10 @@ const View = () => {
         </div>
         <div className='rhs'>
           <div className='inner'>
-          <h2 className='main-heading'>A Taste of India<br/> in the Heart of Wrexham </h2>
+          <h2 className='main-heading'>A Taste of India<br/> in the Heart of Calicut </h2>
           <p>
 
-          Our journey started in India, where food is full of flavour, tradition, and love. With years of experience running successful restaurants across India, our founders have brought that same passion, precision, and love for authentic Indian cuisine to Wrexham. Cooking has always been a big part of our lives, something we’ve done with heart and soul. Now, we’ve brought that same passion to Wrexham. We wanted to share the real taste of India with our new community. Every dish we serve is made with care, using recipes passed down through generations and spices that bring out rich, bold flavours. Whether you’re trying Indian food for the first time or missing the flavours of home, we’re here to give you an experience that feels warm, welcoming, and full of flavour. This isn’t just a restaurant. It’s a dream we’ve brought to life and we’re so happy to share it with you. Thank you for being part of our journey.  </p>
+          Our journey started in India, where food is full of flavour, tradition, and love. With years of experience running successful restaurants across India, our founders have brought that same passion, precision, and love for authentic Indian cuisine to Calicut. Cooking has always been a big part of our lives, something we’ve done with heart and soul. Now, we’ve brought that same passion to Calicut. We wanted to share the real taste of India with our new community. Every dish we serve is made with care, using recipes passed down through generations and spices that bring out rich, bold flavours. Whether you’re trying Indian food for the first time or missing the flavours of home, we’re here to give you an experience that feels warm, welcoming, and full of flavour. This isn’t just a restaurant. It’s a dream we’ve brought to life and we’re so happy to share it with you. Thank you for being part of our journey.  </p>
             </div>
         </div>
       </div>

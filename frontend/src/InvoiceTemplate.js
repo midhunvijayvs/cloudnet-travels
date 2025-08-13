@@ -312,9 +312,9 @@ const invoicePDFGenerator = ({ data }) =>
             </View>
             <View >
               <Text style={styles.addressTitle}>Cloudnet Travels</Text>
-              <Text style={styles.addressLine}>2 Brook Street,
+              <Text style={styles.addressLine}>2 Koduvalli,
               </Text>
-              <Text style={styles.addressLine}>Wrexham, LL13 7LH</Text>
+              <Text style={styles.addressLine}>Calicut, 600055</Text>
               <Text style={styles.addressLine}>{'cloudnettravels@gmail.com '}</Text>
               <Text style={styles.addressLine}>Ph: 9747020268</Text>
             </View>
@@ -395,7 +395,7 @@ const invoicePDFGenerator = ({ data }) =>
           <Text style={styles.orderValue}>
             Cloudnet Travels,&nbsp;
 
-            Wrexham</Text>
+            Calicut</Text>
         </View>
         <View style={styles.orderInfoSection}>
           <Text style={styles.orderHeader}>Issued Date</Text>

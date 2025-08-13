@@ -67,11 +67,11 @@ const View = () => {
     <p>
       <FontAwesomeIcon icon={faLocationDot} />{' '}
       <a
-        href="https://www.google.com/maps/search/?api=1&query=2+Brook+Street,+Wrexham,+LL13+7LH"
+        href="https://www.google.com/maps/search/?api=1&query=2+Brook+Street,+Calicut,+LL13+7LH"
         target="_blank"
         rel="noopener noreferrer"
       >
-        2 Brook Street,<br />Wrexham, LL13 7LH
+        2 Koduvalli,<br />Calicut, 600055
       </a>
     </p>
   </div>

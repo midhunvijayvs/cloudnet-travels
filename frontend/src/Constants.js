@@ -154,7 +154,7 @@ export const UK_COUNTIES = [
     { id: 104, county_name: 'Western Isles' },
     { id: 105, county_name: 'Wiltshire' },
     { id: 106, county_name: 'Worcestershire' },
-    { id: 107, county_name: 'Wrexham' },
+    { id: 107, county_name: 'Calicut' },
     { id: 108, county_name: 'Yorkshire' },
 ]
 

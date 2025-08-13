@@ -51,7 +51,7 @@ const PolicyPage = () => {
 
     <div className='faq'>
       <p><strong>1. Where is Cloudnet Travels located?</strong></p>
-      <p>We are located at 2 Brook Street, Wrexham, LL13 7LH. You can find us easily on Google Maps or contact us directly at 9747020268.</p>
+      <p>We are located at 2 Koduvalli, Calicut, 600055. You can find us easily on Google Maps or contact us directly at 9747020268.</p>
     </div>
 
     <div className='faq'>

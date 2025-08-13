@@ -36,8 +36,7 @@ const PolicyPage = () => {
                 <div className="inner">
                     <h1
                         className="main-heading"
-                        // style={{ color:`rgba(255, 255, 255, ${1 - opacity * 3})` }}>
-                        style={{ color:`rgba(255, 255, 255, 1)` }}>
+                    >
                         Privacy Policy
                     </h1>
 
@@ -46,118 +45,59 @@ const PolicyPage = () => {
             </section>
        
        
-       <div className='sec-2'>
+<div className='sec-2'>
 
   <div className='section'>
-    <h3 className='title'>Privacy Policy</h3>
-    <p><strong>Effective Date:</strong> 12 July 2025</p>
-    <p>At Cloudnet Travels Ltd, trading as Cloudnet Travels, we are committed to protecting your privacy and ensuring your personal data is handled in a secure and responsible manner. This Privacy Policy outlines how we collect, use, store, and protect your information when you interact with us, whether online or at our restaurant.</p>
-  </div>
-
-  <div className='section'>
-    <h3 className='title'>1. Who We Are</h3>
-    <p>Cloudnet Travels is an authentic Indian restaurant based in Wrexham, UK. Experience the true taste of India with our exceptional dine-in ambiance, quick takeaway, doorstep delivery, and personalised catering services tailored for every occasion.</p>
-  </div>
-
-  <div className='section'>
-    <h3 className='title'>2. What Information We Collect</h3>
-    <p>We may collect and process the following types of personal data:</p>
+    <h3 className='title'>1. What We Collect</h3>
+    <p>We can collect the following information:</p>
     <ul>
-      <li><strong>Identity Data:</strong> Name, email address, phone number.</li>
-      <li><strong>Transaction Data:</strong> Payment information and purchase history.</li>
-      <li><strong>Technical Data:</strong> IP address, browser type, device information.</li>
-      <li><strong>Marketing Preferences:</strong> Your preferences in receiving marketing communications from us.</li>
+      <li>Your Name</li>
+      <li>Your Contact information including email address</li>
+      <li>Details of the products and services you have purchased from us or which you have enquired about, together with any additional information necessary to deliver those products and services and to respond to your enquiries</li>
+      <li>Other information related to customer surveys and/or offers</li>
+      <li>Demographic information such as postcode, preferences, and interests</li>
     </ul>
-    <p>We collect this information when you:</p>
+    <p>We use this information to understand your needs and to serve you better services, and especially for the following reasons:</p>
     <ul>
-      <li>Make a reservation</li>
-      <li>Place an order (in-person, online, or over the phone)</li>
-      <li>Contact us via our website, phone, or social media</li>
-      <li>Sign up for newsletters or promotional updates</li>
-      <li>Participate in surveys or feedback</li>
+      <li>For our internal records.</li>
+      <li>Manage our relationship with you, including updates about your tour booking and handling complaints, and to contact you in the event of an emergency.</li>
+      <li>We can use the information to improve our products and services.</li>
+      <li>From time to time we can send promotional emails about our new products and special offers using the email address that you have provided.</li>
     </ul>
   </div>
 
   <div className='section'>
-    <h3 className='title'>3. How We Use Your Information</h3>
-    <p>We use your personal data for the following purposes:</p>
+    <h3 className='title'>2. What We Do with the Collected Information</h3>
+  </div>
+
+  <div className='section'>
+    <h3 className='title'>Security</h3>
+    <p>We are committed to ensuring that your information is safe. To prevent unauthorized access or disclosure, we have implemented appropriate physical, electronic, and managerial procedures in order to protect personal information from loss and misuse, and from unauthorized access, modification, disclosure, and interference.</p>
+  </div>
+
+  <div className='section'>
+    <h3 className='title'>Links to Other Websites</h3>
+    <p>Our website may have links to other sites over which we have no control. We cannot be responsible for the safety and confidentiality of any information that you provide on such sites. You should read, and ensure that you understand, their privacy policies.</p>
+  </div>
+
+  <div className='section'>
+    <h3 className='title'>Credit Card Security</h3>
     <ul>
-      <li>To process and manage bookings and orders</li>
-      <li>To provide customer service and respond to queries</li>
-      <li>To send updates, offers, or promotional content (only if you’ve opted in)</li>
-      <li>To improve our services and website functionality</li>
-      <li>To comply with legal or regulatory obligations</li>
-    </ul>
-    <p>We will never sell your personal data to third parties.</p>
-  </div>
-
-  <div className='section'>
-    <h3 className='title'>4. Lawful Basis for Processing</h3>
-    <p>We rely on the following lawful bases for processing your personal data:</p>
-    <ul>
-      <li><strong>Consent:</strong> When you opt-in to receive marketing communications.</li>
-      <li><strong>Contract:</strong> When processing is necessary to fulfil your reservation or food order.</li>
-      <li><strong>Legal Obligation:</strong> For compliance with legal requirements.</li>
-      <li><strong>Legitimate Interests:</strong> To enhance our services and maintain business operations.</li>
+      <li>All online payments are transmitted over a secure socket layer (SSL) connection.</li>
+      <li>Credit card information is transmitted immediately to a payment gateway solution via an encrypted port.</li>
+      <li>We do not store your credit card number in any of our systems; it is used only within the context of the transaction and then destroyed upon receipt from an acquiring bank.</li>
+      <li>All credit card payments receive an identification number that is proof of the transaction’s acceptance into the banking system. This identification number can be used to trace any transaction back to the credit card issuer (for example, the bank that issued the MasterCard or VISA credit card).</li>
+      <li>Personal information is destroyed or de-identified when no longer needed.</li>
     </ul>
   </div>
 
   <div className='section'>
-    <h3 className='title'>5. How We Share Your Data</h3>
-    <p>Your data may be shared with:</p>
-    <ul>
-      <li>Service providers (e.g., payment processors, booking platforms)</li>
-      <li>Legal or regulatory authorities if required</li>
-      <li>IT and system administration providers who support our website</li>
-    </ul>
-    <p>All third parties are required to respect the security of your data and treat it in accordance with the law.</p>
-  </div>
-
-  <div className='section'>
-    <h3 className='title'>6. Data Retention</h3>
-    <p>We will retain your personal data only for as long as necessary to fulfil the purposes we collected it for, including for legal, accounting, or reporting requirements.</p>
-  </div>
-
-  <div className='section'>
-    <h3 className='title'>7. Your Rights</h3>
-    <p>Under the UK GDPR, you have the right to:</p>
-    <ul>
-      <li>Access your personal data</li>
-      <li>Request correction or deletion</li>
-      <li>Object to processing</li>
-      <li>Withdraw consent (where applicable)</li>
-      <li>Lodge a complaint with the Information Commissioner’s Office (ICO)</li>
-    </ul>
-    <p>If you wish to exercise any of these rights, please contact us using the details below.</p>
-  </div>
-
-  <div className='section'>
-    <h3 className='title'>8. Cookies</h3>
-    <p>Our website may use cookies to enhance user experience, analyse traffic, and personalise content. You can manage your cookie preferences through your browser settings.</p>
-  </div>
-
-  <div className='section'>
-    <h3 className='title'>9. Third-Party Links</h3>
-    <p>Our website may contain links to third-party websites. We are not responsible for their privacy policies or practices, and we encourage you to review them separately.</p>
-  </div>
-
-  <div className='section'>
-    <h3 className='title'>10. Contact Us</h3>
-    <p>If you have any questions about this Privacy Policy or how we handle your personal data, please contact:</p>
-    <p>
-      <strong>Cloudnet Travels Ltd</strong><br />
-      2 Brook Street, Wrexham, LL13 7LH, United Kingdom<br />
-      Phone: 9747020268<br />
-      Email: <a href='mailto:cloudnettravels@gmail.com'>cloudnettravels@gmail.com</a>
-    </p>
-  </div>
-
-  <div className='section'>
-    <h3 className='title'>Changes to This Privacy Policy</h3>
-    <p>We reserve the right to update this Privacy Policy at any time. Any changes will be posted on this page with an updated effective date.</p>
+    <h3 className='title'>Complaints</h3>
+    <p>If you have a complaint about the way we have dealt with your personal information, or if you feel that the information we keep about you is incorrect or incomplete, please write to us at the above address or email as soon as possible. We will respond to your complaint within a reasonable time. If your information is incorrect or incomplete, we will immediately correct it.</p>
   </div>
 
 </div>
+
 
 
 

@@ -36,8 +36,7 @@ const PolicyPage = () => {
                 <div className="inner">
                     <h1
                         className="main-heading"
-                        // style={{ color:`rgba(255, 255, 255, ${1 - opacity * 3})` }}>
-                        style={{ color:`rgba(255, 255, 255, 1)` }}>
+                       >
                         Refund and Cancellation Policy
                     </h1>
 
@@ -45,79 +44,34 @@ const PolicyPage = () => {
 
             </section>
             
-            <div className='sec-2'>
+           <div className='sec-2'>
 
   <div className='section'>
-    <h3 className='title'>Refund and Cancellation Policy</h3>
-    <p><strong>Effective Date:</strong> 12 July 2025</p>
-    <p>At Cloudnet Travels, we aim to provide a high-quality dining experience, whether you’re booking a table, ordering takeaway, or requesting delivery. This Refund and Cancellation Policy outlines how cancellations, changes, and refunds are handled across our services.</p>
-  </div>
-
-  <div className='section'>
-    <h3 className='title'>1. Dine-In Bookings</h3>
+    <h3 className='title'>1. Payment & Fees</h3>
+    <p>All our trips are in Indian rupee (rupees) and if you are using an international card to pay through our online booking system (which uses PayPal) then a small percentage charge can be applied. This is due to foreign currency conversion and some PayPal transaction fees.</p>
+    <p>When we have confirmed availability, it is necessary to pay for most tours. From the following ways, you need to pay before traveling to confirm your booking:</p>
     <ul>
-      <li><strong>Cancellations:</strong> We kindly request that you cancel or amend your reservation with at least 2 hours' notice to allow us to manage our seating efficiently.</li>
-      <li><strong>No-Shows or Late Arrivals:</strong> If you do not arrive within 15 minutes of your reserved time and have not contacted us, your table may be released to other guests.</li>
-      <li><strong>Large Group Bookings:</strong> For groups of 6 or more, we may require a deposit. Deposits are non-refundable unless cancelled at least 24 hours in advance.</li>
+      <li>By paying online through our online booking system</li>
+      <li>Pay by visiting our office</li>
     </ul>
   </div>
 
   <div className='section'>
-    <h3 className='title'>2. Takeaway Orders</h3>
+    <h3 className='title'>2. Cancellation Charges</h3>
+    <p>In the case of cancellation of travel / travel services due to any reasons, we should be informed about it in writing. The cancellation fee will be effective from the date received in writing, and the charges for cancellation will be as follows:</p>
     <ul>
-      <li><strong>Order Changes:</strong> Once an order is confirmed, it may not be possible to make changes. If you need to make an amendment, please call us immediately, and we’ll do our best to accommodate.</li>
-      <li><strong>Cancellations:</strong> Cancellations are only accepted within 5 minutes of placing the order, as preparation typically begins shortly after confirmation.</li>
-      <li><strong>Refunds:</strong> Refunds will only be issued under the following circumstances:
-        <ul>
-          <li>Incorrect or missing items (verified by our team)</li>
-          <li>Incomplete or unfulfilled orders due to our error</li>
-          <li>Payment charged but order not received or acknowledged</li>
-        </ul>
-      </li>
+      <li>45 days before arrival: 10% of the tour/service cost</li>
+      <li>15 days before arrival: 25% of the tour/service cost</li>
+      <li>07 days before arrival: 50% of travel/service cost</li>
+      <li>48 hours or earlier before arrival: No refund</li>
+      <li>The refund amount will be credited to the source account in 7 to 10 days</li>
     </ul>
   </div>
 
   <div className='section'>
-    <h3 className='title'>3. Delivery Orders</h3>
-    <ul>
-      <li><strong>Delivery Timeframes:</strong> We aim to deliver your food within the estimated time, but delays can occasionally occur due to traffic, weather, or high demand.</li>
-      <li><strong>Cancellations:</strong> Delivery orders cannot be cancelled once the food is out for delivery.</li>
-      <li><strong>Refunds:</strong> Refunds for delivery orders may be issued for:
-        <ul>
-          <li>Non-delivery</li>
-          <li>Incorrect items</li>
-          <li>Poor food quality (subject to assessment and timely notification)</li>
-        </ul>
-      </li>
-      <li><strong>Customer Responsibility:</strong> Please ensure the delivery address and contact number provided are accurate. We are not liable for failed deliveries due to incorrect details.</li>
-    </ul>
-  </div>
-
-  <div className='section'>
-    <h3 className='title'>4. Guest Checkout</h3>
-    <p>Orders placed via guest checkout are treated with the same level of care as account-based orders.</p>
-    <p>To request a cancellation or refund, please retain your order confirmation email and contact us promptly with order details.</p>
-  </div>
-
-  <div className='section'>
-    <h3 className='title'>5. Refund Process</h3>
-    <ul>
-      <li>All refund requests must be made within 24 hours of receiving your order or missing a reservation.</li>
-      <li>Approved refunds will be processed to the original method of payment within 5–7 business days.</li>
-      <li>In some cases, we may offer a credit voucher or replacement order instead of a refund.</li>
-    </ul>
-  </div>
-
-  <div className='section'>
-    <h3 className='title'>6. Contact Us</h3>
-    <p>If you need assistance with a refund or cancellation, please contact our team as soon as possible:</p>
-    <p>
-      <strong>Cloudnet Travels Ltd</strong><br />
-      2 Brook Street, Wrexham, LL13 7LH, United Kingdom<br />
-      Phone: 9747020268<br />
-      Email: <a href='mailto:cloudnettravels@gmail.com'>cloudnettravels@gmail.com</a>
-    </p>
-    <p>Please provide your order reference, date/time, and reason for your request to help us assist you efficiently.</p>
+    <h3 className='title'>3. Cancellation Policy & Refund Turnaround Time</h3>
+    <p>In the case of cancellation, we will process cancellation with various service providers like Hotels, Flights, etc. The processing time for the same is 3–4 working days from our end, plus the time taken by providers to confirm the cancellation and initiate the refund (which may take another 5–6 working days). Once we receive refunds from providers, we will initiate the refund to the given account or original method if possible, which may take 2–3 working days from our end, plus the time taken by the receiving bank.</p>
+    <p>In total, the Refund Turnaround Time is approximately 15–20 working days.</p>
   </div>
 
 </div>

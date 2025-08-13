@@ -36,7 +36,7 @@ const PolicyPage = () => {
                 <div className="inner">
                     <h1
                         className="main-heading"
-                        style={{ color:`rgba(255, 255, 255, 1)` }}>
+                      >
                         Cookie Policy
                     </h1>
 
@@ -106,7 +106,7 @@ const PolicyPage = () => {
     <p>If you have any questions or concerns about our use of cookies, please contact:</p>
     <p>
       <strong>Cloudnet Travels Ltd</strong><br />
-      2 Brook Street, Wrexham, LL13 7LH, United Kingdom<br />
+      2 Koduvalli, Calicut, 600055, United Kingdom<br />
       Phone: 9747020268<br />
       Email: <a href='mailto:cloudnettravels@gmail.com'>cloudnettravels@gmail.com</a>
     </p>

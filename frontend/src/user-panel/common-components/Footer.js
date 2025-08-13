@@ -68,7 +68,6 @@ import { faFacebook, faInstagram, faWhatsapp } from '@fortawesome/free-brands-sv
           <h4>ABOUT</h4>
           <ul>
             <li onClick={() => navigate("/faq")}>FAQ</li>
-            <li onClick={() => navigate("/delivery-policy")}>Delivery Policy</li>
             <li onClick={() => navigate("/privacy-policy")}>Privacy Policy</li>
             <li onClick={() => navigate("/cookie-policy")}>Cookie Policy</li>
             <li onClick={() => navigate("/refund-and-cancellation-policy")}>Refund & Cancellation Policy</li>
