@@ -68,6 +68,16 @@ const PolicyPage = () => {
 
   <div className='section'>
     <h3 className='title'>2. What We Do with the Collected Information</h3>
+  <p>  We use this information to understand your needs and to serve you better services, and especially for the following reasons:</p>
+<ul>
+   <li> For our internal Records.</li>
+
+    <li> Manage our relationship with you, including updates about your tour booking and handling complaints to contact you in the event of an emergency.</li>
+
+    <li> We can use the information to improve our products and services.</li>
+
+ <li>    From time to time we can send promotional emails about our new products, special offers using an email address that you have provided.</li>
+  </ul>
   </div>
 
   <div className='section'>
