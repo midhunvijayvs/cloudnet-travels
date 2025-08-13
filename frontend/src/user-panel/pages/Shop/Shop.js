@@ -193,13 +193,13 @@ console.log("data", data)
     <div className='shop-page'>
       <section className="banner">
         <div className="inner">
-          <h2>Find Your Ticket</h2>
+          <h2>Find Your Package</h2>
           <ol className='breadcrumb' aria-label="breadcrumb">
             <li className="breadcrumb-item">
               <a onClick={() => navigate('/')}><i className="ri-home-line"></i>Home</a>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
-              Ticket Item Listing
+              Package Listing
             </li>
           </ol>
         </div>
@@ -253,7 +253,7 @@ console.log("data", data)
         <div className="form-container">
           <form >
 
-            <div className="form-row">
+            {/* <div className="form-row">
 
               <div className="form-group">
                 <label>Origin</label>
@@ -324,7 +324,7 @@ console.log("data", data)
               <button type="button" disabled={isLoading} onClick={loadData}>
                 {isLoading ? 'Searching...' : 'Search Flights'}
               </button>
-            </div>
+            </div> */}
             {formErrors.search && <p className="error">{formErrors.search}</p>}
           </form>
         </div>

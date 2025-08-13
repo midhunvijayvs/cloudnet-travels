@@ -143,19 +143,23 @@ navigate('/shop')
           <div className="left-side">
             <h1
               className="main-heading only-web">
-              Booking Portal
+              {/* Booking Portal */}
 
-
+Travel with <br/>CONFIDENCE
             </h1>
             <h1
               className="main-heading only-tab">
-              Booking Portal
+                    {/* Booking Portal */}
+
+Travel with <br/>CONFIDENCE
 
             </h1>
             <h1
               className="main-heading only-mob"
             >
-              Booking Portal
+                    {/* Booking Portal */}
+
+Travel with <br/>CONFIDENCE
             </h1>
             <button className="btn-primary" onClick={() => navigate('/book-dine-in')}>
 
@@ -170,12 +174,13 @@ navigate('/shop')
           </div>
           <div className="right-side">
             <div className="form-container">
-              <h2>Check Flight Availability</h2>
+              <h2>Search Our Travel plans</h2>
+              {/* <h2>Check Flight Availability</h2> */}
               <form >
 
 
                 <div className="form-group">
-                  <label>Origin</label>
+                  <label>Your City</label>
                   <input
                     type="text"
                     value={originQuery}
@@ -197,7 +202,7 @@ navigate('/shop')
 
 
                 <div className="form-group">
-                  <label>Destination</label>
+                  <label>Travel Destination</label>
                   <input
                     type="text"
                     value={destinationQuery}
@@ -219,10 +224,10 @@ navigate('/shop')
 
 
                 <div className="form-group">
-                  <label>Departure Date</label>
+                  <label>Travel Date</label>
                   <input type="date" name="departure_date" value={ticketSearchFormData.departure_date} onChange={handleChange} required />
                 </div>
-                <div className="form-row">
+                {/* <div className="form-row">
                   <div className="form-group small">
                     <label>Adult</label>
                     <input type="number" name="adult" min="1" value={ticketSearchFormData.adult} onChange={handleChange} />
@@ -235,14 +240,18 @@ navigate('/shop')
                     <label>Infant</label>
                     <input type="number" name="infant" min="0" value={ticketSearchFormData.infant} onChange={handleChange} />
                   </div>
-                </div>
+                </div> */}
                 <div className="form-group">
-                  <label>Airline Code (optional)</label>
+                  <label>Tell your thoughts</label>
+                  {/* <label>Airline Code (optional)</label> */}
                   <input type="text" name="airline_code" value={ticketSearchFormData.airline_code} onChange={handleChange} />
                 </div>
                 <button type="button" disabled={isLoading} onClick={submitForm}>
-                  {isLoading ? 'Searching...' : 'Search Flights'}
+                  {isLoading ? 'Searching...' : 'Search Package'}
                 </button>
+               {/* <button type="button" disabled={isLoading} onClick={submitForm}>
+                  {isLoading ? 'Searching...' : 'Search Flights'}
+                </button> */}
                 {formErrors.search && <p className="error">{formErrors.search}</p>}
               </form>
             </div>
@@ -269,7 +278,6 @@ navigate('/shop')
         </p>
       </div>
       <div class="images">
-        <img src="https://images.unsplash.com/photo-1502920917128-1aa500764b6e?auto=format&fit=crop&w=800&q=80" alt="Airplane during golden hour" />
         <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Woman swimming in tropical water" />
       </div>
     </div>
