@@ -10,12 +10,14 @@ const CheckoutPayment = () => {
   const navigate = useNavigate();
 const location = useLocation();
 const ticket_id = location.state?.ticket_id;
-const amount = 10;
-const merchant_order_id = generateBookingId();
-const merchant_transaction_id =generateTransactionId();
-// const amount = location.state?.amount;
-// const merchant_order_id = location.state?.merchant_order_id;
-// const merchant_transaction_id = location.state?.merchant_transaction_id;
+
+// const amount = 10;
+// const merchant_order_id = generateBookingId();
+// const merchant_transaction_id =generateTransactionId();
+
+const amount = location.state?.amount;
+const merchant_order_id = location.state?.merchant_order_id;
+const merchant_transaction_id = location.state?.merchant_transaction_id;
 
   useEffect(() => {
     const initiatePayment = async () => {
