@@ -185,7 +185,7 @@ Travel with <br/>CONFIDENCE
                     type="text"
                     value={originQuery}
                     onChange={handleOriginChange}
-                    onBlur={() => setTimeout(() => setShowOriginDropdown(false), 200)}
+                    // onBlur={() => setTimeout(() => setShowOriginDropdown(false), 200)}
                     required
                   />
                   {showOriginDropdown && (
@@ -207,7 +207,7 @@ Travel with <br/>CONFIDENCE
                     type="text"
                     value={destinationQuery}
                     onChange={handleDestinationChange}
-                    onBlur={() => setTimeout(() => setShowDestinationDropdown(false), 200)}
+                    // onBlur={() => setTimeout(() => setShowDestinationDropdown(false), 200)}
                     required
                   />
                   {showDestinationDropdown && (
