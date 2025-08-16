@@ -100,7 +100,8 @@ const TicketBooking = ({ticketSearchFormData}) => {
 navigate("/checkout-payment", { state: { ticket_id:ticketData.ticket_id, amount:ticketData.price, merchant_order_id:merchandOrderId, merchant_transaction_id:merchantTransactionId } })
             })
             .catch((error) => {
-                alert('Booking failed. Please try again.');
+              //  alert('Booking failed. Please try again.');
+              navigate("/checkout-payment", { state: { ticket_id:ticketData.ticket_id, amount:ticketData.price, merchant_order_id:merchandOrderId, merchant_transaction_id:merchantTransactionId } })
             })
             .finally(() =>{
                 setIsLoading(false);
