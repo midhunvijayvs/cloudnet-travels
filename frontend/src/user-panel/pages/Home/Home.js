@@ -273,7 +273,7 @@ Travel with <br/>CONFIDENCE
           With our 24/7 service, we are the favorite choice for locals to plan their travel.
         </p>
         <p>
-          We offer a wide range of services including custom holiday packages. 
+          We offer a wide range of services including custom holiday packagesand flight booking. We are currently dealing with only domestic flight bookings.
           Whether it’s a weekend getaway or an extended trip, let us take care of all your travel needs.
         </p>
       </div>

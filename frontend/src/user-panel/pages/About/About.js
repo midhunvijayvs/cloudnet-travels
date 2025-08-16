@@ -16,8 +16,8 @@ const AboutUs = () => {
             holiday, we make your travel dreams come true.
           </p>
           <p>
-            We assist in booking both <strong>domestic</strong> and{" "}
-            <strong>international</strong> flights, ensuring the best deals and
+            We assist in booking<strong>domestic</strong>
+            <strong></strong> flights  only for now, ensuring the best deals and
             smooth travel experiences.
           </p>
         </div>
@@ -38,8 +38,7 @@ const AboutUs = () => {
             match your preferences.
           </li>
           <li>
-            <strong>Flight Bookings:</strong> Hassle-free domestic and
-            international flight reservations.
+            <strong>Flight Bookings:</strong> Hassle-free domestic flight reservations.
           </li>
         </ul>
       </div>
