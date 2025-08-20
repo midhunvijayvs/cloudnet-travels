@@ -284,7 +284,7 @@ Travel with <br/>CONFIDENCE
   </div>
 </section>
 
-<section class="sec-3">
+{/* <section class="sec-3">
   <div class="container">
     <h2>Our Services</h2>
     <div class="services-grid">
@@ -312,7 +312,7 @@ Travel with <br/>CONFIDENCE
 
     </div>
   </div>
-</section>
+</section> */}
 
 
       {isLoading && <FixedOverlayLoadingSpinner />}
