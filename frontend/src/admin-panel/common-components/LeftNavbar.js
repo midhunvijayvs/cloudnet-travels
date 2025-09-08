@@ -126,7 +126,7 @@ useEffect(()=>{
       <div>
         <div className="logo-wrapper logo-wrapper-center">
           <a href="/admin" data-bs-original-title="" title="">
-            <img className="img-fluid for-white full-logo" src="/images/admin-panel/logo/full-white.svg" alt="logo"></img>
+            <img className="img-fluid for-white full-logo" src="/images/admin-panel/logo/full-white.png" alt="logo"></img>
           </a>
           <div className="back-btn"
             onClick={() => {

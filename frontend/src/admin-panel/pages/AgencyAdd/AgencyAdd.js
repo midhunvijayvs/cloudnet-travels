@@ -515,7 +515,7 @@ const AgencyAdd = () => {
                       <div className="d-flex align-items-center justify-content-center my-2">
                         <button onClick={handleSubmit}
                           className="align-items-center btn save-button d-flex gap-2">
-                          <PlusSquare />Add User
+                          <PlusSquare />Submit
                         </button>
                       </div>
                     </div>

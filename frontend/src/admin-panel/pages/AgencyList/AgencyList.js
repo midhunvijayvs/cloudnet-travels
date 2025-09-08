@@ -126,9 +126,9 @@ const AgencyList = () => {
                     </h5>
                     <div className="d-inline-flex">
                       {localStorage.getItem('userRole') === 'admin' &&
-                        <button onClick={() => { navigate('/admin/users/add') }}
+                        <button onClick={() => { navigate('/admin/agency/create') }}
                           className="align-items-center m-0 btn save-button d-flex gap-2">
-                          <PlusSquare />Add New
+                          <PlusSquare />Add New Agency
                         </button>
                       }
                     </div>
