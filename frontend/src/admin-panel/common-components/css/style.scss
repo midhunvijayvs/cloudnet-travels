@@ -12282,7 +12282,11 @@ body[class*="dark-"] .main-white {
     .dataTables_wrapper .dataTables_paginate {
         margin-bottom: 20px
     }
-
+ .dataTables_wrapper .dataTables_filter .filter-tab{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
     .dataTables_wrapper .dataTables_filter label {
         margin: 0;
         display: -webkit-box;
@@ -12295,9 +12299,10 @@ body[class*="dark-"] .main-white {
     }
 
     .dataTables_wrapper .dataTables_filter input {
-        border: 1px dashed #ced4da;
+        border: 1px solid #ced4da;
         padding: 8px 38px 8px 10px;
-        margin-left: 0px
+        margin-left: 0px;
+        width:34rem
     }
 
     @media (max-width: 360px) {
