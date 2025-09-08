@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const BACKEND_URL='http://127.0.0.1:8000/';
-const BACKEND_URL='https://booking.cloudnettravels.com/';
+const BACKEND_URL='http://127.0.0.1:8000/';
+// const BACKEND_URL='https://booking.cloudnettravels.com/';
 const instance = axios.create({
   baseURL: BACKEND_URL,
   headers: {
@@ -20,7 +20,7 @@ instance.interceptors.request.use(
       //const authToken = Cookies.get('authToken');use this for more secure login. the token will be removed after page refresh
       const authToken = localStorage.getItem('accessToken')
       if (authToken) {
-        config.headers['Authorization'] = `${authToken}`;
+        config.headers['Authorization'] = `Bearer ${authToken}`;
       }
     }
 

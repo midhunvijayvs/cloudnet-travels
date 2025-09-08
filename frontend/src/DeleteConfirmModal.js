@@ -5,7 +5,7 @@ import FixedOverlayLoadingSpinner from "./FixedOverlayLoadingSpinner"
 import ErrorModal from "./ErrorModal";
 
 
-const DeleteConfirmModal = ({ resourceName, setterFunction, onDeleteFunction }) => {
+const DeleteConfirmModal = ({ resourceName, setterFunction, onDeleteFunction , extraMessage}) => {
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -26,6 +26,10 @@ const DeleteConfirmModal = ({ resourceName, setterFunction, onDeleteFunction }) 
                         <img src='/images/delete-popup-icon.svg'></img>
                         <h1>Delete</h1>
                         <p>Are you sure you want to Delete?</p>
+                        {extraMessage&&
+                        
+                        <p><br/>{extraMessage}</p>
+}
                         
                         <div className='footer'>
                         <button type='button' className='cancel-button' onClick={()=>{setterFunction(false)}}>Cancel</button>

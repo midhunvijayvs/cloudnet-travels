@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import API from '../../API';
 import ErrorModal from "../../ErrorModal";
 import FixedOverlayLoadingSpinner from "../../FixedOverlayLoadingSpinner"
-import MessagePopup from "./MessagePopup";
+import AuthMessagePopup from "./AuthMessagePopup";
 
 const View = () => {
 
@@ -55,7 +55,7 @@ const View = () => {
             <div className='auth-container mail-confirmed'>
 
                 {isActivated &&
-                    <MessagePopup
+                    <AuthMessagePopup
                         okClickedFunction={() => navigate('/login')}
                         pageName={"email-confirmed"}
                         titleWeb={"Yay! Your Email<br/>has been Verified!"}

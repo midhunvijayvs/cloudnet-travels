@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
-import MessagePopup from "./MessagePopup";
+import AuthMessagePopup from "./AuthMessagePopup";
 
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 
@@ -10,7 +10,7 @@ const View = () => {
 
     return (
         <>
-            <MessagePopup
+            <AuthMessagePopup
                 okClickedFunction={() => navigate('/login')}
                 pageName={"email-confirmation"}
                 titleWeb={"Verify your<br/>Email Address"}

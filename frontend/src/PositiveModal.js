@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal } from "react-bootstrap";
 
-const PositiveModal = ({ message,title, state, setterFunction, okClickedFunction  }) => {
+const PositiveModal = ({title, message, state, setterFunction, okClickedFunction  }) => {
 
   
 const okClicked=()=>{

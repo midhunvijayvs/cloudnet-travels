@@ -30,22 +30,28 @@ export default function LeftNavbar({ isLoggedIn }) {
   };
 
 
-  const loadData = () => {
-    if (isLoggedIn) {
-      API.get(`/user/frontend-categories/`)
-        .then(response => {
-          const responseNavList = response.data
-          setNavList(responseNavList);
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    } else {
-      setNavList([])
-    }
+  // const loadData = () => {
+  //   if (isLoggedIn) {
+  //     API.get(`/user/frontend-categories/`)
+  //       .then(response => {
+  //         const responseNavList = response.data
+  //         setNavList(responseNavList);
+  //       })
+  //       .catch(error => {
+  //         console.error(error);
+  //       });
+  //   } else {
+  //     setNavList([])
+  //   }
 
-  }
+  // }
+const loadData=()=>{
+  setNavList([
+    {label:"Bookings",items:[{id:1,label:"Booking list",frontend_url:"/admin/booking/list"}]},
+  {label:"Agencies",items:[{label:"Agency List",frontend_url:"/admin/agency/list"},{label:"Create New Agency",frontend_url:"/admin/agency/create"}]},
 
+])
+}
   useEffect(() => {
     loadData();
   }, [isLoggedIn])

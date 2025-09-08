@@ -15,7 +15,7 @@ import ReCAPTCHA from 'react-google-recaptcha'
 
 import './Authentication.scss'
 import AuthBanner from "./AuthBanner";
-import MessagePopup from "./MessagePopup";
+import AuthMessagePopup from "./AuthMessagePopup";
 import PhoneInputField from "./CustomPhone/CustomPhoneInput";
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 
@@ -437,16 +437,16 @@ const View = () => {
 
           <div className=' form-row'>
             <label className='lightgrey-clr f-xxs text-start  '>PHONE NUMBER</label>
-              <div className={`phone-input-container ${errors.phonenumber ? "is-invalid" : ""}`}>
+              <div className={`phone-input-container ${errors.phone_number ? "is-invalid" : ""}`}>
                   <PhoneInput
                     inputProps={{
-                      name: 'phonenumber',
-                      id: 'phonenumber',
+                      name: 'phone_number',
+                      id: 'phone_number',
                       className: 'form-control',
                       placeholder: '',
                     }}
                     country={'gb'} 
-                    value={formData.phonenumber}
+                    value={formData.phone_number}
                     onChange={(value, country) => handlePhoneChange(value, country)}
                   />
                   <div className='down-arrow'>

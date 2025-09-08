@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import API from '../../API';
 import AuthBanner from "./AuthBanner";
-import MessagePopup from "./MessagePopup";
+import AuthMessagePopup from "./AuthMessagePopup";
 
 
 <script src="https://accounts.google.com/gsi/client" async defer></script>
@@ -101,7 +101,7 @@ const View = () => {
         </div>
 
         {isMessageModalOpen &&
-            <MessagePopup
+            <AuthMessagePopup
                 timeout={5000}
                 setterFunction={setIsMessageModalOpen}
                 okClickedFunction={()=> navigate('/login')}

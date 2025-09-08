@@ -4,24 +4,35 @@ import './Authentication.scss';
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import $ from 'jquery';
+// import { GoogleLogin } from '@react-oauth/google';
+import FixedOverlayLoadingSpinner from "../../FixedOverlayLoadingSpinner"
+
+import API from '../../API';
 
 import { useContext } from 'react';
 import { UserContext } from './UserContext';
 
 import ErrorModal from "../../ErrorModal";
 import AuthBanner from './AuthBanner';
+import ReCAPTCHA from 'react-google-recaptcha'
 
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 
 
 
 
 const Login = () => {
+  const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 
-  const { login, isOTPInputShown, setRedirectUrl } = useContext(UserContext);
+  const navigate = useNavigate();
+  const { login, isOTPInputShown, showOTPInput, otpTimer, otpTimeout, setRedirectUrl } = useContext(UserContext);
+  const [recaptchaToken, setRecaptchaToken] = useState(null);
 
 
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
   const [message, setMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const recaptchaRef = useRef(null);
 
   useEffect(() => {
     $(function () {
@@ -31,9 +42,10 @@ const Login = () => {
 
 
   const [formData, setFormData] = useState({
-    username: "",
+    username_or_email_or_phone: "",
     password: "",
-    recaptchaToken: ""
+    recaptchaToken: "",
+    otp_channel:'email'
   });
 
   const [passwordShown, showPassword] = useState(false);
@@ -41,6 +53,7 @@ const Login = () => {
 
   const [errors, setErrors] = useState({});
 
+  const [OTP, setOTP] = useState([null, null, null, null, null, null])
 
 
   const handleChange = (e) => {
@@ -52,38 +65,150 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!isOTPInputShown) {  // for login button
       // Validate the form fields
       const validationErrors = validateForm(formData);
       setErrors(validationErrors);
-    
+      // console.log(formData);
+      // return;
       if (Object.keys(validationErrors).length === 0) {
 
         login(formData); // Call the login function from UserContext
 
       }
+    }
+    else {   //for OTP SUBMIT BUTTON.
+      if (OTP[0] && OTP[1] && OTP[2] && OTP[3] && OTP[4] && OTP[5]) {
+        setErrors({})
+        login(
+
+          {
+            "user_id": window.localStorage.getItem("userID"),
+            "otp": `${OTP[0]}${OTP[1]}${OTP[2]}${OTP[3]}${OTP[4]}${OTP[5]}`,
+            "otp_type":'email'
+          }
+        )
+      }
+      else {
+        setErrors({ otp: "Please enter 6 digits" })
+      }
+    }
+
   };
 
   const validateForm = (data) => {
-    const errors = {};
+  const errors = {};
+  const value = data.username_or_email_or_phone?.trim();
 
-    if (!data.username.trim()) {
-      errors.username = "username or email is required.";
+  if (!value) {
+    errors.username_or_email_or_phone = "Username, email, or phone number is required.";
+  } else {
+    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    const isUsername = /^[a-zA-Z][a-zA-Z0-9]*$/.test(value) && !/^\d+$/.test(value);
+    const isIndianPhone = /^[6-9]\d{9}$/.test(value);
+
+    if (!isEmail && !isUsername && !isIndianPhone) {
+      errors.username_or_email_or_phone = "Invalid identifier. it should be either an email, or a 10  digit phone number or a username starting with a letter with no special character and not full of numbers";
     }
-    // else if (!/^[a-zA-Z][a-zA-Z0-9]*$/.test(data.username)) {
-    //   errors.general = "Invalid username or password" //Username must start with a letter and can only contain letters and numbers. Error details are not showing to user because security reason
-    // }
-    // else if (/^\d+$/.test(data.username)) {
-    //   errors.general = "Invalid username or password" //username or email cannot be full of numbers.  Error details are not showing to user because security reason
-    // }
+  }
 
-    if (!data.password.trim()) {
-      errors.password = "Password is required.";
+  if (!data.password?.trim()) {
+    errors.password = "Password is required.";
+  }
+
+  return errors;
+};
+
+
+
+  const handleOTPInputChange = (e, currentIndex) => {
+    let inputValue = e.target.value.replace(/[^0-9]/g, ""); // Allow only numbers
+
+    if (inputValue.length > 1) {
+      inputValue = inputValue.charAt(inputValue.length - 1); // Keep only the last digit entered
     }
 
-    return errors;
+    let temp = [...OTP];
+    temp[currentIndex] = inputValue;
+    setOTP(temp);
+
+    // Move to the next input field if a digit is entered
+    if (inputValue && currentIndex < 5) {
+      document.getElementById(`otp${currentIndex + 1}`).focus();
+    }
+  };
+
+  const handleKeyDown = (e, currentIndex) => {
+    if (e.key === "Backspace") {
+      let temp = [...OTP];
+
+      // If current field is not empty, just clear it and keep focus
+      if (temp[currentIndex]) {
+        temp[currentIndex] = "";
+        setOTP(temp);
+      }
+      // If current field is empty, move focus to the previous field
+      else if (currentIndex > 0) {
+        temp[currentIndex - 1] = ""; // Clear the previous field
+        setOTP(temp);
+        document.getElementById(`otp${currentIndex - 1}`).focus();
+      }
+    }
   };
 
 
+
+
+  const onGoogleLoginSuccess = (response) => {
+    console.log(response.credential);
+
+    API.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${response.credential}`, {
+      headers: {
+        Authorization: `Bearer ${response.credential}`,
+        Accept: 'application/json'
+      }
+    })
+      .then((res) => {
+        console.log("google user basic details", res.data);
+      })
+      .catch((err) => console.log("error ongoogle user basic details", err));
+
+  };
+  const onGoogleLoginError = (error) => {
+    console.log(error);
+  };
+
+  const handleSocialSignIn = (provider) => {
+    setIsLoading(true);
+    API.get(`/social_auth/${provider}/redirect`)
+      .then(response => {
+        setIsLoading(false);
+        // window.open(response.data.redirect_url, "authPopup", 'width=600,height=600');
+        window.location.href = response.data.redirect_url;
+
+      })
+      .catch(error => {
+        setIsLoading(false);
+        setMessage(error.response?.data?.message || error.message);
+        setIsErrorModalOpen(true);
+      });
+  };
+
+
+  const onCaptchaChange = (token) => {
+    setFormData({
+      ...formData,
+      recaptchaToken: token
+    });
+    setRecaptchaToken(token);
+  }
+
+  const reloadCaptcha = () => {
+    if (recaptchaRef.current) {
+      recaptchaRef.current.reset();
+    }
+  };
 
 
   return (
@@ -100,31 +225,31 @@ const Login = () => {
         buttonOnClick='/authentication-privacy-policy'
         iconTopWeb={'50%'}
         iconLeftWeb={'48%'}
-        iconTopTab={'25%'}
-        iconLeftTab={'64%'}
-        iconTopMob={'21%'}
+        iconTopTab={'22%'}
+        iconLeftTab={'65%'}
+        iconTopMob={'11%'}
         iconLeftMob={'50%'}
         iconRotationWeb={28}
         iconRotationTab={-39}
         iconRotationMob={-42}
       />
       <div className='card'>
-      <div className='f-xl black-clr mb-2 '><b className='title'>{(localStorage.getItem("userRoleRequest") === "admin") && "Admin: "} Login to your account</b></div>
+        <div className='f-xl black-clr mb-2 '><b className='title'>{(localStorage.getItem("userRoleRequest") === "admin") && "Admin: "} Login to your account</b></div>
         <div className='under-line'></div>
-        <form onSubmit={handleSubmit} noValidate>
+        <form  noValidate>
           <div className=' form-row'>
-            <label className='lightgrey-clr user-name text-start'>USERNAME</label>
+            <label className='lightgrey-clr user-name text-start'>USERNAME OR EMAIL</label>
             <div><input
               type="text"
-              id="username"
-              name="username"
-              className={`form-control ${errors.username ? "is-invalid" : ""}`}
-              value={formData.username}
+              id="username_or_email_or_phone"
+              name="username_or_email_or_phone"
+              className={`form-control ${errors.username_or_email_or_phone ? "is-invalid" : ""}`}
+              value={formData.username_or_email_or_phone}
               onChange={handleChange}
               placeholder='Username'
               disabled={isOTPInputShown}
             ></input>
-              {errors.username && <div className="invalid-feedback">{errors.username}</div>}
+              {errors.username_or_email_or_phone && <div className="invalid-feedback">{errors.username_or_email_or_phone}</div>}
 
             </div>
           </div>
@@ -176,18 +301,57 @@ const Login = () => {
 
 
           </div>
-         
+          {/* ReCaptcha
+          <div className='recaptcha-container'>
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              sitekey={RECAPTCHA_SITE_KEY}
+              onChange={onCaptchaChange}
+            />
+          </div> */}
 
-      
-            <button className="btn-auth-dark">LOG IN </button>
-        
-                           
+          <div className='password form-row'>
+            <Link to="/forgot-password" className='black-clr  f-xs forgetpass-anc'>Forgot your password?</Link>
+          </div>
+
+          {!isOTPInputShown &&
+            <button className="btn-auth-light" type='button' onClick={handleSubmit}>LOG IN </button>
+          }
+          {isOTPInputShown && (
+            <div className='otp-form'>
+              <label htmlFor="otp" className="form-label mb-0">
+                OTP
+              </label>
+
+              <div className="otp-box d-flex gap-sm-3 gap-2">
+                {[0, 1, 2, 3, 4, 5].map((index) => (
+                  <div className="form-input mb-0" key={index}>
+                    <input
+                      type="text"
+                      inputMode="numeric"
+                      pattern="[0-9]"
+                      maxLength="1"
+                      className="form-control"
+                      id={`otp${index}`}
+                      name={`otp${index}`}
+                      value={OTP[index] || ""}
+                      onChange={(e) => handleOTPInputChange(e, index)}
+                      onKeyDown={(e) => handleKeyDown(e, index)}
+                    />
+                  </div>
+                ))}
+              </div>
+              {errors.otp && <div className="text-danger">{errors.otp}</div>}
+              {otpTimeout ? <p className="otp-timer mt-2 expired">OTP expired! <span className="resend" onClick={() => showOTPInput(false)}>Resend OTP</span></p> : <div className="otp-timer mt-2">OTP will expire within {Math.floor(otpTimer / 60)}:{(otpTimer % 60) < 10 && "0"}{(otpTimer % 60)} min.</div>}
+              <button className="btn-auth-light" type='button' onClick={handleSubmit}>SUBMIT OTP</button>
+            </div>
+          )}
 
           <div>
 
           </div>
         </form>
-        
+
 
       </div>
       <ErrorModal message={message} state={isErrorModalOpen} setterFunction={setIsErrorModalOpen} okClickedFunction={() => { window.location.reload() }} />

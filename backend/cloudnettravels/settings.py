@@ -11,10 +11,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-import dj_database_url
 import os
 
 from dotenv import load_dotenv
+from datetime import timedelta
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +28,17 @@ SECRET_KEY = 'django-insecure-!u07zb1^*7*($t=1o*j158@gegp#g#@vusk%8g5&+ge#b&v4a*
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+ENVIRONMENT = os.getenv('ENVIRONMENT')
 
+SEND_EMAIL=False #ENABLE SENDING EMAIL. IF FALSE ALL APIS WITH EMAIL FUCTIONALITY WILL GIVE OTP TOKEN ETC IN THE RESPONSE SKIPPING A TUAL MAIL SENDING BLOCKS
+SEND_SMS=False #SAME AS FOR SEND_EMAIL
+ENABLE_RECAPTCHA=False #IF RECAPTA CHECK NEEDED IN  ALL THE RELEVENT APIS LIKE LOGIN, SIGNUP ETC.
+OTP_EXPIRY_TIME_IN_MINUTES=5
+if(ENVIRONMENT=="PRODUCTION"):
+    FRONTEND_DOMAIN='https://cloudnettravels.com'
+else:
+    FRONTEND_DOMAIN='http://localhost:3000'
+    
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
@@ -54,8 +64,10 @@ INSTALLED_APPS = [
     'rest_framework',
     "cloudnettravels",
      "omairiq_proxy",
+     'users',
      'corsheaders',
       'django_filters',
+         'agency',
 ]
 
 MIDDLEWARE = [
@@ -130,33 +142,30 @@ ASGI_APPLICATION = 'asgi:application'
 # Database
 
 
-#loal db settings
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'soulcast-primary-database',  # Local DB name
-        'USER': 'soulcast_django', # Local DB user
-        'PASSWORD': 'gPKBhIDSKbHB6zJMGCQG',
-        'HOST': 'soulcast-primary-db-server.czak2s426igy.ap-south-1.rds.amazonaws.com',    
-        'PORT': '5432',          # Default PostgreSQL port
+if ENVIRONMENT == "production":
+#production db settings
+
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.getenv("POSTGRES_DB"),
+            "USER": os.getenv("POSTGRES_USER"),
+            "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+            "HOST": os.getenv("POSTGRES_HOST"),
+            "PORT": os.getenv("POSTGRES_PORT"),
+        }
     }
-}
 
-# production db settings
-#actual values for the below database are set at render.com environmental variables. it will be taken from there automatically.
-# if os.getenv("DJANGO_PRODUCTION"):
-    # DATABASES = {
-    # 'default': dj_database_url.config(
-    #     default=os.getenv(
-    #         'DATABASE_URL',
-    #         'postgresql://postgres:postgres@localhost:5432/soulcast_django_backend'
-    #     ),
-    #     conn_max_age=600,
-    # )
-    # }
+else:  # local (default sqlite3)
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 
-#local postgress port no 5432, superuser usr:postgres , superuser psw : my public password
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -204,8 +213,28 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+AUTH_USER_MODEL = "users.CustomUser"
 
+
+#sendgrid config
+DEFAULT_FROM_EMAIL="noreply@medinabaqala.com"
 # Fetch PhonePe config
+
+
+
+#auth token settings
+SIMPLE_JWT = {
+    'ALGORITHM': 'HS256',  # You can use other algorithms like 'RS256' for RSA, etc.
+    
+    # Token expiration settings
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),   # ⏳ 5 minutes
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),     # ⏳ 1 day
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "UPDATE_LAST_LOGIN": True,
+}
+
+
 
 PHONEPE_BASE_URL = os.getenv('PHONEPE_BASE_URL')
 PHONEPE_AUTHORISATION_BASE_URL = os.getenv('PHONEPE_AUTHORISATION_BASE_URL')
@@ -217,3 +246,8 @@ PHONEPE_SALT_KEY=os.getenv('PHONEPE_SALT_KEY')
 PHONEPE_SALT_INDEX=os.getenv('PHONEPE_SALT_INDEX')
 
 OMAIRIQ_API_KEY=os.getenv('OMAIRIQ_API_KEY')
+SENDGRID_API_KEY=os.getenv('SENDGRID_API_KEY')
+
+TWILIO_ACCOUNT_SID=os.getenv('TWILIO_ACCOUNT_SID')
+TWILIO_AUTH_TOKEN=os.getenv('TWILIO_AUTH_TOKEN')
+TWILIO_PHONE_NUMBER=os.getenv('TWILIO_PHONE_NUMBER')

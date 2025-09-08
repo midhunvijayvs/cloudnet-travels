@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import MessagePopup from "./MessagePopup";
+import AuthMessagePopup from "./AuthMessagePopup";
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 
 const View = () => {
@@ -19,7 +19,7 @@ const View = () => {
 
     return (
         <>
-            <MessagePopup
+            <AuthMessagePopup
                 okClickedFunction={() => navigate('/login')}
                 pageName={"password-changed"}
                 titleWeb={"Your Password has been<br/>Reset Successfully !!!"}

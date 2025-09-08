@@ -88,7 +88,7 @@ const View = () => {
 
         if (Object.keys(validationErrors).length === 0) {
             setIsLoading(true)
-            API.put(`/user/password-reset/confirm/${pswdResetTocken}/`, { password: $("#password").val() })
+            API.put(`/api/user/password-reset/confirm/${pswdResetTocken}/`, { password: $("#password").val() })
                 .then(response =>{
                     navigate("/password-changed");
                   

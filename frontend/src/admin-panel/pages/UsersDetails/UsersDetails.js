@@ -35,7 +35,7 @@ const UsersDetails = () => {
   }, [])
 
   const loadData = () => {
-    let apiUrl = `/user/users/${localStorage.getItem('itemSelectedId')}`;
+    let apiUrl = `/api/user/${localStorage.getItem('itemSelectedId')}`;
     setIsLoading(true)
     API.get(apiUrl)
       .then(response => {
@@ -89,7 +89,7 @@ const UsersDetails = () => {
             <div className="container-fluid">
               <div className="row">
                 <div className="col-sm-12">
-                  {localStorage.getItem('userRole') !== 'restaurant' &&
+                  
                     <div className="card basic">
                       <div className="card-body">
                         <div className='sec-1'>
@@ -111,6 +111,8 @@ const UsersDetails = () => {
                                 <div className='f-13 fw-500 clr-898989'>Email</div>
                                 <div className='f-14 fw-500 '>{data.email}</div>
                               </div>
+
+                              
                               {data.phone_number &&
                                 <div className='ms-4 d-flex flex-column justify-content-end'>
                                   <div className='f-13 clr-898989 fw-500 text-end'>Phone</div>
@@ -189,7 +191,7 @@ const UsersDetails = () => {
 
                       </div>
                     </div>
-                  }
+            
 
                   {/* Orders */}
                   {data.user_type === 'user' &&
