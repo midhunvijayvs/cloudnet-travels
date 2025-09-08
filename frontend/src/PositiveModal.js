@@ -16,7 +16,7 @@ const okClicked=()=>{
                     <div className='first-screen'>
                         {/* <img src='/images/positive-popup-icon.svg'></img> */}
                         <h1>{title?title:"Success!"}</h1>
-                        <p>{message?message:"Changes Saved Successfully"}</p>
+                        <p  style={{ whiteSpace: "pre-wrap" }}>{message?message:"Changes Saved Successfully"}</p>
                         
                         <div className='footer single-button-footer'>
                         

@@ -105,7 +105,7 @@ const AgencyAdd = () => {
             notes:""
 
           })
-          setMessage('User created successfully.');
+          setMessage(`User created successfully.\n Agency ID: ${reset_url} \n User Name: ${reset_url} \n Email: ${reset_url}  \n Click this url to reset your password: ${reset_url}`);
           setIsMessageModalOpen(true);
 
         })
