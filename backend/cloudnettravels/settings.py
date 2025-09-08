@@ -15,10 +15,14 @@ import os
 
 from dotenv import load_dotenv
 from datetime import timedelta
-load_dotenv()
+
+
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -34,7 +38,7 @@ SEND_EMAIL=False #ENABLE SENDING EMAIL. IF FALSE ALL APIS WITH EMAIL FUCTIONALIT
 SEND_SMS=False #SAME AS FOR SEND_EMAIL
 ENABLE_RECAPTCHA=False #IF RECAPTA CHECK NEEDED IN  ALL THE RELEVENT APIS LIKE LOGIN, SIGNUP ETC.
 OTP_EXPIRY_TIME_IN_MINUTES=5
-if(ENVIRONMENT=="PRODUCTION"):
+if(ENVIRONMENT=="production"):
     FRONTEND_DOMAIN='https://cloudnettravels.com'
 else:
     FRONTEND_DOMAIN='http://localhost:3000'
