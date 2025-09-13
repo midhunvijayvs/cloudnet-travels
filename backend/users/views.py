@@ -4,7 +4,14 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import CustomUser
 from .serializers import UserSerializer
+from agency.serializers import UserWithAgencySerializer
+from .serializers import PasswordResetSerializer
+from .serializers import PasswordResetConfirmSerializer# to register a user from admin side
+
+
+
 from .models import OTP
+from users.models import PasswordResetToken
 
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -13,9 +20,7 @@ from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.pagination import PageNumberPagination
-from .serializers import PasswordResetSerializer
-from users.models import PasswordResetToken
-from .serializers import PasswordResetConfirmSerializer# to register a user from admin side
+
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
@@ -27,9 +32,10 @@ from sendgrid.helpers.mail import Mail
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
 
-from .mailgunEmailAndSMSSendingFunctions import send_login_otp_via_email
+from .mailgunEmailAndSMSSendingFunctions import send_login_otp_via_email, send_password_reset_email
 from .sendgridEmailAndSMSSendingFunctions import send_login_otp_via_sms
 from .customPermissions import IsAdminOrStaff
+from .customPermissions import IsAgencyUser
 
 from .general_functions import checkPaswwordReset
 import uuid
@@ -95,12 +101,12 @@ class LoginView(APIView):
             try:
                 user = CustomUser.objects.get(phone_number=username_or_email_or_phone)
                 if not user.check_password(password):
-                    return Response({'error': 'Invalid password'}, status=status.HTTP_401_UNAUTHORIZED)
+                    return Response({'message': 'Invalid password'}, status=status.HTTP_401_UNAUTHORIZED)
             except CustomUser.DoesNotExist:
-                return Response({'error': 'User does not Exist'}, status=status.HTTP_401_UNAUTHORIZED)
+                return Response({'message': 'User does not Exist'}, status=status.HTTP_401_UNAUTHORIZED)
 
         if not user.is_active:
-            return Response({'error': 'Account not active'}, status=status.HTTP_403_FORBIDDEN)
+            return Response({'message': 'Account not active'}, status=status.HTTP_403_FORBIDDEN)
 
         
         if not( user.verified or user.is_superuser):
@@ -254,30 +260,35 @@ class PasswordResetView(generics.CreateAPIView):
             token = str(uuid.uuid4())
             PasswordResetToken.objects.create(user=user, token=token)
 
-            # Send the password reset email using SendGrid
-            template_id = 'd-3d6cc8174a374eecb9d9fca5ed06cf22' 
-            # Replace with your SendGrid template ID
-            template_data = {
-                'reset_url': f'{settings.FRONTEND_DOMAIN}/password-reset/confirm/{token}/',
+            #preparing data
+           
+            reset_url = f'{settings.FRONTEND_DOMAIN}/reset-password/?token={token}'
+            
+            if settings.SEND_EMAIL:
+                email_response=send_password_reset_email(
+                    first_name=first_name,
+                    last_name=last_name,
+                    username=username,
+                    email=email,
+                    reset_url=reset_url
+                )
+                if email_response['status'] == 'failed':
+                        return Response(email_response, status=500)
+                # Send the password reset email using SendGrid
+            response_data = {
+            "message": "password reset mail sent successfully!, please check your email.",
             }
 
-            message = Mail(
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                to_emails=email,
-            )
-            message.dynamic_template_data = template_data
-            message.template_id = template_id
+            
 
-            try:
-                sg = SendGridAPIClient(settings.SENDGRID_API_KEY)  # Initialize the SendGrid client
-                response = sg.send(message)  # Send the email
-                print(response.status_code)
-            except Exception as e:
-                print(e)  # Handle the error properly in your application
+            # Add reset_url only if not sending either email or sms
+            if not settings.SEND_EMAIL or not settings.SEND_SMS:
+                response_data['reset_url'] = reset_url
 
-            return Response({'detail': 'Password reset email sent.'}, status=status.HTTP_200_OK)
-        
-                            
+
+
+            return Response(response_data, status=status.HTTP_201_CREATED)
+                
 
 
 class PasswordResetConfirmView(generics.UpdateAPIView):
@@ -445,6 +456,40 @@ class VerifyPhoneView(APIView):
             'refresh_token': refresh_token,
             'refresh_token_expiry': refresh_exp
         }, status=status.HTTP_200_OK)
+
+
+
+    
+ 
+# This is general api for all(both admin and normal) users. Key Features of the below UserDetailsView:
+
+#     get_serializer_class dynamically picks the right serializer based on user_type.
+
+#     No permission_classes → because you’re allowing all authenticated users.
+
+#     No pk → always fetches the requesting user (/api/user/me/).
+
+
+class UserDetailsView(generics.RetrieveAPIView):
+    
+    authentication_classes = [JWTAuthentication]
+
+    def get_serializer_class(self):
+        user = self.request.user #identifying the user through jwt token
+        if user.user_type == "agency":
+            return UserWithAgencySerializer
+        elif user.user_type in ["admin", "staff"]:
+            return UserSerializer
+        # fallback (optional, if you have more user types later)
+        return UserSerializer  
+
+    def get_object(self):
+        # Always return the authenticated user
+        return self.request.user
+
+
+
+
 
 #used generic instead of APIView because it is fully automatic in error handling. recomended by chatgpt
 class UserDeletionView(generics.DestroyAPIView):

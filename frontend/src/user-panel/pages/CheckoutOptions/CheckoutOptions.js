@@ -15,7 +15,6 @@ import './CheckoutOptions.scss'
 import DatePicker from "react-datepicker";
 import { format } from "date-fns";
 import ProcessFlowIllustrationForCheckout from '../../common-components/ProcessFlowIllustrationForCheckout/ProcessFlowIllustrationForCheckout.js'
-import MiniBanner from '../../common-components/MiniBanner/MiniBanner.js'
 
 const CheckoutOptions = ({ userData, loadUserData }) => {
   const navigate = useNavigate();
@@ -321,7 +320,6 @@ const CheckoutOptions = ({ userData, loadUserData }) => {
     <div className='checkout-options-page'>
 
 
-      <MiniBanner title="Checkout Options" breadcrumb={[{ name: "Home", link: "/" }, { name: "Checkout Options", link:"/" }]}></MiniBanner>
 
       <section className="sec-2">
 

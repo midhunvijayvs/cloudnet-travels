@@ -1,4 +1,4 @@
-
+.user-layout{
 
 .scroll-to-top{
 height: 2.036rem;
@@ -16,16 +16,20 @@ z-index: 99;
    scroll-behavior: smooth;
    padding-top: 6.1rem;
 }
-
+}
 
 @media (max-width:1028px){
+.user-layout{
    .app-content{
       padding-top: 0rem;
 }
 }
+}
 @media (max-width:768px){
+.user-layout{
    .scroll-to-top{
       height: 4rem;
       width: 4rem;
+}
 }
 }

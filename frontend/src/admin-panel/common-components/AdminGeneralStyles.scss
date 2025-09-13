@@ -1,0 +1,40 @@
+.admin-layout{
+
+ .page-title {
+            font-size: 1.25rem;
+            margin-bottom: .5rem;
+            font-weight: 500;
+            line-height: 1.2;
+            color: var(--black);
+            margin-bottom: 1rem;
+        }
+ .sub-title {
+            font-size: 1rem;
+            margin-bottom: .5rem;
+            font-weight: 500;
+            line-height: 1.2;
+            color: var(--black);
+            margin-bottom: 1rem;
+        }
+
+.btn-primary{
+background-color: var(--primary-color);
+  color: var(--white);
+  text-align: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  line-height: 1;
+  transition: all 1s ease;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: 0;
+  display:flex;
+align-items:center;
+margin: 0;
+gap: 2; 
+}
+
+
+}

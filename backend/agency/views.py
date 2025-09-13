@@ -1,23 +1,28 @@
 from django.shortcuts import render
 from rest_framework import generics
-from users.serializers import UserSerializer
-from .serializers import AgencyUserSerializer
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from users.customPermissions import IsAdminOrStaff
-from .general_functions import StandardResultsSetPagination
+from users.customPermissions import IsAgencyUser
+from .general_functions import CustomPagination
 from users.models import CustomUser
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import AgencySerializer
 from django.db import transaction
 import uuid
 from users.models import PasswordResetToken
+from .models import WalletTransaction
 from django.conf import settings
 from .mailgunEmailAndSMSSendingFunctions import send_welcome_email_for_admin_created_agency
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
+from rest_framework.views import APIView
+from users.serializers import UserSerializer
+from .serializers import UserWithAgencySerializer
+from .serializers import AgencySerializer
+from .serializers import WalletTransactionSerializer
+from decimal import Decimal
 
 
 class AgencyRegistrationFromAdminSideView(generics.CreateAPIView):
@@ -65,7 +70,7 @@ class AgencyRegistrationFromAdminSideView(generics.CreateAPIView):
         email = new_user.email
         username = new_user.username
         user_id = new_user.id
-        reset_url = f'{settings.FRONTEND_DOMAIN}/password-reset/confirm/{token}/'
+        reset_url = f'{settings.FRONTEND_DOMAIN}/reset-password/?token={token}'
         
         if settings.SEND_EMAIL:
             email_response=send_welcome_email_for_admin_created_agency(
@@ -94,10 +99,10 @@ class AgencyRegistrationFromAdminSideView(generics.CreateAPIView):
 
 
 class AgencyListView(generics.ListAPIView):
-    serializer_class = AgencyUserSerializer
+    serializer_class = UserWithAgencySerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAdminOrStaff]
-    pagination_class = StandardResultsSetPagination
+    pagination_class = CustomPagination
 
     def get_queryset(self):
         queryset = CustomUser.objects.filter(user_type="agency").order_by("-id")
@@ -127,8 +132,8 @@ class AgencyListView(generics.ListAPIView):
     
     
     
-class AgencyDetailView(generics.RetrieveAPIView):
-    serializer_class = AgencyUserSerializer
+class AgencyDetailForAdminView(generics.RetrieveAPIView):
+    serializer_class = UserWithAgencySerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAdminOrStaff]
 
@@ -140,3 +145,75 @@ class AgencyDetailView(generics.RetrieveAPIView):
         # Get agency by user_id passed in the URL
         user_id = self.kwargs.get("pk")  
         return get_object_or_404(self.get_queryset(), pk=user_id)
+    
+    
+    #APIView is used as it is customized business logic. Not just automated data writing/fetching.
+
+
+class AddMoneyToWalletView(APIView):
+    permission_classes = [IsAgencyUser]
+    authentication_classes = [JWTAuthentication]
+
+    def post(self, request):
+        try:
+            amount = request.data.get("wallet_balance")
+            payment_method = request.data.get("payment_method", "phonepe")
+            gateway_ref = request.data.get("gateway_transaction_reference_number", "")
+            description = request.data.get("description", "Wallet top-up")
+
+            if not amount or not str(amount).isdigit():
+                return Response({"message": "Invalid amount"}, status=status.HTTP_400_BAD_REQUEST)
+
+            amount = Decimal(amount)
+
+            agency = request.user.agency  # ensure User → Agency relation exists
+
+            with transaction.atomic():
+                opening_balance = agency.wallet_balance
+                closing_balance = opening_balance + amount
+
+                # Update balance
+                agency.wallet_balance = closing_balance
+                agency.save()
+
+                # Save transaction
+                WalletTransaction.objects.create(
+                    agency=agency,
+                    transaction_amount=amount,
+                    opening_balance=opening_balance,
+                    closing_balance=closing_balance,
+                    payment_method=payment_method,
+                    gateway_transaction_reference_number=gateway_ref,
+                    description=description,
+                )
+
+            return Response(
+                {
+                    "message": "Money added successfully",
+                    "wallet_balance": agency.wallet_balance,
+                },
+                status=status.HTTP_200_OK,
+            )
+
+        except Exception as e:
+            return Response({"message": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+        
+        
+        
+        
+class WalletTransactionListView(APIView):
+    permission_classes = [IsAgencyUser]
+    authentication_classes = [JWTAuthentication]
+
+    def get(self, request):
+        agency = request.user.agency
+        transactions = WalletTransaction.objects.filter(agency=agency).order_by("-created_at")
+
+        # Apply pagination
+        paginator = CustomPagination()
+        result_page = paginator.paginate_queryset(transactions, request)
+
+        serializer = WalletTransactionSerializer(result_page, many=True)
+
+        return paginator.get_paginated_response(serializer.data)

@@ -8,7 +8,6 @@ import { convertTimeString12Hour, convertTo12HourTime, formatTimeFromMinutes } f
 import './CheckoutConfirm.scss'
 import API from '../../../API';
 import ProcessFlowIllustrationForCheckout from '../../common-components/ProcessFlowIllustrationForCheckout/ProcessFlowIllustrationForCheckout.js'
-import MiniBanner from '../../common-components/MiniBanner/MiniBanner.js'
 
 
 
@@ -66,7 +65,6 @@ const merchantOrderId=localStorage.getItem('merchantOrderId')
 
   return (
     <div className='checkout-confirm-page'>
-      <MiniBanner title="Order Corfirmed" breadcrumb={[{ name: "Home", link: "/" }, { name: "Booking Confirmed", link: "/" }]}></MiniBanner>
 
       <section className="sec-2">
 

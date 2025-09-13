@@ -233,16 +233,18 @@ const CustomersView = () => {
                                     <div className='w-60 card'>
                                         <div className="card-body">
                                             <div className='box-shadow radius-7 p-4'>
-                                                <div className='fw-600 f-sm mt-3 black-clr'>Orders</div>
+                                                <div className='fw-600 f-sm mt-3 black-clr'>Booking History</div>
                                                 <div className='fw-500 f-xs my-3 black-clr'><span className='me-2'>Total Spent</span><span><i className="fa-solid fa-dollar-sign"></i></span><span className='me-1'>{data.orders?.grand_total}</span><span className='me-1'>on</span><span className='me-1'>{data.orders?.count}</span><span>orders</span></div>
                                                 <div className='region-table mt-3' style={isOrderListFullyOpened ? { height: "600px" } : { height: "unset" }}>
                                                     <table className="rwd-table mb-2 w-100">
                                                         <tbody>
                                                             <tr>
-                                                                <th className='f-12'>ORDER</th>
+                                                                <th className='f-12'>BOOKING ID</th>
                                                                 <th className='f-12'>DATE</th>
                                                                 <th className='f-12'>STATUS</th>
-                                                                <th className='f-12'>ITEMS</th>
+                                                                <th className='f-12'>PAX</th>
+                                                                <th className='f-12'>FROM</th>
+                                                                <th className='f-12'>TO</th>
                                                                 <th className='f-12'>AMOUNT</th>
                                                             </tr>
                                                             {data.orders?.results.map((item, index) => {
@@ -257,6 +259,12 @@ const CustomersView = () => {
                                                                         </td>
                                                                         <td data-th="Invoice Number">
                                                                             {item.delivery_status == 0 ? "Canceled" : item.delivery_status == 1 ? "Processing" : item.delivery_status == 2 ? "On the Way" : item.delivery_status == 3 ? "Out to Deliver" : item.delivery_status == 4 ? "Delivered" : "Returned"}
+                                                                        </td>
+                                                                        <td data-th="Invoice Date">
+                                                                            {item.order_item_count}
+                                                                        </td>
+                                                                        <td data-th="Invoice Date">
+                                                                            {item.order_item_count}
                                                                         </td>
                                                                         <td data-th="Invoice Date">
                                                                             {item.order_item_count}

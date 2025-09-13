@@ -72,6 +72,7 @@ INSTALLED_APPS = [
      'corsheaders',
       'django_filters',
          'agency',
+    'phonepe_payment',
 ]
 
 MIDDLEWARE = [
@@ -249,7 +250,10 @@ PHONEPE_CLIENT_VERSION = os.getenv('PHONEPE_CLIENT_VERSION')
 PHONEPE_SALT_KEY=os.getenv('PHONEPE_SALT_KEY')
 PHONEPE_SALT_INDEX=os.getenv('PHONEPE_SALT_INDEX')
 
-OMAIRIQ_API_KEY=os.getenv('OMAIRIQ_API_KEY')
+AIRIQ_API_KEY=os.getenv('AIRIQ_API_KEY')
+AIRIQ_USERNAME=os.getenv('AIRIQ_USERNAME')
+AIRIQ_PASSWORD=os.getenv('AIRIQ_PASSWORD')
+
 SENDGRID_API_KEY=os.getenv('SENDGRID_API_KEY')
 
 TWILIO_ACCOUNT_SID=os.getenv('TWILIO_ACCOUNT_SID')

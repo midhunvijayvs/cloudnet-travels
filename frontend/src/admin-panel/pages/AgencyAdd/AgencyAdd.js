@@ -332,8 +332,8 @@ const AgencyAdd = () => {
                               />
                               {errors.govt_id_number && <div className="invalid-feedback">{errors.govt_id_number}</div>}
 
-                              <div className="d-flex mt-4">
-                                <input type={"checkbox"} name="is_id_verified" className="w-25"
+                              <div className="d-flex gap-2 mt-4">
+                                <input type={"checkbox"} name="is_id_verified" 
                                   checked={formData.is_id_verified} onChange={handleInputChange}
                                 /><h6>Is ID Card Verified? </h6>
                               </div>
@@ -451,7 +451,7 @@ const AgencyAdd = () => {
                           <div className="col-md-12 mt-3">
                             <button
                               type="button"
-                              className="btn btn-outline-primary"
+                              className="btn btn-outline-primary mb-5"
                               onClick={() => {
                                 const newPassword = generateSecurePassword(14);
                                 setFormData({
@@ -514,8 +514,8 @@ const AgencyAdd = () => {
                       </div>
                       <div className="d-flex align-items-center justify-content-center my-2">
                         <button onClick={handleSubmit}
-                          className="align-items-center btn save-button d-flex gap-2">
-                          <PlusSquare />Submit
+                          className="align-items-center btn-primary save-button d-flex gap-2">
+                         Submit
                         </button>
                       </div>
                     </div>

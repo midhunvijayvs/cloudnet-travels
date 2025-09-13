@@ -8,8 +8,10 @@ import NavPane from './NavPane/NavPane';
 import { UserContext } from '../../authentication/pages/UserContext';
 import NotificationPopup from './NotificationPopup/NotificationPopup.js';
 
+import { DollarSign } from "react-feather";
 
-const Header = ({ cartItems, isLoggedIn, setActivePage, activePage, notificationData, loadNotificationData }) => {
+
+const Header = ({ userData, loadUserData, cartItems, setActivePage, activePage, notificationData, loadNotificationData }) => {
 
   const navigate = useNavigate();
 
@@ -20,6 +22,8 @@ const Header = ({ cartItems, isLoggedIn, setActivePage, activePage, notification
 
 
   const [isNavpaneOpen, setNavPaneOpen] = useState(false);
+
+  const { isLoggedIn } = useContext(UserContext);
 
   useEffect(() => {
     console.log("isLoggedIn frm header:", isLoggedIn)
@@ -47,7 +51,6 @@ const Header = ({ cartItems, isLoggedIn, setActivePage, activePage, notification
   const [navClass, setNavClass] = useState("");
 
 
-  const { loginLogo, setLoginlogo, setIsLoggedIn, userData } = useContext(UserContext);
 
 
 
@@ -122,16 +125,15 @@ const Header = ({ cartItems, isLoggedIn, setActivePage, activePage, notification
   const subTotal = calculateCartSum();
 
   const [openDropDown, setOpenDropDown] = useState(false);
-  const notifRef = useRef(null);
-  const cartRef = useRef(null);
-  const profRef = useRef(null);
+  const profileRef = useRef(null);
+  const walletRef = useRef(null);
 
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (
-        notifRef.current && !notifRef.current.contains(e.target) &&
-        cartRef.current && !cartRef.current.contains(e.target)
+        profileRef.current && !profileRef.current.contains(e.target) &&
+        walletRef.current && !walletRef.current.contains(e.target)
       ) {
         setOpenDropDown(null); // close all
       }
@@ -143,12 +145,12 @@ const Header = ({ cartItems, isLoggedIn, setActivePage, activePage, notification
 
   return (
     <div className={isHomePage ? 'header home-page-header' : "header"} id='header'  >
-<div>
-   <img className='app-logo' onClick={() => { navigate('/'); }} role='button' src="/images/header/app-logo.png" alt=''></img>
-<h5 className='logo-description'> Booking Portal</h5>
+      <div>
+        <img className='app-logo' onClick={() => { navigate('/'); }} role='button' src="/images/header/app-logo.png" alt=''></img>
+        <h5 className='logo-description'> Booking Portal</h5>
 
-</div>
-     
+      </div>
+
 
 
       <div className='menu-box montserrat-bold'>
@@ -188,7 +190,6 @@ const Header = ({ cartItems, isLoggedIn, setActivePage, activePage, notification
         </span>
 
 
-
         <span onClick={() => { setActivePage([10, "logout"]); setLogoutModalShow(true); setNavPaneOpen(false) }} className={`main-menu-item ${(activePage[0] === 10) && 'active'} tab-and-mob-only ${!isLoggedIn && 'd-none'} `}>
 
 
@@ -201,34 +202,61 @@ const Header = ({ cartItems, isLoggedIn, setActivePage, activePage, notification
         {isLoggedIn && userData ?
           <div className="loged-in-buttons-container">
 
+            {userData.user_type == "agency" &&
+              <div className={`dropdown-button wallet-part ${openDropDown === 0 ? 'active' : ''}`}
+                onClick={() => setOpenDropDown(prev => (prev === 0 ? null : 0))}
+                ref={walletRef}
+              >
+            <img className="icon" src={ '/images/header/wallet.png'} alt="icon"></img>
+
+                <div>
+                  <h6 className="fw-normal">Wallet Balance, {`${userData.agency.wallet_balance}`}</h6>
 
 
-            <div className={`dropdown-button profile-part ${openDropDown === 2 ? 'active' : ''}`}
-              onClick={() => setOpenDropDown(prev => (prev === 2 ? null : 2))}
-              ref={notifRef}
+                </div>
+                <div className="onhover-box ">
+                  <ul className="menu-list">
+                    <li>
+                      <div className="btn-primary" onClick={() => navigate('/wallet')}><DollarSign/>
+                      Recharge Now!</div>
+                    </li>
+                    <li>
+                      <div className="dropdown-item" onClick={() => navigate('/wallet')}>My Wallet</div>
+                    </li>
+
+
+                  </ul>
+
+             
+
+                </div>
+              </div>
+            }
+
+            <div className={`dropdown-button profile-part ${openDropDown === 1 ? 'active' : ''}`}
+              onClick={() => setOpenDropDown(prev => (prev === 1 ? null : 1))}
+              ref={profileRef}
             >
               <img className="img-fluid profile-pic" src={`${userData && userData.profile_image ? userData.profile_image : '/images/no-profile-image.png'}`} alt="profile"></img>
-              
+
               <div>
-                <h6 className="fw-normal">Hi, {`${userData.agency_name} `}</h6>
-                <h5 className="fw-medium">Agency ID:{userData.agency_id}</h5>
+                <h6 className="fw-normal">Hi, {`${userData.first_name} ${userData.last_name} `}</h6>
+                {userData.user_type == "agency" ?
+                  <h5 className="fw-medium">{userData.agency.agency_name}</h5>
+                  : <h5 className="fw-medium text-danger">You are and admin or staff. Please login as an Agency to use this user panel</h5>
+
+                }
+                {userData.user_type == "agency" && <h6>ID:CLDNTAGNT0{userData.agency.id}</h6>}
               </div>
-              <div className="onhover-box onhover-sm">
+              <div className="onhover-box ">
                 <ul className="menu-list">
                   <li>
                     <div className="dropdown-item" onClick={() => navigate('/profile')}>Profile</div>
                   </li>
                   <li>
-                    <div className="dropdown-item" onClick={() => navigate('/orders')}>My Orders</div>
+                    <div className="dropdown-item" onClick={() => navigate('/orders')}>My Bookings</div>
                   </li>
 
-                  <li>
-                    <div className="dropdown-item" onClick={() => navigate('/wishlist')}>Wishlist</div>
-                  </li>
-
-                  <li>
-                    <div className="dropdown-item" onClick={() => navigate('/saved-address')}>Saved Address</div>
-                  </li>
 
                 </ul>
 

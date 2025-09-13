@@ -95,7 +95,7 @@ const TicketBooking = ({ticketSearchFormData}) => {
             total_pax: formData.adult + formData.child + formData.infant,
             ...formData,
         };
-        API.post(`/api/book/`, payload)
+        API.post(`/api/airiq/book/`, payload)
             .then((response) => {
 navigate("/checkout-payment", { state: { ticket_id:ticketData.ticket_id, amount:ticketData.price, merchant_order_id:merchandOrderId, merchant_transaction_id:merchantTransactionId } })
             })

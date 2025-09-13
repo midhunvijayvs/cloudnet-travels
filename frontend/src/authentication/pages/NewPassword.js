@@ -23,10 +23,9 @@ const View = () => {
     const url = new URL(window.location.href);
 
     // Get the 'token' parameter from the URL
-    // const pswdResetTocken = url.searchParams.get('token');
-    const pathSegments = pathname.split('/');
-    const pswdResetTocken = pathSegments[pathSegments.length - 2];
-
+    const pswdResetTocken = url.searchParams.get('token');
+    
+console.log("pswd reset token:",pswdResetTocken)
     let navigate = useNavigate();
     const [formErrors, setFormErrors] = useState({});
 
@@ -88,7 +87,7 @@ const View = () => {
 
         if (Object.keys(validationErrors).length === 0) {
             setIsLoading(true)
-            API.put(`/api/user/password-reset/confirm/${pswdResetTocken}/`, { password: $("#password").val() })
+            API.put(`/api/user/password-reset/new-password/${pswdResetTocken}/`, { password: $("#password").val() })
                 .then(response =>{
                     navigate("/password-changed");
                   

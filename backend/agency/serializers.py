@@ -19,13 +19,13 @@ class AgencySerializer(serializers.ModelSerializer):
         fields = [
             "id", "agency_name", "office_address", "home_address",
             "alternative_phone_number", "govt_id_number",
-            "notes", "is_id_verified","joined_on" 
+            "notes", "is_id_verified","joined_on", "wallet_balance" 
         ]
     
 
 
 # Combine User + Agency details
-class AgencyUserSerializer(serializers.ModelSerializer):
+class UserWithAgencySerializer(serializers.ModelSerializer):
     agency = AgencySerializer(read_only=True)
 
     class Meta:
@@ -37,3 +37,19 @@ class AgencyUserSerializer(serializers.ModelSerializer):
             "agency"  # nested agency data
         ]
 
+
+
+
+class WalletTransactionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WalletTransaction
+        fields = [
+            "id",
+            "transaction_amount",
+            "opening_balance",
+            "closing_balance",
+            "payment_method",
+            "gateway_transaction_reference_number",
+            "description",
+            "created_at",
+        ]

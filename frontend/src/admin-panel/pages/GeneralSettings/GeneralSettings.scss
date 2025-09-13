@@ -1,0 +1,40 @@
+.general-settings-page {
+    .grid-box {
+        width: 100%;
+border: 1px solid #aaa8a8;
+border-radius: 5px;
+        .grid-row {
+            width: 100%;
+            display: flex;
+padding: 1rem 2rem;
+            .column-1 {
+                width: 50%;
+  display: flex;
+    justify-content: flex-start;
+    align-items: center;
+                .label {
+                    
+                }
+            }
+                .column-2 {
+                    width: 50%;
+  display: flex;
+    justify-content: flex-start;
+    align-items: center;
+                    .value {
+.online-status-box{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    .icon{
+        font-size: 1rem;
+        color: rgb(2, 180, 2);
+    }
+}
+                    }
+            }
+        }
+    }
+}

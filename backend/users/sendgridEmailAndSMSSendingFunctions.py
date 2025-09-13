@@ -59,3 +59,50 @@ def send_login_otp_via_sms(user, otp_value):
     except Exception as e:
         print(f"Twilio Error: {e}")
         return {'status': 'failed', 'message': str(e)}
+
+
+
+def send_password_reset_email(first_name, last_name, username, email, reset_url):
+    if settings.SENDGRID_API_KEY:
+        email_content = f"""
+        Dear {first_name} {last_name},
+We got a request to reset your password. If Not initiated from your side, please ignore this email, and report us the suspecious activity.
+    
+        Your login details are as follows:
+        
+        Username: {username}
+        Email: {email}
+    
+
+         Please Reset your password by clicking the following link:
+        {reset_url}
+
+        Regards,
+        Cloudnet Team
+        """
+
+        message = Mail(
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            to_emails=email,
+            subject='Password Reset - Cloudnet Travels!',
+            plain_text_content=email_content
+        )
+
+        try:
+            sg = SendGridAPIClient(settings.SENDGRID_API_KEY)
+            sg.send(message)
+            print("Email sent successfully")
+        
+        except Exception as e:
+            
+            error_message = str(e)
+            if hasattr(e, 'body'):
+                error_message = e.body
+            elif hasattr(e, 'message'):
+                error_message = e.messageprint(f"Error sending email: {e}")
+            return {'status': 'failed', 'message': error_message}
+        
+    else:
+        return({'status': 'failed', 'message': "SendGrid API Key not configured."})
+
+

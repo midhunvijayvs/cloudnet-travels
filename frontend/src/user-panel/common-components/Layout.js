@@ -24,13 +24,13 @@ import CheckoutOptions from '../pages/CheckoutOptions/CheckoutOptions';
 import MyOrders from '../pages/MyOrders/MyOrders';
 
 
-import Profile from '../pages/Profile/Profile';
+import ProfilePage from '../pages/Profile/Profile';
+import WalletPage from '../pages/Wallet/Wallet';
 import Payment from '../pages/Payment/Payment';
 import About from '../pages/About/About';
 import ContactUs from '../pages/ContactUs/ContactUs';
 import NoPage from '../pages/NoPage/NoPage';
 
-import SavedAddress from '../pages/SavedAddress/SavedAddress';
 
 
 import TermsAndConditions from '../pages/PolicyPages/TermsAndConditions';
@@ -45,6 +45,7 @@ import { fetchBrowserCurrentLocation, getAddressFromLatLng, playNotificationSoun
 import FloatingMobileNavbar from '../common-components/FloatingMobileNavBar'
 const Layout = () => {
   const navigate = useNavigate()
+  const [userData, setUserData] = useState(null);
 
   const [showCookieBar, setShowCookieBar] = useState(true)
   const [notificationData, setNotificationData] = useState(null);
@@ -76,6 +77,25 @@ const Layout = () => {
   const [isNewOrderUpdateShow, setNewOrderUpdateShow] = useState(false);
   
 
+ const loadUserData = () => {
+    if (window.localStorage.getItem('userID')) {
+      API.get("/api/user/details/")
+        .then(response => {
+
+          setUserData(response.data)
+          // console.log("userdata from adminlayout", userData)
+        })
+
+        .catch(error => {
+          console.error(error);
+        });
+    }
+  }
+
+  useEffect(() => {
+
+    loadUserData();
+  }, [isLoggedIn])
 
   const locationPath = useLocation().pathname;
 
@@ -121,9 +141,9 @@ const Layout = () => {
 
   return (
 
-    <>
+    <div className='user-layout'>
 
-      <Header isLoggedIn={isLoggedIn} cartItems={cartItems} activePage={activePage} setActivePage={setActivePage} notificationData={notificationData} loadNotificationData={loadNotificationData} ></Header>
+      <Header userData={userData} loadUserData={loadUserData} isLoggedIn={isLoggedIn} cartItems={cartItems} activePage={activePage} setActivePage={setActivePage} notificationData={notificationData} loadNotificationData={loadNotificationData} ></Header>
       <svg className='scroll-to-top' width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg" type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
         <circle cx="16.2847" cy="16.2846" r="15.7847" transform="rotate(-90 16.2847 16.2846)" stroke="#d11b4b" />
         <path d="M16.5 10V22M16.5 10L10 15.4M16.5 10L23 15.4" stroke="#d11b4b" stroke-width="1.46001" stroke-linecap="round" stroke-linejoin="round" />
@@ -160,10 +180,10 @@ const Layout = () => {
           <Route path="payment" element={<Payment />} />
           <Route path="about" element={<About />} />
           <Route path="contact-us" element={<ContactUs />} />
-          <Route path="profile" element={<Profile />} />
+          <Route path="profile" element={<ProfilePage userData={userData} loadUserData={loadUserData} />} />
+          <Route path="wallet" element={<WalletPage userData={userData} loadUserData={loadUserData} />} />
 
           <Route path="orders" element={<MyOrders  orderUpdate={isNewOrderUpdateShow} />} />
-          <Route path="saved-address" element={<SavedAddress  />} />
 
           <Route path="terms-and-conditions" element={<TermsAndConditions />} />
           <Route path="cookie-policy" element={<CookiePolicy />} />
@@ -180,7 +200,7 @@ const Layout = () => {
       }
 
 
-    </>
+    </div>
   )
 }
 

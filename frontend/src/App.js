@@ -8,7 +8,7 @@ import { UserProvider } from "./authentication/pages/UserContext"
 
 
 import UserLayout from "./user-panel/common-components/Layout"
-import AdminLayout from "./admin-panel/common-components/Layout"
+import AdminLayout from "./admin-panel/common-components/Layout/Layout"
 
 import SignUp from './authentication/pages/SignUp';
 import Login from './authentication/pages/Login';
@@ -69,7 +69,7 @@ function App() {
           <Route path="/confirm-mail" element={<EmailConfirmation />} />
              <Route path="/mail-confirmed" element={<EmailConfirmed />} /> 
             <Route path="/forgot-password" element={<ForgotPassword />} /> 
-            <Route path="/password-reset/confirm/*" element={<NewPassword />} />
+            <Route path="/reset-password/*" element={<NewPassword />} />
             <Route path="/password-changed" element={<PasswordChanged />} />
             <Route path="/authentication-privacy-policy" element={<AuthenticationPrivacyPolicy/>} />
 

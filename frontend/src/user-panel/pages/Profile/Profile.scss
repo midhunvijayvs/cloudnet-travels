@@ -1,182 +1,87 @@
 .user-profile-page {
- background-color: var(--bg-color-light);
-    color: var(--black);
+  padding: 2rem;
+  background-color: #faf9f6; // matches your theme background
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+  .title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #0A74CE; // primary color
+    margin-bottom: 1.5rem;
+  }
+.tabel-wrapper{
+ width: 100%;
+ overflow-x: auto;
+  table {
     width: 100%;
+    border-collapse: collapse;
 
-    .sec-2 {
-        width: var(--sec-width);
-        margin: 0 auto;
-        padding: 2rem 0;
-        display: flex;
-        justify-content: space-between;
-        gap: 2rem;
+    tr {
+      border-bottom: 1px solid #eaeaea;
 
-        .lhs {
-            width: 25%;
-
-            z-index: 1;
-
-
-
-        }
-
-        .rhs {
-            width: 75%;
-
-  .form-section {
-    width: 70%;
-     input {
-      padding: 10px 16px;
-      border: 1px dashed #dedbdb;
-      width: 100%;
-      border-radius: 4px;
-      background-color: rgba(245, 245, 245, 0.6);
-      color: #313131;
-    }
-    .phone-input-container .form-control{
-      padding: 10px 20px 10px 65px !important;
-    }
-    .label{
-      font-size: 14px;
-       color: #898989;
-       margin-bottom: 7px;
-    }
-  }
-
-
-  .image-preview-box {
-    margin-bottom: 25px;
-  }
-
-  .image-section {
-    width: 30%;
-  }
-
-  .img-section .img-error-msg {
-    color: red;
-    font-size: 10px;
-    margin-bottom: 10px;
-  }
-
-  .img-section .delete-btn {
-    background-color: rgba(48, 48, 48, 0.825) !important;
-    position: absolute;
-    z-index: 3;
-    bottom: 0;
-    color: #fff;
-    border-radius: 0;
-    font-size: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 3px;
-  }
-  .btn.danger{
-    color: rgb(213, 0, 0);
-    background: #ffd7d7;
-    &:hover{
-      color: #f22f2f;
-    }
-  }
-
-  .img-section .delete-btn:hover {
-    color: #eee
-  }
-  .cancel-button {
-    float: right;
-    border: 1px solid #f07054 !important;
-    color: #f07054;
-    font-size: calc(15px + 1 * (100vw - 320px) / 1600);
-    margin-top: 0px;
-    height: 100%;
-  }
-   .change-password-section{
- ul{
-    padding-left: 10px;
-  }
-  li{
-    display: list-item; 
-    list-style-type: disc;
-    margin: 0;
-    padding: 0;
-  }
- }
-}
-}
-}
-
-
-@media (max-width:1004px) {
-  .user-profile-page {
-      .sec-2 {
-        flex-direction: column;
-        align-items: center;
-
-        .lhs {
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
-        .rhs {
-            width: 100%;
-    .form-section .w-50 {
-      width: 100% !important;
+      &:last-child {
+        border-bottom: none;
+      }
     }
 
-    .form-section .button-box {
-      margin-top: 1rem;
+    th,
+    td {
+      padding: 0.75rem;
+      text-align: left;
+      vertical-align: middle;
     }
+
+    .label {
+      font-weight: 500;
+      color: #555;
     }
+
+    h5 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0;
+      color: #333;
     }
   }
 }
+  /* Responsive styles */
+  @media (max-width: 768px) {
 
-
-
-@media (max-width: 992px) {
-  .user-profile-page {
-      .sec-2 {
-        flex-direction: column;
-        align-items: center;
-
-        .lhs {
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
-        .rhs {
-            width: 100%;
-    .form-section {
+   table,
+    tbody,
+    tr,
+    td,
+    th {
+      display: block;
       width: 100%;
     }
 
-    .image-section {
-      width: 100%;
+    tr {
+      margin-bottom: 1.5rem;
+      border-bottom: none;
+      padding-bottom: 1rem;
+      background: #f5f5f5; // light background for separation
+      border-radius: 8px;
     }
+
+    td {
+      padding: 0.5rem 1rem;
+
+      .label {
+        display: block;
+        font-size: 0.875rem;
+        margin-bottom: 0.25rem;
+        color: #0A74CE; // highlight labels on mobile
+      }
+
+      h5 {
+        font-size: 1rem;
+      }
     }
+
+    th {
+      display: none;
     }
   }
-}
-
-@media (max-width:767px) {
-  .user-profile-page {
-   .sec-2 {
-        flex-direction: column;
-        align-items: center;
-
-        .lhs {
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
-        .rhs {
-            width: 100%;   .form-section .w-50 {
-      width: 100% !important;
-    }
-
-    .form-section .button-box {
-    }
-  }
-}
-}
 }

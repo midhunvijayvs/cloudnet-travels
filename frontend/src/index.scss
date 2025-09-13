@@ -112,6 +112,17 @@ p {
 
 }
 
+a {
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+
 label {
   //styleName: Web : Content;
   font-size: 1rem;
@@ -253,58 +264,109 @@ cursor: pointer;
   }
 }
 
-
-
-input {
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1px solid #d1d5db; /* neutral gray */
+  border-radius: 0.5rem;
+  background-color: #fff;
+  color: #111827; /* dark text */
   outline: none;
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:active {
-  transition: background-color 9999s ease-in-out 0s;
-  -webkit-transition: background-color 9999s ease-in-out 0s;
-  background-color: #c8c5c5 !important;
-  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
-  box-shadow: 0 0 0px 1000px #fefdfd inset !important;
-  -webkit-text-fill-color: #000000 !important;
+/* Hover */
+input:hover,
+textarea:hover,
+select:hover {
+  border-color: #9ca3af; /* slightly darker gray */
 }
 
-
-a {
-  text-decoration: none;
-  cursor: pointer;
-
-  &:hover {
-    text-decoration: none;
-    color: inherit;
-  }
-}
-
-
+/* Focus */
 input:focus,
-select:focus,
-textarea:focus {
-  border-color: transparent;
-  box-shadow: none;
+textarea:focus,
+select:focus {
+  border-color: #2563eb; /* blue-600 */
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2); /* soft glow */
 }
 
-.input-group input {
-  border-right-color: #f5f5f5;
+/* Disabled state */
+input:disabled,
+textarea:disabled,
+select:disabled {
+  background-color: #f9fafb;
+  border-color: #e5e7eb;
+  color: #9ca3af;
+  cursor: not-allowed;
 }
 
-.input-group .input-group-text {
-  background-color: #f5f5f5;
+/* Error state */
+.input-error {
+  border-color: #dc2626 !important; /* red-600 */
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2) !important;
 }
 
-//to avoid automatic eye icon on password fields on edge
-input[type="password"]::-ms-reveal {
-  display: none;
+/* Textarea tweaks */
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Select tweaks */
+select {
+  appearance: none; /* remove native arrow */
+  background-image: url("data:image/svg+xml,%3Csvg fill='none' stroke='%236b7280' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+  padding-right: 2.5rem;
 }
 
 .invalid-feedback {
   display: block !important;
+}
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ccc;
+  border-radius: 4px; /* makes it slightly rounded */
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+/* On hover */
+input[type="checkbox"]:hover {
+  border-color: #666;
+}
+
+/* Checked state */
+input[type="checkbox"]:checked {
+  background-color: #4f46e5; /* indigo-600 */
+  border-color: #4f46e5;
+}
+
+/* Add checkmark */
+input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0px;
+  width: 5px;
+  height: 10px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }
 
 .form-switch .form-check-input {

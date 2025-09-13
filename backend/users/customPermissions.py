@@ -9,3 +9,16 @@ class IsAdminOrStaff(BasePermission):
             and request.user.is_authenticated 
             and request.user.user_type in ["admin", "staff"]
         )
+        
+        
+class IsAgencyUser(BasePermission):
+    """
+    Allows access only to users with user_type='agency'.
+    """
+
+    def has_permission(self, request, view):
+        return (
+            request.user 
+            and request.user.is_authenticated 
+            and request.user.user_type == "agency"
+        )

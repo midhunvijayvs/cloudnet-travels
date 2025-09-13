@@ -105,11 +105,11 @@ const Login = () => {
     errors.username_or_email_or_phone = "Username, email, or phone number is required.";
   } else {
     const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-    const isUsername = /^[a-zA-Z][a-zA-Z0-9]*$/.test(value) && !/^\d+$/.test(value);
+    const isUsername = /^[a-zA-Z][a-zA-Z0-9_]*$/.test(value) && !/^\d+$/.test(value);
     const isIndianPhone = /^[6-9]\d{9}$/.test(value);
 
     if (!isEmail && !isUsername && !isIndianPhone) {
-      errors.username_or_email_or_phone = "Invalid identifier. it should be either an email, or a 10  digit phone number or a username starting with a letter with no special character and not full of numbers";
+      errors.username_or_email_or_phone = "Invalid identifier. it should be either an email, or a 10  digit phone number or a username starting with a letter";
     }
   }
 

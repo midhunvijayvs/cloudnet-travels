@@ -19,7 +19,6 @@ import AddressLocationAdd from '../../common-components/AddressLocationAdd/Addre
 import ConfirmPopup from '../../common-components/ConfirmPopup/ConfirmPopup.js';
 import UnlockCoupons from '../../common-components/UnlockCoupons/UnlockCoupons.js';
 import ProcessFlowIllustrationForCheckout from '../../common-components/ProcessFlowIllustrationForCheckout/ProcessFlowIllustrationForCheckout.js'
-import MiniBanner from '../../common-components/MiniBanner/MiniBanner.js'
 
 
 const CheckoutAddress = ({ userData, loadLocationForHeader, setHeaderLocation, loadCartDataForHeader }) => {
@@ -287,7 +286,6 @@ const CheckoutAddress = ({ userData, loadLocationForHeader, setHeaderLocation, l
 
 
 
-      <MiniBanner title="Checkout Address" breadcrumb={[{ name: "Home", link: "/" }, { name: "Checkout Address", link: "#" }]}></MiniBanner>
 
       <section className="sec-2">
 

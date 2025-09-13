@@ -63,7 +63,7 @@ const links = [
     { url: 'confirm-mail', changefreq: 'monthly', priority: 0.8 },
     { url: 'mail-confirmed', changefreq: 'monthly', priority: 0.8 },
     { url: 'forgot-password', changefreq: 'monthly', priority: 0.8 },
-    { url: 'password-reset/confirm', changefreq: 'monthly', priority: 0.8 },
+    { url: 'reset-password', changefreq: 'monthly', priority: 0.8 },
     { url: 'password-changed', changefreq: 'monthly', priority: 0.8 },
     { url: 'authentication-privacy-policy', changefreq: 'monthly', priority: 0.8 },
     { url: 'landing-page', changefreq: 'monthly', priority: 0.8 },

@@ -16,8 +16,7 @@ import NewOrderUpdate from '../../common-components/NewOrderUpdate/NewOrderUpdat
 import ChatPopup from '../../common-components/ChatPopup/ChatPopup';
 import NewOrderModificationUpdate from '../../common-components/NewOrderModificationUpdate/NewOrderModificationUpdate';
 import TicketCreationPopup from '../../common-components/TicketCreationPopup/TicketCreationPopup';
-import MiniBanner from '../../common-components/MiniBanner/MiniBanner.js'
-import GeneralSidebar from '../../common-components/GeneralSidebar/GeneralSidebar.js';
+import SupportPagesLayout from '../../common-components/SupportPagesLayout/SupportPagesLayout.js'
 
 const MyOrders = ({ userData, orderUpdate }) => {
 
@@ -340,11 +339,9 @@ const MyOrders = ({ userData, orderUpdate }) => {
 
   return (
     <div className='order-list-page'>
-         <MiniBanner title="My Order" breadcrumb={[{ name: "Home", link: "/" }, { name: "My Order", link:"#" }]}></MiniBanner>
 
       <section className="sec-2">
             <div className="lhs">
-          <GeneralSidebar activePageIndex={1} userData={userData} />
             </div>
             <div className="rhs">
               

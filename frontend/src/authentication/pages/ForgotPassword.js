@@ -46,7 +46,7 @@ const View = () => {
         setErrors(validationErrors);
 
         if (Object.keys(validationErrors).length === 0) {
-            API.post("/user/password-reset/",  data)
+            API.post("/api/user/password-reset-request/",  data)
                 .then((response)=>
                     {
                     setIsMessageModalOpen(true)

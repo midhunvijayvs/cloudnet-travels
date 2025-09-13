@@ -10,11 +10,13 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('submit_otp/', SubmitOTPView.as_view(), name='submit_otp'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('password-reset/', PasswordResetView.as_view(), name='password-reset'),
-    path('password-reset/confirm/<str:token>/', PasswordResetConfirmView.as_view(), name='password-reset-confirm'),
+    path('password-reset-request/', PasswordResetView.as_view(), name='password-reset'),
+    path('password-reset/new-password/<str:token>/', PasswordResetConfirmView.as_view(), name='password-reset-confirm'),
     path('activate/', ActivateAccountView.as_view(), name='activate'),
 
     path("<int:pk>/", UserDeletionView.as_view(), name="user-delete"),
+    
+    path("details/", UserDetailsView.as_view(), name="user-detail"),
 
 ]
 

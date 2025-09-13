@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './MultipleImageUploader.css';
 import axios from 'axios';
-import API from '../../API';
+import API from '../../../API';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
-import ErrorModal from '../../ErrorModal';
+import ErrorModal from '../../../ErrorModal';
 
 const MultipleImageUploader = ({ state, setterFunction, setLoading, formFrrors,imgGalleryToggle, setFormErrors, restaurantId }) => {
 

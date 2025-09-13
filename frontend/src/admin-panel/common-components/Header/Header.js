@@ -2,15 +2,15 @@ import React, { Component, useState, useEffect } from 'react'
 import './Header.scss'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
-import ProfileMenu from './ProfileMenu';
+import ProfileMenu from '../ProfileMenu';
 
-import LogoutPopup from "../../authentication/common-components/LogoutPopup/LogoutPopup";
+import LogoutPopup from "../../../authentication/common-components/LogoutPopup/LogoutPopup";
 
-import NotificationPopup from './NotificationPopup/NotificationPopup';
-import API from '../../API';
-import ErrorModal from '../../ErrorModal';
-import FixedOverlayLoadingSpinner from "../../FixedOverlayLoadingSpinner"
-import PositiveModal from '../../PositiveModal';
+import NotificationPopup from '../NotificationPopup/NotificationPopup';
+import API from '../../../API';
+import ErrorModal from '../../../ErrorModal';
+import FixedOverlayLoadingSpinner from "../../../FixedOverlayLoadingSpinner"
+import PositiveModal from '../../../PositiveModal';
 
 
 const Header = ({ userData, loadUserData, isLoggedIn, notificationData, loadNotificationData }) => {
@@ -156,20 +156,20 @@ const Header = ({ userData, loadUserData, isLoggedIn, notificationData, loadNoti
   return (
     <div className="admin-header">
       <div className="left" onClick={() => setIsCollapsed(!isCollapsed)} >
-        <img className="app-logo" src="/images/admin-panel/header/hamburger.svg"></img>
+       
       </div>
       <div className="right" >
-        {isLoggedIn && (['admin', 'restaurant', 'staff', 'driver', 'grocery_store'].includes(window.localStorage.getItem("userRole"))) &&
+        {isLoggedIn && (['admin','staff'].includes(window.localStorage.getItem("userRole"))) &&
           <div className="btn-box">
-            {/* <button className="btn btn-borderless">
+            <button className="btn btn-borderless">
             <div className="mode" onClick={toggleDarkMode}>
               {isDarkMode ?
                 <i className="ri-lightbulb-line"></i> :
                 <i className="ri-moon-line"></i>
               }
             </div>
-          </button> */}
-            {/* {
+          </button>
+            {
               // localStorage.getItem('userRole') !== 'user' &&
               ['admin', 'restaurant', 'driver'].includes(window.localStorage.getItem("userRole")) &&
               <button className="btn btn-borderless" onClick={() => { navigate('/admin/chat') }}>
@@ -178,7 +178,7 @@ const Header = ({ userData, loadUserData, isLoggedIn, notificationData, loadNoti
                   <span className='message-badge rounded-pill badge-theme'>{unreadChatCount}</span>
                 }
               </button>
-            } */}
+            }
 
             <button className="btn btn-borderless" onClick={() => { setNotificationMenuOpen(!notificationMenuOpen) }}>
               <img src='/images/admin-panel/header/notification.svg'></img>

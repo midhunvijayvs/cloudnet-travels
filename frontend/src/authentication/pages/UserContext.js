@@ -30,7 +30,6 @@ export const UserProvider = ({ children }) => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const [userData, setUserData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [roleFromBackend, setRoleFromBackend] = useState(null);
 
@@ -74,11 +73,14 @@ export const UserProvider = ({ children }) => {
 
 
 useEffect(() => {
-  const token = localStorage.getItem("refreshToken");
-  if (isLoggedIn && token) {
-    // don’t call updateToken immediately, only set interval
+  if (!!localStorage.getItem('accessToken')) {
+      setIsLoggedIn(true);
+    }
+      if (localStorage.getItem("refreshToken")) {
+      updateToken();// to do a refresh when the app loadding for the first time. other wise it will do only after the first 4 minutes. this is for loging out just after opening the app after a closing the tab from the user side.
+   
     const intervalId = setInterval(() => {
-      updateToken();
+     updateToken();
     }, refreshIntervalTime);
 
     return () => clearInterval(intervalId);
@@ -135,7 +137,6 @@ useEffect(() => {
         // check is deactivated Account
         if (response.data.is_deactivated === true) {
           localStorage.setItem('deactivatedUser', 'true');
-          setIsLoggedIn(false);
           setRedirectUrl("/account-deactivated")
           navigate('/account-deactivated')
         }
@@ -152,6 +153,7 @@ useEffect(() => {
           setPopupMessage(`${error.response.data.message}. Warning: You have only ${error.response.data.remaining_attempt} attempt left.`);
         } else {
           setPopupMessage(error.response?.data?.message || error.message);
+          console.log("error:",error)
         }
         setIsErrorModalOpen(true);
         setIsLoading(false)
@@ -180,7 +182,7 @@ useEffect(() => {
   }
 
   const logout = () => {
-    localStorage.clear();  // Clear all storage
+    localStorage.clear(); 
 
     setIsLoggedIn(false)
   };
@@ -200,7 +202,7 @@ useEffect(() => {
   }
 
   return (
-    <UserContext.Provider value={{ isLoggedIn, login, logout, isOTPInputShown, showOTPInput, otpTimer, otpTimeout, redirectUrl, setRedirectUrl, setIsLoggedIn, userData }}>
+    <UserContext.Provider value={{ isLoggedIn, login, logout, isOTPInputShown, showOTPInput, otpTimer, otpTimeout, redirectUrl, setRedirectUrl, setIsLoggedIn,  }}>
       {children}
       {isLoading && <FixedOverlayLoadingSpinner />}
 

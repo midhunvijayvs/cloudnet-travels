@@ -153,7 +153,7 @@ const Shop = ({ ticketSearchFormData, setTicketSearchFormData, loadUserData, use
 
     setFormErrors({});
     try {
-      const response = await API.post('/api/search/', ticketSearchFormData);
+      const response = await API.post('/api/airiq/search/', ticketSearchFormData);
       setData(response.data);
     } catch (err) {
       console.error(err);
@@ -253,7 +253,7 @@ console.log("data", data)
         <div className="form-container">
           <form >
 
-            {/* <div className="form-row">
+            <div className="form-row">
 
               <div className="form-group">
                 <label>Origin</label>
@@ -324,7 +324,7 @@ console.log("data", data)
               <button type="button" disabled={isLoading} onClick={loadData}>
                 {isLoading ? 'Searching...' : 'Search Flights'}
               </button>
-            </div> */}
+            </div>
             {formErrors.search && <p className="error">{formErrors.search}</p>}
           </form>
         </div>

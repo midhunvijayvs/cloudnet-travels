@@ -19,7 +19,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/flight-booking/', include('omairiq_proxy.urls')),
+    path('api/airiq/', include('omairiq_proxy.urls')),
     path('api/user/', include('users.urls')),
     path('api/agency/', include('agency.urls')),
+    path('api/phonepe-payment/', include('phonepe_payment.urls')),
 ]
