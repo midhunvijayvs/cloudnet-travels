@@ -15,6 +15,9 @@ import Home from '../pages/Home/Home';
 import Shop from '../pages/Shop/Shop';
 import TicketBooking from '../pages/TicketBooking/TicketBooking';
 
+import WalletCheckoutPayment from '../pages/WalletCheckoutPayment/WalletCheckoutPayment';
+import WalletCheckoutConfirm from '../pages/WalletCheckoutConfirm/WalletCheckoutConfirm';
+
 import CheckoutCart from '../pages/CheckoutCart/CheckoutCart';
 import CheckoutAddress from '../pages/CheckoutAddress/CheckoutAddress';
 import CheckoutPayment from '../pages/CheckoutPayment/CheckoutPayment';
@@ -168,6 +171,10 @@ const Layout = () => {
 
 
 <Route path="/book-ticket" element={<TicketBooking ticketSearchFormData={ticketSearchFormData} />} />
+
+          <Route path="wallet-checkout-payment" element={<WalletCheckoutPayment  />} />
+          <Route path="wallet-checkout-confirm" element={<WalletCheckoutConfirm />} />
+
 
           <Route path="checkout-cart" element={<CheckoutCart />} />
           <Route path="checkout-empty-cart" element={<CheckoutCart />} />

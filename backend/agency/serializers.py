@@ -13,7 +13,14 @@ from users.models import CustomUser
 
 
 class AgencySerializer(serializers.ModelSerializer):
-   
+   # If wallet_balance is missing in request, default to 0
+    wallet_balance = serializers.DecimalField(
+        max_digits=12,
+        decimal_places=2,
+        required=False,
+        default=0
+    )
+    
     class Meta:
         model = Agency
         fields = [
@@ -51,5 +58,7 @@ class WalletTransactionSerializer(serializers.ModelSerializer):
             "payment_method",
             "gateway_transaction_reference_number",
             "description",
-            "created_at",
+            "initiated_at",
+            "payment_completed_at",
+            "status",
         ]

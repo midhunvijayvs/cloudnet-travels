@@ -158,49 +158,92 @@ class AddMoneyToWalletView(APIView):
         try:
             amount = request.data.get("amount")
             payment_method = request.data.get("payment_method", "phonepe")
-            gateway_ref = request.data.get("gateway_transaction_reference_number", "")
             description = request.data.get("description", "Wallet top-up")
 
             if not amount or not str(amount).isdigit():
                 return Response({"message": "Invalid amount"}, status=status.HTTP_400_BAD_REQUEST)
 
             amount = Decimal(amount)
+            agency = request.user.agency
 
-            agency = request.user.agency  # ensure User → Agency relation exists
+            opening_balance = agency.wallet_balance
 
-            with transaction.atomic():
-                opening_balance = agency.wallet_balance
-                closing_balance = opening_balance + amount
-
-                # Update balance
-                agency.wallet_balance = closing_balance
-                agency.save()
-
-                # Save transaction
-                WalletTransaction.objects.create(
-                    agency=agency,
-                    transaction_amount=amount,
-                    opening_balance=opening_balance,
-                    closing_balance=closing_balance,
-                    payment_method=payment_method,
-                    gateway_transaction_reference_number=gateway_ref,
-                    description=description,
-                )
+            transaction = WalletTransaction.objects.create(
+                agency=agency,
+                transaction_amount=amount,
+                opening_balance=opening_balance,
+                closing_balance=None,  # not updated yet
+                payment_method=payment_method,
+                description=description,
+                status="processing",
+            )
 
             return Response(
                 {
-                    "message": "Money added successfully",
-                    "wallet_balance": agency.wallet_balance,
+                    "message": "Transaction initiated",
+                    "transaction_id": transaction.id,
+                    "amount": str(amount),
+                    "status": transaction.status,
                 },
-                status=status.HTTP_200_OK,
+                status=status.HTTP_201_CREATED,
             )
 
         except Exception as e:
             return Response({"message": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-        
-        
-        
-        
+
+
+
+class UpdateWalletTransactionView(APIView):
+    permission_classes = [IsAgencyUser]
+    authentication_classes = [JWTAuthentication]
+
+    def post(self, request):
+        try:
+            transaction_id = request.data.get("transaction_id")
+            gateway_ref = request.data.get("gateway_transaction_reference_number", "")
+            payment_status = request.data.get("status", "failed")  # frontend/backend passes this
+
+            transaction = WalletTransaction.objects.select_for_update().get(id=transaction_id)
+
+            if transaction.status != "processing":
+                return Response({"message": "Transaction already finalized"}, status=status.HTTP_400_BAD_REQUEST)
+
+            with transaction.atomic():
+                if payment_status == "success":
+                    closing_balance = transaction.opening_balance + transaction.transaction_amount
+
+                    # Update agency wallet
+                    agency = transaction.agency
+                    agency.wallet_balance = closing_balance
+                    agency.save()
+
+                    # Update transaction
+                    transaction.closing_balance = closing_balance
+                    transaction.status = "success"
+                    transaction.gateway_transaction_reference_number = gateway_ref
+                    transaction.payment_completed_at = timezone.now()
+                    transaction.save()
+
+                    return Response(
+                        {"message": "Payment success", "wallet_balance": str(agency.wallet_balance)},
+                        status=status.HTTP_200_OK,
+                    )
+                else:
+                    # mark as failed
+                    transaction.status = "failed"
+                    transaction.gateway_transaction_reference_number = gateway_ref
+                    transaction.payment_completed_at = timezone.now()
+                    transaction.save()
+
+                    return Response({"message": "Payment failed"}, status=status.HTTP_400_BAD_REQUEST)
+
+        except WalletTransaction.DoesNotExist:
+            return Response({"message": "Transaction not found"}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({"message": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+     
         
 class WalletTransactionListView(APIView):
     permission_classes = [IsAgencyUser]
@@ -208,7 +251,7 @@ class WalletTransactionListView(APIView):
 
     def get(self, request):
         agency = request.user.agency
-        transactions = WalletTransaction.objects.filter(agency=agency).order_by("-created_at")
+        transactions = WalletTransaction.objects.filter(agency=agency).order_by("-initiated_at")
 
         # Apply pagination
         paginator = CustomPagination()

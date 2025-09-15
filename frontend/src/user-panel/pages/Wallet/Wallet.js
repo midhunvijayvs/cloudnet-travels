@@ -114,10 +114,16 @@ const ProfilePage = ({ userData, loadUserData }) => {
     API.post('/api/agency/add-money-to-wallet/', data)
       .then(response => {
         setIsLoading(false)
-        setPopupTitle("Success!.");
-        setPopupMessage("Money Added successfuly.");
+        setPopupTitle("Redirecting..");
+        setPopupMessage("Record created. Redirecting to payment gateway.");
 
         setIsMessageModalOpen(true)
+
+        navigate("/wallet-checkout-payment", { state:
+           { 
+            amount:response.data.amount,
+            merchant_order_id:response.data.transaction_id,
+            merchant_transaction_id:response.data.transaction_id } })
       })
       .catch(error => {
 
@@ -178,8 +184,7 @@ const ProfilePage = ({ userData, loadUserData }) => {
             </div>
 
             {/* Add Money Button */}
-            {/* <button className="add-btn" type='button' onClick={handleSubmit}>Add Money</button> */}
-            <button className="add-btn" type='button' onClick={()=>navigate("/checkout-payment", { state: { ticket_id:1, amount:data.amount, merchant_order_id:1, merchant_transaction_id:1 } })}>Add Money</button>
+            <button className="add-btn" type='button' onClick={handleSubmit}>Add Money</button>
           </div>
 
           <div className='transaction-history'>
@@ -195,8 +200,10 @@ const ProfilePage = ({ userData, loadUserData }) => {
                       <th>Closing Balance</th>
                       <th>Payment Method</th>
                       <th>Reference No.</th>
-                      <th>Description</th>
-                      <th>Date</th>
+                      {/* <th>Description</th> */}
+                      <th>initiated At</th>
+                      <th>Completed At</th>
+                      <th>Status</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -230,13 +237,22 @@ const ProfilePage = ({ userData, loadUserData }) => {
                          {item.gateway_transaction_reference_number}
                         </td>
 
-                        <td>
+                        {/* <td>
                           {item.description}
-                        </td>
+                        </td> */}
 
                         <td>
-                          {new Date(item.created_at).toLocaleString()}
+                          {new Date(item.initiated_at).toLocaleString()}
                         </td>
+                      
+                      <td>
+                          {new Date(item.payment_completed_at).toLocaleString()}
+                        </td>
+                      
+                      <td>
+                          <span className={item.status=='success'? 'text-success':'text-danger'}>{item.status}</span>
+                        </td>
+                      
                       </tr>
                     ))}
                   </tbody>
@@ -263,7 +279,6 @@ const ProfilePage = ({ userData, loadUserData }) => {
 
       }
       <ErrorModal state={isErrorModalOpen} message={popupMessage} setterFunction={setIsErrorModalOpen} okClickedFunction={loadUserData} />
-      {/* {isMessageModalOpen && <PositiveModal message={message} setterFunction={setIsMessageModalOpen} okClickedFunction={() => handleSuccessButton()} />} */}
       {isLoading && <FixedOverlayLoadingSpinner />}
     </SupportPagesLayout>
   )

@@ -123,7 +123,8 @@ def initiate_payment(request):
         "type": "PG_CHECKOUT",
         "message": "Payment message used for collect requests",
         "merchantUrls": {
-            "redirectUrl": success_redirect_url
+            "redirectUrl": success_redirect_url,
+             "failedRedirectUrl": failed_redirect_url  
         }
     } 
     }
