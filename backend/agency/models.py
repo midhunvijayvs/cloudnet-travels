@@ -30,14 +30,24 @@ class WalletTransaction(models.Model):
         ("manual", "Manual"),
     )
 
+    STATUS_CHOICES = (
+        ("processing", "Processing"),
+        ("success", "Success"),
+        ("failed", "Failed"),
+    )
+    
     agency = models.ForeignKey(Agency, on_delete=models.CASCADE, related_name="wallet_transactions")
     transaction_amount = models.DecimalField(max_digits=12, decimal_places=2)
     opening_balance = models.DecimalField(max_digits=12, decimal_places=2)
-    closing_balance = models.DecimalField(max_digits=12, decimal_places=2)
+    closing_balance = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)
     payment_method = models.CharField(max_length=20, choices=PAYMENT_METHOD_CHOICES, default="phonepe")
     gateway_transaction_reference_number = models.CharField(max_length=100, blank=True, null=True)
     description = models.CharField(max_length=255, blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    
+    initiated_at = models.DateTimeField(auto_now_add=True)   # renamed from created_at
+    payment_completed_at = models.DateTimeField(null=True, blank=True)
+
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="processing")
 
     def __str__(self):
-        return f"{self.agency.agency_name} +{self.transaction_amount} ({self.payment_method})"
+        return f"{self.agency.agency_name} {self.transaction_amount} ({self.status})"
