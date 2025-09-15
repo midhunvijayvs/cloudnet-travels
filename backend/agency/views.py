@@ -60,7 +60,7 @@ class AgencyRegistrationFromAdminSideView(generics.CreateAPIView):
         
         copied_request_data = request.data.copy()  # copy to modify safely
         
-        if 'wallet_balance' not in agency_data or agency_data.get('wallet_balance') in [None, '']:
+        if 'wallet_balance' not in copied_request_data or copied_request_data.get('wallet_balance') in [None, '']:
             copied_request_data['wallet_balance'] = 0
         
         agency_serializer = AgencySerializer(data=copied_request_data)
