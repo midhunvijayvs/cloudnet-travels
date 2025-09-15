@@ -40,7 +40,7 @@ const amount = queryParams.get('amount');
   const loadData = () => {
 
       setIsLoading(true)
-      API.get('/api/phonepe-payment/check-status-and-update-wallet/',{'merchant_order_id':merchant_order_id,'merchant_transaction_id':merchant_transaction_id})
+      API.post('/api/phonepe-payment/check-status-and-update-wallet/',{'merchant_order_id':merchant_order_id,'merchant_transaction_id':merchant_transaction_id})
         .then(response => {
           setOrderData(response.data)
           setIsLoading(false)
