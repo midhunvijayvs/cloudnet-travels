@@ -58,20 +58,20 @@ const ProfilePage = ({ userData, loadUserData }) => {
   }
 
   const handleInputChange = (e) => {
-  const { name, value } = e.target;
-  let cleanedValue =value
-  // only digits allowed
-  if(name=='amount'){
-     cleanedValue = value.replace(/\D/g, "");
-  }
-  setData((prevData) => ({
-    ...prevData,
-    [name]: cleanedValue,
-  }));
-};
+    const { name, value } = e.target;
+    let cleanedValue = value
+    // only digits allowed
+    if (name == 'amount') {
+      cleanedValue = value.replace(/\D/g, "");
+    }
+    setData((prevData) => ({
+      ...prevData,
+      [name]: cleanedValue,
+    }));
+  };
 
   const validateData = () => {
- console.log("data", data)   // Wallet balance: must be a positive number
+    console.log("data", data)   // Wallet balance: must be a positive number
     if (!data.amount || isNaN(data.amount)) {
       return "Amount must be a valid number.";
     }
@@ -119,11 +119,15 @@ const ProfilePage = ({ userData, loadUserData }) => {
 
         setIsMessageModalOpen(true)
 
-        navigate("/wallet-checkout-payment", { state:
-           { 
-            amount:response.data.amount,
-            merchant_order_id:response.data.transaction_id,
-            merchant_transaction_id:response.data.transaction_id } })
+        navigate("/wallet-checkout-payment", {
+          state:
+          {
+            amount: response.data.amount,
+            merchant_order_id: `CLDNTTOPUPODR${localStorage.getItem('userID')}${response.data.transaction_id}`,
+            merchant_transaction_id: `CLDNTTOPUPTXN${localStorage.getItem('userID')}${response.data.transaction_id} `
+          }
+        }
+        )
       })
       .catch(error => {
 
@@ -217,7 +221,7 @@ const ProfilePage = ({ userData, loadUserData }) => {
 
 
                         <td>
-                         {item.transaction_amount}
+                          {item.transaction_amount}
                         </td>
 
                         <td>
@@ -230,11 +234,11 @@ const ProfilePage = ({ userData, loadUserData }) => {
 
 
                         <td>
-                     {item.payment_method}
+                          {item.payment_method}
                         </td>
 
                         <td>
-                         {item.gateway_transaction_reference_number}
+                          {item.gateway_transaction_reference_number}
                         </td>
 
                         {/* <td>
@@ -244,15 +248,15 @@ const ProfilePage = ({ userData, loadUserData }) => {
                         <td>
                           {new Date(item.initiated_at).toLocaleString()}
                         </td>
-                      
-                      <td>
+
+                        <td>
                           {new Date(item.payment_completed_at).toLocaleString()}
                         </td>
-                      
-                      <td>
-                          <span className={item.status=='success'? 'text-success':'text-danger'}>{item.status}</span>
+
+                        <td>
+                          <span className={item.status == 'success' ? 'text-success' : 'text-danger'}>{item.status}</span>
                         </td>
-                      
+
                       </tr>
                     ))}
                   </tbody>
@@ -273,8 +277,10 @@ const ProfilePage = ({ userData, loadUserData }) => {
           message={popupMessage}
           state={isMessageModalOpen}
           setterFunction={setIsMessageModalOpen}
-          okClickedFunction={() => {    loadUserData();
-    loadWalletTransactionsData()}}
+          okClickedFunction={() => {
+            loadUserData();
+            loadWalletTransactionsData()
+          }}
         />
 
       }
