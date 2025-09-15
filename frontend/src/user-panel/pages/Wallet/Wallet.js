@@ -28,7 +28,7 @@ const ProfilePage = ({ userData, loadUserData }) => {
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const { isLoggedIn, setIsLoggedIn, login, logout } = useContext(UserContext);
   const [data, setData] = useState({
-    "wallet_balance": 0,
+    "amount": 0,
     "payment_method": "phonepe",
     "gateway_transaction_reference_number": "TXN12345678",
     "description": "Added via phonepe"
@@ -61,7 +61,7 @@ const ProfilePage = ({ userData, loadUserData }) => {
   const { name, value } = e.target;
   let cleanedValue =value
   // only digits allowed
-  if(name=='wallet_balance'){
+  if(name=='amount'){
      cleanedValue = value.replace(/\D/g, "");
   }
   setData((prevData) => ({
@@ -72,10 +72,10 @@ const ProfilePage = ({ userData, loadUserData }) => {
 
   const validateData = () => {
  console.log("data", data)   // Wallet balance: must be a positive number
-    if (!data.wallet_balance || isNaN(data.wallet_balance)) {
+    if (!data.amount || isNaN(data.amount)) {
       return "Amount must be a valid number.";
     }
-    if (Number(data.wallet_balance) <= 0) {
+    if (Number(data.amount) <= 0) {
       return "Amount must be greater than 0.";
     }
 
@@ -153,8 +153,8 @@ const ProfilePage = ({ userData, loadUserData }) => {
                 type="text" // use text to fully control validation
                 className="amount-input"
                 placeholder="Enter amount"
-                name="wallet_balance"
-                value={data.wallet_balance}
+                name="amount"
+                value={data.amount}
                 onChange={handleInputChange}
               />
             </div>
@@ -168,7 +168,7 @@ const ProfilePage = ({ userData, loadUserData }) => {
                   onClick={() =>
                     setData((prevData) => ({
                       ...prevData,
-                      wallet_balance: amt, // keep consistent with input
+                      amount: amt, // keep consistent with input
                     }))
                   }
                 >
@@ -178,8 +178,8 @@ const ProfilePage = ({ userData, loadUserData }) => {
             </div>
 
             {/* Add Money Button */}
-            <button className="add-btn" type='button' onClick={handleSubmit}>Add Money</button>
-            {/* <button className="add-btn" type='button' onClick={()=>navigate("/checkout-payment", { state: { ticket_id:ticketData.ticket_id, amount:ticketData.price, merchant_order_id:merchandOrderId, merchant_transaction_id:merchantTransactionId } })}>Add Money</button> */}
+            {/* <button className="add-btn" type='button' onClick={handleSubmit}>Add Money</button> */}
+            <button className="add-btn" type='button' onClick={()=>navigate("/checkout-payment", { state: { ticket_id:1, amount:data.amount, merchant_order_id:1, merchant_transaction_id:1 } })}>Add Money</button>
           </div>
 
           <div className='transaction-history'>

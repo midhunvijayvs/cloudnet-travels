@@ -101,7 +101,7 @@ const AgencyList = () => {
 
 
   const deleteItem = () => {
-    API.delete(`/api/user/${selectedItem.id}`)
+    API.delete(`/api/user/${selectedItem.id}/`)
       .then(response => {
         setMessage("Item deleted successfully.");
         setIsMessageModalOpen(true)

@@ -156,7 +156,7 @@ class AddMoneyToWalletView(APIView):
 
     def post(self, request):
         try:
-            amount = request.data.get("wallet_balance")
+            amount = request.data.get("amount")
             payment_method = request.data.get("payment_method", "phonepe")
             gateway_ref = request.data.get("gateway_transaction_reference_number", "")
             description = request.data.get("description", "Wallet top-up")
