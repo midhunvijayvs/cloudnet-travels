@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.conf import settings
 import uuid
-
+from .utils import finalize_wallet_transaction
 
 
 
@@ -154,27 +154,81 @@ def initiate_payment(request):
 
     return JsonResponse({
         "data": response_data,
-        # "auth_token_payload": token_payload,
-        # "auth_token_response": token_response
     })
 
-# @csrf_exempt
-# @require_POST
-# def verify_payment(request):
-#     data = json.loads(request.body)
-#     transaction_id = data.get('transactionId')  # PhonePe transaction ID
-#     order_id = data.get('merchantTransactionId')
 
-#     url = f"{settings.PHONEPE_BASE_URL}/pg/v1/status/{settings.PHONEPE_MERCHANT_ID}/{order_id}"
-#     checksum = hashlib.sha256(
-#         f"/v1/status/{settings.PHONEPE_MERCHANT_ID}/{order_id}{settings.PHONEPE_SALT_KEY}".encode('utf-8')
-#     ).hexdigest()
 
-#     headers = {
-#         "X-VERIFY": f"{checksum}##{settings.PHONEPE_SALT_INDEX}",
-#         "Content-Type": "application/json"
-#     }
 
-#     res = requests.get(url, headers=headers)
-#     return JsonResponse(res.json())
 
+@require_POST
+@csrf_exempt
+def check_payment_status_and_update_wallet(request):
+    data = json.loads(request.body)
+    merchant_order_id = data.get("merchant_order_id")
+    merchant_transaction_id = data.get("merchant_transaction_id")  # WalletTransaction id stored when initiated
+
+    if not merchant_order_id or not merchant_transaction_id:
+        return JsonResponse({"error": "merchant_order_id and merchant_transaction_id are required"}, status=400)
+
+    # Get auth token again
+    token, token_payload, token_response = get_phonepay_auth_token()
+    if not token:
+        return JsonResponse({
+            "error": "Failed to authenticate with PhonePe",
+            "auth_token_payload": token_payload,
+            "auth_token_response": token_response
+        }, status=400)
+
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"O-Bearer {token}"
+    }
+
+    # Call PhonePe status API
+    url = f"{settings.PHONEPE_BASE_URL}/checkout/v2/order/{merchant_order_id}/status"
+    response = requests.get(url, headers=headers)
+
+    try:
+        status_data = response.json()
+    except Exception as e:
+        return JsonResponse({
+            "error": "Failed to parse response from PhonePe",
+            "exception": str(e),
+            "status_code": response.status_code,
+            "raw_response": response.text
+        }, status=500)
+
+    # Extract payment details
+    order_state = status_data.get("state")  # COMPLETED, FAILED, PENDING
+    payment_details = status_data.get("paymentDetails", [])
+    phonpe_payment_referance_number = ""
+    
+    if payment_details and isinstance(payment_details, list):
+        phonpe_payment_referance_number = payment_details[0].get("transactionId", "")
+
+    # Verify and finalize wallet transaction
+    if order_state == "COMPLETED":
+        result = finalize_wallet_transaction(
+            merchant_order_id=merchant_order_id,
+            merchant_transaction_id=merchant_transaction_id,
+            payment_status="success",
+            phonpe_payment_referance_number=phonpe_payment_referance_number
+        )
+        return JsonResponse(result, status=200)
+
+    elif order_state in ["FAILED", "CANCELLED"]:
+        result = finalize_wallet_transaction(
+            merchant_order_id=merchant_order_id,
+            merchant_transaction_id=merchant_transaction_id,
+            payment_status="failed",
+            phonpe_payment_referance_number=phonpe_payment_referance_number
+        )
+        return JsonResponse(result, status=400)
+
+    else:
+        # Payment still pending
+        return JsonResponse({
+            "message": "Payment is still pending",
+            "status": order_state,
+            "phonpe_payment_referance_number": phonpe_payment_referance_number
+        }, status=202)

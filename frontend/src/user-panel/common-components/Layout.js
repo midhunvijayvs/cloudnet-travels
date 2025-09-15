@@ -17,6 +17,7 @@ import TicketBooking from '../pages/TicketBooking/TicketBooking';
 
 import WalletCheckoutPayment from '../pages/WalletCheckoutPayment/WalletCheckoutPayment';
 import WalletCheckoutConfirm from '../pages/WalletCheckoutConfirm/WalletCheckoutConfirm';
+import WalletCheckoutFailed from '../pages/WalletCheckoutFailed/WalletCheckoutFailed';
 
 import CheckoutCart from '../pages/CheckoutCart/CheckoutCart';
 import CheckoutAddress from '../pages/CheckoutAddress/CheckoutAddress';
@@ -174,6 +175,7 @@ const Layout = () => {
 
           <Route path="wallet-checkout-payment" element={<WalletCheckoutPayment  />} />
           <Route path="wallet-checkout-confirm" element={<WalletCheckoutConfirm />} />
+          <Route path="wallet-checkout-failed" element={<WalletCheckoutFailed />} />
 
 
           <Route path="checkout-cart" element={<CheckoutCart />} />

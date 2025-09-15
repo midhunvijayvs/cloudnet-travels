@@ -198,55 +198,55 @@ class AddMoneyToWalletView(APIView):
             return Response({"message": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
+#not needed as updating this from frontend have security risk.
+# class UpdateWalletTransactionView(APIView):
+#     permission_classes = [IsAgencyUser]
+#     authentication_classes = [JWTAuthentication]
 
-class UpdateWalletTransactionView(APIView):
-    permission_classes = [IsAgencyUser]
-    authentication_classes = [JWTAuthentication]
+#     def post(self, request):
+#         try:
+#             transaction_id = request.data.get("transaction_id")
+#             gateway_ref = request.data.get("gateway_transaction_reference_number", "")
+#             payment_status = request.data.get("status", "failed")  # frontend/backend passes this
 
-    def post(self, request):
-        try:
-            transaction_id = request.data.get("transaction_id")
-            gateway_ref = request.data.get("gateway_transaction_reference_number", "")
-            payment_status = request.data.get("status", "failed")  # frontend/backend passes this
+#             transaction = WalletTransaction.objects.select_for_update().get(id=transaction_id)
 
-            transaction = WalletTransaction.objects.select_for_update().get(id=transaction_id)
+#             if transaction.status != "processing":
+#                 return Response({"message": "Transaction already finalized"}, status=status.HTTP_400_BAD_REQUEST)
 
-            if transaction.status != "processing":
-                return Response({"message": "Transaction already finalized"}, status=status.HTTP_400_BAD_REQUEST)
+#             with transaction.atomic():
+#                 if payment_status == "success":
+#                     closing_balance = transaction.opening_balance + transaction.transaction_amount
 
-            with transaction.atomic():
-                if payment_status == "success":
-                    closing_balance = transaction.opening_balance + transaction.transaction_amount
+#                     # Update agency wallet
+#                     agency = transaction.agency
+#                     agency.wallet_balance = closing_balance
+#                     agency.save()
 
-                    # Update agency wallet
-                    agency = transaction.agency
-                    agency.wallet_balance = closing_balance
-                    agency.save()
+#                     # Update transaction
+#                     transaction.closing_balance = closing_balance
+#                     transaction.status = "success"
+#                     transaction.gateway_transaction_reference_number = gateway_ref
+#                     transaction.payment_completed_at = timezone.now()
+#                     transaction.save()
 
-                    # Update transaction
-                    transaction.closing_balance = closing_balance
-                    transaction.status = "success"
-                    transaction.gateway_transaction_reference_number = gateway_ref
-                    transaction.payment_completed_at = timezone.now()
-                    transaction.save()
+#                     return Response(
+#                         {"message": "Payment success", "wallet_balance": str(agency.wallet_balance)},
+#                         status=status.HTTP_200_OK,
+#                     )
+#                 else:
+#                     # mark as failed
+#                     transaction.status = "failed"
+#                     transaction.gateway_transaction_reference_number = gateway_ref
+#                     transaction.payment_completed_at = timezone.now()
+#                     transaction.save()
 
-                    return Response(
-                        {"message": "Payment success", "wallet_balance": str(agency.wallet_balance)},
-                        status=status.HTTP_200_OK,
-                    )
-                else:
-                    # mark as failed
-                    transaction.status = "failed"
-                    transaction.gateway_transaction_reference_number = gateway_ref
-                    transaction.payment_completed_at = timezone.now()
-                    transaction.save()
+#                     return Response({"message": "Payment failed"}, status=status.HTTP_400_BAD_REQUEST)
 
-                    return Response({"message": "Payment failed"}, status=status.HTTP_400_BAD_REQUEST)
-
-        except WalletTransaction.DoesNotExist:
-            return Response({"message": "Transaction not found"}, status=status.HTTP_404_NOT_FOUND)
-        except Exception as e:
-            return Response({"message": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+#         except WalletTransaction.DoesNotExist:
+#             return Response({"message": "Transaction not found"}, status=status.HTTP_404_NOT_FOUND)
+#         except Exception as e:
+#             return Response({"message": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
      

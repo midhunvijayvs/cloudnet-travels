@@ -5,7 +5,7 @@ import PositiveModal from "../../../PositiveModal.js";
 import FixedOverlayLoadingSpinner from "../../../FixedOverlayLoadingSpinner.js"
 import $ from 'jquery';
 import { convertTimeString12Hour, convertTo12HourTime, formatTimeFromMinutes } from '../../../GeneralFunctions.js';
-import './WalletCheckoutConfirm.scss'
+import './WalletCheckoutFailed.scss'
 import API from '../../../API.js';
 import ProcessFlowIllustrationForCheckout from '../../common-components/ProcessFlowIllustrationForCheckout/ProcessFlowIllustrationForCheckout.js'
 
@@ -28,7 +28,7 @@ const amount = queryParams.get('amount');
   const [isLoading, setIsLoading] = useState(false);
 
 
-  const [orderData, setOrderData] = useState(null);
+  const [orderData, setOrderData] = useState({});
 
   useEffect(() => {
     $(function () {
@@ -39,8 +39,9 @@ const amount = queryParams.get('amount');
 
   const loadData = () => {
 
+      let apiUrl = `https://api.phonepe.com/apis/pg/checkout/v2/order/${merchant_order_id}/status`;
       setIsLoading(true)
-      API.get('/api/phonepe-payment/check-status-and-update-wallet/',{'merchant_order_id':merchant_order_id,'merchant_transaction_id':merchant_transaction_id})
+      API.get(apiUrl)
         .then(response => {
           setOrderData(response.data)
           setIsLoading(false)
@@ -51,12 +52,13 @@ const amount = queryParams.get('amount');
           setIsLoading(false)
         });
    
+
   }
 
 
   useEffect(() => {
     loadData();
-    
+    loadUserData()
 
   }, []);
 
@@ -65,9 +67,8 @@ const amount = queryParams.get('amount');
 
 
   return (
-    <div className='wallet-checkout-confirm-page'>
+    <div className='wallet-checkout-failed-page'>
 
-    {orderData?
       <section className="sec-2">
 
         <div className="lhs">
@@ -78,12 +79,11 @@ const amount = queryParams.get('amount');
 
               <div className="account-part p-0">
                 <div className='top-sec'>
-                  <h3>Wallet Recharged Successfully!!</h3>
-                  <h3>With Rs. {orderData.transaction_amount}/-</h3>
-                  <p>Your Wallet Recharge order has been successfully placed.</p>
-                    <h3>Your current wallet balance is :</h3>
-                  <h3>{orderData.wallet_balance}</h3>
-          <p> Thank you for keeping your wallet adequate!</p>
+                  <h3>Wallet Recharged failed!!</h3>
+                  
+                  <p>Something went wrong</p>
+                    <br />
+                   <p> Thank you for trying to keeping your wallet adequate. please try again</p>
                 </div>
                 {/* <img className="img-fluid account-img w-25" src="/images/gif/order-availability.gif" alt="availability"></img> */}
                 <div className=" d-flex justify-content-center gap-2 mt-4 mb-4">
@@ -108,8 +108,6 @@ const amount = queryParams.get('amount');
 
           </div>
         </div>
-      {orderData && (
-        
         <div className="rhs">
           <div className="order-summery-section">
            
@@ -127,14 +125,11 @@ const amount = queryParams.get('amount');
                       <h6 className="address mt-2 content-color text-wrap">
                         PhonePe
                         <br />
-                        <br />CloudNet Order . ID.
-                        <br /> {orderData.merchant_order_id}
+                        <br />CloudNet Booking. ID.
+                        <br /> {merchant_order_id}
                         <br /> 
                         <br /> CloudNet Transaction. ID.
-                        <br /> {orderData.merchant_transaction_id}
-                        <br /> 
-                        <br /> PhonePe Transaction. ID.
-                        <br /> {orderData.phonpe_payment_referance_number}
+                        <br /> {merchant_transaction_id}
                       </h6>
                       <br />
                       <br />
@@ -161,7 +156,7 @@ const amount = queryParams.get('amount');
                 <div className="sub-total">
                   <h6 className="content-color fw-normal">Sub Total</h6>
                   <h6 className="fw-semibold">
-                    ₹{parseFloat(orderData.transaction_amount).toFixed(2)}
+                    ₹{parseFloat(amount).toFixed(2)}
                   </h6>
                 </div>
                 
@@ -179,17 +174,14 @@ const amount = queryParams.get('amount');
                
                 <div className="grand-total">
                   <h6 className="fw-semibold dark-text">Total</h6>
-                  <h6 className="fw-semibold amount">₹{parseFloat(orderData.transaction_amount).toFixed(2)}</h6>
+                  <h6 className="fw-semibold amount">₹{parseFloat(amount).toFixed(2)}</h6>
                 </div>
                 <img className="dots-design" src="/images/svg/dots-design.svg" alt="dots"></img>
               </div>
            
           </div>
         </div>
-      )}
       </section >
-      :<FixedOverlayLoadingSpinner />
-      }
       {isLoading && <FixedOverlayLoadingSpinner />}
 
 
