@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal } from "react-bootstrap";
 
 
-const ErrorModal = ({message, state, setterFunction, okClickedFunction }) => {
+const ErrorModal = ({title,message, state, setterFunction, okClickedFunction }) => {
 
  
     const closeModal = () => {
@@ -19,7 +19,7 @@ const ErrorModal = ({message, state, setterFunction, okClickedFunction }) => {
     <Modal show={state} className="app-modal">
 
       <Modal.Header closeButton onClick={closeModal}>
-        <Modal.Title> <h4 className="modal-title" id="errorModalLabel" style={{ color: 'red', lineHeight: '1' }}>Error</h4></Modal.Title>
+        <Modal.Title> <h4 className="modal-title" id="errorModalLabel" style={{ color: 'red', lineHeight: '1' }}>{title?title:'Error'}</h4></Modal.Title>
       </Modal.Header>
 
       <Modal.Body>

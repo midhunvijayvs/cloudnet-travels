@@ -51,6 +51,7 @@ class WalletTransactionSerializer(serializers.ModelSerializer):
             "payment_method",
             "gateway_transaction_reference_number",
             "description",
+            "credit_or_debit",
             "initiated_at",
             "payment_completed_at",
             "status",

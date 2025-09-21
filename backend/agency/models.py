@@ -10,7 +10,7 @@ class Agency(models.Model):
     home_address = models.TextField(max_length=500)
     alternative_phone_number = models.CharField(max_length=20)
     govt_id_number=models.CharField(max_length=100, null=True, blank=True)
-    notes = models.TextField()
+    notes = models.TextField(null=True, blank=True)
     is_id_verified=models.BooleanField(default=False)
     joined_on = models.DateField(default=timezone.now)
     wallet_balance = models.DecimalField(
@@ -36,6 +36,11 @@ class WalletTransaction(models.Model):
         ("failed", "Failed"),
     )
     
+    CREDIT_OR_DEBIT_CHOICES = (
+        ("credit", "Credit"),  # money added to wallet
+        ("debit", "Debit"),    # money deducted from wallet
+    )
+
     agency = models.ForeignKey(Agency, on_delete=models.CASCADE, related_name="wallet_transactions")
     transaction_amount = models.DecimalField(max_digits=12, decimal_places=2)
     opening_balance = models.DecimalField(max_digits=12, decimal_places=2)
@@ -44,6 +49,8 @@ class WalletTransaction(models.Model):
     gateway_transaction_reference_number = models.CharField(max_length=100, blank=True, null=True)
     description = models.CharField(max_length=255, blank=True, null=True)
     
+    credit_or_debit = models.CharField(max_length=10, choices=CREDIT_OR_DEBIT_CHOICES, default="debit")
+    
     initiated_at = models.DateTimeField(auto_now_add=True)   # renamed from created_at
     payment_completed_at = models.DateTimeField(null=True, blank=True)
 
@@ -51,3 +58,8 @@ class WalletTransaction(models.Model):
 
     def __str__(self):
         return f"{self.agency.agency_name} {self.transaction_amount} ({self.status})"
+    
+    
+    
+    
+    

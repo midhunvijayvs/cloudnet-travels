@@ -5,14 +5,14 @@ import PositiveModal from "../../../PositiveModal.js";
 import FixedOverlayLoadingSpinner from "../../../FixedOverlayLoadingSpinner.js"
 import $ from 'jquery';
 import { convertTimeString12Hour, convertTo12HourTime, formatTimeFromMinutes } from '../../../GeneralFunctions.js';
-import './WalletCheckoutFailed.scss'
-import API from '../../../API.js';
+import './CheckoutShowFailed.scss'
+import API from '../../../API';
 import ProcessFlowIllustrationForCheckout from '../../common-components/ProcessFlowIllustrationForCheckout/ProcessFlowIllustrationForCheckout.js'
 
 
 
 
-const WalletPaymentConfirm = ({ userData, loadUserData  }) => {
+const Userhome = ({ userData, loadUserData, loadCartDataForHeader, orderUpdate }) => {
   const navigate = useNavigate();
 const location = useLocation();
 const queryParams = new URLSearchParams(location.search);
@@ -26,8 +26,8 @@ const amount = queryParams.get('amount');
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
-
-
+  const storedDataId = window.localStorage.getItem("createOrderResponse_order_id");
+  const orderPlacedId = storedDataId ? storedDataId : null;
   const [orderData, setOrderData] = useState({});
 
   useEffect(() => {
@@ -36,38 +36,35 @@ const amount = queryParams.get('amount');
     });
   }, [])
  
-
+const merchantOrderId=localStorage.getItem('merchantOrderId')
   const loadData = () => {
-
-      let apiUrl = `https://api.phonepe.com/apis/pg/checkout/v2/order/${merchant_order_id}/status`;
+    if (orderPlacedId) {
+      let apiUrl = `https://api-preprod.phonepe.com/apis/pg-sandbox/checkout/v2/order/${merchantOrderId}/status`;
       setIsLoading(true)
       API.get(apiUrl)
         .then(response => {
           setOrderData(response.data)
           setIsLoading(false)
-          loadUserData()
         })
         .catch(error => {
           console.error(error);
           setIsLoading(false)
         });
-   
+    }
 
   }
-
-
   useEffect(() => {
     loadData();
-    loadUserData()
 
-  }, []);
-
+  }, [orderUpdate]);
 
 
+
+  const PAYMENT_METHODS = ['paypal', 'card', 'cod', 'manual', 'stripe']
 
 
   return (
-    <div className='wallet-checkout-failed-page'>
+    <div className='checkout-failed-page'>
 
       <section className="sec-2">
 
@@ -79,20 +76,22 @@ const amount = queryParams.get('amount');
 
               <div className="account-part p-0">
                 <div className='top-sec'>
-                  <h3>Wallet Recharged failed!!</h3>
-                  
-                  <p>Something went wrong</p>
+                  <h3>Sorry</h3>
+                  <h3>Ticket Booking Failed !!</h3>
+                  <p>Your Ticket Booking order has been failed.
                     <br />
-                   <p> Thank you for trying to keeping your wallet adequate. please try again</p>
+                    Something went wrong from our side.<br/>
+                    Please try again later. <br/>
+                    If the issue persist, please contact our customer care!</p>
                 </div>
                 {/* <img className="img-fluid account-img w-25" src="/images/gif/order-availability.gif" alt="availability"></img> */}
                 <div className=" d-flex justify-content-center gap-2 mt-4 mb-4">
-                  <p className='mt-0'>For any issues, contact cloudnet travels via Email or Phone call.</p>
+                  <p className='mt-0'>For timely updates on the status of your ticket, contact cloudnet travels via Email or Phone call.</p>
                 </div>
                 <div className="account-btn d-flex justify-content-center gap-2">
-                  <a onClick={() => { navigate('/wallet'); }}
+                  <a onClick={() => { navigate('/home'); localStorage.setItem('itemSelectedId', orderData.id) }}
                     className="btn-outlined">
-                    Go to Your Wallet
+                    Go Home
                   </a>
                 </div>
                 {/* contact us */}
@@ -200,4 +199,4 @@ const amount = queryParams.get('amount');
 
 }
 
-export default WalletPaymentConfirm
+export default Userhome

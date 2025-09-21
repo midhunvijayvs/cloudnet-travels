@@ -2,51 +2,45 @@ import React from 'react'
 import { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
-import Header from './Header';
-import Footer from './Footer'
+import Header from '../Header';
+import Footer from '../Footer'
 import './Layout.css'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import API from "../../API"
-import { UserContext } from '../../authentication/pages/UserContext';
+import API from "../../../API"
+import { UserContext } from '../../../authentication/pages/UserContext';
 import useWebSocket from 'react-use-websocket';
 
-import Home from '../pages/Home/Home';
-
-import Shop from '../pages/Shop/Shop';
-import TicketBooking from '../pages/TicketBooking/TicketBooking';
-
-import WalletCheckoutPayment from '../pages/WalletCheckoutPayment/WalletCheckoutPayment';
-import WalletCheckoutConfirm from '../pages/WalletCheckoutConfirm/WalletCheckoutConfirm';
-import WalletCheckoutFailed from '../pages/WalletCheckoutFailed/WalletCheckoutFailed';
-
-import CheckoutCart from '../pages/CheckoutCart/CheckoutCart';
-import CheckoutAddress from '../pages/CheckoutAddress/CheckoutAddress';
-import CheckoutPayment from '../pages/CheckoutPayment/CheckoutPayment';
-import CheckoutConfirm from '../pages/CheckoutConfirm/CheckoutConfirm';
-import CheckoutOptions from '../pages/CheckoutOptions/CheckoutOptions';
-
-import MyOrders from '../pages/MyOrders/MyOrders';
+import Home from '../../pages/Home/Home';
+import Shop from '../../pages/Shop/Shop';
+import MyOrders from '../../pages/MyOrders/MyOrders';
+import ProfilePage from '../../pages/Profile/Profile';
+import Payment from '../../pages/Payment/Payment';
+import About from '../../pages/About/About';
+import ContactUs from '../../pages/ContactUs/ContactUs';
+import NoPage from '../../pages/NoPage/NoPage';
 
 
-import ProfilePage from '../pages/Profile/Profile';
-import WalletPage from '../pages/Wallet/Wallet';
-import Payment from '../pages/Payment/Payment';
-import About from '../pages/About/About';
-import ContactUs from '../pages/ContactUs/ContactUs';
-import NoPage from '../pages/NoPage/NoPage';
+import WalletPage from '../../pages/Wallet/Wallet';
+import WalletCheckoutPayment from '../../pages/WalletCheckoutPayment/WalletCheckoutPayment'
+import WalletCheckoutShowSuccess from '../../pages/WalletCheckoutShowSuccess/WalletCheckoutShowSuccess';
+import WalletCheckoutShowFailed from '../../pages/WalletCheckoutShowFailed/WalletCheckoutShowFailed';
+
+import TicketBooking from '../../pages/TicketBooking/TicketBooking';
+import CheckoutShowSuccess from '../../pages/CheckoutShowSuccess/CheckoutShowSuccess';
+import CheckoutShowFailed from '../../pages/CheckoutShowFailed/CheckoutShowFailed';
 
 
 
-import TermsAndConditions from '../pages/PolicyPages/TermsAndConditions';
-import CookiePolicy from '../pages/PolicyPages/CookiePolicy';
-import FAQ from '../pages/PolicyPages/FAQ';
-import PrivacyPolicy from '../pages/PolicyPages/PrivacyPolicy';
-import RefundAndCancellationPolicy from '../pages/PolicyPages/RefundAndCancellationPolicy';
+import TermsAndConditions from '../../pages/PolicyPages/TermsAndConditions';
+import CookiePolicy from '../../pages/PolicyPages/CookiePolicy';
+import FAQ from '../../pages/PolicyPages/FAQ';
+import PrivacyPolicy from '../../pages/PolicyPages/PrivacyPolicy';
+import RefundAndCancellationPolicy from '../../pages/PolicyPages/RefundAndCancellationPolicy';
 
 import { Navigate, useNavigate } from 'react-router-dom';
-import { fetchBrowserCurrentLocation, getAddressFromLatLng, playNotificationSound } from '../../GeneralFunctions';
+import { fetchBrowserCurrentLocation, getAddressFromLatLng, playNotificationSound } from '../../../GeneralFunctions';
 
-import FloatingMobileNavbar from '../common-components/FloatingMobileNavBar'
+import FloatingMobileNavbar from '../FloatingMobileNavBar'
 const Layout = () => {
   const navigate = useNavigate()
   const [userData, setUserData] = useState(null);
@@ -64,11 +58,18 @@ const Layout = () => {
   const [profileMenuOpen, setProfileMenuOpen] = useState(false)
   const { isLoggedIn, login, logout } = useContext(UserContext);
 
+  // helper function to get tomorrow in YYYY-MM-DD format
+const getTomorrowDate = () => {
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  return tomorrow.toISOString().split("T")[0];
+};
+
     const [ticketSearchFormData, setTicketSearchFormData] = useState( 
       {
          origin: "DEL",
     destination: "DEX",
-    departure_date: "2025-08-20",
+    departure_date: getTomorrowDate(), // always tomorrow
     adult:1,
     child: 0,
     infant: 0
@@ -159,14 +160,14 @@ const Layout = () => {
           <Route path="home" element={
             <Home
               ticketSearchFormData={ticketSearchFormData}
-          setTicketSearchFormData={setTicketSearchFormData}
+              setTicketSearchFormData={setTicketSearchFormData}
               cartItems={cartItems}
               activePage={activePage} />} />
 
           <Route path="shop" element={
             <Shop 
-          ticketSearchFormData={ticketSearchFormData}
-          setTicketSearchFormData={setTicketSearchFormData}
+            ticketSearchFormData={ticketSearchFormData}
+            setTicketSearchFormData={setTicketSearchFormData}
             cartItems={cartItems}
             />} />
 
@@ -174,16 +175,13 @@ const Layout = () => {
 <Route path="/book-ticket" element={<TicketBooking ticketSearchFormData={ticketSearchFormData} />} />
 
           <Route path="wallet-checkout-payment" element={<WalletCheckoutPayment  />} />
-          <Route path="wallet-checkout-confirm" element={<WalletCheckoutConfirm />} />
-          <Route path="wallet-checkout-failed" element={<WalletCheckoutFailed />} />
+          <Route path="wallet-checkout-success" element={<WalletCheckoutShowSuccess />} />
+          <Route path="wallet-checkout-failed" element={<WalletCheckoutShowFailed />} />
 
 
-          <Route path="checkout-cart" element={<CheckoutCart />} />
-          <Route path="checkout-empty-cart" element={<CheckoutCart />} />
-          <Route path="checkout-address" element={<CheckoutAddress />} />
-          <Route path="checkout-options" element={<CheckoutOptions />} />
-          <Route path="checkout-payment" element={<CheckoutPayment  />} />
-          <Route path="checkout-confirm" element={<CheckoutConfirm  orderUpdate={isNewOrderUpdateShow} />} />
+         
+          <Route path="checkout-success" element={<CheckoutShowSuccess/>} />
+          <Route path="checkout-failed" element={<CheckoutShowFailed />} />
 
 
           <Route path="payment" element={<Payment />} />

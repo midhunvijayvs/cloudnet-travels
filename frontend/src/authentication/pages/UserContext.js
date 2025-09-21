@@ -219,12 +219,11 @@ useEffect(() => {
         
       }
       <ErrorModal message={popupMessage} state={isErrorModalOpen} setterFunction={setIsErrorModalOpen} okClickedFunction={() => { }} />
-      {/* {isMessageModalOpen&&<PositiveModal title={popupTitle} message={message}  setterFunction={setIsMessageModalOpen} okClickedFunction={redirect} />} */}
       {isAuthMessageModalOpen &&
         <AuthMessagePopup
-          setterFunction={setIsMessageModalOpen}
+          setterFunction={setIsAuthMessageModalOpen}
           okClickedFunction={redirect}
-          pageName={""}
+          pageName={"login"}
           titleWeb={popupTitle}
           titleTab={popupTitle}
           titleMob={popupTitle}

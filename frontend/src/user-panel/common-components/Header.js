@@ -207,13 +207,17 @@ const Header = ({ userData, loadUserData, cartItems, setActivePage, activePage, 
                 onClick={() => setOpenDropDown(prev => (prev === 0 ? null : 0))}
                 ref={walletRef}
               >
-            <img className="icon" src={ '/images/header/wallet.png'} alt="icon"></img>
+            
 
-                <div>
-                  <h6 className="fw-normal">Wallet Balance, {`${userData.agency.wallet_balance}`}</h6>
-
-
+                <div className='wallet-menu'> 
+                <img className="icon" src={ '/images/header/wallet.png'} alt="icon"></img>
+                 <div className='text-box'>
+                    <div className='label' >Wallet Balance:</div>
+                  <div className='value'>₹ {`${userData.agency.wallet_balance}`}</div>
                 </div>
+                </div>
+
+
                 <div className="onhover-box ">
                   <ul className="menu-list">
                     <li>
@@ -279,16 +283,16 @@ const Header = ({ userData, loadUserData, cartItems, setActivePage, activePage, 
 
 
         <p className="social-heading">Follow Us</p>
+        
         <div className="social-box">
-
           <img src="/images/twitter.svg" alt="Twitter" />
           <img src="/images/linkedin.svg" alt="Linkedin" />
           <img src="/images/instagram.svg" alt="Instagram" />
           <img src="/images/facebook.svg" alt="Facebook" />
           <img src="/images/youtube.svg" alt="Youtube" />
-
         </div>
       </div>
+
 
 
       <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" className='hamburger' onClick={() => setNavPaneOpen(true)}>

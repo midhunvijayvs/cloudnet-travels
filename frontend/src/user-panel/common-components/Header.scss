@@ -303,23 +303,27 @@ right: 2rem;
             display: flex;
             gap: 10px;
 
-            .icon {
+        .wallet-menu{
+            display: flex;
+                .icon {
                 border-radius: 100%;
                 height: 40px;
                 width: 40px;
             }
 
-            h6 {
+            .label {
                 color: var(--dark-grey);
                 font-size: 14px;
                 line-height: 1;
             }
 
-            h5 {
-                color: var(--dark-grey);
-                font-size: 16px;
+            .value {
+                color: green;
+                font-size: 1.5rem;
+                font-weight: 900;
                 line-height: 1.3;
                 margin-top: 4px;
+            }
             }
 
             .onhover-box {

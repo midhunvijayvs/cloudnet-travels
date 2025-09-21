@@ -4,7 +4,7 @@ from agency.models import WalletTransaction
 
 
 
-def finalize_wallet_transaction(merchant_order_id,merchant_transaction_id, payment_status, phonpe_payment_referance_number=""):
+def finalize_wallet_transaction(merchant_transaction_id, payment_status, phonpe_payment_referance_number=""):
     """
     Finalize a wallet transaction after verifying payment with PhonePe.
     This handles both success and failure cases.
@@ -37,8 +37,6 @@ def finalize_wallet_transaction(merchant_order_id,merchant_transaction_id, payme
                     "wallet_balance": str(agency.wallet_balance),
                     "status": "success",
                     'phonpe_payment_referance_number':phonpe_payment_referance_number,
-                    'merchant_transaction_id':merchant_transaction_id,
-                    'merchant_order_id':merchant_order_id,
                     'transaction_amount':tx.transaction_amount
                     
                 }
@@ -48,6 +46,7 @@ def finalize_wallet_transaction(merchant_order_id,merchant_transaction_id, payme
                 tx.status = "failed"
                 tx.gateway_transaction_reference_number = gateway_ref
                 tx.payment_completed_at = timezone.now()
+                tx.closing_balance = opening_balance
                 tx.save()
 
                 return {"message": "Payment failed", "status": "failed"}

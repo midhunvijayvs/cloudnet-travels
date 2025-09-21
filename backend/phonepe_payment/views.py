@@ -209,26 +209,41 @@ def check_payment_status_and_update_wallet(request):
     # Verify and finalize wallet transaction
     if order_state == "COMPLETED":
         result = finalize_wallet_transaction(
-            merchant_order_id=merchant_order_id,
             merchant_transaction_id=merchant_transaction_id,
             payment_status="success",
             phonpe_payment_referance_number=phonpe_payment_referance_number
         )
+        
+        print("called finalize_wallet_transaction with order_state == COMPLETED")
+        
+        result["merchant_order_id"] = merchant_order_id
+        result["merchant_transaction_id"] = merchant_transaction_id
+        result["backend log"] = "called finalize_wallet_transaction with order_state == COMPLETED"
+        result["phonepe response data"] = status_data
         return JsonResponse(result, status=200)
 
     elif order_state in ["FAILED", "CANCELLED"]:
         result = finalize_wallet_transaction(
-            merchant_order_id=merchant_order_id,
             merchant_transaction_id=merchant_transaction_id,
             payment_status="failed",
             phonpe_payment_referance_number=phonpe_payment_referance_number
         )
+        print("called finalize_wallet_transaction with order_state == FAILED or CANCELLED")
+        
+        result["merchant_order_id"] = merchant_order_id
+        result["merchant_transaction_id"] = merchant_transaction_id
+        result["backend log"] = "called finalize_wallet_transaction with order_state == FAILED or CANCELLED"
+        result["phonepe response data"] = status_data
         return JsonResponse(result, status=400)
 
     else:
         # Payment still pending
+        print("no expected order state came")
         return JsonResponse({
             "message": "Payment is still pending",
             "status": order_state,
-            "phonpe_payment_referance_number": phonpe_payment_referance_number
+            "phonpe_payment_referance_number": phonpe_payment_referance_number,
+            "backend log":"no expected order state came",
+            "phonepe response data" :status_data
+            
         }, status=202)

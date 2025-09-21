@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 
-const LogoutAuthMessagePopup = (props) => {
+const AuthMessagePopup = (props) => {
     const renderHTML = (text) => ({ __html: text });
     let navigate = useNavigate();
     const { timeout = 10000 } = props;
@@ -50,7 +50,13 @@ const LogoutAuthMessagePopup = (props) => {
                                                 if (props.pageName === "email-confirmation") {
                                                     localStorage.setItem("userRoleRequest", "user");
                                                     navigate("/login");
-                                                } else {
+                                                } 
+                                                else if(props.pageName === "login")
+                                                {
+                                                   window.location.reload(true);
+                                                    
+                                                }
+                                                else {
                                                     navigate(props.buttonOnClick);
                                                 }
                                             }}
@@ -70,4 +76,4 @@ const LogoutAuthMessagePopup = (props) => {
     )
 }
 
-export default LogoutAuthMessagePopup;
+export default AuthMessagePopup;

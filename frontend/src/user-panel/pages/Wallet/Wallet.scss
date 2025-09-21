@@ -1,6 +1,6 @@
 .wallet-page {
-  
-.balance-header {
+
+  .balance-header {
     background: linear-gradient(135deg, #008500, #0d8cf0); // primary gradient
     color: #fff;
     border-radius: 16px;
@@ -10,7 +10,8 @@
     justify-content: space-between;
     box-shadow: 0 6px 20px rgba(10, 116, 206, 0.25);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-margin-bottom: 2rem;
+    margin-bottom: 2rem;
+
     &:hover {
       transform: translateY(-4px);
       box-shadow: 0 10px 25px rgba(10, 116, 206, 0.35);
@@ -31,12 +32,12 @@ margin-bottom: 2rem;
     }
   }
 
-   .add-money {
+  .add-money {
     background: #fff;
     border-radius: 16px;
     padding: 2rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-margin-bottom: 2rem;
+    margin-bottom: 2rem;
 
     .section-title {
       font-size: 1.2rem;
@@ -45,61 +46,62 @@ margin-bottom: 2rem;
       color: #0A74CE;
     }
 
-  .amount-input-wrapper {
-  position: relative;
-  width: 100%;
+    .amount-input-wrapper {
+      position: relative;
+      width: 100%;
 
-  .currency {
-    position: absolute;
-    left: 1rem;
-    top: 40%;
-    transform: translateY(-50%);
-    font-size: 2rem;
-    font-weight: 600;
-    color: #FBBC05;
-    pointer-events: none; // so clicks go to input
-  }
+      .currency {
+        position: absolute;
+        left: 1rem;
+        top: 40%;
+        transform: translateY(-50%);
+        font-size: 2rem;
+        font-weight: 600;
+        color: #FBBC05;
+        pointer-events: none; // so clicks go to input
+      }
 
-  .amount-input {
-    color: #474747;
-    width: 100%;
-    padding: 0.75rem 1rem 0.75rem 3rem; // extra left padding for ₹
-    font-size: 2rem;
-    font-weight: 600;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    transition: border 0.2s ease;
+      .amount-input {
+        color: #474747;
+        width: 100%;
+        padding: 0.75rem 1rem 0.75rem 3rem; // extra left padding for ₹
+        font-size: 2rem;
+        font-weight: 600;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        transition: border 0.2s ease;
 
-    &:focus {
-      border-color: #0A74CE;
-      outline: none;
+        &:focus {
+          border-color: #0A74CE;
+          outline: none;
+        }
+      }
     }
-  }
-}
-input::placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-      font-size: 1.2rem;
-  color: #82a2ca;
-  font-family:"Inter", sans-serif !important;
-  opacity: 1;
-  /* Firefox */
-}
 
-:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
+    input::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
       font-size: 1.2rem;
- color: #0B1426;
-  font-family:"Inter", sans-serif !important
-}
+      color: #82a2ca;
+      font-family: "Inter", sans-serif !important;
+      opacity: 1;
+      /* Firefox */
+    }
 
-::-ms-input-placeholder {
-  /* Microsoft Edge */
+    :-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
       font-size: 1.2rem;
-  color: #0B1426;
-  font-family:"Inter", sans-serif !important
+      color: #0B1426;
+      font-family: "Inter", sans-serif !important
+    }
 
-}
+    ::-ms-input-placeholder {
+      /* Microsoft Edge */
+      font-size: 1.2rem;
+      color: #0B1426;
+      font-family: "Inter", sans-serif !important
+    }
+
     .suggestion-box {
       display: flex;
       flex-wrap: wrap;
@@ -140,51 +142,71 @@ input::placeholder {
     }
   }
 
-.transaction-history{
-  background: #fff;
+  .transaction-history {
+    background: #fff;
     border-radius: 16px;
     padding: 2rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-.tabel-wrapper{
- width: 100%;
- overflow-x: auto;
-margin-bottom: 2rem;
-  table {
-    width: 100%;
-    border-collapse: collapse;
+ .section-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #0A74CE;
+    }
+    .table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      margin-bottom: 2rem;
 
-    tr {
-      border-bottom: 1px solid #eaeaea;
+      table {
+        width: 100%;
+        border-collapse: collapse;
 
-      &:last-child {
-        border-bottom: none;
+        tr {
+          border-bottom: 1px solid #eaeaea;
+
+          &:last-child {
+            border-bottom: none;
+          }
+        }
+
+        th,
+        td {
+          padding: 0.75rem;
+          text-align: left;
+          vertical-align: middle;
+          font-size: .7rem;
+          font-weight: 600;
+
+         span{
+            font-size: .8rem;
+          &.green{
+              color: #07b407;
+            }
+            &.red{
+              color: #fa0707;
+            }     
+          }
+        }
+
+        .label {
+          font-weight: 500;
+          color: #555;
+        }
+
+        h5 {
+          font-size: 1rem;
+          font-weight: 600;
+          margin: 0;
+          color: #333;
+        }
       }
     }
-
-    th,
-    td {
-      padding: 0.75rem;
-      text-align: left;
-      vertical-align: middle;
-      font-size: .6rem;
-    }
-
-    .label {
-      font-weight: 500;
-      color: #555;
-    }
-
-    h5 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin: 0;
-      color: #333;
-    }
   }
-}
-  }  /* Responsive styles */
+
+  /* Responsive styles */
   @media (max-width: 768px) {
-   .balance-header {
+    .balance-header {
       flex-direction: column;
       align-items: flex-start;
       text-align: left;
@@ -194,7 +216,8 @@ margin-bottom: 2rem;
         font-size: 1.25rem;
       }
     }
-     table,
+
+    table,
     tbody,
     tr,
     td,

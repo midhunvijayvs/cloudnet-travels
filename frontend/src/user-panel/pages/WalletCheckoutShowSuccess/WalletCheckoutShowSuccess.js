@@ -5,14 +5,14 @@ import PositiveModal from "../../../PositiveModal.js";
 import FixedOverlayLoadingSpinner from "../../../FixedOverlayLoadingSpinner.js"
 import $ from 'jquery';
 import { convertTimeString12Hour, convertTo12HourTime, formatTimeFromMinutes } from '../../../GeneralFunctions.js';
-import './CheckoutConfirm.scss'
-import API from '../../../API';
+import './WalletCheckoutShowSuccess.scss'
+import API from '../../../API.js';
 import ProcessFlowIllustrationForCheckout from '../../common-components/ProcessFlowIllustrationForCheckout/ProcessFlowIllustrationForCheckout.js'
 
 
 
 
-const Userhome = ({ userData, loadUserData, loadCartDataForHeader, orderUpdate }) => {
+const WalletPaymentConfirm = ({ userData, loadUserData  }) => {
   const navigate = useNavigate();
 const location = useLocation();
 const queryParams = new URLSearchParams(location.search);
@@ -26,9 +26,9 @@ const amount = queryParams.get('amount');
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
-  const storedDataId = window.localStorage.getItem("createOrderResponse_order_id");
-  const orderPlacedId = storedDataId ? storedDataId : null;
-  const [orderData, setOrderData] = useState({});
+
+
+  const [orderData, setOrderData] = useState(null);
 
   useEffect(() => {
     $(function () {
@@ -36,60 +36,63 @@ const amount = queryParams.get('amount');
     });
   }, [])
  
-const merchantOrderId=localStorage.getItem('merchantOrderId')
+
   const loadData = () => {
-    if (orderPlacedId) {
-      let apiUrl = `https://api-preprod.phonepe.com/apis/pg-sandbox/checkout/v2/order/${merchantOrderId}/status`;
+
       setIsLoading(true)
-      API.get(apiUrl)
+      API.post('/api/phonepe-payment/check-status-and-update-wallet/',{'merchant_order_id':merchant_order_id,'merchant_transaction_id':merchant_transaction_id})
         .then(response => {
           setOrderData(response.data)
           setIsLoading(false)
+          loadUserData()
         })
         .catch(error => {
           console.error(error);
           setIsLoading(false)
         });
-    }
-
+   
   }
+
+
   useEffect(() => {
     loadData();
+    
 
-  }, [orderUpdate]);
+  }, []);
 
 
 
-  const PAYMENT_METHODS = ['paypal', 'card', 'cod', 'manual', 'stripe']
 
 
   return (
-    <div className='checkout-confirm-page'>
+    <div className='wallet-checkout-success-page'>
 
+    {orderData?
       <section className="sec-2">
 
         <div className="lhs">
 
-          <ProcessFlowIllustrationForCheckout currentState={3}></ProcessFlowIllustrationForCheckout>
 
           <div className="confirm-section">
             {orderData && (
 
               <div className="account-part p-0">
                 <div className='top-sec'>
-                  <h3>Ticket Booked Successfully!!</h3>
-                  <p>Your Ticket Booking order has been successfully placed.
-                    <br />
-                    Thank you for booking with us!</p>
+                  <h3>Wallet Recharged Successfully!!</h3>
+                  <h3>With Rs. {orderData.transaction_amount}/-</h3>
+                  <p>Your Wallet Recharge order has been successfully placed.</p>
+                    <h3>Your current wallet balance is :</h3>
+                  <h3>{orderData.wallet_balance}</h3>
+          <p> Thank you for keeping your wallet adequate!</p>
                 </div>
                 {/* <img className="img-fluid account-img w-25" src="/images/gif/order-availability.gif" alt="availability"></img> */}
                 <div className=" d-flex justify-content-center gap-2 mt-4 mb-4">
-                  <p className='mt-0'>For timely updates on the status of your ticket, contact cloudnet travels via Email or Phone call.</p>
+                  <p className='mt-0'>For any issues, contact cloudnet travels via Email or Phone call.</p>
                 </div>
                 <div className="account-btn d-flex justify-content-center gap-2">
-                  <a onClick={() => { navigate('/home'); localStorage.setItem('itemSelectedId', orderData.id) }}
+                  <a onClick={() => { navigate('/wallet'); }}
                     className="btn-outlined">
-                    Go Home
+                    Go to Your Wallet
                   </a>
                 </div>
                 {/* contact us */}
@@ -105,6 +108,8 @@ const merchantOrderId=localStorage.getItem('merchantOrderId')
 
           </div>
         </div>
+      {orderData && (
+        
         <div className="rhs">
           <div className="order-summery-section">
            
@@ -122,11 +127,14 @@ const merchantOrderId=localStorage.getItem('merchantOrderId')
                       <h6 className="address mt-2 content-color text-wrap">
                         PhonePe
                         <br />
-                        <br />CloudNet Booking. ID.
-                        <br /> {merchant_order_id}
+                        <br />CloudNet Order . ID.
+                        <br /> {orderData.merchant_order_id}
                         <br /> 
                         <br /> CloudNet Transaction. ID.
-                        <br /> {merchant_transaction_id}
+                        <br /> {orderData.merchant_transaction_id}
+                        <br /> 
+                        <br /> PhonePe Transaction. ID.
+                        <br /> {orderData.phonpe_payment_referance_number}
                       </h6>
                       <br />
                       <br />
@@ -153,7 +161,7 @@ const merchantOrderId=localStorage.getItem('merchantOrderId')
                 <div className="sub-total">
                   <h6 className="content-color fw-normal">Sub Total</h6>
                   <h6 className="fw-semibold">
-                    ₹{parseFloat(amount).toFixed(2)}
+                    ₹{parseFloat(orderData.transaction_amount).toFixed(2)}
                   </h6>
                 </div>
                 
@@ -171,14 +179,17 @@ const merchantOrderId=localStorage.getItem('merchantOrderId')
                
                 <div className="grand-total">
                   <h6 className="fw-semibold dark-text">Total</h6>
-                  <h6 className="fw-semibold amount">₹{parseFloat(amount).toFixed(2)}</h6>
+                  <h6 className="fw-semibold amount">₹{parseFloat(orderData.transaction_amount).toFixed(2)}</h6>
                 </div>
                 <img className="dots-design" src="/images/svg/dots-design.svg" alt="dots"></img>
               </div>
            
           </div>
         </div>
+      )}
       </section >
+      :<FixedOverlayLoadingSpinner />
+      }
       {isLoading && <FixedOverlayLoadingSpinner />}
 
 
@@ -197,4 +208,4 @@ const merchantOrderId=localStorage.getItem('merchantOrderId')
 
 }
 
-export default Userhome
+export default WalletPaymentConfirm

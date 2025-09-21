@@ -1,9 +1,11 @@
 from django.urls import path
-from .views import   proxy_search,  proxy_book, AIRIQLoginTokenListView
+from .views import   ProxySearchView,  BookTicketView, AIRIQLoginTokenListView
 
 urlpatterns = [
     # path('login/', proxy_login),
-    path('search/', proxy_search),
-    path('book/', proxy_book),
+    path("search/", ProxySearchView.as_view(), name="proxy-search"),
+
+    path('book/', BookTicketView.as_view(), name="book-ticket"),
+
     path("login-history/", AIRIQLoginTokenListView.as_view(), name="airiq-token-list"),
 ]

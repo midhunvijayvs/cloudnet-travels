@@ -13,6 +13,9 @@ import { UserContext } from '../../../authentication/pages/UserContext';
 import ChangePasswordPopup from '../../common-components/ChangePasswordPopup/ChangePasswordPopup';
 import SupportPagesLayout from '../../common-components/SupportPagesLayout/SupportPagesLayout.js'
 import Empty from '../../../Empty.js'
+import { ArrowUpRight, ArrowDownRight } from "react-feather";
+
+
 const ProfilePage = ({ userData, loadUserData }) => {
 
   const navigate = useNavigate()
@@ -200,15 +203,15 @@ const ProfilePage = ({ userData, loadUserData }) => {
                     <tr>
                       <th>Tx. ID</th>
                       <th>Amount:</th>
+                     <th>Credit/Debit</th>
                       <th> Opening Balance:</th>
                       <th>Closing Balance</th>
                       <th>Payment Method</th>
                       <th>Reference No.</th>
-                      {/* <th>Description</th> */}
-                      <th>initiated At</th>
-                      <th>Completed At</th>
+                      <th>Initiated</th>
+                      <th>Completed</th>
                       <th>Status</th>
-                    </tr>
+                 </tr>
                   </thead>
                   <tbody>
                     {txData.results.map((item) => (
@@ -224,7 +227,23 @@ const ProfilePage = ({ userData, loadUserData }) => {
                           {item.transaction_amount}
                         </td>
 
-                        <td>
+                   <td>
+  <span
+    className={`debit-or-credit ${item.credit_or_debit === "debit" ? "green" : "red"}`}
+  >
+    {item.credit_or_debit === "debit" ? (
+      <>
+        In <ArrowUpRight size={16} className="ms-1" />
+      </>
+    ) : (
+      <>
+        Out <ArrowDownRight size={16} className="ms-1" />
+      </>
+    )}
+  </span>
+</td>
+          
+          <td>
                           {item.opening_balance}
                         </td>
 
@@ -241,9 +260,6 @@ const ProfilePage = ({ userData, loadUserData }) => {
                           {item.gateway_transaction_reference_number}
                         </td>
 
-                        {/* <td>
-                          {item.description}
-                        </td> */}
 
                         <td>
                           {new Date(item.initiated_at).toLocaleString()}
@@ -254,9 +270,9 @@ const ProfilePage = ({ userData, loadUserData }) => {
                         </td>
 
                         <td>
-                          <span className={item.status == 'success' ? 'text-success' : 'text-danger'}>{item.status}</span>
+                          <span className={item.status == 'success' ? 'green' : 'red'}>{item.status}</span>
                         </td>
-
+ 
                       </tr>
                     ))}
                   </tbody>
@@ -284,7 +300,7 @@ const ProfilePage = ({ userData, loadUserData }) => {
         />
 
       }
-      <ErrorModal state={isErrorModalOpen} message={popupMessage} setterFunction={setIsErrorModalOpen} okClickedFunction={loadUserData} />
+      <ErrorModal state={isErrorModalOpen}  message={popupMessage} setterFunction={setIsErrorModalOpen} okClickedFunction={loadUserData} />
       {isLoading && <FixedOverlayLoadingSpinner />}
     </SupportPagesLayout>
   )

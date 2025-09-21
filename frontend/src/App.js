@@ -7,7 +7,7 @@ import { UserProvider } from "./authentication/pages/UserContext"
 
 
 
-import UserLayout from "./user-panel/common-components/Layout"
+import UserLayout from "./user-panel/common-components/Layout/Layout"
 import AdminLayout from "./admin-panel/common-components/Layout/Layout"
 
 import SignUp from './authentication/pages/SignUp';

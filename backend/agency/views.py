@@ -182,6 +182,7 @@ class AddMoneyToWalletView(APIView):
                 payment_method=payment_method,
                 description=description,
                 status="processing",
+                credit_or_debit="debit",
             )
 
             return Response(

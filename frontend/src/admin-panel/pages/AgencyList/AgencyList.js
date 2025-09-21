@@ -201,7 +201,7 @@ const AgencyList = () => {
                 </td>
                 {/* <td>{item.order_placed_datetime && formatDateTimeToMonthYear(item.order_placed_datetime)}</td> */}
                 <td>
-                  {item.phone_number && `+${item.phone_number}`}
+                  {item.phone_number && `${item.phone_number}`}
                 </td>
                 <td>{item.email}</td>
                 <td>

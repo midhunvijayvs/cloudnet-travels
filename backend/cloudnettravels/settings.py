@@ -67,12 +67,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     "cloudnettravels",
-     "omairiq_proxy",
-     'users',
-     'corsheaders',
-      'django_filters',
-         'agency',
+    "omairiq_proxy",
+    'users',
+    'corsheaders',
+    'django_filters',
+    'agency',
     'phonepe_payment',
+    'booking'
 ]
 
 MIDDLEWARE = [

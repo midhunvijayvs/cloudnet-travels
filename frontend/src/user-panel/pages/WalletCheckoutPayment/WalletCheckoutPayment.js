@@ -37,7 +37,7 @@ const [popupTitle, setPopupTitle] = useState(null)
             user_id: "1",
             merchant_order_id: merchant_order_id,
             merchant_transaction_id: merchant_transaction_id,
-            success_redirect_url: `${window.location.origin}/wallet-checkout-confirm/?merchant_order_id=${merchant_order_id}&&merchant_transaction_id=${merchant_transaction_id}&&amount=${amount}`,
+            success_redirect_url: `${window.location.origin}/wallet-checkout-success/?merchant_order_id=${merchant_order_id}&&merchant_transaction_id=${merchant_transaction_id}&&amount=${amount}`,
             failed_redirect_url: `${window.location.origin}/wallet-checkout-failed/?merchant_order_id=${merchant_order_id}&&merchant_transaction_id=${merchant_transaction_id}`,
           }
     API.post('/api/phonepe-payment/initiate/', data)
