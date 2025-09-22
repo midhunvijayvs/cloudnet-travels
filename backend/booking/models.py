@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from agency.models import WalletTransaction
+from django.conf import settings
 
 class Booking(models.Model):
     STATUS_CHOICES = [
@@ -9,6 +10,10 @@ class Booking(models.Model):
         ("failed", "Failed"),
     ]
 
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="bookings",  null=True, blank=True)
+    agency = models.ForeignKey("agency.Agency", on_delete=models.CASCADE, null=True, blank=True)
+    
     wallet_transaction = models.OneToOneField(WalletTransaction, on_delete=models.CASCADE, related_name="booking")
 
     ticket_id = models.CharField(max_length=100)

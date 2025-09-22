@@ -12,7 +12,6 @@ import useWebSocket from 'react-use-websocket';
 
 import Home from '../../pages/Home/Home';
 import Shop from '../../pages/Shop/Shop';
-import MyOrders from '../../pages/MyOrders/MyOrders';
 import ProfilePage from '../../pages/Profile/Profile';
 import Payment from '../../pages/Payment/Payment';
 import About from '../../pages/About/About';
@@ -29,6 +28,7 @@ import TicketBooking from '../../pages/TicketBooking/TicketBooking';
 import CheckoutShowSuccess from '../../pages/CheckoutShowSuccess/CheckoutShowSuccess';
 import CheckoutShowFailed from '../../pages/CheckoutShowFailed/CheckoutShowFailed';
 
+import MyBookings from '../../pages/MyBookings/MyBookings';
 
 
 import TermsAndConditions from '../../pages/PolicyPages/TermsAndConditions';
@@ -190,7 +190,7 @@ const getTomorrowDate = () => {
           <Route path="profile" element={<ProfilePage userData={userData} loadUserData={loadUserData} />} />
           <Route path="wallet" element={<WalletPage userData={userData} loadUserData={loadUserData} />} />
 
-          <Route path="orders" element={<MyOrders  orderUpdate={isNewOrderUpdateShow} />} />
+          <Route path="bookings" element={<MyBookings  userData={userData} loadUserData={loadUserData} />} />
 
           <Route path="terms-and-conditions" element={<TermsAndConditions />} />
           <Route path="cookie-policy" element={<CookiePolicy />} />

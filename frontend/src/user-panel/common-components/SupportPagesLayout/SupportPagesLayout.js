@@ -35,7 +35,7 @@ const Profile = ({ currentActiveIndex, title, breadcrumb, children }) => {
   const [isLogoutModalShow, setLogoutModalShow] = useState(false)
   const menuItems = [
     { icon: "ri-user-3-line", label: "My Profile", path: "/profile" },
-    { icon: "ri-shopping-bag-3-line", label: "My Bookings", path: "/orders" },
+    { icon: "ri-shopping-bag-3-line", label: "My Bookings", path: "/bookings" },
     // { icon: "ri-map-pin-line", label: "Saved Address", path: "/saved-address" },
     // { icon: "ri-bank-card-line", label: "Payment Methods", path: "/saved-payment-methods" },
     { icon: "ri-wallet-line", label: "My Wallet", path: "/wallet" },

@@ -31,6 +31,9 @@ import AgencyAdd from '../../pages/AgencyAdd/AgencyAdd';
 import AgencyList from '../../pages/AgencyList/AgencyList';
 import AgencyDetails from '../../pages/AgencyDetails/AgencyDetails';
 
+
+import BookingList from '../../pages/BookingList/BookingList';
+
 import GeneralSettings from '../../pages/GeneralSettings/GeneralSettings';
 
 
@@ -101,13 +104,16 @@ const Layout = () => {
           <div className='app-content'>
             <Routes>
 
-              <Route index element={<Dashboard role={'restaurant'}/>} />
+              <Route index element={<Dashboard role={'admin'}/>} />
               <Route path="agency/list" element={<AgencyList/>} />
               <Route path="agency/create" element={<AgencyAdd/>} />
               <Route path="agency/details" element={<AgencyDetails/>} />
+
+              <Route path="booking/list" element={<BookingList/>} />
+
               <Route path="settings/general-settings" element={<GeneralSettings/>} />
 
-
+              
               <Route path="*" element={<NoPage />} />
             </Routes>
 

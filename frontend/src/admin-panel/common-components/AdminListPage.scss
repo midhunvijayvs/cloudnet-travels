@@ -14,120 +14,79 @@
 
     }
 
-    .filter-header {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        margin-bottom: 1rem;
+   .filter-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1rem 0;
+  padding: 0.75rem 1rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 
-        .filters-tab {
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            margin-right: 20px;
+  
+ 
+  input, select{
+    width: 12rem;
+  }
 
-            .tab {
-                margin-right: 20px;
-                cursor: pointer;
-                transition: all 0.7s ease;
-                border-bottom: 2px solid transparent;
-                font-weight: 500;
-                padding: 0px 5px;
-                color: var(--black);
+  .search-input {
+    flex: 1;
+    min-width: 200px;
+    max-width: 300px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: #f9fafb;
+    transition: all 0.2s ease;
 
-                &.active {
-                    color: var(--primary-color);
-                    border-color: var(--primary-color);
-                }
-            }
-        }
-
-        .sortby {
-            position: relative;
-            display: inline-block;
-            cursor: pointer;
-
-            .filter-txt {
-                padding: 2px 10px;
-                height: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: flex-end;
-
-                svg {
-                    margin-top: 5px;
-                    position: relative;
-                    top: -8px;
-                }
-
-                &.active {
-                    color: #f08833;
-
-                    svg {
-                        fill: #f08833;
-
-                        path {
-                            fill: #f08833;
-                        }
-                    }
-                }
-            }
-
-            .reset-btn {
-                font-size: 12px;
-                color: #e96900;
-                padding: 0px 15px 10px 15px;
-                text-decoration: underline;
-                font-weight: 450;
-            }
-
-
-            label {
-                font-size: 14px;
-                padding: 7px 15px;
-                width: 100%;
-                font-weight: 500;
-                cursor: pointer;
-                overflow: hidden;
-                transition: all 0.3s ease;
-
-                &:hover {
-                    background-color: #f08833;
-                    color: #fff;
-                }
-
-                &.active {
-                    background-color: #f08833;
-                    color: #fff;
-                }
-            }
-
-            .dropdown {
-                position: absolute;
-                min-width: 100px;
-                right: 0;
-                background-color: white;
-                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-                z-index: 1;
-                width: max-content;
-                border-radius: 10px;
-            }
-
-        }
-
-        input {
-            border: 1px solid #adadad;
-            border-radius: 4px;
-            padding: .5rem 1rem;
-            width: 25rem;
-
-            &::placeholder {
-                color: #818181;
-                font-family: "Inter", sans-serif !important;
-                opacity: 1;
-            }
-        }
+    &:focus {
+      outline: none;
+      border-color: #2563eb;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
     }
+  }
+
+  .filter-actions {
+    display: flex;
+    gap: 0.5rem;
+
+    button {
+      padding: 0.45rem 0.9rem;
+      font-size: 0.8rem;
+      border-radius: 6px;
+      font-weight: 500;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &.apply {
+        background: #2563eb;
+        color: #fff;
+        border-color: #2563eb;
+
+        &:hover {
+          background: #1e40af;
+        }
+      }
+
+      &.reset {
+        background: #f9fafb;
+        border-color: #d1d5db;
+        color: #374151;
+
+        &:hover {
+          background: #f3f4f6;
+        }
+      }
+    }
+  }
+}
 
     .table-container {
         overflow-x: auto;

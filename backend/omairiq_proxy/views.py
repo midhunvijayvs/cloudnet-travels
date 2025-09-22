@@ -52,7 +52,8 @@ class BookTicketView(APIView):
             child = payload.get("child", 0)
             infant = payload.get("infant", 0)
 
-            agency = request.user.agency  
+            user = request.user
+            agency = user.agency  
 
             amount = Decimal(payload.get("amount"))
             opening_balance = agency.wallet_balance
@@ -76,6 +77,8 @@ class BookTicketView(APIView):
 
             # Create Booking
             booking = Booking.objects.create(
+                user=user,
+                agency=agency,
                 wallet_transaction=wallet_txn,
                 ticket_id=ticket_id,
                 total_pax=total_pax,
@@ -113,6 +116,8 @@ class BookTicketView(APIView):
                         "ticket_id": booking.ticket_id,
                         "status": booking.status,
                         "wallet_transaction_id": wallet_txn.id,
+                        "user_id": booking.user.id,
+                        "agency_id": booking.agency.id,
                     },
                     "airiq_response": airiq_data,
                 },

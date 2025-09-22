@@ -36,20 +36,20 @@ const ProfilePage = ({ userData, loadUserData }) => {
     "gateway_transaction_reference_number": "TXN12345678",
     "description": "Added via phonepe"
   })
-  const [txData, setTxData] = useState([])
+  const [tableData, setTableData] = useState([])
 
 
   useEffect(() => {
     loadUserData();
-    loadWalletTransactionsData()
+    loadTableData()
   }, []);
 
 
-  const loadWalletTransactionsData = () => {
+  const loadTableData = () => {
     setIsLoading(true)
     API.get('/api/agency/wallet-transactions/list/')
       .then((response) => {
-        setTxData(response.data)
+        setTableData(response.data)
         setIsLoading(false)
       })
       .catch(error => {
@@ -197,7 +197,7 @@ const ProfilePage = ({ userData, loadUserData }) => {
           <div className='transaction-history'>
             <h5 className="section-title">Transaction history</h5>
             <div className='table-wrapper'>
-              {txData && txData.results && txData.results.length > 0 ?
+              {tableData && tableData.results && tableData.results.length > 0 ?
                 <table className="table table-bordered mb-4">
                   <thead>
                     <tr>
@@ -214,7 +214,7 @@ const ProfilePage = ({ userData, loadUserData }) => {
                  </tr>
                   </thead>
                   <tbody>
-                    {txData.results.map((item) => (
+                    {tableData.results.map((item) => (
 
                       <tr key={item.id}>
 
@@ -295,7 +295,7 @@ const ProfilePage = ({ userData, loadUserData }) => {
           setterFunction={setIsMessageModalOpen}
           okClickedFunction={() => {
             loadUserData();
-            loadWalletTransactionsData()
+            loadTableData()
           }}
         />
 
