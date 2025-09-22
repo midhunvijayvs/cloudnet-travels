@@ -134,35 +134,48 @@ const BookingListForAdmin = () => {
             <option value="failed">Failed</option>
           </select>
 
-          <input
-            type="date"
-            className="filter-input"
-            onChange={(e) =>
-              setFilters((prev) => ({ ...prev, date: e.target.value }))
-            }
-          />
+          <div className="input-group">
+            <labal className="label">Exact Date</labal>
+            <input
+              type="date"
+              className="filter-input"
+              onChange={(e) =>
+                setFilters((prev) => ({ ...prev, date: e.target.value }))
+              }
+            />
+          </div>
 
-          <input
-            type="date"
-            className="filter-input"
-            onChange={(e) =>
-              setFilters((prev) => ({ ...prev, start_date: e.target.value }))
-            }
-          />
-          <input
-            type="date"
-            className="filter-input"
-            onChange={(e) =>
-              setFilters((prev) => ({ ...prev, end_date: e.target.value }))
-            }
-          />
+          <div className="input-group">
+            <labal className="label">Range From</labal>
+            <input
+              type="date"
+              className="filter-input"
+              onChange={(e) =>
+                setFilters((prev) => ({ ...prev, start_date: e.target.value }))
+              }
+            />
+          </div>
 
-          <button className="btn-primary" onClick={loadTableData}>
-            Apply
-          </button>
-          <button className="btn-secondary" onClick={resetFilters}>
-            Reset
-          </button>
+          <div className="input-group">
+            <labal className="label">Range To</labal>
+            <input
+              type="date"
+              className="filter-input"
+              onChange={(e) =>
+                setFilters((prev) => ({ ...prev, end_date: e.target.value }))
+              }
+            />
+          </div>
+
+          <div className="button-box">
+            <button className="btn-primary" onClick={loadTableData}>
+              Apply
+            </button>
+            <button className="btn-secondary" onClick={resetFilters}>
+              Reset
+            </button>
+          </div>
+
         </div>
 
         <div className="table-container">

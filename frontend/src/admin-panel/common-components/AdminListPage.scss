@@ -20,20 +20,16 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin: 1rem 0;
-  padding: 0.75rem 1rem;
+  margin: 0rem 0;
+  padding: 0.0rem 1rem;
   background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 
   
- 
-  input, select{
-    width: 12rem;
-  }
 
-  .search-input {
+  input, select{
     flex: 1;
     min-width: 200px;
     max-width: 300px;
@@ -42,7 +38,11 @@
     border: 1px solid #d1d5db;
     border-radius: 6px;
     background: #f9fafb;
-    transition: all 0.2s ease;
+    transition: all 0.2s ease;width: 12rem;
+  }
+
+  .search-input {
+    
 
     &:focus {
       outline: none;
@@ -51,11 +51,23 @@
       box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
     }
   }
-
-  .filter-actions {
+.input-group{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  min-width: 200px;
+    max-width: 300px;
+    flex: 1;
+.label{
+    font-size: .9rem;
+}
+}
+  .button-box {
     display: flex;
     gap: 0.5rem;
-
+min-width: 200px;
+    max-width: 300px;
+    flex: 1;
     button {
       padding: 0.45rem 0.9rem;
       font-size: 0.8rem;
