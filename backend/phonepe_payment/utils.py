@@ -4,7 +4,7 @@ from agency.models import WalletTransaction
 
 
 
-def finalize_wallet_transaction(merchant_transaction_id, payment_status, phonpe_payment_referance_number=""):
+def finalize_wallet_transaction(transaction_id, payment_status, phonpe_payment_referance_number=""):
     """
     Finalize a wallet transaction after verifying payment with PhonePe.
     This handles both success and failure cases.
@@ -12,7 +12,7 @@ def finalize_wallet_transaction(merchant_transaction_id, payment_status, phonpe_
 
     try:
         with db_transaction.atomic():
-            tx = WalletTransaction.objects.select_for_update().get(id=merchant_transaction_id)
+            tx = WalletTransaction.objects.select_for_update().get(id=transaction_id)
 
             if tx.status != "processing":
                 return {"error": "Transaction already finalized", "wallet_balance": str(tx.agency.wallet_balance)}

@@ -18,6 +18,7 @@ const location = useLocation();
 const queryParams = new URLSearchParams(location.search);
 const merchant_order_id =queryParams.get('merchant_order_id');
 const merchant_transaction_id = queryParams.get('merchant_transaction_id');
+const pure_transaction_id = queryParams.get('pure_transaction_id');
 const amount = queryParams.get('amount');
 
   const [message, setMessage] = useState(null);
@@ -40,7 +41,7 @@ const amount = queryParams.get('amount');
   const loadData = () => {
 
       setIsLoading(true)
-      API.post('/api/phonepe-payment/check-status-and-update-wallet/',{'merchant_order_id':merchant_order_id,'merchant_transaction_id':merchant_transaction_id})
+      API.post('/api/phonepe-payment/check-status-and-update-wallet/',{'merchant_order_id':merchant_order_id,'merchant_transaction_id':merchant_transaction_id, 'pure_transaction_id':pure_transaction_id})
         .then(response => {
           setOrderData(response.data)
           setIsLoading(false)

@@ -17,7 +17,8 @@ const CheckoutPayment = () => {
 const location = useLocation();
 const amount = location.state?.amount;
 const merchant_order_id = location.state?.merchant_order_id;
-const merchant_transaction_id = location.state?.merchant_transaction_id;
+const merchant_transaction_id = location.state?.merchant_transaction_id; // modified transaction_table_id
+const pure_transaction_id = location.state?.pure_transaction_id; //transaction table id
 
 
 const [popupTitle, setPopupTitle] = useState(null)
@@ -37,8 +38,8 @@ const [popupTitle, setPopupTitle] = useState(null)
             user_id: "1",
             merchant_order_id: merchant_order_id,
             merchant_transaction_id: merchant_transaction_id,
-            success_redirect_url: `${window.location.origin}/wallet-checkout-success/?merchant_order_id=${merchant_order_id}&&merchant_transaction_id=${merchant_transaction_id}&&amount=${amount}`,
-            failed_redirect_url: `${window.location.origin}/wallet-checkout-failed/?merchant_order_id=${merchant_order_id}&&merchant_transaction_id=${merchant_transaction_id}`,
+            success_redirect_url: `${window.location.origin}/wallet-checkout-success/?merchant_order_id=${merchant_order_id}&&merchant_transaction_id=${merchant_transaction_id}&&amount=${amount}&&pure_transaction_id=${pure_transaction_id}`,
+            failed_redirect_url: `${window.location.origin}/wallet-checkout-failed/?merchant_order_id=${merchant_order_id}&&merchant_transaction_id=${merchant_transaction_id}&&amount=${amount}&&pure_transaction_id=${pure_transaction_id}`,
           }
     API.post('/api/phonepe-payment/initiate/', data)
       .then(response => {

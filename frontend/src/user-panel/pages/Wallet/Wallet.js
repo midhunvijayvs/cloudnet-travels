@@ -127,8 +127,9 @@ const ProfilePage = ({ userData, loadUserData }) => {
           {
             amount: response.data.amount,
             merchant_order_id: `CLDNTTOPUPODR${localStorage.getItem('userID')}${response.data.transaction_id}`,
-            merchant_transaction_id: `CLDNTTOPUPTXN${localStorage.getItem('userID')}${response.data.transaction_id}`
-          }
+            merchant_transaction_id: `CLDNTTOPUPTXN${localStorage.getItem('userID')}${response.data.transaction_id}`,
+          pure_transaction_id:response.data.transaction_id
+        }
         }
         )
       })
