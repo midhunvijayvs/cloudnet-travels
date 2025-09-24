@@ -175,7 +175,7 @@ const getTomorrowDate = () => {
 <Route path="/book-ticket" element={<TicketBooking ticketSearchFormData={ticketSearchFormData} />} />
 
           <Route path="wallet-checkout-payment" element={<WalletCheckoutPayment  />} />
-          <Route path="wallet-checkout-success" element={<WalletCheckoutShowSuccess />} />
+          <Route path="wallet-checkout-success" element={<WalletCheckoutShowSuccess  userData={userData} loadUserData={loadUserData} />} />
           <Route path="wallet-checkout-failed" element={<WalletCheckoutShowFailed />} />
 
 
