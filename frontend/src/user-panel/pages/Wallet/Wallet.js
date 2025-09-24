@@ -122,7 +122,10 @@ const ProfilePage = ({ userData, loadUserData }) => {
 
         setIsMessageModalOpen(true)
 console.log("response.data.transaction_id from wallet: ", response.data.transaction_id)
-        navigate("/wallet-checkout-payment", {
+       
+
+ setTimeout(() => {
+  navigate("/wallet-checkout-payment", {
           state:
           {
             amount: response.data.amount,
@@ -132,6 +135,7 @@ console.log("response.data.transaction_id from wallet: ", response.data.transact
         }
         }
         )
+          }, 5000);
       })
       .catch(error => {
 
