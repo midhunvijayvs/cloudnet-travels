@@ -218,11 +218,12 @@ def check_payment_status_and_update_wallet(request):
         
         result["merchant_order_id"] = merchant_order_id
         result["merchant_transaction_id"] = merchant_transaction_id
-        result["backend log"] = "called finalize_wallet_transaction with order_state == COMPLETED"
-        result["phonepe response data"] = status_data
+        result["backend_log"] = "called finalize_wallet_transaction with order_state == COMPLETED"
+        result["phonepe_response_data"] = status_data
         return JsonResponse(result, status=200)
 
     elif order_state in ["FAILED", "CANCELLED"]:
+  
         result = finalize_wallet_transaction(
             merchant_transaction_id=merchant_transaction_id,
             payment_status="failed",
@@ -232,18 +233,21 @@ def check_payment_status_and_update_wallet(request):
         
         result["merchant_order_id"] = merchant_order_id
         result["merchant_transaction_id"] = merchant_transaction_id
-        result["backend log"] = "called finalize_wallet_transaction with order_state == FAILED or CANCELLED"
-        result["phonepe response data"] = status_data
+        result["backend_log"] = "called finalize_wallet_transaction with order_state == FAILED or CANCELLED"
+        result["phonepe_response_data"] = status_data
         return JsonResponse(result, status=400)
 
     else:
+        # ensure status_data is dict
+        phonepe_response_serializable = status_data if isinstance(status_data, dict) else {}
         # Payment still pending
         print("no expected order state came")
         return JsonResponse({
             "message": "Payment is still pending",
             "status": order_state,
             "phonpe_payment_referance_number": phonpe_payment_referance_number,
-            "backend log":"no expected order state came",
-            "phonepe response data" :status_data
-            
+            "backend_log":"no expected order state came",
+            "phonepe_response_data" :status_data,
+            "phonepe_response_serializable":phonepe_response_serializable
         }, status=202)
++/

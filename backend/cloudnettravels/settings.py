@@ -39,7 +39,7 @@ SEND_SMS=False #SAME AS FOR SEND_EMAIL
 ENABLE_RECAPTCHA=False #IF RECAPTA CHECK NEEDED IN  ALL THE RELEVENT APIS LIKE LOGIN, SIGNUP ETC.
 OTP_EXPIRY_TIME_IN_MINUTES=5
 if(ENVIRONMENT=="production"):
-    FRONTEND_DOMAIN='https://cloudnettravels.com'
+    FRONTEND_DOMAIN='https://booking.cloudnettravels.com'
 else:
     FRONTEND_DOMAIN='http://localhost:3000'
     
@@ -47,9 +47,9 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '31.97.229.73', #primary server at hostinger vps
-     'cloudnettravels.com',#primary production host
+     'cloudnettravels.com', #primary production host
     'booking.cloudnettravels.com',#primary production host
-    '3.110.177.125',# server of soulcastai at aws ec2
+    '3.110.177.125', # server of soulcastai at aws ec2
     'ec2-13-127-251-65.ap-south-1.compute.amazonaws.com',
     'soulcastai.com',
     'www.soulcastai.com',

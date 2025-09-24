@@ -49,7 +49,7 @@ class WalletTransaction(models.Model):
     gateway_transaction_reference_number = models.CharField(max_length=100, blank=True, null=True)
     description = models.CharField(max_length=255, blank=True, null=True)
     
-    credit_or_debit = models.CharField(max_length=10, choices=CREDIT_OR_DEBIT_CHOICES, default="debit")
+    credit_or_debit = models.CharField(max_length=10, choices=CREDIT_OR_DEBIT_CHOICES, default="debit", )
     
     initiated_at = models.DateTimeField(auto_now_add=True)   # renamed from created_at
     payment_completed_at = models.DateTimeField(null=True, blank=True)
