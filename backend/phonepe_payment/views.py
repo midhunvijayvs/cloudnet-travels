@@ -202,17 +202,17 @@ def check_payment_status_and_update_wallet(request):
     # Extract payment details
     order_state = status_data.get("state")  # COMPLETED, FAILED, PENDING
     payment_details = status_data.get("paymentDetails", [])
-    phonpe_payment_referance_number = ""
+    phonpe_payment_reference_number = ""
     
     if payment_details and isinstance(payment_details, list):
-        phonpe_payment_referance_number = payment_details[0].get("transactionId", "")
+        phonpe_payment_reference_number = payment_details[0].get("transactionId", "")
 
     # Verify and finalize wallet transaction
     if order_state == "COMPLETED":
         result = finalize_wallet_transaction(
             transaction_id=pure_transaction_id,
             payment_status="success",
-            phonpe_payment_referance_number=phonpe_payment_referance_number
+            phonpe_payment_reference_number=phonpe_payment_reference_number
         )
         
         print("called finalize wallet transaction function with order_state == COMPLETED")
@@ -221,6 +221,7 @@ def check_payment_status_and_update_wallet(request):
         result["merchant_transaction_id"] = merchant_transaction_id
         result["backend_log"] = "called finalize wallet transaction function with order_state == COMPLETED"
         result["phonepe_response_data"] = status_data
+        result["pure_transaction_id"] = pure_transaction_id
         return JsonResponse(result, status=200)
 
     elif order_state in ["FAILED", "CANCELLED"]:
@@ -228,7 +229,7 @@ def check_payment_status_and_update_wallet(request):
         result = finalize_wallet_transaction(
             transaction_id=pure_transaction_id,
             payment_status="failed",
-            phonpe_payment_referance_number=phonpe_payment_referance_number
+            phonpe_payment_reference_number=phonpe_payment_reference_number
         )
         print("called finalize wallet transaction function with order_state == FAILED or CANCELLED")
         
@@ -236,6 +237,7 @@ def check_payment_status_and_update_wallet(request):
         result["merchant_transaction_id"] = merchant_transaction_id
         result["backend_log"] = "called finalize wallet transaction function with order_state == FAILED or CANCELLED"
         result["phonepe_response_data"] = status_data
+        result["pure_transaction_id"] = pure_transaction_id
         return JsonResponse(result, status=400)
 
     else:
@@ -246,10 +248,11 @@ def check_payment_status_and_update_wallet(request):
         return JsonResponse({
             "message": "Payment is still pending",
             "status": order_state,
-            "phonpe_payment_referance_number": phonpe_payment_referance_number,
+            "phonpe_payment_reference_number": phonpe_payment_reference_number,
             "backend_log":"no expected order state came",
             "phonepe_response_data" :status_data,
-            "phonepe_response_serializable":phonepe_response_serializable
+            "phonepe_response_serializable":phonepe_response_serializable,
+            "pure_transaction_id" :pure_transaction_id
         }, status=202)
         
         
