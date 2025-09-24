@@ -121,7 +121,7 @@ const ProfilePage = ({ userData, loadUserData }) => {
         setPopupMessage("Record created. Redirecting to payment gateway.");
 
         setIsMessageModalOpen(true)
-
+console.log("response.data.transaction_id from wallet: ", response.data.transaction_id)
         navigate("/wallet-checkout-payment", {
           state:
           {

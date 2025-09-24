@@ -29,6 +29,7 @@ const [popupTitle, setPopupTitle] = useState(null)
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
+console.log("pure_transaction_id from checkoutpayment: ", pure_transaction_id)
 
 
   useEffect(() => {
