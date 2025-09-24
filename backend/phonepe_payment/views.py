@@ -185,7 +185,7 @@ def check_payment_status_and_update_wallet(request):
     }
 
     # Call PhonePe status API
-    url = f"{settings.PHONEPE_BASE_URL}/checkout/v2/order/{merchant_order_id}/status"
+    url = f"{settings.PHONEPE_BASE_URL}/checkout/v2/order/{merchant_transaction_id}/status"
     response = requests.get(url, headers=headers)
 
     try:
@@ -250,3 +250,7 @@ def check_payment_status_and_update_wallet(request):
             "phonepe_response_data" :status_data,
             "phonepe_response_serializable":phonepe_response_serializable
         }, status=202)
+        
+        
+        
+        
