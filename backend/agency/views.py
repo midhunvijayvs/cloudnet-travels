@@ -23,7 +23,7 @@ from .serializers import UserWithAgencySerializer
 from .serializers import AgencySerializer
 from .serializers import WalletTransactionSerializer
 from decimal import Decimal
-
+from .models import Agency   
 
 class AgencyRegistrationFromAdminSideView(generics.CreateAPIView):
     serializer_class = UserSerializer
