@@ -63,7 +63,7 @@ def get_airiq_token():
     else:
         
         # inject masked credentials in case of auth error
-        if "Api key no match" in str(data).lower() or "invalid username or password" in str(data).lower():
+        if "Api key no match" in str(data).lower() or "Invalid credentials" in str(data).lower():
             data["masked_credentials"] = {
                 "api_key": mask_value(settings.AIRIQ_API_KEY),
                 "username": mask_value(settings.AIRIQ_USERNAME),
