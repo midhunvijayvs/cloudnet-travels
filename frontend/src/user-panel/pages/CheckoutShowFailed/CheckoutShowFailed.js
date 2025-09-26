@@ -35,10 +35,6 @@ const location = useLocation();
   }, [])
  
 
-  useEffect(() => {
-   responseData
-  }, [responseData])
- 
 const merchantOrderId=localStorage.getItem('merchantOrderId')
   const loadData = () => {
     if (orderPlacedId) {
@@ -128,10 +124,10 @@ const merchantOrderId=localStorage.getItem('merchantOrderId')
                         PhonePe
                         <br />
                         <br />CloudNet Booking. ID.
-                        <br /> {merchant_order_id}
+                        <br /> {responseData.order.id}
                         <br /> 
                         <br /> CloudNet Transaction. ID.
-                        <br /> {merchant_transaction_id}
+                        <br />
                       </h6>
                       <br />
                       <br />
@@ -158,7 +154,7 @@ const merchantOrderId=localStorage.getItem('merchantOrderId')
                 <div className="sub-total">
                   <h6 className="content-color fw-normal">Sub Total</h6>
                   <h6 className="fw-semibold">
-                    ₹{parseFloat(amount).toFixed(2)}
+                    ₹{parseFloat(responseData.amount).toFixed(2)}
                   </h6>
                 </div>
                 
@@ -176,7 +172,7 @@ const merchantOrderId=localStorage.getItem('merchantOrderId')
                
                 <div className="grand-total">
                   <h6 className="fw-semibold dark-text">Total</h6>
-                  <h6 className="fw-semibold amount">₹{parseFloat(amount).toFixed(2)}</h6>
+                  <h6 className="fw-semibold amount">₹{parseFloat(responseData.amount).toFixed(2)}</h6>
                 </div>
                 <img className="dots-design" src="/images/svg/dots-design.svg" alt="dots"></img>
               </div>

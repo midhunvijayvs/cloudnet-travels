@@ -15,7 +15,7 @@ import ProcessFlowIllustrationForCheckout from '../../common-components/ProcessF
 const Userhome = ({ userData, loadUserData, loadCartDataForHeader, orderUpdate }) => {
   const navigate = useNavigate();
 const location = useLocation();
- const ticketData = location.state;
+ const responseData = location.state.responseData;
 
   const [message, setMessage] = useState(null);
   const [isMessageModalOpen, setIsMessageModalOpen] = useState(false);
@@ -120,10 +120,10 @@ const merchantOrderId=localStorage.getItem('merchantOrderId')
                         PhonePe
                         <br />
                         <br />CloudNet Booking. ID.
-                        <br /> {merchant_order_id}
+                        <br /> {responseData.booking.id}
                         <br /> 
                         <br /> CloudNet Transaction. ID.
-                        <br /> {merchant_transaction_id}
+                        <br /> {}
                       </h6>
                       <br />
                       <br />
@@ -150,7 +150,7 @@ const merchantOrderId=localStorage.getItem('merchantOrderId')
                 <div className="sub-total">
                   <h6 className="content-color fw-normal">Sub Total</h6>
                   <h6 className="fw-semibold">
-                    ₹{parseFloat(amount).toFixed(2)}
+                    ₹{parseFloat(responseData.amount).toFixed(2)}
                   </h6>
                 </div>
                 
@@ -168,7 +168,7 @@ const merchantOrderId=localStorage.getItem('merchantOrderId')
                
                 <div className="grand-total">
                   <h6 className="fw-semibold dark-text">Total</h6>
-                  <h6 className="fw-semibold amount">₹{parseFloat(amount).toFixed(2)}</h6>
+                  <h6 className="fw-semibold amount">₹{parseFloat(responseData.amount).toFixed(2)}</h6>
                 </div>
                 <img className="dots-design" src="/images/svg/dots-design.svg" alt="dots"></img>
               </div>
