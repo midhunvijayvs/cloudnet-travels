@@ -16,7 +16,7 @@ class Booking(models.Model):
     
     wallet_transaction = models.OneToOneField(WalletTransaction, on_delete=models.CASCADE, related_name="booking")
 
-    ticket_id = models.CharField(max_length=100)
+    ticket_id = models.CharField()
     total_pax = models.IntegerField()
     adult = models.IntegerField(default=0)
     child = models.IntegerField(default=0)
