@@ -1,29 +1,26 @@
-from django.shortcuts import render
-from rest_framework import generics
-from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework.decorators import authentication_classes, permission_classes
-from rest_framework.permissions import IsAuthenticated
-from users.customPermissions import IsAdminOrStaff
-from users.customPermissions import IsAgencyUser
-from .general_functions import CustomPagination
-from users.models import CustomUser
-from rest_framework.response import Response
-from rest_framework import status
-from django.db import transaction
+from decimal import Decimal
 import uuid
-from users.models import PasswordResetToken
-from .models import WalletTransaction
+
 from django.conf import settings
-from .mailgunEmailAndSMSSendingFunctions import send_welcome_email_for_admin_created_agency
+from django.db import transaction
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
+from django.utils import timezone
+
+from rest_framework import generics, status
+from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework_simplejwt.authentication import JWTAuthentication
+
+from users.models import CustomUser, PasswordResetToken
 from users.serializers import UserSerializer
-from .serializers import UserWithAgencySerializer
-from .serializers import AgencySerializer
-from .serializers import WalletTransactionSerializer
-from decimal import Decimal
-from .models import Agency   
+from users.customPermissions import IsAdminOrStaff, IsAgencyUser
+
+from .general_functions import CustomPagination
+from .mailgunEmailAndSMSSendingFunctions import send_welcome_email_for_admin_created_agency
+from .models import Agency, WalletTransaction
+from .serializers import UserWithAgencySerializer, AgencySerializer, WalletTransactionSerializer
+
 
 class AgencyRegistrationFromAdminSideView(generics.CreateAPIView):
     serializer_class = UserSerializer
