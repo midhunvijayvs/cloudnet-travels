@@ -156,7 +156,7 @@ const Header = ({ userData, loadUserData, isLoggedIn, notificationData, loadNoti
   return (
     <div className="admin-header">
       <div className="left" onClick={() => setIsCollapsed(!isCollapsed)} >
-       
+       <h4>Admin Panel</h4>
       </div>
       <div className="right" >
         {isLoggedIn && (['admin','staff'].includes(window.localStorage.getItem("userRole"))) &&

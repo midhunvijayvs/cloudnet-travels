@@ -101,7 +101,7 @@ const handleAddMoney = () => {
 
   setIsLoading(true);
 
-  API.post("agency/api/admin-add-money-to-wallet/", {
+  API.post("/api/agency/admin-add-money-to-wallet/", {
     agency_id: data.agency.id,
     amount: amount,
     description: "Manual top-up by admin"
@@ -131,7 +131,7 @@ const handleAddMoney = () => {
 
                             {data &&
                                 <div className='d-flex flex-column flex-md-row p-4 w-100 gap-3'>
-                                    <div className='w-40 card'>
+                                    <div className='w-30 card'>
                                         <div className="card-body">
                                             <div className='text-center black-clr'>
                                                 <img src={data && data.profile_image ? `${data.profile_image}` : "/images/profile/avatar-no-profile-image.png"} className='cus-profileimg'></img>
@@ -223,7 +223,7 @@ const handleAddMoney = () => {
                                         </div>
                                     </div>
 
-                                    <div className='w-60 card'>
+                                    <div className='w-70 card'>
                                         <div className="card-body">
                                             <div className="overview-figures-box">
                                                 <div className="wallet-balance">
@@ -313,7 +313,7 @@ const handleAddMoney = () => {
                                                     <table className="">
                                                         <tbody>
                                                             <tr>
-                                                              <th>Tx. ID</th>
+                                                              <th>ID</th>
                       <th>Amt:</th>
                      <th>Cr/Dr</th>
                       <th> Opening</th>
