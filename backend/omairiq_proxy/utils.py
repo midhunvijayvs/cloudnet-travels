@@ -12,7 +12,7 @@ AIRIQ_API_HEADERS = {
     'Content-Type': 'application/json',
 }
 
- 
+
 def get_airiq_token():
     # Get the latest token from DB
     token_obj = AIRIQLoginToken.objects.order_by("-last_logged_in").first()
@@ -26,7 +26,10 @@ def get_airiq_token():
         "password": settings.AIRIQ_PASSWORD,
     })
 
-    print(f"AIRIQ login response: {response}")
+    try:
+        data = response.json()
+    except Exception:
+        data = {"error": "Invalid response from AIRIQ", "raw": response.text}
     
     if response.status_code == 200:
         data = response.json()
@@ -49,8 +52,11 @@ def get_airiq_token():
         )
         return token
     else:
-        raise Exception("Failed to authenticate with AIRIQ API")
-    
+        # Instead of raising generic exception, return both status and full response
+        raise Exception(json.dumps({
+            "status_code": response.status_code,
+            "airiq_response": data
+        }))
     
     
 def forward_request(request, endpoint_path, method="POST"):
@@ -73,5 +79,11 @@ def forward_request(request, endpoint_path, method="POST"):
         return JsonResponse(response.json(), status=response.status_code, safe=False)
 
     except Exception as e:
-        return JsonResponse({'error': str(e)}, status=500)
-
+        try:
+            # If e.message contains JSON string from get_airiq_token
+            error_data = json.loads(str(e))
+            return JsonResponse(error_data, status=error_data.get("status_code", 500))
+        except:
+            return JsonResponse({'error': str(e)}, status=500)
+        
+        
