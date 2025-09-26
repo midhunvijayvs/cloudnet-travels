@@ -103,13 +103,8 @@ const TicketBooking = ({ ticketSearchFormData }) => {
 
         API.post(`/api/airiq/book/`, payload)
             .then((response) => {
-                if(response.data.booking.status=='success'){
-                navigate("/checkout-success", { state: { booking_id: response.data.booking.id } })
-                }
-                else{
-                navigate("/checkout-failed", { state: { booking_id: response.data.booking.id } })
-
-                }
+                navigate("/checkout-success", { state: { responseData: response.data } })
+             
             })
             
             .catch((error) => {

@@ -15,10 +15,8 @@ import ProcessFlowIllustrationForCheckout from '../../common-components/ProcessF
 const Userhome = ({ userData, loadUserData, loadCartDataForHeader, orderUpdate }) => {
   const navigate = useNavigate();
 const location = useLocation();
-const queryParams = new URLSearchParams(location.search);
-const merchant_order_id =queryParams.get('merchant_order_id');
-const merchant_transaction_id = queryParams.get('merchant_transaction_id');
-const amount = queryParams.get('amount');
+    const responseData = location.state.responseData;
+
 
   const [message, setMessage] = useState(null);
   const [isMessageModalOpen, setIsMessageModalOpen] = useState(false);
@@ -35,6 +33,11 @@ const amount = queryParams.get('amount');
       $(window).scrollTop(0);
     });
   }, [])
+ 
+
+  useEffect(() => {
+   responseData
+  }, [responseData])
  
 const merchantOrderId=localStorage.getItem('merchantOrderId')
   const loadData = () => {
