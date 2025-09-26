@@ -61,7 +61,7 @@ class BookTicketView(APIView):
             opening_balance = agency.wallet_balance
 
             if opening_balance < amount:
-                return Response({"error": "Insufficient wallet balance"}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({"error": "Insufficient wallet balance"}, status=status.HTTP_403_FORBIDDEN)
 
             closing_balance = opening_balance - amount
 
