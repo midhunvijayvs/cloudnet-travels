@@ -57,7 +57,7 @@ class BookTicketView(APIView):
             user = request.user
             agency = user.agency  
 
-            amount = Decimal(payload.get("amount"))
+            amount = Decimal(payload.get("price"))
             opening_balance = agency.wallet_balance
 
             if opening_balance < amount:

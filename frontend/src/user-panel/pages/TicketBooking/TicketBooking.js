@@ -96,6 +96,7 @@ const TicketBooking = ({ ticketSearchFormData }) => {
         setIsLoading(true);
         const payload = {
             ticket_id: ticketData.ticket_id,
+            price: ticketData.price,
             total_pax: formData.adult + formData.child + formData.infant,
             ...formData,
         };
