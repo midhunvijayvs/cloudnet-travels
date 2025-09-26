@@ -114,7 +114,7 @@ const ProfilePage = ({ userData, loadUserData }) => {
 
 
     setIsLoading(true)
-    API.post('/api/agency/add-money-to-wallet/', data)
+    API.post('/api/agency/initiate-add-money-to-wallet/', data)
       .then(response => {
         setIsLoading(false)
         setPopupTitle("Redirecting..");

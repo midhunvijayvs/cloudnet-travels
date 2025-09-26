@@ -14,33 +14,27 @@ import FixedOverlayLoadingSpinner from "../../../FixedOverlayLoadingSpinner"
 import Pagination from "../../../Pagination";
 import './AgencyDetails.css'
 import $ from 'jquery';
+import { ArrowUpRight, ArrowDownRight } from "react-feather";
 
 const CustomersView = () => {
 
     let navigate = useNavigate();
 
     const [data, setData] = useState(null)
-    const [wishListData, setWishListData] = useState(null)
-    const [isActionModalOpen, setActionModalOpen] = useState(false);
+    const [bookingsData, setBookingsData] = useState(null)
+    const [transactionsData, setTransactionsData] = useState(false);
 
 
-    const [message, setMessage] = useState(null);
+   const [popupTitle, setPopupTitle] = useState(null)
+     const [popupMessage, setPopupMessage] = useState(null);
     const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
     const [isMessageModalOpen, setIsMessageModalOpen] = useState(false);
     const [isDeleteConfModalOpen, setIsDeleteConfModalOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
 
-    const [primaryAddress, setPrimaryAddress] = useState(null)
-    const [lastOrderedAddress, setLastOrderedAddress] = useState(null)
-
-    const [idSelected, setIdSelected] = useState(0);
-
-    const [ordersPage, setOrdersPage] = useState(1);
-    const [wishListPage, setWishlistPage] = useState(1);
-    const [reviewPage, setReviwPage] = useState(1);
-    const [pageSize, selectPageSize] = useState(10);
     const [isOrderListFullyOpened, openOrdersListFully] = useState(false)
+const [amount, setAmount] = useState("");
 
     useEffect(() => {
         $(function () {
@@ -69,32 +63,20 @@ const CustomersView = () => {
             .then(response => {
 
                 setData(response.data);
-                API.get(`users/${response.data.id}/wishlist/`)
+                
+                API.get(`api/booking/bookings-list-of-agent-for-admin/${response.data.id}/`)   //${window.localStorage.getItem('userID')}
                     .then(response => {
-                        setWishListData(response.data)
-                    }
-                    )
-                    .catch(error => {
-                        console.log(error.message)
-                    }
-                    )
-
-                setPrimaryAddress(null)
-                API.get(`/primary_address/${response.data.id}/`)   //${window.localStorage.getItem('userID')}
-                    .then(response => {
-
-                        setPrimaryAddress(response.data)
+setBookingsData(response.data)
                     })
                     .catch(error => {
                         console.error(error);
                     });
 
 
-                setPrimaryAddress(null)
-                API.get(`/last_ordered_address/${response.data.id}/`)   //${window.localStorage.getItem('userID')}
+                API.get(`api/agency/wallet-transaction-list-of-agent-for-admin/${response.data.id}/`)   //${window.localStorage.getItem('userID')}
                     .then(response => {
 
-                        setLastOrderedAddress(response.data)
+                        setTransactionsData(response.data)
                     })
                     .catch(error => {
                         console.error(error);
@@ -110,23 +92,34 @@ const CustomersView = () => {
 
     }
 
-    const editOrder = () => {
-        console.log("edit intiated")
-        localStorage.setItem("itemSelectedId", idSelected);
-        navigate("/admin/e-commerse-list/orders/edit")
-    }
+const handleAddMoney = () => {
+  if (!amount) {
+    setPopupMessage("Please enter an amount");
+    setIsErrorModalOpen(true);
+    return;
+  }
 
-    const deleteOrder = () => {
-        API.delete(`/orders/${idSelected}`)
-            .then(response => {
-                setMessage("Item deleted successfully.");
-                setIsMessageModalOpen(true)
-            })
-            .catch(error => {
-                setMessage(error.response?.data?.message || error.message);
-                setIsErrorModalOpen(true);
-            });
-    }
+  setIsLoading(true);
+
+  API.post("agency/api/admin-add-money-to-wallet/", {
+    agency_id: data.agency.id,
+    amount: amount,
+    description: "Manual top-up by admin"
+  })
+    .then((response) => {
+      setPopupMessage(response.data.message || "Wallet credited successfully");
+      setIsMessageModalOpen(true);
+      setAmount("");
+      loadData(); // refresh agency details + wallet balance
+    })
+    .catch((error) => {
+      setPopupMessage(error.response?.data?.message || "Something went wrong");
+      setIsErrorModalOpen(true);
+    })
+    .finally(() => {
+      setIsLoading(false);
+    });
+};
 
     return (
         <div className="users-details-page">
@@ -194,7 +187,7 @@ const CustomersView = () => {
                                                 <div className='f-13 px-4  fw-500 clr-898989'>{data.gender && data.gender}</div>
                                             </div>
 
-                                         <div className='mt-2 pb-2'>
+                                            <div className='mt-2 pb-2'>
                                                 <div className='f-xs fw-500 px-4'>Govt. ID Card No.</div>
                                                 <div className='f-13 px-4  fw-500 clr-898989'>{data.agency.govt_id_number}</div>
                                             </div>
@@ -207,7 +200,7 @@ const CustomersView = () => {
 
 
                                             <div className='fw-600 f-xs mt-3 black-clr px-4 dotted-border-btm pb-2'>Agency Details</div>
-                                           
+
                                             <div className='mt-3 pb-2'>
                                                 <div className='f-xs fw-500 px-4'>Agency Name</div>
                                                 <div className='f-13 px-4 fw-500 clr-898989'>{data.agency.agency_name}</div>
@@ -232,11 +225,39 @@ const CustomersView = () => {
 
                                     <div className='w-60 card'>
                                         <div className="card-body">
-                                            <div className='box-shadow radius-7 p-4'>
-                                                <div className='fw-600 f-sm mt-3 black-clr'>Booking History</div>
-                                                <div className='fw-500 f-xs my-3 black-clr'><span className='me-2'>Total Spent</span><span><i className="fa-solid fa-dollar-sign"></i></span><span className='me-1'>{data.orders?.grand_total}</span><span className='me-1'>on</span><span className='me-1'>{data.orders?.count}</span><span>orders</span></div>
-                                                <div className='region-table mt-3' style={isOrderListFullyOpened ? { height: "600px" } : { height: "unset" }}>
-                                                    <table className="rwd-table mb-2 w-100">
+                                            <div className="overview-figures-box">
+                                                <div className="wallet-balance">
+                                                    <div className="label">Wallet Balance:</div>
+                                                    <div className="value">₹{data.agency.wallet_balance}</div>
+                                                </div>
+                                                <div className="wallet-update-form">
+                                                    <div className="title">Add Money</div>
+                                                    <div className="form">
+                                                     <input 
+  className="input" 
+  placeholder="Enter amount" 
+  value={amount}
+  onChange={(e) => setAmount(e.target.value)} 
+/>
+                                                      <button className="btn-primary" onClick={handleAddMoney}>Add</button>
+
+                                                    </div>
+                                                </div>
+                                                <div className="total-spent">
+                                                    <div className="label">Total Sales:</div>
+                                                    <div className="value">₹0.00</div>
+                                                </div>
+                                                <div className="booking-count">
+                                                    <div className="label">Total Bookings:</div>
+                                                    <div className="value">112345</div>
+                                                </div>
+                                            </div>
+
+
+                                            <div className='bookings-list-section list-section'>
+                                                <div className='table-title'>Booking History(Last Few)</div>
+                                                <div className='table-wrapper'>
+                                                    <table className="">
                                                         <tbody>
                                                             <tr>
                                                                 <th className='f-12'>BOOKING ID</th>
@@ -247,7 +268,7 @@ const CustomersView = () => {
                                                                 <th className='f-12'>TO</th>
                                                                 <th className='f-12'>AMOUNT</th>
                                                             </tr>
-                                                            {data.orders?.results.map((item, index) => {
+                                                            {data.bookingsData?.results.map((item, index) => {
 
                                                                 return (
                                                                     <tr>
@@ -282,11 +303,99 @@ const CustomersView = () => {
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                                <div className='text-center lightbrick f-xs mt-3' onClick={() => openOrdersListFully(!isOrderListFullyOpened)}>View all orders</div>
+                                                <div className='text-center lightbrick f-xs mt-3' onClick={() => openOrdersListFully(!isOrderListFullyOpened)}>View all bookings</div>
 
                                             </div>
 
+<div className='bookings-list-section list-section'>
+                                                <div className='table-title'>Wallet Transaction History(Last Few)</div>
+                                                <div className='table-wrapper'>
+                                                    <table className="">
+                                                        <tbody>
+                                                            <tr>
+                                                              <th>Tx. ID</th>
+                      <th>Amt:</th>
+                     <th>Cr/Dr</th>
+                      <th> Opening</th>
+                      <th>Closing</th>
+                      <th>Method</th>
+                      <th>Ref. No.</th>
+                      <th>Initiated</th>
+                      <th>Completed</th>
+                      <th>Status</th>
+                                                            </tr>
+                                                            {data.transactionsData?.results.map((item, index) => {
 
+                                                                return (
+                                                                     <tr key={item.id}>
+                                                                   
+                                                                                           <td>
+                                                                                             {item.id}
+                                                                                           </td>
+                                                                   
+                                                                   
+                                                                                           <td>
+                                                                                             {item.transaction_amount}
+                                                                                           </td>
+                                                                   
+                                                                                      <td>
+                                                                     <span
+                                                                       className={`debit-or-credit ${item.credit_or_debit === "debit" ? "green" : "red"}`}
+                                                                     >
+                                                                       {item.credit_or_debit === "debit" ? (
+                                                                         <>
+                                                                           In <ArrowUpRight size={16} className="ms-1" />
+                                                                         </>
+                                                                       ) : (
+                                                                         <>
+                                                                           Out <ArrowDownRight size={16} className="ms-1" />
+                                                                         </>
+                                                                       )}
+                                                                     </span>
+                                                                   </td>
+                                                                             
+                                                                             <td>
+                                                                                             {item.opening_balance}
+                                                                                           </td>
+                                                                   
+                                                                                           <td>
+                                                                                             {item.closing_balance}
+                                                                                           </td>
+                                                                   
+                                                                   
+                                                                                           <td>
+                                                                                             {item.payment_method}
+                                                                                           </td>
+                                                                   
+                                                                                           <td>
+                                                                                             {item.gateway_transaction_reference_number}
+                                                                                           </td>
+                                                                   
+                                                                   
+                                                                                           <td>
+                                                                                             {new Date(item.initiated_at).toLocaleString()}
+                                                                                           </td>
+                                                                   
+                                                                                           <td>
+                                                                                             {new Date(item.payment_completed_at).toLocaleString()}
+                                                                                           </td>
+                                                                   
+                                                                                           <td>
+                                                                                             <span className={item.status == 'success' ? 'green' : 'red'}>{item.status}</span>
+                                                                                           </td>
+                                                                    
+                                                                                         </tr>
+
+                                                                )
+                                                            })}
+
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div className='text-center lightbrick f-xs mt-3' onClick={() => openOrdersListFully(!isOrderListFullyOpened)}>View all transactions</div>
+
+                                            </div>
 
                                         </div>
 
@@ -299,7 +408,9 @@ const CustomersView = () => {
                     </div>
                 </div>
             </div>
-        </div>
+          <ErrorModal state={isErrorModalOpen}  message={popupMessage} setterFunction={setIsErrorModalOpen} okClickedFunction={loadData} />
+             {isLoading && <FixedOverlayLoadingSpinner />}
+              </div>
     )
 
 }

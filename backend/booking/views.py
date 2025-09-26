@@ -160,3 +160,40 @@ class BookingListForAgencyView(APIView):
 
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
+
+class BookingListOfAgentForAdminView(APIView):
+    permission_classes = [IsAdminOrStaff]
+    authentication_classes = [JWTAuthentication]
+
+    def get(self, request, pk):  # pk = agency_id from URL
+        try:
+            queryset = Booking.objects.filter(agency__id=pk).select_related("agency", "user").order_by("-id")
+
+            # --- Pagination ---
+            paginator = PageNumberPagination()
+            paginator.page_size = int(request.query_params.get("page_size", 10))
+            paginated_qs = paginator.paginate_queryset(queryset, request)
+
+            # --- Response formatting ---
+            data = [
+                {
+                    "id": booking.id,
+                    "ticket_id": booking.ticket_id,
+                    "status": booking.status,
+                    "total_pax": booking.total_pax,
+                    "agency_id": booking.agency.id,
+                    "agency_name": booking.agency.agency_name,
+                    "user_id": booking.user.id,
+                    "user_name": f"{booking.user.first_name} {booking.user.last_name}".strip(),
+                    "created_at": booking.created_at,
+                }
+                for booking in paginated_qs
+            ]
+
+            return paginator.get_paginated_response(data)
+
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
