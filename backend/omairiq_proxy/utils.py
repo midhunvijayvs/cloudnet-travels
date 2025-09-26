@@ -13,6 +13,15 @@ AIRIQ_API_HEADERS = {
 }
 
 
+#for returning credentials in the response for testing purpose
+def mask_value(value):
+    """Mask sensitive values, keeping first 3 and last 3 characters visible."""
+    if not value or len(value) <= 6:
+        return value  # too short, don't mask
+    return value[:3] + '*' * (len(value) - 6) + value[-3:]
+
+
+
 def get_airiq_token():
     # Get the latest token from DB
     token_obj = AIRIQLoginToken.objects.order_by("-last_logged_in").first()
@@ -52,6 +61,15 @@ def get_airiq_token():
         )
         return token
     else:
+        
+        # inject masked credentials in case of auth error
+        if "Api key no match" in str(data).lower() or "invalid username or password" in str(data).lower():
+            data["masked_credentials"] = {
+                "api_key": mask_value(settings.AIRIQ_API_KEY),
+                "username": mask_value(settings.AIRIQ_USERNAME),
+                "password": mask_value(settings.AIRIQ_PASSWORD),
+            }
+            
         # Instead of raising generic exception, return both status and full response
         raise Exception(json.dumps({
             "status_code": response.status_code,
@@ -80,10 +98,9 @@ def forward_request(request, endpoint_path, method="POST"):
 
     except Exception as e:
         try:
-            # If e.message contains JSON string from get_airiq_token
+            # if raised with json.dumps, parse it back
             error_data = json.loads(str(e))
-            return JsonResponse(error_data, status=error_data.get("status_code", 500))
-        except:
+            return JsonResponse(error_data, status=400)
+        except Exception:
             return JsonResponse({'error': str(e)}, status=500)
-        
         
