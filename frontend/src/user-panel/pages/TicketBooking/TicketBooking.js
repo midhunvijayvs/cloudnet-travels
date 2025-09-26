@@ -104,7 +104,7 @@ const TicketBooking = ({ ticketSearchFormData }) => {
         API.post(`/api/airiq/book/`, payload)
             .then((response) => {
                 navigate("/checkout-success", { state: { responseData: response.data } })
-             
+               
             })
             
             .catch((error) => {
@@ -119,7 +119,6 @@ const TicketBooking = ({ ticketSearchFormData }) => {
                     setPopupMessage(error.response.data.error)
                     setIsErrorModalOpen(true)
                 }
-                navigate("/checkout-failed", { state: {} })
             })
             .finally(() => {
                 setIsLoading(false);
