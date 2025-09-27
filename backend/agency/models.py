@@ -47,7 +47,7 @@ class WalletTransaction(models.Model):
     closing_balance = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)
     payment_method = models.CharField(max_length=20, choices=PAYMENT_METHOD_CHOICES, default="phonepe")
     gateway_transaction_reference_number = models.CharField(max_length=100, blank=True, null=True)
-    description = models.CharField(max_length=255, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
     
     credit_or_debit = models.CharField(max_length=10, choices=CREDIT_OR_DEBIT_CHOICES, default="debit", )
     
