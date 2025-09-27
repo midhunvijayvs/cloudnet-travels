@@ -26,7 +26,7 @@ class Agency(models.Model):
 class WalletTransaction(models.Model):
     PAYMENT_METHOD_CHOICES = (
         ("phonepe", "PhonePe"),
-        ("googlepay", "Google Pay (Manual)"),
+        ("booking", "By System for booking"),
         ("manual", "Manual"),
     )
 

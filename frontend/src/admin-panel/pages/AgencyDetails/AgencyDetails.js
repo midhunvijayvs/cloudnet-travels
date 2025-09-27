@@ -25,8 +25,8 @@ const CustomersView = () => {
     const [transactionsData, setTransactionsData] = useState(false);
 
 
-   const [popupTitle, setPopupTitle] = useState(null)
-     const [popupMessage, setPopupMessage] = useState(null);
+    const [popupTitle, setPopupTitle] = useState(null)
+    const [popupMessage, setPopupMessage] = useState(null);
     const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
     const [isMessageModalOpen, setIsMessageModalOpen] = useState(false);
     const [isDeleteConfModalOpen, setIsDeleteConfModalOpen] = useState(false);
@@ -34,7 +34,7 @@ const CustomersView = () => {
 
 
     const [isOrderListFullyOpened, openOrdersListFully] = useState(false)
-const [amount, setAmount] = useState("");
+    const [amount, setAmount] = useState("");
 
     useEffect(() => {
         $(function () {
@@ -63,17 +63,17 @@ const [amount, setAmount] = useState("");
             .then(response => {
 
                 setData(response.data);
-                
-                API.get(`api/booking/bookings-list-of-agent-for-admin/${response.data.id}/`)   //${window.localStorage.getItem('userID')}
+
+                API.get(`api/booking/bookings-list-of-agent-for-admin/${response.data.agency.id}/`)   //${window.localStorage.getItem('userID')}
                     .then(response => {
-setBookingsData(response.data)
+                        setBookingsData(response.data)
                     })
                     .catch(error => {
                         console.error(error);
                     });
 
 
-                API.get(`api/agency/wallet-transaction-list-of-agent-for-admin/${response.data.id}/`)   //${window.localStorage.getItem('userID')}
+                API.get(`api/agency/wallet-transaction-list-of-agent-for-admin/${response.data.agency.id}/`)   //${window.localStorage.getItem('userID')}
                     .then(response => {
 
                         setTransactionsData(response.data)
@@ -92,37 +92,37 @@ setBookingsData(response.data)
 
     }
 
-const handleAddMoney = () => {
-  if (!amount) {
-    setPopupMessage("Please enter an amount");
-    setIsErrorModalOpen(true);
-    return;
-  }
+    const handleAddMoney = () => {
+        if (!amount) {
+            setPopupMessage("Please enter an amount");
+            setIsErrorModalOpen(true);
+            return;
+        }
 
-  setIsLoading(true);
+        setIsLoading(true);
 
-  API.post("/api/agency/admin-add-money-to-wallet/", {
-    agency_id: data.agency.id,
-    amount: amount,
-    description: "Manual top-up by admin"
-  })
-    .then((response) => {
-      setPopupMessage(response.data.message || "Wallet credited successfully");
-      setIsMessageModalOpen(true);
-      setAmount("");
-      loadData(); // refresh agency details + wallet balance
-    })
-    .catch((error) => {
-      setPopupMessage(error.response?.data?.message || "Something went wrong");
-      setIsErrorModalOpen(true);
-    })
-    .finally(() => {
-      setIsLoading(false);
-    });
-};
+        API.post("/api/agency/admin-add-money-to-wallet/", {
+            agency_id: data.agency.id,
+            amount: amount,
+            description: "Manual top-up by admin"
+        })
+            .then((response) => {
+                setPopupMessage(response.data.message || "Wallet credited successfully");
+                setIsMessageModalOpen(true);
+                setAmount("");
+                loadData(); // refresh agency details + wallet balance
+            })
+            .catch((error) => {
+                setPopupMessage(error.response?.data?.message || "Something went wrong");
+                setIsErrorModalOpen(true);
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
+    };
 
     return (
-        <div className="users-details-page">
+        <div className="agency-details-page">
             <div className="page-body">
                 <div className="container-fluid">
                     <div className="row">
@@ -233,13 +233,13 @@ const handleAddMoney = () => {
                                                 <div className="wallet-update-form">
                                                     <div className="title">Add Money</div>
                                                     <div className="form">
-                                                     <input 
-  className="input" 
-  placeholder="Enter amount" 
-  value={amount}
-  onChange={(e) => setAmount(e.target.value)} 
-/>
-                                                      <button className="btn-primary" onClick={handleAddMoney}>Add</button>
+                                                        <input
+                                                            className="input"
+                                                            placeholder="Enter amount"
+                                                            value={amount}
+                                                            onChange={(e) => setAmount(e.target.value)}
+                                                        />
+                                                        <button className="btn-primary" onClick={handleAddMoney}>Add</button>
 
                                                     </div>
                                                 </div>
@@ -260,40 +260,31 @@ const handleAddMoney = () => {
                                                     <table className="">
                                                         <tbody>
                                                             <tr>
-                                                                <th className='f-12'>BOOKING ID</th>
-                                                                <th className='f-12'>DATE</th>
-                                                                <th className='f-12'>STATUS</th>
-                                                                <th className='f-12'>PAX</th>
-                                                                <th className='f-12'>FROM</th>
-                                                                <th className='f-12'>TO</th>
-                                                                <th className='f-12'>AMOUNT</th>
+                                                                <th>Bokng. ID</th>
+                                                                <th>Tkt ID</th>
+                                                                <th>Origin</th>
+                                                                <th>Dest.</th>
+                                                                <th>Amount</th>
+                                                                <th>Status</th>
+                                                                <th>Pax</th>
+                                                                {/* <th>Agency</th>
+                                                                <th>Agent</th> */}
+                                                                <th>Time</th>
                                                             </tr>
-                                                            {data.bookingsData?.results.map((item, index) => {
+                                                            {bookingsData?.results?.map((item, index) => {
 
                                                                 return (
-                                                                    <tr>
-                                                                        <td data-th="Supplier Numberr">
-                                                                            #{item.id}
-                                                                        </td>
-                                                                        <td data-th="Supplier Name">
-                                                                            {item.date}
-                                                                        </td>
-                                                                        <td data-th="Invoice Number">
-                                                                            {item.delivery_status == 0 ? "Canceled" : item.delivery_status == 1 ? "Processing" : item.delivery_status == 2 ? "On the Way" : item.delivery_status == 3 ? "Out to Deliver" : item.delivery_status == 4 ? "Delivered" : "Returned"}
-                                                                        </td>
-                                                                        <td data-th="Invoice Date">
-                                                                            {item.order_item_count}
-                                                                        </td>
-                                                                        <td data-th="Invoice Date">
-                                                                            {item.order_item_count}
-                                                                        </td>
-                                                                        <td data-th="Invoice Date">
-                                                                            {item.order_item_count}
-                                                                        </td>
-                                                                        <td data-th="Due Date">
-                                                                            {item.total}
-                                                                        </td>
-
+                                                                    <tr key={item.id}>
+                                                                        <td>#{item.id}</td>
+                                                                        <td>{item.ticket_id.slice(0, 4) + '…'}</td>
+                                                                        <td>{item.origin}</td>
+                                                                        <td>{item.destination}</td>
+                                                                        <td>{item.amount}</td>
+                                                                        <td> <span className={`status-label ${item.status == "success" ? "success" : item.status == "failed" ? "failed" : "pending"}`}>{item.status}</span></td>
+                                                                        <td>{item.total_pax}</td>
+                                                                        {/* <td>{item.agency_name}</td>
+                                                                        <td>{item.user_full_name}</td> */}
+                                                                        <td>{new Date(item.created_at).toLocaleString()}</td>
                                                                     </tr>
 
                                                                 )
@@ -307,84 +298,84 @@ const handleAddMoney = () => {
 
                                             </div>
 
-<div className='bookings-list-section list-section'>
+                                            <div className='bookings-list-section list-section'>
                                                 <div className='table-title'>Wallet Transaction History(Last Few)</div>
                                                 <div className='table-wrapper'>
                                                     <table className="">
                                                         <tbody>
                                                             <tr>
-                                                              <th>ID</th>
-                      <th>Amt:</th>
-                     <th>Cr/Dr</th>
-                      <th> Opening</th>
-                      <th>Closing</th>
-                      <th>Method</th>
-                      <th>Ref. No.</th>
-                      <th>Initiated</th>
-                      <th>Completed</th>
-                      <th>Status</th>
+                                                                <th>ID</th>
+                                                                <th>Amt:</th>
+                                                                <th>Cr/Dr</th>
+                                                                <th> Opng.</th>
+                                                                <th>Clsng.</th>
+                                                                <th>Mthd.</th>
+                                                                <th>Ref.</th>
+                                                                <th>Init.</th>
+                                                                <th>Complt.</th>
+                                                                <th>Status</th>
                                                             </tr>
-                                                            {data.transactionsData?.results.map((item, index) => {
+                                                            {transactionsData?.results?.map((item, index) => {
 
                                                                 return (
-                                                                     <tr key={item.id}>
-                                                                   
-                                                                                           <td>
-                                                                                             {item.id}
-                                                                                           </td>
-                                                                   
-                                                                   
-                                                                                           <td>
-                                                                                             {item.transaction_amount}
-                                                                                           </td>
-                                                                   
-                                                                                      <td>
-                                                                     <span
-                                                                       className={`debit-or-credit ${item.credit_or_debit === "debit" ? "green" : "red"}`}
-                                                                     >
-                                                                       {item.credit_or_debit === "debit" ? (
-                                                                         <>
-                                                                           In <ArrowUpRight size={16} className="ms-1" />
-                                                                         </>
-                                                                       ) : (
-                                                                         <>
-                                                                           Out <ArrowDownRight size={16} className="ms-1" />
-                                                                         </>
-                                                                       )}
-                                                                     </span>
-                                                                   </td>
-                                                                             
-                                                                             <td>
-                                                                                             {item.opening_balance}
-                                                                                           </td>
-                                                                   
-                                                                                           <td>
-                                                                                             {item.closing_balance}
-                                                                                           </td>
-                                                                   
-                                                                   
-                                                                                           <td>
-                                                                                             {item.payment_method}
-                                                                                           </td>
-                                                                   
-                                                                                           <td>
-                                                                                             {item.gateway_transaction_reference_number}
-                                                                                           </td>
-                                                                   
-                                                                   
-                                                                                           <td>
-                                                                                             {new Date(item.initiated_at).toLocaleString()}
-                                                                                           </td>
-                                                                   
-                                                                                           <td>
-                                                                                             {new Date(item.payment_completed_at).toLocaleString()}
-                                                                                           </td>
-                                                                   
-                                                                                           <td>
-                                                                                             <span className={item.status == 'success' ? 'green' : 'red'}>{item.status}</span>
-                                                                                           </td>
-                                                                    
-                                                                                         </tr>
+                                                                    <tr key={item.id}>
+
+                                                                        <td>
+                                                                            {item.id}
+                                                                        </td>
+
+
+                                                                        <td>
+                                                                            {item.transaction_amount}
+                                                                        </td>
+
+                                                                        <td>
+                                                                            <span
+                                                                                className={`debit-or-credit ${item.credit_or_debit === "debit" ? "up" : "down"}`}
+                                                                            >
+                                                                                {item.credit_or_debit === "debit" ? (
+                                                                                    <>
+                                                                                        In <ArrowUpRight size={16} className="ms-1" />
+                                                                                    </>
+                                                                                ) : (
+                                                                                    <>
+                                                                                        Out <ArrowDownRight size={16} className="ms-1" />
+                                                                                    </>
+                                                                                )}
+                                                                            </span>
+                                                                        </td>
+
+                                                                        <td>
+                                                                            {item.opening_balance}
+                                                                        </td>
+
+                                                                        <td>
+                                                                            {item.closing_balance}
+                                                                        </td>
+
+
+                                                                        <td>
+                                                                            {item.payment_method}
+                                                                        </td>
+
+                                                                        <td>
+                                                                            {item.gateway_transaction_reference_number?item.gateway_transaction_reference_number:"-"}
+                                                                        </td>
+
+
+                                                                        <td>
+                                                                            {new Date(item.initiated_at).toLocaleString()}
+                                                                        </td>
+
+                                                                        <td>
+                                                                            {new Date(item.payment_completed_at).toLocaleString()}
+                                                                        </td>
+
+                                                                        <td>
+                                                                             <span className={`status-label ${item.status == "success" ? "success" : item.status == "failed" ? "failed" : "pending"}`}>{item.status}</span>
+                                                                        </td>
+
+                                                                    </tr>
 
                                                                 )
                                                             })}
@@ -408,9 +399,9 @@ const handleAddMoney = () => {
                     </div>
                 </div>
             </div>
-          <ErrorModal state={isErrorModalOpen}  message={popupMessage} setterFunction={setIsErrorModalOpen} okClickedFunction={loadData} />
-             {isLoading && <FixedOverlayLoadingSpinner />}
-              </div>
+            <ErrorModal state={isErrorModalOpen} message={popupMessage} setterFunction={setIsErrorModalOpen} okClickedFunction={loadData} />
+            {isLoading && <FixedOverlayLoadingSpinner />}
+        </div>
     )
 
 }

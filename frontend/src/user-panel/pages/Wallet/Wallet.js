@@ -83,7 +83,7 @@ const ProfilePage = ({ userData, loadUserData }) => {
     }
 
     // Payment method: must be one of the allowed options
-    const allowedMethods = ["phonepe", "manual", "googlepay"];
+    const allowedMethods = ["phonepe", "manual"];
     if (!allowedMethods.includes(data.payment_method)) {
       return "Invalid payment method selected.";
     }
@@ -234,7 +234,7 @@ console.log("response.data.transaction_id from wallet: ", response.data.transact
 
                    <td>
   <span
-    className={`debit-or-credit ${item.credit_or_debit === "debit" ? "green" : "red"}`}
+    className={`debit-or-credit ${item.credit_or_debit === "debit" ? "up" : "down"}`}
   >
     {item.credit_or_debit === "debit" ? (
       <>

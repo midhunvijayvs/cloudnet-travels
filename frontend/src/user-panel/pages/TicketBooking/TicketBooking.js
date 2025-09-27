@@ -96,6 +96,8 @@ const TicketBooking = ({ ticketSearchFormData }) => {
         setIsLoading(true);
         const payload = {
             ticket_id: ticketData.ticket_id,
+            origin: ticketData.origin,
+            destination: ticketData.destination,
             price: ticketData.price,
             total_pax: formData.adult + formData.child + formData.infant,
             ...formData,
@@ -121,7 +123,7 @@ const TicketBooking = ({ ticketSearchFormData }) => {
                 }
                 else {
                     setPopupTitle("Error!!")
-                    setPopupMessage(error.response.data.error)
+                    setPopupMessage(error.response.data.airiq_response.error?error.response.data.airiq_response.error:error.response.data.error)
                     setIsErrorModalOpen(true)
                 }
             })

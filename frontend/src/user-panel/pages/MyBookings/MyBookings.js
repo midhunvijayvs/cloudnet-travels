@@ -171,28 +171,33 @@ const handleFilterReset = () => {
               {tableData && tableData.results && tableData.results.length > 0 ?
                 <table className="table table-bordered mb-4">
                   <thead>
-                   <tr>
-              <th>Booking ID</th>
-              <th>Ticket ID</th>
-              <th>Status</th>
-              <th>Total Pax</th>
-              <th>Agency Name</th>
-              <th>User Name</th>
-              <th>Created At</th>
-            </tr>
+              <tr>
+                                                                <th>Booking ID</th>
+                                                                <th>Ticket ID</th>
+                                                                <th>Origin</th>
+                                                                <th>Destination</th>
+                                                                <th>Amount</th>
+                                                                <th>Status</th>
+                                                                <th>Total Pax</th>
+                                                                <th>Agency</th>
+                                                                <th>Booked at</th>
+                                                            </tr>
                   </thead>
                   <tbody>
                     {tableData.results.map((item) => (
 
-                      <tr key={item.id}>
-                <td>{item.id}</td>
-                <td>{item.ticket_id}</td>
-                <td>{item.status}</td>
-                <td>{item.total_pax}</td>
-                <td>{item.agency_name}</td>
-                <td>{item.user_name}</td>
-                <td>{new Date(item.created_at).toLocaleString()}</td>
-              </tr>
+                    <tr key={item.id}>
+                                                                        <td>#{item.id}</td>
+                                                                        <td>{item.ticket_id.slice(0, 4) + '…'}</td>
+                                                                        <td>{item.origin}</td>
+                                                                        <td>{item.destination}</td>
+                                                                        <td>{item.amount}</td>
+                                                                        <td> <span className={`status-label ${item.status == "success" ? "success" : item.status == "failed" ? "failed" : "pending"}`}>{item.status}</span></td>
+                                                                        <td>{item.total_pax}</td>
+                                                                        <td>{item.agency_name}</td>
+                                                                        <td>{new Date(item.created_at).toLocaleString()}</td>
+                                                                    </tr>
+
                     ))}
                   </tbody>
                 </table>

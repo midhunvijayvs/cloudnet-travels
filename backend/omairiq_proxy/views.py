@@ -50,6 +50,8 @@ class BookTicketView(APIView):
             payload = request.data
 
             ticket_id = payload.get("ticket_id")
+            origin = payload.get("origin")
+            destination = payload.get("destination")
             total_pax = payload.get("total_pax", 0)
             adult = payload.get("adult", 0)
             child = payload.get("child", 0)
@@ -72,7 +74,7 @@ class BookTicketView(APIView):
                 transaction_amount=amount,
                 opening_balance=opening_balance,
                 closing_balance=closing_balance,
-                payment_method="phonepe",
+                payment_method="booking",
                 description=f"Ticket booking for {ticket_id}",
                 credit_or_debit="credit",
                 status="processing",
@@ -84,6 +86,9 @@ class BookTicketView(APIView):
                 agency=agency,
                 wallet_transaction=wallet_txn,
                 ticket_id=ticket_id,
+                origin=origin,
+                destination=destination,
+                amount=amount,
                 total_pax=total_pax,
                 adult=adult,
                 child=child,

@@ -258,7 +258,7 @@ const Header = ({ userData, loadUserData, cartItems, setActivePage, activePage, 
                     <div className="dropdown-item" onClick={() => navigate('/profile')}>Profile</div>
                   </li>
                   <li>
-                    <div className="dropdown-item" onClick={() => navigate('/orders')}>My Bookings</div>
+                    <div className="dropdown-item" onClick={() => navigate('/bookings')}>My Bookings</div>
                   </li>
 
 

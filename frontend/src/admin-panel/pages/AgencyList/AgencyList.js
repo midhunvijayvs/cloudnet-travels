@@ -184,7 +184,10 @@ const AgencyList = () => {
 
           <tbody>
             {data && data.results && data.results.map((item, index) => (
-              <tr>
+              <tr onClick={() => {
+                        localStorage.setItem("itemSelectedId", item.id);
+                        navigate("/admin/agency/details")
+                      }}>
                 {/* <td>
                                 <input className="custom-checkbox" type="checkbox" name="text" />
                               </td> */}
@@ -207,12 +210,12 @@ const AgencyList = () => {
                 <td>
                   <ul className="d-flex align-items-center  justify-content-center">
                     <li>
-                      <button className="" onClick={() => {
+                      {/* <button className="" onClick={() => {
                         localStorage.setItem("itemSelectedId", item.id);
                         navigate("/admin/agency/details")
                       }}>
                         <i className="ri-eye-line"></i>
-                      </button>
+                      </button> */}
                     </li>
 
                     <li>

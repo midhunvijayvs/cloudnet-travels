@@ -259,6 +259,7 @@ class WalletTransactionListView(APIView):
 
     def get(self, request):
         agency = request.user.agency
+        print("\n\nDEBUG from user panel AGENCY ID:", agency.id)
         transactions = WalletTransaction.objects.filter(agency=agency).order_by("-initiated_at")
 
         # Apply pagination
@@ -293,6 +294,7 @@ class WalletTransactionListOfAgentForAdminView(APIView):
 
     def get(self, request, pk):  # pk = agency_id from URL
         try:
+            print("DEBUG AGENCY ID pk:", pk)
             transactions = WalletTransaction.objects.filter(
                 agency__id=pk
             ).order_by("-id")  # reverse of id order

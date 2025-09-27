@@ -1,3 +1,7 @@
+.agency-details-page{
+
+
+
 .w-20 {
     width: 20%;
 }
@@ -125,10 +129,117 @@ color: var(--primary-color);
             margin-bottom: .5rem;
     }
     .table-wrapper{
-            width: 100%;
-            min-height: 12rem;
+        width: 100%;
+           overflow-x: auto;
+        min-height: 20rem;
         table{
             width: 100%;
-        }
+          thead tr th {
+                text-align: start;
+                vertical-align: middle;
+            }
+
+            .short {
+                max-width: 160px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            td {
+                text-align: start;
+.debit-or-credit {
+            width: 2.9rem;
+            display: block;
+            font-size: .8rem;
+
+            &.up {
+              color: #07b407;
+            }
+
+            &.down {
+              color: #fa0707;
+            }
+          }
+                .status-label {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+
+                    width: fit-content;
+                    letter-spacing: 0.01em;
+                    padding: 3px 10px;
+                    cursor: pointer;
+                    text-transform: uppercase;
+                    font-size: .7rem;
+                    font-weight: 500;
+                    line-height: 20px;
+                    border-radius: 8px;
+                        color: #fff;
+
+
+
+
+
+                    &.pending {
+                        background: rgb(218, 160, 0);
+                    }
+
+                    &.failed {
+                        background: rgb(255, 0, 0);
+                    }
+
+                    &.success {
+                        background: rgb(0, 174, 23);
+                    }
+
+
+
+
+
+
+                }
+            }
+
+            select.form-select {
+                padding: 8px 25px 8px 10px;
+            }
+
+            .form-select {
+                padding: 3px 3px;
+                border: 1px solid #dedbdb;
+                width: 185px;
+                font-size: small;
+                border-radius: 4px;
+                background-color: rgba(245, 245, 245, 0.6);
+                text-transform: capitalize;
+                font-weight: 500;
+
+                option {
+                    text-transform: capitalize;
+                    font-weight: 500;
+                }
+
+            }
+
+
+
+            .user-name {
+                text-transform: capitalize;
+                white-space: normal;
+            }
+
+            .user-img {
+                width: 30px !important;
+                margin-right: 5px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+}
     }
+}
+
+
+  
 }

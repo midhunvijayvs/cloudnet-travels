@@ -146,7 +146,7 @@
 
 
                     &.pending {
-                        background: rgb(217, 85, 85);
+                        background: rgb(218, 160, 0);
                     }
 
                     &.failed {
@@ -200,66 +200,7 @@
                 object-fit: cover;
             }
 
-            .table-image {
-                .active {
-                    img {
-                        border: 2px solid rgb(0, 173, 40);
-                        // filter: grayscale(100%);
-                        border-radius: 50% !important;
-                    }
-                }
-
-                .deactivated {
-                    img {
-                        border: 2px solid rgb(199, 3, 3);
-                        // filter: grayscale(100%);
-                        border-radius: 50% !important;
-                    }
-                }
-            }
-
-
-            .rating-box {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-
-            .star-box {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 2px;
-
-                svg {
-                    width: 16px;
-                    height: 16px;
-
-                    path {
-                        fill: transparent !important;
-                        stroke: #868790 !important;
-                        cursor: default;
-
-                        &:hover {
-                            fill: none !important;
-                            stroke: none !important;
-                        }
-
-                        &.filled {
-                            fill: rgb(var(--theme-color)) !important;
-                            stroke: rgb(var(--theme-color)) !important;
-                        }
-                    }
-                }
-            }
-
-            tbody tr td .td-check,
-            tbody tr td .td-cross,
-            tbody tr td .td-check,
-            tbody tr td .td-cross {
-                font-size: 20px
-            }
-
+           
 
         }
     }

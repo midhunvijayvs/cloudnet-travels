@@ -10,7 +10,7 @@ from .models import Booking
 from django.conf import settings
 from users.customPermissions import IsAdminOrStaff
 from users.customPermissions import IsAgencyUser
-
+from .serializers import BookingSerializer
 # GET /api/bookings/?search_key=Travels
 # GET /api/bookings/?agency_id=12
 # GET /api/bookings/?status=success
@@ -70,22 +70,9 @@ class BookingListForAdminView(APIView):
             paginated_qs = paginator.paginate_queryset(queryset, request)
 
             # --- Response formatting ---
-            data = [
-                {
-                    "id": booking.id,
-                    "ticket_id": booking.ticket_id,
-                    "status": booking.status,
-                    "total_pax": booking.total_pax,
-                    "agency_id": booking.agency.id,
-                    "agency_name": booking.agency.agency_name,
-                    "user_id": booking.user.id,
-                    "user_name": f"{booking.user.first_name} {booking.user.last_name}".strip(),
-                    "created_at": booking.created_at,
-                }
-                for booking in paginated_qs
-            ]
+            serializer = BookingSerializer(paginated_qs, many=True)
 
-            return paginator.get_paginated_response(data)
+            return paginator.get_paginated_response(serializer.data) 
 
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
@@ -141,22 +128,9 @@ class BookingListForAgencyView(APIView):
             paginated_qs = paginator.paginate_queryset(queryset, request)
 
             # --- Response formatting ---
-            data = [
-                {
-                    "id": booking.id,
-                    "ticket_id": booking.ticket_id,
-                    "status": booking.status,
-                    "total_pax": booking.total_pax,
-                    "agency_id": booking.agency.id,
-                    "agency_name": booking.agency.agency_name,
-                    "user_id": booking.user.id,
-                    "user_name": f"{booking.user.first_name} {booking.user.last_name}".strip(),
-                    "created_at": booking.created_at,
-                }
-                for booking in paginated_qs
-            ]
+            serializer = BookingSerializer(paginated_qs, many=True)
 
-            return paginator.get_paginated_response(data)
+            return paginator.get_paginated_response(serializer.data) 
 
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
@@ -178,22 +152,9 @@ class BookingListOfAgentForAdminView(APIView):
             paginated_qs = paginator.paginate_queryset(queryset, request)
 
             # --- Response formatting ---
-            data = [
-                {
-                    "id": booking.id,
-                    "ticket_id": booking.ticket_id,
-                    "status": booking.status,
-                    "total_pax": booking.total_pax,
-                    "agency_id": booking.agency.id,
-                    "agency_name": booking.agency.agency_name,
-                    "user_id": booking.user.id,
-                    "user_name": f"{booking.user.first_name} {booking.user.last_name}".strip(),
-                    "created_at": booking.created_at,
-                }
-                for booking in paginated_qs
-            ]
+            serializer = BookingSerializer(paginated_qs, many=True)
 
-            return paginator.get_paginated_response(data)
+            return paginator.get_paginated_response(serializer.data) 
 
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

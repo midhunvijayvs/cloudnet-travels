@@ -129,7 +129,7 @@ const BookingListForAdmin = () => {
             }
           >
             <option value="">All Status</option>
-            <option value="processing">Processing</option>
+            <option value="pending">Pending</option>
             <option value="success">Success</option>
             <option value="failed">Failed</option>
           </select>
@@ -184,23 +184,29 @@ const BookingListForAdmin = () => {
               <tr>
                 <th>Booking ID</th>
                 <th>Ticket ID</th>
+                <th>Origin</th>
+                <th>Destination</th>
+                <th>Amount</th>
                 <th>Status</th>
                 <th>Total Pax</th>
                 <th>Agency</th>
-                <th>User</th>
-                <th>Created At</th>
+                <th>Agent</th>
+                <th>Booked at</th>
               </tr>
             </thead>
             <tbody>
               {data && data.results && data.results.length > 0 ? (
                 data.results.map((item) => (
                   <tr key={item.id}>
-                    <td>#{item.id}</td>
-                    <td>{item.ticket_id.slice(0, 15) + '…'}</td>
+                    <td>{item.id}</td>
+                    <td>{item.ticket_id.slice(0, 4) + '…'}</td>
+                    <td>{item.origin}</td>
+                    <td>{item.destination}</td>
+                    <td>{item.amount}</td>
                     <td> <span className={`status-label ${item.status=="success"?"success":item.status=="failed"?"failed":"pending"}`}>{item.status}</span></td>
                     <td>{item.total_pax}</td>
                     <td>{item.agency_name}</td>
-                    <td>{item.user_name}</td>
+                    <td>{item.user_full_name}</td>
                     <td>{new Date(item.created_at).toLocaleString()}</td>
                   </tr>
                 ))

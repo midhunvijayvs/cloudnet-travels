@@ -147,12 +147,14 @@
     border-radius: 16px;
     padding: 2rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
- .section-title {
+
+    .section-title {
       font-size: 1.2rem;
       font-weight: 600;
       margin-bottom: 1rem;
       color: #0A74CE;
     }
+
     .table-wrapper {
       width: 100%;
       overflow-x: auto;
@@ -178,14 +180,18 @@
           font-size: .7rem;
           font-weight: 600;
 
-         span{
+          .debit-or-credit {
+            width: 2.6rem;
+            display: block;
             font-size: .8rem;
-          &.green{
+
+            &.up {
               color: #07b407;
             }
-            &.red{
+
+            &.down {
               color: #fa0707;
-            }     
+            }
           }
         }
 
