@@ -77,7 +77,7 @@ def get_airiq_token():
         }))
     
     
-def forward_request(request, endpoint_path, method="POST"):
+def forward_request_to_air_iq(request, endpoint_path, method="POST"):
     try:
         headers = AIRIQ_API_HEADERS.copy()
         token = get_airiq_token()

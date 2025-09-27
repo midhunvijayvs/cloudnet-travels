@@ -5,7 +5,7 @@ import requests
 import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .utils import forward_request
+from .utils import forward_request_to_air_iq
 from django.views.decorators.http import require_POST
 from django.conf import settings
 import uuid
@@ -33,7 +33,7 @@ class ProxySearchView(APIView):
     permission_classes = []      # optional, keep empty if no permissions
 
     def post(self, request, *args, **kwargs):
-        return forward_request(request, 'search/', 'POST')
+        return forward_request_to_air_iq(request, 'search/', 'POST')
 
     def get(self, request, *args, **kwargs):
         return Response({'error': 'Only POST allowed'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
@@ -94,8 +94,8 @@ class BookTicketView(APIView):
             )
 
             # Call AirIQ
-            airiq_response = forward_request(request, "book/", "POST")
-            airiq_data = airiq_response.json()
+            airiq_response = forward_request_to_air_iq(request, "book/", "POST")
+            airiq_data = airiq_response.content 
 
             if airiq_response.status_code == 200 and airiq_data.get("status") == "success":
                 booking.status = "success"
