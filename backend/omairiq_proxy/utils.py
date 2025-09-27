@@ -77,30 +77,51 @@ def get_airiq_token():
         }))
     
     
+# def forward_request_to_air_iq(request, endpoint_path, method="POST"):
+#     try:
+#         headers = AIRIQ_API_HEADERS.copy()
+#         token = get_airiq_token()
+#         if token:
+#            headers["Authorization"] = f"{token}"
+
+#         url = f"{AIRIQ_BASE_URL}/{endpoint_path.lstrip('/')}"
+
+#         # Determine how to send data
+#         if method.upper() == "GET":
+#             params = request.GET.dict()
+#             response = requests.get(url, headers=headers, params=params)
+#         else:
+#             payload = json.loads(request.body)
+#             response = requests.request(method, url, headers=headers, json=payload)
+
+#         return JsonResponse(response.json(), status=response.status_code, safe=False)
+
+#     except Exception as e:
+#         try:
+#             # if raised with json.dumps, parse it back
+#             error_data = json.loads(str(e))
+#             return JsonResponse(error_data, status=400)
+#         except Exception:
+#             return JsonResponse({'error': str(e)}, status=500)
+        
+        
+        
 def forward_request_to_air_iq(request, endpoint_path, method="POST"):
     try:
         headers = AIRIQ_API_HEADERS.copy()
         token = get_airiq_token()
         if token:
-           headers["Authorization"] = f"{token}"
+            headers["Authorization"] = f"{token}"
 
         url = f"{AIRIQ_BASE_URL}/{endpoint_path.lstrip('/')}"
 
-        # Determine how to send data
         if method.upper() == "GET":
             params = request.GET.dict()
             response = requests.get(url, headers=headers, params=params)
         else:
-            payload = json.loads(request.body)
+            payload = request.data
             response = requests.request(method, url, headers=headers, json=payload)
 
-        return JsonResponse(response.json(), status=response.status_code, safe=False)
-
+        return response.json(), response.status_code  # return tuple (dict, status)
     except Exception as e:
-        try:
-            # if raised with json.dumps, parse it back
-            error_data = json.loads(str(e))
-            return JsonResponse(error_data, status=400)
-        except Exception:
-            return JsonResponse({'error': str(e)}, status=500)
-        
+        return {'error': str(e)}, 500

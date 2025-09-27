@@ -93,11 +93,8 @@ class BookTicketView(APIView):
                 status="pending",
             )
 
-            # Call AirIQ
-            airiq_response = forward_request_to_air_iq(request, "book/", "POST")
-            airiq_data = json.loads(airiq_response.content.decode('utf-8'))  # decode bytes → dict
-            
-            if airiq_response.status_code == 200 and airiq_data.get("status") == "success":
+            airiq_data, status_code = forward_request_to_air_iq(request, "book/", "POST")
+            if status_code == 200 and airiq_data.get("status") == "success":
                 booking.status = "success"
                 wallet_txn.status = "success"
                 agency.wallet_balance = closing_balance
@@ -123,7 +120,7 @@ class BookTicketView(APIView):
                     },
                     "airiq_response": airiq_data,
                 },
-                status=airiq_response.status_code,
+                status=status_code,
             )
 
         except Exception as e:
