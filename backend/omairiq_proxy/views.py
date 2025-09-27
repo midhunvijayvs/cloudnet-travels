@@ -33,7 +33,8 @@ class ProxySearchView(APIView):
     permission_classes = []      # optional, keep empty if no permissions
 
     def post(self, request, *args, **kwargs):
-        return forward_request_to_air_iq(request, 'search/', 'POST')
+        airiq_data, status_code = forward_request_to_air_iq(request, 'search/', 'POST')
+        return Response(airiq_data, status=status_code)
 
     def get(self, request, *args, **kwargs):
         return Response({'error': 'Only POST allowed'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
