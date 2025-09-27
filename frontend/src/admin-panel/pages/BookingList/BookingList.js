@@ -196,7 +196,7 @@ const BookingListForAdmin = () => {
                 data.results.map((item) => (
                   <tr key={item.id}>
                     <td>#{item.id}</td>
-                    <td>{item.ticket_id}</td>
+                    <td>{item.ticket_id.slice(0, 15) + '…'}</td>
                     <td>{item.status}</td>
                     <td>{item.total_pax}</td>
                     <td>{item.agency_name}</td>
