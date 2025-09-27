@@ -114,6 +114,11 @@ const TicketBooking = ({ ticketSearchFormData }) => {
                     setPopupMessage("Insufficient wallet balance!! \n Please Recharge your wallet!")
                     setIsLowBalanceErrorModalOpen(true)
                 }
+                else if(error.response.data.airiq_response.message=="Sorry, You don't have sufficient balance."){
+                     setPopupTitle("Temporary Error!!")
+                    setPopupMessage("An internal error occured. Please contact support and share the error code ERAIIB01")
+                    setIsErrorModalOpen(true)
+                }
                 else {
                     setPopupTitle("Error!!")
                     setPopupMessage(error.response.data.error)
