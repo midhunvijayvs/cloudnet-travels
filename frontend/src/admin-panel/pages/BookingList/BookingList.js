@@ -197,7 +197,7 @@ const BookingListForAdmin = () => {
                   <tr key={item.id}>
                     <td>#{item.id}</td>
                     <td>{item.ticket_id.slice(0, 15) + '…'}</td>
-                    <td>{item.status}</td>
+                    <td className={`status-label ${item.status=="success"?"success":item.status=="failed"?"failed":"pending"}`}>{item.status}</td>
                     <td>{item.total_pax}</td>
                     <td>{item.agency_name}</td>
                     <td>{item.user_name}</td>
