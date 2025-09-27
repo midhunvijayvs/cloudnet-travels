@@ -25,7 +25,7 @@ from rest_framework.response import Response
 from users.customPermissions import IsAgencyUser
 from rest_framework import status
 from decimal import Decimal
-
+import json
 
 
 class ProxySearchView(APIView):
@@ -95,8 +95,8 @@ class BookTicketView(APIView):
 
             # Call AirIQ
             airiq_response = forward_request_to_air_iq(request, "book/", "POST")
-            airiq_data = airiq_response.content 
-
+            airiq_data = json.loads(airiq_response.content.decode('utf-8'))  # decode bytes → dict
+            
             if airiq_response.status_code == 200 and airiq_data.get("status") == "success":
                 booking.status = "success"
                 wallet_txn.status = "success"
