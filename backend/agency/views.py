@@ -234,7 +234,7 @@ class ManualAddMoneyToWalletFromAdmin(APIView):
                 payment_method="manual",   # no gateway involved
                 description=description,
                 status="success",
-                credit_or_debit="credit",  # because money is being added
+                credit_or_debit="debit",  # because money is being added
                 payment_completed_at=timezone.now(),
             )
 

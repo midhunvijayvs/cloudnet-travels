@@ -18,7 +18,7 @@ import { ArrowUpRight, ArrowDownRight } from "react-feather";
 
 const ProfilePage = ({ userData, loadUserData }) => {
 
-  const navigate = useNavigate()
+const navigate = useNavigate()
 
 
   const [popupTitle, setPopupTitle] = useState(null)
