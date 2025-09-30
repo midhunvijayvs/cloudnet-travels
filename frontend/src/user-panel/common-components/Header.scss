@@ -4,7 +4,7 @@
     margin: 0;
     justify-content: space-between;
     align-items: center;
-    padding: .7rem 0 .7rem 3.125rem;
+    padding: .7rem 3rem .7rem 3rem;
     position: fixed;
     z-index: 100;
     top: 0;
@@ -23,6 +23,7 @@
 
     .logo-description {
         color: var(--primary-color);
+        transition: all 0.8s ease-in-out; // Add smooth transition
     }
 
     .hamburger {
@@ -32,13 +33,14 @@
     .menu-box {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         width: fit-content;
         margin: 0 0px 0 auto;
         border-width: 2px, 2px, 2px, 0px;
         border-style: solid;
         border: 1px solid #00000000;
         background-color: transparent;
-        padding: .6rem 1.875rem .1rem 1.875rem;
+        padding: 0rem 0rem;
         border-top-left-radius: .938rem;
         border-bottom-left-radius: .938rem;
         transition: all 0.8s ease-in-out; // Add smooth transition
@@ -145,13 +147,13 @@
 
     .dropdown-button {
         cursor: pointer;
-        margin-right: 1.5rem;
 
         .onhover-box {
             background-color: var(--white);
             border-radius: 8px;
-            -webkit-box-shadow: -1px 0 10px 0 rgba(212, 168, 11, 0.741), 5px 20px 40px 0 rgba(61, 61, 61, 0.9);
-            box-shadow: -1px 0 10px 0 rgba(212, 168, 11, 0.741), 5px 20px 40px 0 rgba(61, 61, 61, 0.921);
+            -webkit-box-shadow:  rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+                        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
             opacity: 0;
              padding: 10px 15px;
             width: fit-content;
@@ -159,7 +161,7 @@
             position: absolute;
             left: auto;
             right: 2rem;
-            top: 6rem;
+            top: 5rem;
             -webkit-transform: translateY(25px);
             transform: translateY(25px);
             transition: all .3s ease-in-out;
@@ -234,22 +236,29 @@
             align-items: center;
             display: flex;
             gap: 10px;
-
+border-left: 2px solid var(--secondary-color);
             .profile-pic {
                 border-radius: 100%;
                 height: 40px;
                 width: 40px;
             }
 
-            h6 {
+            .user-name{
                 color: var(--dark-grey);
-                font-size: 14px;
+                font-size: 13px;
                 line-height: 1;
+                margin-bottom: 4px;
             }
 
-            h5 {
-                color: var(--dark-grey);
+            .agency-name {
+                color: var(--primary-color);
                 font-size: 16px;
+                font-weight: 600;
+                line-height: 1.3;
+            }
+.agency-id {
+                color: var(--dark-grey);
+                font-size: 11px;
                 line-height: 1.3;
                 margin-top: 4px;
             }
@@ -282,7 +291,8 @@ right: 2rem;
                     padding-top: 10px;
 
                     .logout-btn {
-                        color: var(--primary-color);
+                        color: red;
+                        font-weight: 600;
                     }
                 }
             }
@@ -305,6 +315,12 @@ right: 2rem;
 
         .wallet-menu{
             display: flex;
+            align-items: center;
+            border-radius: 1rem;
+            background-color: var(--secondary-color);
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+            padding: .5rem 1rem;
+            gap: .4rem;
                 .icon {
                 border-radius: 100%;
                 height: 40px;
@@ -318,28 +334,30 @@ right: 2rem;
             }
 
             .value {
-                color: green;
+                color: rgb(255, 255, 255);
                 font-size: 1.5rem;
-                font-weight: 900;
+                font-weight: 700;
                 line-height: 1.3;
                 margin-top: 4px;
             }
             }
 
             .onhover-box {
-right: 17rem;
+right: 15.7rem;
                 .menu-list {
 
 
                     li {
                         display: block;
                         font-size: 16px;
-
+button{
+    background-color: var(--secondary-color);
+}
                         .dropdown-item {
-                            color: var(--primary-color);
+                            color: var(--dark-grey);
                             transition: .4s ease;
                             cursor: pointer;
-
+font-weight: 600;
                             &:hover {
                                 color: var(--dark-grey);
                                 background-color: transparent;
@@ -436,9 +454,12 @@ right: 17rem;
     .app-logo {
         margin-left: -16rem;
     }
+ .logo-description {
+        margin-left: -16rem;
+    }
 
     .menu-box {
-        margin-right: -45rem;
+        margin-right: -450em;
     }
 }
 
@@ -468,7 +489,6 @@ right: 17rem;
             content: '';
             width: 100vw;
             height: 7rem;
-            background-color: #000000;
             position: absolute;
             top: 0;
             left: 0;
@@ -501,6 +521,7 @@ right: 17rem;
             width: 22rem;
             flex-direction: column;
             justify-content: flex-start;
+            align-items: flex-start;
             padding: 5rem 0;
             border: none;
             border-radius: 0rem;
@@ -525,7 +546,7 @@ right: 17rem;
                 .text {
                     padding: 0.917rem 2rem;
                     background-color: var(--bg-color);
-                    color: var(--white);
+                    color: var(--primary-color);
                     margin-left: 5px;
                     border-radius: .2rem;
                     width: 30rem;
@@ -688,10 +709,11 @@ right: 17rem;
 
         .dropdown-button {
             margin-right: 3rem;
-
-            .cart-button {
-                width: 2.5rem;
-                height: 3rem;
+.down-arrow{
+    display: none;
+}
+            .wallet-button {
+             
 
                 i {
                     font-size: 2rem;
@@ -700,7 +722,7 @@ right: 17rem;
 
             .onhover-box {
                 position: fixed;
-
+display: none;
                 left: auto;
 
             }
@@ -774,7 +796,7 @@ right: 17rem;
         }
 
         .app-logo {
-            height: 6.5rem;
+            height: 4rem;
             margin-right: 0;
             margin-left: 0;
         }

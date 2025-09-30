@@ -149,7 +149,7 @@ console.log("response.data.transaction_id from wallet: ", response.data.transact
   }
 
   return (
-    <SupportPagesLayout currentActiveIndex={0} title="My Wallet" breadcrumb={[{ name: "Home", link: "/" }, { name: "My Wallet", link: "#" }]}>
+    <SupportPagesLayout currentActiveIndex={2} title="My Wallet" breadcrumb={[{ name: "Home", link: "/" }, { name: "My Wallet", link: "#" }]}>
       {userData &&
         <div className='wallet-page'>
 

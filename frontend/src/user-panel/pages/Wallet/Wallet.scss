@@ -1,7 +1,8 @@
 .wallet-page {
 
   .balance-header {
-    background: linear-gradient(135deg, #008500, #0d8cf0); // primary gradient
+   background: linear-gradient(135deg, #FBBC05 0%, #FBBC05 70%, #333333 70%, #333333 100%);
+// primary gradient
     color: #fff;
     border-radius: 16px;
     padding: 1.5rem 2rem;
@@ -22,6 +23,7 @@
       font-weight: 500;
       opacity: 0.9;
       margin: 0;
+      color: #0B1426;
     }
 
     .amount {
@@ -213,8 +215,7 @@
   /* Responsive styles */
   @media (max-width: 768px) {
     .balance-header {
-      flex-direction: column;
-      align-items: flex-start;
+     
       text-align: left;
       gap: 0.5rem;
 
@@ -222,7 +223,11 @@
         font-size: 1.25rem;
       }
     }
-
+.add-money{
+  .section-title{
+    font-size: 2rem;
+   }
+}
     table,
     tbody,
     tr,
@@ -231,8 +236,12 @@
       display: block;
       width: 100%;
     }
-
-    tr {
+.transaction-history{
+ .section-title{
+    font-size: 2rem;
+   } .table-wrapper{
+    table{
+ tr {
       margin-bottom: 1.5rem;
       border-bottom: none;
       padding-bottom: 1rem;
@@ -242,7 +251,7 @@
 
     td {
       padding: 0.5rem 1rem;
-
+font-size: 1.5rem;
       .label {
         display: block;
         font-size: 0.875rem;
@@ -258,5 +267,9 @@
     th {
       display: none;
     }
+    }
+  }
+}
+   
   }
 }

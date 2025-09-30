@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Booking
+from .models import Booking, Ticket
 
 class BookingSerializer(serializers.ModelSerializer):
     agency_name = serializers.CharField(source="agency.agency_name", read_only=True)
@@ -14,3 +14,11 @@ class BookingSerializer(serializers.ModelSerializer):
         if obj.user:
             return f"{obj.user.first_name} {obj.user.last_name}".strip()
         return None
+
+
+class TicketSerializer(serializers.ModelSerializer):
+    booking_id = serializers.CharField(source="booking.id", read_only=True)
+
+    class Meta:
+        model = Ticket
+        fields = "__all__"

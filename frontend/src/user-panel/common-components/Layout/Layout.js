@@ -58,6 +58,11 @@ const Layout = () => {
   const [profileMenuOpen, setProfileMenuOpen] = useState(false)
   const { isLoggedIn, login, logout } = useContext(UserContext);
 
+
+  const [originQuery, setOriginQuery] = useState('');
+    const [destinationQuery, setDestinationQuery] = useState('');
+
+
   // helper function to get tomorrow in YYYY-MM-DD format
 const getTomorrowDate = () => {
   const tomorrow = new Date();
@@ -162,14 +167,22 @@ const getTomorrowDate = () => {
               ticketSearchFormData={ticketSearchFormData}
               setTicketSearchFormData={setTicketSearchFormData}
               cartItems={cartItems}
-              activePage={activePage} />} />
+              activePage={activePage}
+              originQuery={originQuery}
+              setOriginQuery={setOriginQuery}
+              destinationQuery={destinationQuery}
+              setDestinationQuery={setDestinationQuery} />} />
 
           <Route path="shop" element={
             <Shop 
             ticketSearchFormData={ticketSearchFormData}
             setTicketSearchFormData={setTicketSearchFormData}
             cartItems={cartItems}
-            />} />
+           
+              originQuery={originQuery}
+              setOriginQuery={setOriginQuery}
+              destinationQuery={destinationQuery}
+              setDestinationQuery={setDestinationQuery} />} />
 
 
 <Route path="/book-ticket" element={<TicketBooking ticketSearchFormData={ticketSearchFormData} />} />

@@ -10,6 +10,7 @@ from .models import Booking
 from django.conf import settings
 from users.customPermissions import IsAdminOrStaff
 from users.customPermissions import IsAgencyUser
+from rest_framework.permissions import IsAuthenticated
 from .serializers import BookingSerializer
 # GET /api/bookings/?search_key=Travels
 # GET /api/bookings/?agency_id=12
@@ -158,3 +159,17 @@ class BookingListOfAgentForAdminView(APIView):
 
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
+class TicketDetailView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, ticket_id):
+        try:
+            ticket = Ticket.objects.get(ticket_id=ticket_id)
+            serializer = TicketSerializer(ticket)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Ticket.DoesNotExist:
+            return Response({"error": "Ticket not found"}, status=status.HTTP_404_NOT_FOUND)

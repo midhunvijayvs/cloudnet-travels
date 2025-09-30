@@ -3,6 +3,7 @@ import API from './API';
 import { UK_COUNTIES } from './Constants';
 import { saveAs } from 'file-saver'; // Import file-saver library
 import InvoiceTemplate from './InvoiceTemplate';
+import FllightTicketPDFTemplate from './InvoiceTemplate';
 import ResumeTemplate from './ResumeTemplate';
 import { pdf } from '@react-pdf/renderer'; // Import from react-pdf/renderer
 import { Filter } from "bad-words"; 
@@ -142,19 +143,29 @@ export const fetchInvoiceDataAndGeneratePdf = async (id) => {
 
     saveAs(blob, 'invoice.pdf'); // Automatically trigger download. save as is a very useful library to download files. it will replace the following 9 commented lines
 
-    //   const blobUrl = URL.createObjectURL(blob);
-    //   const a = document.createElement('a');
-    //   a.style.display = 'none';
-    //   a.href = blobUrl;
-    //   a.download = 'invoice.pdf';
-    //   document.body.appendChild(a);
-    //   a.click();
-    //   document.body.removeChild(a);
-    //   URL.revokeObjectURL(blobUrl);
-    // 
-  }
+      }
   catch (error) {
     console.error('Error fetching invoice data:', error);
+  }
+};
+
+
+export const fetchFlightTicketDataAndGeneratePdf = async (id) => {
+  try {
+    const response = await API.get(`/api/booking/saved-tickets/${id}/`);
+    const ticketData = response.data;
+    // Generate and save PDF blob
+    const blob = await pdf(
+
+      <FllightTicketPDFTemplate data={ticketData} />
+
+    ).toBlob();
+
+    saveAs(blob, `ticket.pdf${id}`); // Automatically trigger download. save as is a very useful library to download files. it will replace the following 9 commented lines
+
+      }
+  catch (error) {
+    console.error('Error fetching ticket data:', error);
   }
 };
 

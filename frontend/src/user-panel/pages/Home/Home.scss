@@ -345,11 +345,11 @@
         }
 
         .right-side {
-          .search-container {
+          .form-container {
             width: 100%;
             margin-bottom: 3rem;
 
-            .input-group {
+            .form-group {
               height: 3rem;
 
               input {
@@ -403,7 +403,7 @@
         .left-side,
         .right-side {
           height: 50%;
-          padding: 3rem;
+          padding: 3rem 0rem;
 
           h1 {
             font-size: 5.25rem;
@@ -412,9 +412,9 @@
         }
 
         .right-side {
-          .search-container {
-            .input-group {
-              height: 5rem;
+          .form-container {
+            .form-group {
+              height: 7rem;
 
               input {
                 font-size: 1.5rem;
@@ -422,10 +422,10 @@
                 height: 5rem;
               }
 
-              .search-button {
+              button {
                 height: 3.5rem;
                 width: 3.5rem;
-
+font-size: 2rem;
                 svg {
                   width: 2rem;
                 }

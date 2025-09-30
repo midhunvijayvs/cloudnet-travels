@@ -19,7 +19,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLeaf } from '@fortawesome/free-solid-svg-icons';
 
 import {ALL_AIRPORTS} from '../../constants/AiportList.js'
-const Userhome = ({ userData, loadUserData, ticketSearchFormData, setTicketSearchFormData }) => {
+const Userhome = ({ userData, loadUserData, ticketSearchFormData, setTicketSearchFormData,originQuery, setOriginQuery,destinationQuery, setDestinationQuery }) => {
 
 
   const navigate = useNavigate();
@@ -39,8 +39,7 @@ const Userhome = ({ userData, loadUserData, ticketSearchFormData, setTicketSearc
   const [formErrors, setFormErrors] = useState({})
 
   const [airportOptions, setAirportOptions] = useState([]);
-  const [originQuery, setOriginQuery] = useState('');
-  const [destinationQuery, setDestinationQuery] = useState('');
+  
   const [showOriginDropdown, setShowOriginDropdown] = useState(false);
   const [showDestinationDropdown, setShowDestinationDropdown] = useState(false);
 
@@ -227,7 +226,7 @@ Travel with <br/>CONFIDENCE
                   <label>Travel Date</label>
                   <input type="date" name="departure_date" value={ticketSearchFormData.departure_date} onChange={handleChange} required />
                 </div>
-                {/* <div className="form-row">
+                <div className="form-row">
                   <div className="form-group small">
                     <label>Adult</label>
                     <input type="number" name="adult" min="1" value={ticketSearchFormData.adult} onChange={handleChange} />
@@ -240,18 +239,16 @@ Travel with <br/>CONFIDENCE
                     <label>Infant</label>
                     <input type="number" name="infant" min="0" value={ticketSearchFormData.infant} onChange={handleChange} />
                   </div>
-                </div> */}
+                </div>
                 <div className="form-group">
-                  <label>Tell your thoughts</label>
-                  {/* <label>Airline Code (optional)</label> */}
+                 
+                  <label>Airline Code (optional)</label>
                   <input type="text" name="airline_code" value={ticketSearchFormData.airline_code} onChange={handleChange} />
                 </div>
                 <button type="button" disabled={isLoading} onClick={submitForm}>
-                  {isLoading ? 'Searching...' : 'Search Package'}
+                  {isLoading ? 'Searching...' : 'Search Flightse'}
                 </button>
-               {/* <button type="button" disabled={isLoading} onClick={submitForm}>
-                  {isLoading ? 'Searching...' : 'Search Flights'}
-                </button> */}
+           
                 {formErrors.search && <p className="error">{formErrors.search}</p>}
               </form>
             </div>

@@ -12,26 +12,16 @@ import { isValidPhoneNumber } from 'libphonenumber-js';
 import { UserContext } from '../../../authentication/pages/UserContext.js';
 import ChangePasswordPopup from '../ChangePasswordPopup/ChangePasswordPopup.js';
 
-const Profile = ({ currentActiveIndex, title, breadcrumb, children }) => {
+const Profile = ({userData,loadUserData, currentActiveIndex, title, breadcrumb, children }) => {
 
   const navigate = useNavigate()
 
-  const [userData, setUserData] = useState({});
   const [previewImage, setPreviewImage] = useState(null);
 
   const [message, setMessage] = useState(null);
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
   const [isMessageModalOpen, setIsMessageModalOpen] = useState(false);
 
-  const [imageError, setImageError] = useState(null);
-  const [errors, setErrors] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
-  const [isImgLoading, setIsImgLoading] = useState(false);
-  const [phoneData, setPhoneData] = useState({ phone_number: "", country_code: "" })
-  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
-  const [confirmType, setConfirmType] = useState('deactivate');
-  const { isLoggedIn, setIsLoggedIn, login, logout } = useContext(UserContext);
-  const [isPasswordEditPopup, setIsPasswordEditPopup] = useState(false);
   const [isLogoutModalShow, setLogoutModalShow] = useState(false)
   const menuItems = [
     { icon: "ri-user-3-line", label: "My Profile", path: "/profile" },
@@ -50,37 +40,11 @@ const Profile = ({ currentActiveIndex, title, breadcrumb, children }) => {
   ];
 
 
-  // useEffect(() => {
-  //   setUserData(prevData => ({
-  //     ...prevData,
-  //     phone_number: phoneData.phone_number,
-  //     country_code: phoneData.country_code
-  //   }));
-  // }, [phoneData]);
-
-  // useEffect(() => {
-  //   $(function () {
-  //     $(window).scrollTop(0);
-  //   });
-  // }, [])
-  useEffect(() => {
-    loadData();
-
-  }, []);
 
 
 
 
-  const loadData = () => {
-
-    const storedUserData = localStorage.getItem('userData');
-    console.log('userdata frm profile:', storedUserData)
-    if (storedUserData) {
-      setUserData(JSON.parse(storedUserData));
-    }
-
-
-  }
+  
 
 
   return (

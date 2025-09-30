@@ -147,21 +147,15 @@
 
             &.active,
             &:hover {
-              position: relative;
+             
+                border-right: 3px solid var(--primary-color);
 
               a {
                 color: var(--primary-color);
                 font-weight: 500;
               }
 
-              &::after {
-                content: "";
-                position: absolute;
-                height: 100%;
-                top: 0;
-                right: 0;
-                border-right: 3px solid var(--primary-color);
-              }
+             
             }
           }
         }
@@ -214,9 +208,11 @@ padding: 1rem;
             }
           }
 
-          .profile-list li {
+          .profile-list {
+            li {
             font-size: calc(12px + 2 * (100vw - 320px) / 1600);
           }
+        }
         }
       }
 
@@ -240,7 +236,22 @@ padding: 1rem;
       .lhs {
         width: 100%;
         margin-bottom: 20px;
-      }
+      .general-sidebar{
+         .profile-list{
+          display: flex;
+          flex-wrap: wrap;
+          gap:2rem;
+          li{
+            width: fit-content;
+            &.active, &:hover{
+              border-right: unset;
+                border-bottom: 3px solid var(--primary-color);
+
+            }
+          }
+         }
+        }
+         }
 
       .rhs {
         width: 100%;

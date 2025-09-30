@@ -22,7 +22,7 @@ import ShopMenuCard from '../../common-components/ShopMenuCard/ShopMenuCard.js';
 import { ALL_AIRPORTS } from '../../constants/AiportList.js'
 
 
-const Shop = ({ ticketSearchFormData, setTicketSearchFormData, loadUserData, userData, cartItems, loadCartDataForHeader }) => {
+const Shop = ({ ticketSearchFormData, setTicketSearchFormData, loadUserData, userData, cartItems, loadCartDataForHeader ,originQuery, setOriginQuery,destinationQuery, setDestinationQuery }) => {
   const { isLoggedIn, login, logout } = useContext(UserContext);
   let navigate = useNavigate();
   const [data, setData] = useState(null);
@@ -40,8 +40,7 @@ const Shop = ({ ticketSearchFormData, setTicketSearchFormData, loadUserData, use
 
 
   const [airportOptions, setAirportOptions] = useState([]);
-  const [originQuery, setOriginQuery] = useState('');
-  const [destinationQuery, setDestinationQuery] = useState('');
+  
   const [showOriginDropdown, setShowOriginDropdown] = useState(false);
   const [showDestinationDropdown, setShowDestinationDropdown] = useState(false);
 
@@ -193,7 +192,7 @@ console.log("data", data)
     <div className='shop-page'>
       <section className="banner">
         <div className="inner">
-          <h2>Find Your Package</h2>
+          <h2>Search Result</h2>
           <ol className='breadcrumb' aria-label="breadcrumb">
             <li className="breadcrumb-item">
               <a onClick={() => navigate('/')}><i className="ri-home-line"></i>Home</a>

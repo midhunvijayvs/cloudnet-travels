@@ -21,7 +21,7 @@ z-index: 99;
 @media (max-width:1028px){
 .user-layout{
    .app-content{
-      padding-top: 0rem;
+      padding-top: 6rem;
 }
 }
 }
@@ -31,5 +31,8 @@ z-index: 99;
       height: 4rem;
       width: 4rem;
 }
-}
+.app-content{
+  
+   padding-top: 10rem;
+}}
 }

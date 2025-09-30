@@ -93,7 +93,7 @@ const handleFilterReset = () => {
 
 
   return (
-    <SupportPagesLayout currentActiveIndex={0} title="My Bookings" breadcrumb={[{ name: "Home", link: "/" }, { name: "My Bookings", link: "#" }]}>
+    <SupportPagesLayout currentActiveIndex={1} title="My Bookings" breadcrumb={[{ name: "Home", link: "/" }, { name: "My Bookings", link: "#" }]}>
       {userData &&
         <div className='booking-page'>
 

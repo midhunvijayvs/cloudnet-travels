@@ -72,6 +72,11 @@
           line-height: 1.6;
           margin-bottom: 2rem;
           text-align: center;
+          svg{
+            path{
+              fill: #fff;
+            }
+          }
         }
    a{
             color: #fff;

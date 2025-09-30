@@ -114,16 +114,28 @@ class BookTicketView(APIView):
             booking.save()
             wallet_txn.save()
 
+            try:
+                ticket = create_ticket_for_booking(booking)
+            except Exception as e:
+                # Log but don't break booking flow
+                print(f"Ticket generation failed: {e}")
+                ticket = None
+                
+                
             return Response(
                 {
                     "booking": {
                         "id": booking.id,
-                        "ticket_id": booking.ticket_id,
+                        "airiq_ticket_id": booking.ticket_id,
                         "status": booking.status,
                         "wallet_transaction_id": wallet_txn.id,
                         "user_id": booking.user.id,
                         "agency_id": booking.agency.id,
                     },
+                    "saved_printable_ticket": {
+                        "id": ticket.id if ticket else None,
+                        "ticket_id": ticket.ticket_id if ticket else None,
+                    } if ticket else {},
                     "airiq_response": airiq_data,
                 },
                 status=status_code,

@@ -119,7 +119,7 @@ useEffect(() => {
         startOtpTimer()
       }
       else {
-
+        showOTPInput(false); //this is to ensuse the state is reset for next time ueser logout and login without refreshing the page. 
         setPopupTitle("Logged in succesfully.");
         setPopupMessage("Logged in succesfully.");
         // setPopupTitle("Logged in succesfully");

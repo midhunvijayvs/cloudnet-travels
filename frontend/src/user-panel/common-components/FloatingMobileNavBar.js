@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const FloatingMobileNavbar = () => {
 
 
-  const enable=true;
+  const enable=false;
   let navigate = useNavigate();
 
   const [activeTabIndex, selectTab]=useState(0)

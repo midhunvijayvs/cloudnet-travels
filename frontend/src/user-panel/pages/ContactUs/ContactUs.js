@@ -54,7 +54,7 @@ const View = () => {
 
       <section className='sec-2' >
         <div className='lhs'>
-          <img src='/images/contact-us/sec-2.jpg' />
+          <img src='/images/contact-us/sec-1.png' />
           {/* <p className='overlap-text'>CONTACT US</p> */}
         </div>
         <div className='rhs'>

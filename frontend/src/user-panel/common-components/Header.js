@@ -7,7 +7,7 @@ import $ from 'jquery';
 import NavPane from './NavPane/NavPane';
 import { UserContext } from '../../authentication/pages/UserContext';
 import NotificationPopup from './NotificationPopup/NotificationPopup.js';
-
+import { ChevronDown } from "react-feather";
 import { DollarSign } from "react-feather";
 
 
@@ -165,14 +165,14 @@ const Header = ({ userData, loadUserData, cartItems, setActivePage, activePage, 
 
 
 
-        <span onClick={() => { setActivePage([1, "contact-us"]); navigate('/contact-us'); setNavPaneOpen(false) }} className={`main-menu-item ${(activePage[0] === 3) && 'active'}`}>
+        <span onClick={() => { setActivePage([0, "contact-us"]); navigate('/contact-us'); setNavPaneOpen(false) }} className={`main-menu-item ${(activePage[0] === 0) && 'active'}`}>
           <div className='text'>
             Contact
           </div>
         </span>
 
 
-        <span onClick={() => { setActivePage([2, "about"]); navigate('/about'); setNavPaneOpen(false) }} className={`main-menu-item ${(activePage[0] === 4) && 'active'}`}>
+        <span onClick={() => { setActivePage([1, "about"]); navigate('/about'); setNavPaneOpen(false) }} className={`main-menu-item ${(activePage[0] === 1) && 'active'}`}>
           <div className='text'>
             About Us
           </div>
@@ -183,14 +183,42 @@ const Header = ({ userData, loadUserData, cartItems, setActivePage, activePage, 
 
 
 
-        <span onClick={() => { setActivePage([3, "payment"]); navigate('/payment'); setNavPaneOpen(false) }} className={`main-menu-item ${(activePage[0] === 7) && 'active'}`}>
+        <span onClick={() => { setActivePage([2, "payment"]); navigate('/payment'); setNavPaneOpen(false) }} className={`main-menu-item ${(activePage[0] === 2) && 'active'}`}>
           <div className='text'>
             Payment
           </div>
         </span>
 
 
-        <span onClick={() => { setActivePage([10, "logout"]); setLogoutModalShow(true); setNavPaneOpen(false) }} className={`main-menu-item ${(activePage[0] === 10) && 'active'} tab-and-mob-only ${!isLoggedIn && 'd-none'} `}>
+ <span onClick={() => { setActivePage([3, "wallet"]); navigate('/wallet'); setNavPaneOpen(false) }} className={`main-menu-item ${(activePage[0] === 3) && 'active'} tab-and-mob-only`}>
+          <div className='text'>
+            My Wallet
+          </div>
+        </span>
+
+
+ <span onClick={() => { setActivePage([4, "wallet"]); navigate('/wallet'); setNavPaneOpen(false) }} className={`main-menu-item ${(activePage[0] === 4) && 'active'} tab-and-mob-only`}>
+          <div className='text'>
+            Recharge
+          </div>
+        </span>
+
+
+               <span onClick={() => { setActivePage([5, "bookings"]); navigate('/bookings'); setNavPaneOpen(false) }} className={`main-menu-item ${(activePage[0] === 5) && 'active'} tab-and-mob-only`}>
+          <div className='text'>
+            My Bookings
+          </div>
+        </span>
+
+
+        <span onClick={() => { setActivePage([6, "profile"]); navigate('/profile'); setNavPaneOpen(false) }} className={`main-menu-item ${(activePage[0] === 6) && 'active'} tab-and-mob-only`}>
+          <div className='text'>
+            My Profile
+          </div>
+        </span>
+
+
+        <span onClick={() => { setActivePage([10, "logout"]); setLogoutModalShow(true); setNavPaneOpen(false) }} className={`main-menu-item ${(activePage[0] === 7) && 'active'} tab-and-mob-only ${!isLoggedIn && 'd-none'} `}>
 
 
           <div className='text'>
@@ -207,22 +235,23 @@ const Header = ({ userData, loadUserData, cartItems, setActivePage, activePage, 
                 onClick={() => setOpenDropDown(prev => (prev === 0 ? null : 0))}
                 ref={walletRef}
               >
-            
 
-                <div className='wallet-menu'> 
-                <img className="icon" src={ '/images/header/wallet.png'} alt="icon"></img>
-                 <div className='text-box'>
+
+                <div className='wallet-menu'>
+                  <img className="icon" src={'/images/header/wallet.png'} alt="icon"></img>
+                  <div className='text-box'>
                     <div className='label' >Wallet Balance:</div>
-                  <div className='value'>₹ {`${userData.agency.wallet_balance}`}</div>
-                </div>
+                    <div className='value'>₹ {`${userData.agency.wallet_balance}`}</div>
+                  </div>
+                  <ChevronDown size={16} className="ml-2 text-gray-600 down-arrow down-arrow" />
                 </div>
 
 
                 <div className="onhover-box ">
                   <ul className="menu-list">
                     <li>
-                      <div className="btn-primary" onClick={() => navigate('/wallet')}><DollarSign/>
-                      Recharge Now!</div>
+                      <div className="btn-secondary" onClick={() => navigate('/wallet')}><DollarSign />
+                        Recharge Now!</div>
                     </li>
                     <li>
                       <div className="dropdown-item" onClick={() => navigate('/wallet')}>My Wallet</div>
@@ -231,7 +260,7 @@ const Header = ({ userData, loadUserData, cartItems, setActivePage, activePage, 
 
                   </ul>
 
-             
+
 
                 </div>
               </div>
@@ -244,14 +273,17 @@ const Header = ({ userData, loadUserData, cartItems, setActivePage, activePage, 
               <img className="img-fluid profile-pic" src={`${userData && userData.profile_image ? userData.profile_image : '/images/no-profile-image.png'}`} alt="profile"></img>
 
               <div>
-                <h6 className="fw-normal">Hi, {`${userData.first_name} ${userData.last_name} `}</h6>
+                <div className="user-name">Hi, {`${userData.first_name} ${userData.last_name} `}</div>
                 {userData.user_type == "agency" ?
-                  <h5 className="fw-medium">{userData.agency.agency_name}</h5>
+                  <div className="agency-name">{userData.agency.agency_name}</div>
                   : <h5 className="fw-medium text-danger">You are and admin or staff. Please login as an Agency to use this user panel</h5>
 
                 }
-                {userData.user_type == "agency" && <h6>ID:CLDNTAGNT0{userData.agency.id}</h6>}
+                {userData.user_type == "agency" && <div className="agency-id">ID:CLDNTAGNT0{userData.agency.id}</div>}
               </div>
+
+                 <ChevronDown size={16} className="ml-2 text-gray-600 down-arrow" />
+
               <div className="onhover-box ">
                 <ul className="menu-list">
                   <li>
@@ -283,7 +315,7 @@ const Header = ({ userData, loadUserData, cartItems, setActivePage, activePage, 
 
 
         <p className="social-heading">Follow Us</p>
-        
+
         <div className="social-box">
           <img src="/images/twitter.svg" alt="Twitter" />
           <img src="/images/linkedin.svg" alt="Linkedin" />
