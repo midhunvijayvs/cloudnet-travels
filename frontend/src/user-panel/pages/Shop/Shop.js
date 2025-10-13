@@ -25,7 +25,15 @@ import { ALL_AIRPORTS } from '../../constants/AiportList.js'
 const Shop = ({ ticketSearchFormData, setTicketSearchFormData, loadUserData, userData, cartItems, loadCartDataForHeader ,originQuery, setOriginQuery,destinationQuery, setDestinationQuery }) => {
   const { isLoggedIn, login, logout } = useContext(UserContext);
   let navigate = useNavigate();
-  const [data, setData] = useState(null);
+  const [data, setData] = useState({data:[{airline:"indigo",
+    flight_number:"766767",
+    origin:"DEL",
+    destination:"BOM",
+    flight_route:"DUBAI",
+    departure_date:"2025/11/11",
+    departure_time:"12:30",
+    price:"6345.00",
+    }]});
 
   const [page, setPage] = useState(1);
   const [pageSize, selectPageSize] = useState(12);
@@ -44,6 +52,8 @@ const Shop = ({ ticketSearchFormData, setTicketSearchFormData, loadUserData, use
   const [showOriginDropdown, setShowOriginDropdown] = useState(false);
   const [showDestinationDropdown, setShowDestinationDropdown] = useState(false);
 
+const [highlightedOriginIndex, setHighlightedOriginIndex] = useState(-1);
+const [highlightedDestinationIndex, setHighlightedDestinationIndex] = useState(-1);
 
 
   const [wishList, setWishList] = useState([]);
@@ -97,6 +107,7 @@ const Shop = ({ ticketSearchFormData, setTicketSearchFormData, loadUserData, use
     setShowOriginDropdown(true);
     const data = searchAirports(value);
     setAirportOptions(data);
+     setHighlightedOriginIndex(-1);
   };
 
   const handleDestinationChange = (e) => {
@@ -105,7 +116,7 @@ const Shop = ({ ticketSearchFormData, setTicketSearchFormData, loadUserData, use
     setShowDestinationDropdown(true);
     const data = searchAirports(value);
     setAirportOptions(data);
-  };
+ setHighlightedDestinationIndex(-1); };
 
   const searchAirports = (query) => {
     if (!query) return [];
@@ -127,6 +138,45 @@ const Shop = ({ ticketSearchFormData, setTicketSearchFormData, loadUserData, use
     setShowDestinationDropdown(false);
   };
 
+ //for keyboard selection bolow 2 functions
+
+  const handleOriginKeyDown = (e) => {
+  if (!showOriginDropdown || airportOptions.length === 0) return;
+
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    setHighlightedOriginIndex((prev) => (prev + 1) % airportOptions.length);
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    setHighlightedOriginIndex((prev) =>
+      prev <= 0 ? airportOptions.length - 1 : prev - 1
+    );
+  } else if (e.key === 'Enter') {
+    e.preventDefault();
+    if (highlightedOriginIndex >= 0) {
+      handleOriginSelect(airportOptions[highlightedOriginIndex]);
+    }
+  }
+};
+
+const handleDestinationKeyDown = (e) => {
+  if (!showDestinationDropdown || airportOptions.length === 0) return;
+
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    setHighlightedDestinationIndex((prev) => (prev + 1) % airportOptions.length);
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    setHighlightedDestinationIndex((prev) =>
+      prev <= 0 ? airportOptions.length - 1 : prev - 1
+    );
+  } else if (e.key === 'Enter') {
+    e.preventDefault();
+    if (highlightedDestinationIndex >= 0) {
+      handleDestinationSelect(airportOptions[highlightedDestinationIndex]);
+    }
+  }
+};
 
 
   const validateForm = (data) => {
@@ -198,7 +248,7 @@ console.log("data", data)
               <a onClick={() => navigate('/')}><i className="ri-home-line"></i>Home</a>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
-              Package Listing
+              Flight Search Result
             </li>
           </ol>
         </div>
@@ -260,13 +310,16 @@ console.log("data", data)
                   type="text"
                   value={originQuery}
                   onChange={handleOriginChange}
-                  onBlur={() => setTimeout(() => setShowOriginDropdown(false), 200)}
+                  onKeyDown={handleOriginKeyDown}
                   required
                 />
                 {showOriginDropdown && (
                   <ul className="dropdown-list">
                     {airportOptions.map((a, index) => (
-                      <li key={index} onClick={() => handleOriginSelect(a)}>
+                      <li key={index} 
+                      onClick={() => handleOriginSelect(a)}
+                        className={index === highlightedOriginIndex ? "highlighted" : ""}
+                        >
                         {a.name} - {a.code}
                       </li>
                     ))}
@@ -282,13 +335,16 @@ console.log("data", data)
                   type="text"
                   value={destinationQuery}
                   onChange={handleDestinationChange}
-                  onBlur={() => setTimeout(() => setShowDestinationDropdown(false), 200)}
+                  onKeyDown={handleDestinationKeyDown}
                   required
                 />
                 {showDestinationDropdown && (
                   <ul className="dropdown-list">
                     {airportOptions.map((a, index) => (
-                      <li key={index} onClick={() => handleDestinationSelect(a)}>
+                      <li key={index}
+                       onClick={() => handleDestinationSelect(a)}
+                        className={index === highlightedDestinationIndex ? "highlighted" : ""}
+                        >
                         {a.name} - {a.code}
                       </li>
                     ))}

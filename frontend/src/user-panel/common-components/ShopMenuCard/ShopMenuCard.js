@@ -244,8 +244,7 @@ const ShopMenuCard = ({ ticketItem, cartItems, loadCartDataForHeader, data, setD
 
   return (
     <div className='shop-menu-card'>
-
-      <div className="vertical-product-box-img">
+      <div className="img-box">
         <img className="product-img-top w-100 bg-img"
           src={
             ticketItem?.airline_logo ||
@@ -262,43 +261,38 @@ const ShopMenuCard = ({ ticketItem, cartItems, loadCartDataForHeader, data, setD
         }
       </div>
 
-      <div className="vertical-product-body">
-        <div className="d-flex align-items-center justify-content-between">
-          <h4 className="vertical-product-title">
-            {ticketItem?.airline} - {ticketItem?.flight_number}
-          </h4>
-          <div className='wishlist-icon' onClick={toggleWishList}>
+      <div className="content-box">
+        <div className="strip">
+            <div className='airline-name'>   {ticketItem?.airline}</div>
+          
+          <div className='flight-number'> Flight Number: {ticketItem?.flight_number}</div>
+            {/* <div className='wishlist-icon' onClick={toggleWishList}>
             {isInList(wishList) ?
               <i className="ri-heart-3-fill fill-icon"></i>
               :
               <i className="ri-heart-3-line text-grey outline-icon"></i>
             }
-          </div>
+          </div> */}
         </div>
 
-        <div className='product-price-box'>
-          <p className='quantity'>
-            {ticketItem?.origin} → {ticketItem?.destination}
+
+        <div className="strip">    <p className='org-dest'>
+          {ticketItem?.origin} → {ticketItem?.destination}
+        </p>
+        </div>
+        <div className="strip">
+          <p className='route'>Route: {ticketItem?.flight_route}</p>
+          <h2 className="price">
+            ₹{ticketItem?.price}
+          </h2>
+         
+        </div>
+
+        <div className="strip">
+           <p className='date-and-time'>
+            {ticketItem?.departure_date} at {ticketItem?.departure_time}
           </p>
-
-          <div className='d-flex align-items-center'>
-            <p className='category me-5'>Route: {ticketItem?.flight_route}</p>
-            <p className='cuisine'>
-              {ticketItem?.departure_date} at {ticketItem?.departure_time}
-            </p>
-          </div>
-
-          <div className='d-flex align-items-center justify-content-between'>
-            <h2 className="theme-color fw-semibold">
-              ₹{ticketItem?.price}
-            </h2>
-            <div>
-              <img className="img-fluid" src="/images/svg/plane-fill.svg" alt="flight"></img>
-            </div>
-          </div>
-
-
-          <button className="btn theme-outline add-btn mt-1"
+           <button className="btn theme-outline add-btn mt-1"
             onClick={() => navigate("/book-ticket", {
               state:
               {
@@ -323,14 +317,16 @@ const ShopMenuCard = ({ ticketItem, cartItems, loadCartDataForHeader, data, setD
             })}>
             BOOK THIS TICKET
           </button>
-
         </div>
 
-        <div>
+
+     
+
+        {/* <div>
           <h5 className="more-details" type='button' onClick={() => showDetailsPopup(true)}>
             View More Details
           </h5>
-        </div>
+        </div> */}
       </div>
 
 

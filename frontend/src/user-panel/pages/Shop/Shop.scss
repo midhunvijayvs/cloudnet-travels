@@ -113,7 +113,7 @@
         gap: 10px;
         flex-wrap: wrap;
       .form-group {
-flex: 1;
+        flex: 1;
         input,
         label {
           width: 100%;
@@ -145,7 +145,10 @@ flex: 1;
             &:hover {
               background-color: #f0f0f0;
             }
-          }
+          &.highlighted {
+  background-color: #009fe9;
+  color: #ffffff;
+                } }
         }
 
         .error {

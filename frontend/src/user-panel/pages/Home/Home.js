@@ -19,7 +19,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLeaf } from '@fortawesome/free-solid-svg-icons';
 
 import {ALL_AIRPORTS} from '../../constants/AiportList.js'
-const Userhome = ({ userData, loadUserData, ticketSearchFormData, setTicketSearchFormData,originQuery, setOriginQuery,destinationQuery, setDestinationQuery }) => {
+const Userhome = (
+  { userData,
+   loadUserData,
+    ticketSearchFormData,
+     setTicketSearchFormData,
+     originQuery,
+      setOriginQuery,
+      destinationQuery,
+       setDestinationQuery }) => {
 
 
   const navigate = useNavigate();
@@ -43,6 +51,8 @@ const Userhome = ({ userData, loadUserData, ticketSearchFormData, setTicketSearc
   const [showOriginDropdown, setShowOriginDropdown] = useState(false);
   const [showDestinationDropdown, setShowDestinationDropdown] = useState(false);
 
+const [highlightedOriginIndex, setHighlightedOriginIndex] = useState(-1);
+const [highlightedDestinationIndex, setHighlightedDestinationIndex] = useState(-1);
 
 
 
@@ -75,7 +85,7 @@ const Userhome = ({ userData, loadUserData, ticketSearchFormData, setTicketSearc
     setShowOriginDropdown(true);
     const results = searchAirports(value);
     setAirportOptions(results);
-  };
+   setHighlightedOriginIndex(-1);};
 
   const handleDestinationChange = (e) => {
     const value = e.target.value;
@@ -83,7 +93,7 @@ const Userhome = ({ userData, loadUserData, ticketSearchFormData, setTicketSearc
     setShowDestinationDropdown(true);
     const results = searchAirports(value);
     setAirportOptions(results);
-  };
+  setHighlightedDestinationIndex(-1);};
 
   const searchAirports = (query) => {
     if (!query) return [];
@@ -92,6 +102,49 @@ const Userhome = ({ userData, loadUserData, ticketSearchFormData, setTicketSearc
       a.name.toLowerCase().includes(lower) || a.code.toLowerCase().includes(lower)
     );
   };
+
+
+  //for keyboard selection bolow 2 functions
+
+  const handleOriginKeyDown = (e) => {
+  if (!showOriginDropdown || airportOptions.length === 0) return;
+
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    setHighlightedOriginIndex((prev) => (prev + 1) % airportOptions.length);
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    setHighlightedOriginIndex((prev) =>
+      prev <= 0 ? airportOptions.length - 1 : prev - 1
+    );
+  } else if (e.key === 'Enter') {
+    e.preventDefault();
+    if (highlightedOriginIndex >= 0) {
+      handleOriginSelect(airportOptions[highlightedOriginIndex]);
+    }
+  }
+};
+
+const handleDestinationKeyDown = (e) => {
+  if (!showDestinationDropdown || airportOptions.length === 0) return;
+
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    setHighlightedDestinationIndex((prev) => (prev + 1) % airportOptions.length);
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    setHighlightedDestinationIndex((prev) =>
+      prev <= 0 ? airportOptions.length - 1 : prev - 1
+    );
+  } else if (e.key === 'Enter') {
+    e.preventDefault();
+    if (highlightedDestinationIndex >= 0) {
+      handleDestinationSelect(airportOptions[highlightedDestinationIndex]);
+    }
+  }
+};
+
+
 
   const handleOriginSelect = (airport) => {
     setTicketSearchFormData(prev => ({ ...prev, origin: `${airport.code}` }));
@@ -184,13 +237,16 @@ Travel with <br/>CONFIDENCE
                     type="text"
                     value={originQuery}
                     onChange={handleOriginChange}
-                    // onBlur={() => setTimeout(() => setShowOriginDropdown(false), 200)}
+                    onKeyDown={handleOriginKeyDown}
                     required
                   />
                   {showOriginDropdown && (
                     <ul className="dropdown-list">
                       {airportOptions.map((a, index) => (
-                        <li key={index} onClick={() => handleOriginSelect(a)}>
+                        <li key={index} 
+                        onClick={() => handleOriginSelect(a)}
+                         className={index === highlightedOriginIndex ? "highlighted" : ""}
+                        >
                           {a.name} - {a.code}
                         </li>
                       ))}
@@ -206,13 +262,16 @@ Travel with <br/>CONFIDENCE
                     type="text"
                     value={destinationQuery}
                     onChange={handleDestinationChange}
-                    // onBlur={() => setTimeout(() => setShowDestinationDropdown(false), 200)}
+                  onKeyDown={handleDestinationKeyDown}
                     required
                   />
                   {showDestinationDropdown && (
                     <ul className="dropdown-list">
                       {airportOptions.map((a, index) => (
-                        <li key={index} onClick={() => handleDestinationSelect(a)}>
+                        <li key={index}
+                         onClick={() => handleDestinationSelect(a)}
+                       className={index === highlightedDestinationIndex ? "highlighted" : ""}
+                          >
                           {a.name} - {a.code}
                         </li>
                       ))}
@@ -246,7 +305,7 @@ Travel with <br/>CONFIDENCE
                   <input type="text" name="airline_code" value={ticketSearchFormData.airline_code} onChange={handleChange} />
                 </div>
                 <button type="button" disabled={isLoading} onClick={submitForm}>
-                  {isLoading ? 'Searching...' : 'Search Flightse'}
+                  {isLoading ? 'Searching...' : 'Search Flights'}
                 </button>
            
                 {formErrors.search && <p className="error">{formErrors.search}</p>}

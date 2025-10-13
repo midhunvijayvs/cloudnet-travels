@@ -112,6 +112,10 @@
                 &:hover {
                   background-color: #f0f0f0;
                 }
+                &.highlighted {
+  background-color: #009fe9;
+  color: #ffffff;
+                }
               }
             }
 
