@@ -88,6 +88,9 @@ const [highlightedDestinationIndex, setHighlightedDestinationIndex] = useState(-
 
 
 
+  useEffect(() => {
+    console.log("formErrors;",formErrors)
+  }, [formErrors])
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -186,7 +189,11 @@ const handleDestinationKeyDown = (e) => {
     if (!data.destination) errors.destination = 'Destination is required';
     if (!data.departure_date) errors.departure_date = 'Departure date is required';
     if (!data.adult || data.adult < 1) errors.adult = 'At least one adult is required';
-    return errors;
+    //  prevent same origin and destination
+  if (data.origin && data.destination && data.origin === data.destination) {
+    errors.destination = 'Origin and destination cannot be the same';
+  }
+  return errors;
   }
 
   const loadData = async () => {
@@ -230,7 +237,27 @@ console.log("data", data)
 
 
 
+const handlePreviousDay = () => {
+  if (!ticketSearchFormData.departure_date) return;
 
+  const currentDate = new Date(ticketSearchFormData.departure_date);
+  currentDate.setDate(currentDate.getDate() - 1);
+
+  const newDate = currentDate.toISOString().split('T')[0];
+
+  setTicketSearchFormData(prev => ({ ...prev, departure_date: newDate }));
+};
+
+const handleNextDay = () => {
+  if (!ticketSearchFormData.departure_date) return;
+
+  const currentDate = new Date(ticketSearchFormData.departure_date);
+  currentDate.setDate(currentDate.getDate() + 1);
+
+  const newDate = currentDate.toISOString().split('T')[0];
+
+  setTicketSearchFormData(prev => ({ ...prev, departure_date: newDate }));
+};
 
 
 
@@ -255,48 +282,6 @@ console.log("data", data)
       </section>
 
       <section className="sec-2">
-
-
-        {/* {isRestaurantOpened ?
-          <div className='shop-opened-or-closed-container opened'>
-            <div className='icon'>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12C20 16.4183 16.4183 20 12 20Z" fill="#00B74A" />
-                <path d="M12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6ZM12 10C11.4477 10 11 9.55228 11 9C11 8.44772 11.4477 8 12 8C12.5523 8 13 8.44772 13 9C13 9.55228 12.5523 10 12 10Z" fill="#00B74A" />
-                <path d="M12 14C10.3431 14 9 15.3431 9 17C9 18.6569 10.3431 20 12 20C13.6569 20 15 18.6569 15 17C15 15.3431 13.6569 14 12 14ZM12 18C11.4477 18 11 17.5523 11 17C11 16.4477 11.4477 16 12 16C12.5523 16 13 16.4477 13 17C13 17.5523 12.5523 18 12 18Z" fill="#00B74A" />
-              </svg>
-            </div>
-            <div className='text'>
-              WE ARE OPEN NOW!
-              <br />
-              <span>Order your favourite dishes!!</span></div>
-
-          </div>
-          :
-          <div className='shop-opened-or-closed-container closed'>
-            <div className='icon'>
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="7" y="14" width="18" height="12" rx="3" fill="#F93154" />
-                <rect x="11" y="10" width="10" height="8" rx="5" stroke="#F93154" strokeWidth="2" fill="none" />
-                <circle cx="16" cy="21" r="2" fill="white" />
-                <rect x="15" y="21" width="2" height="4" rx="1" fill="white" />
-              </svg>
-            </div>
-            <div className='text'>
-              Sorry, we are currently closed for delivery and pickup.
-              <br />
-              Please check back on next opening time.
-              <br />
-              <span>You can still browse in our delicious menu and make a plan for our next opening time</span>
-            </div>
-          </div>
-
-        } */}
-
-
-
-
-
 
 
         <div className="form-container">
@@ -325,7 +310,7 @@ console.log("data", data)
                     ))}
                   </ul>
                 )}
-                {formErrors.origin && <p className="error">{formErrors.origin}</p>}
+               
               </div>
 
 
@@ -350,14 +335,28 @@ console.log("data", data)
                     ))}
                   </ul>
                 )}
-                {formErrors.destination && <p className="error">{formErrors.destination}</p>}
               </div>
 
 
-              <div className="form-group">
-                <label>Departure Date</label>
-                <input type="date" name="departure_date" value={ticketSearchFormData.departure_date} onChange={handleChange} required />
-              </div>
+              <div className="form-group date-group">
+  <label>Departure Date</label>
+  <div className="date-controls">
+    <button type="button" className="date-btn" onClick={handlePreviousDay}>
+      ◀ Prev
+    </button>
+    <input
+      type="date"
+      name="departure_date"
+      value={ticketSearchFormData.departure_date}
+      onChange={handleChange}
+      required
+    />
+    <button type="button" className="date-btn" onClick={handleNextDay}>
+      Next ▶
+    </button>
+  </div>
+</div>
+
             
               <div className="form-group">
                 <label>Adult</label>
@@ -381,6 +380,10 @@ console.log("data", data)
               </button>
             </div>
             {formErrors.search && <p className="error">{formErrors.search}</p>}
+                {formErrors.origin && <p className="error">{formErrors.origin}</p>}
+                {formErrors.destination && <p className="error">{formErrors.destination}</p>}
+                {formErrors.adult && <p className="error">{formErrors.adult}</p>}
+
           </form>
         </div>
 

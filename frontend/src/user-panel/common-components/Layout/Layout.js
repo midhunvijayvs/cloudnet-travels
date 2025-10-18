@@ -72,10 +72,10 @@ const getTomorrowDate = () => {
 
     const [ticketSearchFormData, setTicketSearchFormData] = useState( 
       {
-         origin: "DEL",
-    destination: "DEX",
+         origin: null,
+    destination: null,
     departure_date: getTomorrowDate(), // always tomorrow
-    adult:1,
+    adult:0,
     child: 0,
     infant: 0
   });

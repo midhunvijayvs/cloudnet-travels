@@ -167,7 +167,12 @@ const handleDestinationKeyDown = (e) => {
     if (!data.destination) errors.destination = 'Destination is required';
     if (!data.departure_date) errors.departure_date = 'Departure date is required';
     if (!data.adult || data.adult < 1) errors.adult = 'At least one adult is required';
-return errors;
+ //  prevent same origin and destination
+  if (data.origin && data.destination && data.origin === data.destination) {
+    errors.destination = 'Origin and destination cannot be the same';
+  }
+  
+  return errors;
 }
 
 
@@ -299,6 +304,10 @@ Travel with <br/>CONFIDENCE
                     <input type="number" name="infant" min="0" value={ticketSearchFormData.infant} onChange={handleChange} />
                   </div>
                 </div>
+               
+                  {formErrors.adult && <p className="error">{formErrors.adult}</p>}
+               
+               
                 <div className="form-group">
                  
                   <label>Airline Code (optional)</label>
