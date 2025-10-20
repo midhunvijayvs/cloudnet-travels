@@ -343,7 +343,7 @@ const handleNextDay = () => {
   <div className="date-controls">
     <button type="button" className="date-btn" onClick={handlePreviousDay}>
       ◀ Prev
-    </button>
+    </button>                                                               
     <input
       type="date"
       name="departure_date"

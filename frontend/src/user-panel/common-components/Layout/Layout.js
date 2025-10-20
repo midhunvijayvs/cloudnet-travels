@@ -75,7 +75,7 @@ const getTomorrowDate = () => {
          origin: null,
     destination: null,
     departure_date: getTomorrowDate(), // always tomorrow
-    adult:0,
+    adult:1,
     child: 0,
     infant: 0
   });
