@@ -626,9 +626,10 @@ background-color: #fff;
   font-weight: 500;
 }
 
-.otp-container {
+.otp-box {
   display: flex;
   justify-content: center;
+  gap: .4rem;
 }
 
 .otp-input {

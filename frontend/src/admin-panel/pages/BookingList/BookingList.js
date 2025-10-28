@@ -84,6 +84,15 @@ const BookingListForAdmin = () => {
     });
   };
 
+
+  //copy id to clipboadrd
+  const [copied, setCopied] = useState(false);
+
+const handleCopy = (text) => {
+  navigator.clipboard.writeText(text);
+  setCopied(true);
+  setTimeout(() => setCopied(false), 2000);
+};
   return (
     <div className="admin-list-page booking-list-page card">
       <div className="card-body">
@@ -199,7 +208,12 @@ const BookingListForAdmin = () => {
                 data.results.map((item) => (
                   <tr key={item.id}>
                     <td>{item.id}</td>
-                    <td>{item.ticket_id.slice(0, 4) + '…'}</td>
+                   <td
+  title="Click to copy"
+  className="copyable-td"
+  onClick={() => handleCopy(item.ticket_id)}
+>
+                      {item.ticket_id.slice(0, 4) + '…'}</td>
                     <td>{item.origin}</td>
                     <td>{item.destination}</td>
                     <td>{item.amount}</td>
@@ -246,6 +260,7 @@ const BookingListForAdmin = () => {
         )}
         {isLoading && <FixedOverlayLoadingSpinner />}
       </div>
+      {copied && <div className="copy-toast">Copied to clipboard!</div>}
     </div>
   );
 };

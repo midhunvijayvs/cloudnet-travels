@@ -73,7 +73,8 @@ INSTALLED_APPS = [
     'django_filters',
     'agency',
     'phonepe_payment',
-    'booking'
+    'booking',
+    'chatbot'
 ]
 
 MIDDLEWARE = [
