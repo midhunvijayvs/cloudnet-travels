@@ -1,3 +1,44 @@
 .booking-list-page {
+.copyable-td {
+  cursor: pointer;
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.copyable-td:hover {
+  color: #0056b3;
+}
+
+.copy-toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #28a745;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  animation: fadein 0.3s, fadeout 0.5s 1.5s forwards;
+  z-index: 9999;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeout {
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
 
 }
