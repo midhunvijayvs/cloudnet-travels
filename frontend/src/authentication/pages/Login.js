@@ -266,6 +266,9 @@ const Login = () => {
                 onChange={handleChange}
                 disabled={isOTPInputShown}
                 placeholder='Password'
+                onKeyDown={(e) => {
+  if (e.key === 'Enter') handleSubmit(e);
+}}
               />
               <span className="input-group-text" onClick={() => showPassword(!passwordShown)} style={{ cursor: "pointer" }}>
 
@@ -336,7 +339,9 @@ const Login = () => {
                       name={`otp${index}`}
                       value={OTP[index] || ""}
                       onChange={(e) => handleOTPInputChange(e, index)}
-                      onKeyDown={(e) => handleKeyDown(e, index)}
+                      onKeyDown={(e) => {handleKeyDown(e, index);
+                        if (e.key === 'Enter' && index === 5) handleSubmit(e);}
+                      }
                     />
                   </div>
                 ))}

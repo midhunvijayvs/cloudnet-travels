@@ -267,7 +267,7 @@ const handleNextDay = () => {
 
   return (
     <div className='shop-page'>
-      <section className="banner">
+      {/* <section className="banner">
         <div className="inner">
           <h2>Search Result</h2>
           <ol className='breadcrumb' aria-label="breadcrumb">
@@ -279,14 +279,14 @@ const handleNextDay = () => {
             </li>
           </ol>
         </div>
-      </section>
+      </section> */}
 
       <section className="sec-2">
 
 
         <div className="form-container">
           <form >
-
+ <h2>Search Result</h2>
             <div className="form-row">
 
               <div className="form-group">
